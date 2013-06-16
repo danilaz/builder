@@ -1,0 +1,22 @@
+<div class="qg_con_ul1">
+	<ul>
+		<{foreach item=list key=num from=$offer}>
+			<{if $num<8}>
+			<li><!-- <span>[<{$list.uptime|date_format}>]</span> -->
+			<a href="<{$config.weburl}>/?m=offer&s=offer_detail&id=<{$list.id}>"><{$list.title|truncate:80:"...":true}></a>
+			</li>
+			<{/if}>
+		<{/foreach}>
+	</ul>
+ </div>
+<div class="qg_con_ul2">
+	<ul>
+		<{foreach item=list key=num from=$offer}>
+			<{if $num>=8}>
+			<li><!-- <span>[<{$list.uptime|date_format}>]</span> -->
+			<a href="<{$config.weburl}>/?m=offer&s=offer_detail&id=<{$list.id}>"><{$list.title|truncate:80:"...":true}></a>
+			</li>
+			<{/if}>
+		<{/foreach}>
+	</ul>
+ </div>

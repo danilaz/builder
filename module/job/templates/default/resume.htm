@@ -1,0 +1,15 @@
+<link href="<{$config.weburl}>/templates/<{$config.temp}>/job.css" rel="stylesheet" type="text/css" />
+<form target="_parent" action="<{$config.weburl}>/?m=job&s=job_detail" method="post">
+<table cellpadding="0" cellspacing="0" border="0" class="send_resume">
+<tr>
+  <td><span><{$lang.xzfsjl}>:</span></td>
+</tr>
+<tr class="tr1">
+<td class="td1"><select name="rid" id="rid"><{foreach item=list from=$resume}><option value="<{$list.rid}>"><{$list.name}></option><{/foreach}></select></td>
+<td class="td2">
+<input type="hidden" name="id" value="<{$smarty.get.id}>">
+<input type="submit" value="" style="background:url(<{$config.weburl}>/image/default/ljsq1.gif) no-repeat; height:30px; width:83px; border:none;"  />
+</td>
+</tr>
+</table>
+</form>

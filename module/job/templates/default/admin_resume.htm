@@ -1,0 +1,327 @@
+<script type="text/javascript" src="script/Validator.js"></script>
+<script type="text/javascript" src="lib/calendar/calendar.js" ></script>  
+<script type="text/javascript" src="lib/calendar/calendar-zh.js" ></script>
+<script type="text/javascript" src="lib/calendar/calendar-setup.js"></script>
+<link type="text/css" rel="stylesheet" href="lib/calendar/calendar.css" >
+<style>
+.radio{ float:left; margin-right:5px;}
+.radio { margin-top:2px } 
+* html .radio { margin-top:0px } 
+*+html .radio { margin-top:0px}
+u{ text-decoration:none; float:left; margin-right:10px;}
+.btnadd{ margin-right:10px; float:right}
+</style>
+<script type="text/javascript">
+function add(a){
+	
+var length=document.getElementById(a).rows.length;
+    if(length<7){
+		document.getElementById(a).insertRow(length-1);
+		for(i=1; i<6; i++){
+			var cell=document.getElementById(a).rows[length-1].insertCell(0);
+			var name=a+(length-1)+"[]";			
+			if(i==5)
+			cell.innerHTML=length-1;
+			else if(i==4)
+			cell.innerHTML="<input type='text' name="+name+" size='10' id='"+name+"1' onclick=\"return showCalendar('"+name+"1', 'y-mm');\"/> - <input type='text' name="+name+" id='"+name+"2' size='10' onclick=\"return showCalendar('"+name+"2', 'y-mm');\" />";
+			else
+			cell.innerHTML="<input type='text' name="+name+" size='25'>";
+		}
+		if(a=='edu')
+		document.getElementById('enum').value=length-1;
+		else
+		document.getElementById('wnum').value=length-1;
+	}else{
+	   alert("Укажите не более 5!");	
+	}
+
+}
+</script>
+<div class="admin_right_top">
+<{if $smarty.get.edit}> <{$lang.editor_recruit}> <{else}> <{$lang.published_recruit}> <{/if}> 
+</div>
+<form method="post" action="" enctype="multipart/form-data" onSubmit="return Validator.Validate(this,3)">
+
+<input type="hidden" name="enum" id="enum" value="<{if ($de.education|@count)==""}>1<{else}><{$de.education|@count}><{/if}>" />
+<input type="hidden" name="wnum" id="wnum" value="<{if ($de.experience_detail|@count)==""}>1<{else}><{$de.experience_detail|@count}><{/if}>" />
+<table  border="0" cellspacing="1" cellpadding="0" align="center" bgcolor="#DDDDDD" class="admin_table">
+         <tr>
+           <td bgcolor="#D8E6F2" colspan="7"><b><{$lang.perinfo}></b></td>
+        </tr>
+        <tr>
+            <td width="11%" bgcolor="#EAEFF3"><{$lang.rname}></td>
+            <td width="89%" bgcolor="#FFFFFF" colspan="5">
+            <input name="name" type="text" id="name" style="width:300px;" value="<{$de.name}>" dataType="Require" msg="<{$lang.post_required}>"/>
+            </td>
+        </tr>
+        <tr>
+        	<td bgcolor="#EAEFF3"><{$lang.name}></td>
+            <td bgcolor="#FFFFFF">
+               <input name="uname" type="text" id="uname" style="width:100px;" value="<{$de.uname}>" dataType="Require" msg="<{$lang.uname_required}>">
+            </td>
+            <td bgcolor="#EAEFF3"><{$lang.birth}></td>
+            <td bgcolor="#FFFFFF">
+               <input name="uage" type="text" id="uage" style="width:100px;" value="<{$de.uage}>" onclick="return showCalendar('uage', 'y-mm');" dataType="Require" msg="<{$lang.uage_required}>">
+            </td>
+            <td bgcolor="#EAEFF3"><{$lang.sex}></td>
+            <td bgcolor="#FFFFFF">
+               <input name="usex" type="radio" class="radio" id="usex" value="0" <{if $de.usex==0 or $de.usex=="" }> checked="checked" <{/if}> /><u><{$lang.male}></u>
+               <input name="usex" type="radio" class="radio" id="usex" value="1" <{if $de.usex==1}> checked="checked" <{/if}> /><u><{$lang.female}></u>
+            </td>
+        </tr>
+        
+        <tr>
+        	<td bgcolor="#EAEFF3"><{$lang.mobile}></td>
+            <td bgcolor="#FFFFFF">
+               <input name="uphone" type="text" id="uphone" style="width:80px;" value="<{$de.uphone}>" dataType="Require" msg="<{$lang.uphone_required}>">
+            </td>
+            <td bgcolor="#EAEFF3"><{$lang.telephone}></td>
+            <td bgcolor="#FFFFFF">
+               <input name="utel1" type="text" id="utel1" style="width:30px;" value="<{$de.utel.0}>"> -
+          	   <input name="utel2" type="text" id="utel2" style="width:70px;" value="<{$de.utel.1}>">
+            </td>
+            <td bgcolor="#EAEFF3"><{$lang.email}></td>
+            <td bgcolor="#FFFFFF">
+               <input name="umail" type="text" id="umail" style="width:150px;" value="<{$de.umail}>">
+            </td>
+        </tr>
+        
+        <tr>
+        	<td bgcolor="#EAEFF3"><{$lang.raddress}></td>
+            <td bgcolor="#FFFFFF" colspan="5">
+               <input name="uaddress" type="text" id="uaddress" style="width:300px;" value="<{$de.uaddress}>" dataType="Require" msg="<{$lang.uaddress_required}>">
+            </td>
+        </tr>
+        
+        <tr>
+        	<td bgcolor="#EAEFF3"><{$lang.wep}></td>
+            <td bgcolor="#FFFFFF">
+            <input value="<{$de.experience_years}>" name="experience_years" type="text" id="valid" style="width:40px;" datatype="Number" msg="<{$lang.valid_required}>" /> 
+            </td>
+            <td bgcolor="#EAEFF3"><{$lang.educations}></td>
+            <td bgcolor="#FFFFFF">
+            <select name="degree" id="degree" style="width:200px;">
+            <{foreach item=list from=$degree key=num}>
+            <option value="<{$num}>" <{if $de.degree==$num}>selected="selected"<{/if}> ><{$list}></option>
+            <{/foreach}>
+            </select>
+            </td>
+            <td bgcolor="#EAEFF3"><{$lang.professionals}></td>
+            <td bgcolor="#FFFFFF">
+            <input style="width:150px;" type="text" value="<{$de.discipline}>" name="discipline" />
+            </td>
+        </tr>
+        <tr>
+	     <td bgcolor="#EAEFF3"><{$lang.fl}></td>
+	     <td bgcolor="#FFFFFF">
+            <select name="language1" id="language1" style="width:100px;">
+            <{foreach item=list from=$language_arr key=num}>
+                <option value="<{$num}>" <{if $de.language.0==$num}>selected="selected"<{/if}> ><{$list}></option>
+            <{/foreach}>
+            </select>
+        <!-- <input style="width:300px;" type="text" value="<{$de.technique}>" name="technique" />-->
+        </td>
+       
+        <td bgcolor="#EAEFF3"><{$lang.mastery}></td>
+	    <td bgcolor="#FFFFFF">
+            <select name="language2" id="language2" style="width:100px;">
+            <{foreach item=list from=$language_darr key=num}>
+                <option value="<{$num}>" <{if $de.language.1==$num}>selected="selected"<{/if}> ><{$list}></option>
+            <{/foreach}>
+            </select>
+        </td>
+       
+        <td bgcolor="#EAEFF3"><{$lang.sa}></td>
+	    <td bgcolor="#FFFFFF">
+            <select name="language3" id="language3" style="width:100px;">
+            <{foreach item=list from=$language_darr key=num}>
+                <option value="<{$num}>" <{if $de.language.2==$num}>selected="selected"<{/if}> ><{$list}></option>
+            <{/foreach}>
+            </select>
+         </td>
+        </tr>  
+        </tr>
+        
+        <tr>
+           <td bgcolor="#D8E6F2" colspan="7"><b><{$lang.ee}></b><input type="button" value="<{$lang.addtr}>" onclick="add('edu')"  class="btnadd"/></td>
+        </tr>
+        <tr>
+           <td colspan="7" bgcolor="#ffffff" align="center">
+              <table id="edu" cellpadding="0" cellspacing="0" width="98%" border="0">
+                 <tr>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<{$lang.times}></td><td><{$lang.school}></td><td><{$lang.professionals}></td><td><{$lang.educations}></td>
+                 </tr>
+              <{foreach item=list from=$de.education key=n}>  
+                <{if $list.0 !="" and $list.1 !="" and $list.2 !="" and $list.3 !="" }>
+                 <tr>
+                    <td width="3%"><{if ($n+1)==""}>1<{else}><{$n+1}><{/if}></td>
+                    <td>
+                    <input value="<{$list.0}>" type="text" size="10" name="edu<{$n+1}>[]" id="edu<{$n+1}>1" onclick="return showCalendar('edu<{$n+1}>1', 'y-mm');"/> - 
+                    <input value="<{$list.1}>" type="text" name="edu<{$n+1}>[]" id="edu<{$n+1}>2" size="10" onclick="return showCalendar('edu<{$n+1}>2', 'y-mm');" />
+                    </td>
+                    <td width="24%"><input value="<{$list.2}>" type="text" name="edu<{$n+1}>[]" size="25"/></td>
+                    <td width="24%"><input value="<{$list.3}>" type="text" name="edu<{$n+1}>[]" size="25" /></td>
+                    <td width="24%"><input value="<{$list.4}>" type="text" name="edu<{$n+1}>[]" size="25" /></td>
+                 </tr>
+                 <{/if}>
+                <{/foreach}> 
+                   <tr><td colspan="6"></td></tr>
+              </table>
+           </td>
+        </tr>
+        
+        <tr>
+           <td bgcolor="#D8E6F2" colspan="7"><b><{$lang.gzjl}></b><input type="button" value="<{$lang.addtr}>" onclick="add('work')"   class="btnadd"/></td>
+        </tr>
+        <tr>
+           <td colspan="7" bgcolor="#ffffff" align="center">
+              <table id="work" cellpadding="0" cellspacing="0" width="98%" border="0">
+                 <tr>
+                    <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<{$lang.times}></td><td><{$lang.comname}></td><td><{$lang.departments}></td><td><{$lang.position}></td>
+                 </tr>
+                 <{foreach item=list from=$de.experience_detail key=n}>  
+                  <{if $list.0 !="" and $list.1 !="" and $list.2 !="" and $list.3 !="" }>
+                 <tr>
+                    <td width="3%"><{if ($n+1)==""}>1<{else}><{$n+1}><{/if}></td>
+                    <td>
+                    <input value="<{$list.0}>" type="text" size="10" name="work<{$n+1}>[]" id="work<{$n+1}>1" onclick="return showCalendar('work<{$n+1}>1', 'y-mm');"/> - 
+                    <input value="<{$list.1}>" type="text" name="work<{$n+1}>[]" id="work<{$n+1}>2" size="10" onclick="return showCalendar('work<{$n+1}>2', 'y-mm');" />
+                    </td>
+                    <td width="24%"><input value="<{$list.2}>" type="text" name="work<{$n+1}>[]" size="25"/></td>
+                    <td width="24%"><input value="<{$list.3}>" type="text" name="work<{$n+1}>[]" size="25" /></td>
+                    <td width="24%"><input value="<{$list.4}>" type="text" name="work<{$n+1}>[]" size="25" /></td>
+                 </tr>
+                 <{/if}>
+                 <{/foreach}> 
+                 <tr><td colspan="6"></td></tr>
+              </table>
+           </td>
+        </tr>
+        <tr>
+	  <td bgcolor="#EAEFF3" valign="top" style="padding-top:5px;"><{$lang.selfevaluation}></td>
+	  <td bgcolor="#FFFFFF" colspan="5">
+		<{if $de.detail}>
+		<{$de.detail}>
+		<{else}>
+		<script type="text/javascript" src="lib/fckeditor/fckeditor.js"></script>
+		<script type="text/javascript">
+		var oFCKeditor = new FCKeditor( 'detail' ) ;
+		oFCKeditor.Config['ToolbarStartExpanded'] = true ;
+		<{if $config.language=='en'}>
+			oFCKeditor.Config['DefaultLanguage']='en';
+		<{else}>
+			oFCKeditor.Config['DefaultLanguage']='zh-cn';
+		<{/if}>
+		oFCKeditor.BasePath		= 'lib/fckeditor/' ;
+		oFCKeditor.ToolbarSet	= 'B2Bbuilder' ;
+		oFCKeditor.Width='99%';
+		oFCKeditor.Height=300;
+		oFCKeditor.Create() ;
+		</script>
+		<{/if}></td>
+	</tr>
+    <tr>
+        <td bgcolor="#D8E6F2" colspan="7"><b><{$lang.intention}></b></td>
+    </tr>
+    <tr>
+        <td bgcolor="#EAEFF3" colspan="2"><{$lang.je}></td>
+        <td bgcolor="#FFFFFF" colspan="5">
+        <select onchange="getHTML(this.value,'scatid',0);" name="catid"  id="catid" dataType="Require" msg="			    <{$lang.select_job_categories}>">
+        <option value=""><{$lang.select_job_categories}></option>
+        <{foreach item=list from=$hrcat key=num}>
+        <option value="<{$list.id}>" <{if $de.catid==$list.id&&$de.catid!=""}>selected="selected"<{/if}> ><{$list.catname}></option>
+        <{/foreach}>
+        </select>
+        <select name="scatid" id="scatid" style="width:200px; visibility:hidden;"></select>
+        </td>
+    </tr>
+    <tr>
+	   <td bgcolor="#EAEFF3" colspan="2"><{$lang.sej}></td>
+	   <td bgcolor="#FFFFFF" colspan="5">
+	   <select name="salary" id="salary" style="width:200px;" msg="<{$lang.salary_range}>">
+	  	   <{foreach item=list from=$hrmoney key=num}>
+		   <option value="<{$num}>" <{if $de.salary==$num}>selected="selected"<{/if}> ><{$list}></option>
+		   <{/foreach}>
+	   </select></td>
+    </tr>
+    <tr>
+        <td bgcolor="#EAEFF3" colspan="2"><{$lang.nwe}></td>
+        <td bgcolor="#FFFFFF" colspan="5">
+        <{foreach item=list key=num from=$job_type}>
+    <input class="radio" <{if $de.job_type==$num}>checked="checked"<{/if}> name="job_type" type="radio" value="<{$num}>" /><u><{$list}></u>
+        <{/foreach}>
+  	    </td>
+    </tr>
+    <tr>
+        <td bgcolor="#EAEFF3" colspan="2"><{$lang.wae}></td>
+        <td bgcolor="#FFFFFF" colspan="5">
+          <input name="aaddress" type="text" id="aaddress" style="width:300px;" value="<{$de.aaddress}>" />
+  	    </td>
+    </tr>
+     <tr bgcolor="#EAEFF3">
+            <td colspan="2"><{$lang.cws}></td>
+            <td bgcolor="#FFFFFF" colspan="5">
+            <select name="situation">
+            <{foreach item=list from=$situations}>
+            <option value="<{$list}>"><{$list}></option> 
+            <{/foreach}>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#EAEFF3" colspan="2"><{$lang.isopen}></td>
+            <td bgcolor="#FFFFFF" colspan="5">
+            <input type="radio" class="radio" name="statu" value="0" checked="checked" /><u><{$lang.close}></u>
+            <input type="radio" class="radio" name="statu" value="1" <{if $de.statu==1}>checked="checked"<{/if}> /><u><{$lang.open}></u>
+            </td>
+        </tr>
+       		<tr bgcolor="#EAEFF3">
+            <td colspan="2">&nbsp;</td>
+            <td bgcolor="#FFFFFF" colspan="5">
+            <input name="Submit" type="submit" id="Submit" value=" <{$lang.submit}> " style="width:100px;" />
+            <input name="submit" type="hidden" id="submit" value="<{if $de.rid}>edit<{else}>submit<{/if}>" />
+            <input name="editID" type="hidden" id="editID" value="<{$de.rid}>" />
+            </td>
+        </tr>
+</table>
+</form>
+<script type="text/javascript">
+function getHTML(v,ob,scatid)
+{	
+	var url = 'ajax_back_end.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&cattype=hr&pcatid='+v;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'post', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+		var i=0;var j=0;
+		eval(tempStr);
+		for(var s in MyMe)
+		{
+			++j;
+		}
+		if(j>0)
+			$(ob).style.visibility="visible";
+		else
+			$(ob).style.visibility="hidden";
+		$(ob).options.length =j;
+		for(var k in MyMe)
+		{
+			$(ob).options[i].value = MyMe[k][0];
+			$(ob).options[i].text = MyMe[k][1];
+			if(MyMe[k][0]==scatid)
+			{
+				$(ob).options[i].selected = true;
+			}
+			i++;
+		}
+	}
+}
+<{if $de.catid}>
+	getHTML(<{$de.catid}>,'scatid',<{$de.scatid}>);
+<{/if}>
+</script>

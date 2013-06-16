@@ -1,0 +1,97 @@
+<{include file="header.htm"}>
+
+	<!--主体开始 -->
+
+	<div id="mainbody1" class="topm">
+
+	
+
+		<!--主体左侧开始 -->
+
+		<div class="leftbar_aboutus">
+
+			<div class="title4"><div class="title_left2 L2"><{$de.con_title}></div></div>
+
+			<div class="content4 overflow">
+
+                <div style="text-align:left;line-height:22px;padding:10px;">
+
+                	<{$de.con_desc}>
+
+                    <{if $de.msg_online==1}>
+
+                    	<{include file="feedback.htm"}>
+
+                    <{/if}>
+
+                </div>
+
+			  </div>
+
+		    <div class="bottom4"></div>
+
+             
+
+		</div>
+
+		<!--主体左侧结束 -->
+
+		
+
+		<!--主体右侧开始 -->
+
+		<div class="rightbar">
+
+			<div class="right1">
+
+				<div class="sectitle"  style="background:#366FAA;"><div class="title_left1 L2" style=" color:#FFFFFF;">Наш сервис</div></div>
+
+				 <div class="seccon">
+
+					<ul style="line-height:22px;overflow:hidden;">
+
+                        <{foreach item=list from=$con_groups}>
+
+                        <li style="display:block;">
+
+                        	<b><{$list.title}></b>
+
+                        	<{foreach item=li from=$all_web}>
+
+                            <{if $li.con_group==$list.id}><div <{if $smarty.get.type==$li.con_id}>class='curr_web_con'<{/if}>><a href="<{$li.con_linkaddr}>"><{$li.con_title}></a></div><{/if}>
+
+                            <{/foreach}>
+
+                        </li>
+
+                        <{/foreach}>
+
+                        <{foreach item=li from=$all_web}>
+
+                        <{if $li.con_group<1}>
+
+                        <li><b <{if $smarty.get.type==$li.con_id}>class='curr_web_con'<{/if}>><a href="<{$li.con_linkaddr}>"><{$li.con_title}></a></b></li><{/if}>
+
+                        <{/foreach}>
+
+				    </ul>
+
+			    </div>
+
+			  	<div class="bottom5"></div>
+
+				<div class="clear"></div>
+
+				</div>
+
+		</div>		
+
+		<!--主体右侧结束 -->
+
+	</div>
+
+	<!--主体结束 -->	
+
+
+
+<{include file="footer.htm"}>

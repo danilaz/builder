@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title><{$title}>-<{$shopconfig.hometitle}>-<{$config.company}></title>
+<meta name="description" content="<{$description|strip_tags}>,<{$shopconfig.homedes}>">
+<meta name="keywords" content="<{$keyword}>,<{$shopconfig.homekeyword}>">
+</head>
+<style type="text/css">
+#imageFlow{top:405px; width:650px; left:390px; background-color:#CCCCCC;}
+* { margin:0; padding:0; }
+img { border:0; }
+th { text-align:right; }
+ul, li { list-style:none; }
+<{if $shopconfig.styleimg!=''}>
+body {background-image:url(<{$shopconfig.styleimg}>);}
+<{else}>
+body {BACKGROUND:url(<{$img}>bodybg.gif) top repeat-x;background-color:#fff;}
+<{/if}>
+body,td {font-size:12px; line-height:22px; }
+body, div, input, select, textarea, td { font-family:Arial, Tahoma, Verdana, Helvetica, sans-serif; }
+img, input, select { vertical-align:middle }
+ul, li {list-style:none;list-style-image:none;list-style-position:outside;list-style-type:none; margin:0px;}
+a{text-decoration:none;}
+a * { cursor:pointer; }
+a:link, a:visited {color:#022e9f;}
+a:hover {color:#d443a7;text-decoration:underline;}
+
+#top { background-image:url(<{$img}>topBg.gif); background-repeat:repeat-x; height:24px; line-height:24px; font-size: 12px; border-bottom:1px solid #C4C4C4; border-top:1px solid #FFFFFF; padding-right:10px; padding-left:10px; clear:both; font-weight:bold; }
+#top a { color:#022e9f }
+#top a:hover { color:#E66D02 }
+
+#header{<{if $shopconfig.headimage==''}>background:url(<{$img}>header.gif) repeat-x scroll center top;<{/if}>clear:both;height:110px;margin:auto;width:980px;}
+.company_name div{ font-size:22px;}
+.company_name span{color:#6C8AB5}
+#name{ height:112px;<{if $shopconfig.headimage!=''}>background:#284B75 url(<{$shopconfig.headimage}>) scroll center top;<{/if}>}
+
+#main {display:block;zoom:1;overflow:hidden;width:970px;background-color:#FFFFFF;background-position:left top;padding:0px 10px 0px 0px;margin:auto;height:100%;margin-top:0px;background:url(<{$img}>mainbg.gif);}
+
+.mainleft{margin-top:5px;width:180px;height:100%;float:left;}
+.leftmenu{width:140px;margin:auto;}
+#navmenu{width:140px;height:100%;float:left;}
+
+#navmenu li{background:url(<{$img}>navmenu_bg.gif) repeat-y;width:140px;height:32px;line-height:32px;overflow:hidden;text-align:center; margin-top:3px; margin-bottom:3px;}
+
+#navmenu li a{width:180px;text-align:center;display:inline;font-weight:bold;}
+.leftcon{width:136px;float:left;background:url('<{$img}>content_bg.gif') repeat;border:1px solid #617483;line-height:22px; padding-top:3px;}
+.leftcon ul li {width:130px;text-align:center;overflow:hidden;}
+.leftcon ul li a{width:130px;text-align:center;word-break:break-all;font-size:12px;}
+#content {float:right;width:790px;height:100%;margin-top:8px; }
+#bottom {background-color:#F5F5F5;border-top:2px solid #f2f3f3;float:left;margin-top:10px;text-align:right;width:970px;margin:auto;}
+#supply,#news{ width:391px; float:left;}
+.clear{ clear:both;}
+.guide_ba img{ float:right; margin-right:5px;}
+.common_box{ width:100%%; margin-bottom:5px; background-color:#FFFFFF;}
+.common_box table{border-collapse:collapse;background-image:url('<{$img}>content_bg.gif');}
+.common_box td{border:1px solid #b6c4cf; padding:2px; text-align:left}
+.guide_ba{background-image:url('<{$img}>title_bg.gif'); font-weight:bold; text-align:left; padding:5px;}
+.guide_ba span{background:url('<{$img}>title_left.gif') left no-repeat; padding-left:50px; font-weight:bold; text-align:left; line-height:23px;width:180px;display:inline;float:left;}
+
+.info_text{text-align:left}
+
+.li_pro_list{ padding-top:0px!important; padding-top:5px; width:100%; height:90px; background-color:#FFFFFF;}
+.li_pro_list li{width:85px; height:90px;float:left;}
+.li_pro_list li img{width:82px; height:75px;padding:3px;}
+.li_pro_list_img{width:85px; float:left}
+.li_pro_list_con{float:right; width:620px;}
+.pro_list_col{float:left;margin-left:7px;}
+.pro_list_col img,.probox img{border:1px solid #CCCCCC; padding:1px; width:150px; height:150px;}
+.com_intro{ background-color:#FFFFFF;}
+.shop_pro_list{ padding-top:0px!important; padding-top:5px; width:100%; height:auto; background-color:#FFFFFF;}
+.shop_pro_list li{width:95px;float:left;margin-left:10px;}
+.shop_pro_list li img{width:92px; height:80px;padding:3px;}
+.newoffer{padding-top:0px!important; padding-top:5px; width:100%;background-color:#FFFFFF;}
+.newoffer li{width:100%; padding:3px;}
+.content{margin:0px;background-image: url(<{$img}>main_info_bg.jpg) ;background-repeat:repeat-x;background-position:left top;}
+.com_contact{background-color:#FFFFFF;}
+.borderC {border-bottom:1px dashed #cccccc}
+.padding_10{padding:10px}
+.padding_20{padding:20px}
+</style>
+<body>
+<{if $com.jsbook&&$smarty.get.action!='mail'}>
+<script src="api/mail_box_js.php?uid=<{$com.userid}>&action=<{$smarty.get.action}>" type=text/javascript></script>
+<{/if}>
+
+<div id="top">
+    <div style="float:left">
+        <a href="<{$config.weburl}>"><{$config.company}></a> | <{$lang.mem_shop}> <{$com.company}>
+    </div>
+	<div style="float:right;margin-right:10px;margin-left:10px;background:#FFFFFF;height:30px;width:100px;text-algin:center;">
+	<li style="margin-left:22px;"><font style="font-size:25px;color:#FF0000"><{$com.time_long}></font> место</li>
+    </div>
+    <div style="float:right">
+        <{if $buid}>
+        <a href="main.php"><{$lang.my_office}></a><{else}><a href="<{$config.weburl}>/<{$config.regname}>"><{$lang.free_reg}></a> | 
+        <a href="<{$config.weburl}>/login.php"><{$lang.login}></a><{/if}> | 
+        <a href="javascript:myAddPanel()"><{$lang.add_fav}></a>
+    </div>
+	
+</div>
+<div id="header">
+<div id="name">
+<table width="965" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="220" height="100" align="center" valign="middle"><{$com.medal}></td>
+    <td width="745" align="left" valign="middle" class="company_name">
+    	<div><strong><{$com.company}></strong></div>
+		<span><{if $shopconfig.home_advs_show=='1'}><{$shopconfig.home_advs_content}><{/if}></span>
+    </td>
+  </tr>
+</table>
+</div>
+</div>
+<div id="main">
+<!-- 主体左边 -->
+	<div class="mainleft">
+	  <div class="leftmenu">
+	  <div id="navmenu">
+	   <{foreach item=list from=$shopconfig.menu}>
+        <{if $list.menu_show=='1'}>
+        	<{if $list.menu_link!=''}>
+            	<li><a <{if $list.menu_link==$smarty.get.action}>class="now" <{/if}> href="shop.php?uid=<{$com.userid}>&action=<{$list.menu_link}>&m=<{$list.module}>"><{$list.menu_name}></a></li>
+            <{else}>
+            	<li><a <{if $smarty.get.action==''}>class="now" <{/if}> href="<{geturl type='' user=$com.user uid=$com.userid tid='' com=$com.company}>"><{$list.menu_name}></a></li>
+            <{/if}>
+        <{/if}>       
+      <{/foreach}>
+	  </div> 
+	  </div>
+	  <!-- 产品分类 -->
+	  <{if $custom_cat.0.id}>
+	  <div class="leftmenu">
+        <div style="width:140px;height:28px;float:left;text-align:center;font-weight:bold;margin-top:10px;background:url('<{$img}>navmenu_bg.gif') repeat-y; line-height:28px;"><{$lang.pro_index}></div>
+        <div  class="leftcon">
+            <ul>
+            	<{foreach item=list from=$custom_cat}>
+                	<li><a href="shop.php?uid=<{$smarty.get.uid}>&action=offer_list&m=offer&cat=<{$list.id}>" title="<{$list.name}>"><{$list.name}>(<{$list.count}>)</a></li>
+                <{/foreach}>&nbsp;
+            </ul>
+        </div>
+		</div>
+		<{/if}>
+<!-- 联系信息 -->
+		<div class="leftmenu">
+        <div style="width:140px;height:28px;float:left;text-align:center;font-weight:bold;margin-top:20px;background:url('<{$img}>navmenu_bg.gif') repeat-y; line-height:28px;"><{$lang.jslx}></div>
+        <div  class="leftcon">
+            <ul>
+         	<li style="text-align:center">
+                 <{if $com.logo}>
+                     <img width="100" src="<{$config.weburl}>/uploadfile/userimg/<{$com.logo}>" align="middle" /><br />
+                 <{/if}>
+                 <{$lang.uclass}><{$com.rank}>
+             </li>
+			 <li><span><a href="shop.php?uid=<{$com.userid}>&action=mail"><{$lang.contact}><{$com.contact}></a><br><a href="<{$config.weburl}>/main.php?action=m&m=friend&s=admin_friends&friendid=<{$com.userid}>"><{$lang.addtomyfriend}></a></span></li>
+             <li style="text-align:left"><{if $com.qq}>
+            <a title="<{$com.qq}>" target=blank href=tencent://message/?uin=<{$com.qq}>&Site=<{$config.company}>&Menu=yes>Q Q：<img src='http://is.qq.com/webpresence/images/status/10_online.gif' border="0"></a>
+            <{/if}></li>
+            <li style="text-align:left;"><a href="msnim:chat?contact=<{$com.msn}>">MSN:<img src="<{$config.weburl}>/image/default/ico_msn.gif" /></a></li>
+            <li style="text-align:left;"><a href="skype:<{$com.skype}>?call">SKYPE:<img src="<{$config.weburl}>/image/default/skypeonline.png"></a></li>
+         </ul>
+        </div>
+		</div>
+		<{if $ulink.0.link_name}>
+<!-- 友情链接 -->
+		<div class="leftmenu">
+        <div style="width:140px;height:28px;float:left;text-align:center;font-weight:bold;margin-left:2px;margin-top:20px;background:url('<{$img}>navmenu_bg.gif') repeat-y;"><{$lang.com_link}></div>
+        <div  class="leftcon">
+            <ul>
+                <{foreach item=list from=$ulink}>
+                	<li><a href="<{$list.link_url}>" target="_blank"><{$list.link_name}></a></li>
+                <{/foreach}>
+             </ul>
+        </div>
+		</div>
+		<{/if}>
+    </div>
+<!-- 主体右边 -->
+    <div id="content" class="mainright">
+		<script src='<{$config.weburl}>/api/ad.php?id=46&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+    	<{$output}>
+    </div>
+<!-- 主体页脚 -->
+	<div id="bottom">
+<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center" valign="top" bgcolor="#F0F0F0">
+    <{$lang.tgs}> <a href="<{$config.weburl}>"><{$config.company}></a><br />
+	<{$lang.web_other}> <a href="?m=company"><{$lang.company_cat}></a> , <a href="<{$config.weburl}>/?m=product"><{$lang.pro_dir}></a> , <a href="?m=offer"><{$lang.offer_dir}></a><br />
+	<{$lang.web_des}>
+    </td>
+  </tr>
+  <tr>
+    <td height="44" colspan="2" align="center" valign="middle" bgcolor="#f0f0f0" style="color:#000000"><{$bt}></td>
+  </tr>
+</table>
+</div>
+</div>
+<script>
+function myAddPanel()
+{
+	var title="<{$config.company}>";
+	var url="<{$config.weburl}>";
+	var desc="<{$config.company}>";
+	
+	if ((typeof window.sidebar == 'object') && (typeof window.sidebar.addPanel == 'function'))
+		window.sidebar.addPanel(title,url,desc);
+	else
+		window.external.AddFavorite(url,title);
+}
+</script>
+</body>
+</html>

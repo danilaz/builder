@@ -1,0 +1,11 @@
+<table width="100%" align="center">
+<tr>
+<{foreach item=list key=num from=$province}>
+<td align="left" style="padding-left:20px;">
+	<a href="<{$config.weburl}>/?m=brand&province=<{$list.province}>"><{$list.province}></a>
+</td>
+<{if ($num+1)%2==0}></tr><tr><{/if}>
+<{/foreach}>
+</tr>
+<tr><td colspan="4" align="right" style="padding-right:20px;">&raquo; <a href="<{$config.weburl}>/?m=brand&province=another">По всем регионам</a></td></tr>
+</table>

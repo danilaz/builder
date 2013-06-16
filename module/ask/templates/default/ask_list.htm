@@ -1,0 +1,173 @@
+<script src="script/my_lightbox.js" language="javascript"></script>
+
+<link href="<{$config.weburl}>/module/ask/templates/default/ask.css" rel="stylesheet" type="text/css" />
+
+<div class="menu_bottom L1">				
+
+    <div class="headtop_L">
+
+        <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <a href="<{$config.weburl}>/?m=ask">Решение вопросов</a> &raquo; <{$lang.qlist}>
+
+    </div>
+
+    <div class="headtop_R"></div>		
+
+</div>
+
+
+
+<div id="askright" class="askright">
+
+			<div class="sectitle"><h2><{$lang.resq}></h2></div>
+
+			<div class="myleftaskbarbody">
+
+			<form action="<{$config.weburl}>" name="asksearch" id='asksearch' method="GET">	
+
+			<input maxlength="50" name="key" tabindex=1 type="text" id="key" style="font-size:11px;width:150px;margin-left:5px;color:#CCCCCC"  value="<{if $smarty.get.key}><{$smarty.get.key}><{else}><{$lang.pens}><{/if}>" onclick="this.value='';this.style.color='#FF0000';"/>
+
+			<input name="m" type="hidden" value="ask" />
+
+			<input name="s" type="hidden" value="ask_list" />
+
+			<input style="font-size:11px;" type="submit" id="earch_btn" tabindex=2 value="<{$lang.asearch}>">
+
+		
+
+			<input  style="font-size:11px;padding:10px;margin:5px;" type="button" id="ask_btn" tabindex=3 value="<{$lang.iask}>" <{ if $smarty.cookies.USER}> onclick="location.href='<{$config.weburl}>/?m=ask&s=add_question&catid=<{$quest.catid}>'" <{else}>onclick="location.href='<{$config.weburl}>/login.php'" <{/if}>>
+
+
+
+			</form>
+
+			<script src='<{$config.weburl}>/api/ad.php?id=41&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+
+			</div>
+
+
+
+	</div>
+
+
+
+<div class="askmain">
+
+	<div class="myaskcenter">
+
+			<div class="myasktitle">
+
+				<ul class="center">
+
+					<span class="normaltitle"><{$lang.qlist}></span>
+
+				</ul>
+
+			</div>
+
+            <div class="mynewaskd ask_link" style="padding:10px;">
+
+				<script src='<{$config.weburl}>/api/ad.php?id=40&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+
+				<table  border="0" cellspacing="3" width="100%" style="font-size:12px;">
+
+					<tr>
+
+						<td colspan="4" align="center">
+
+						<a href="<{$config.weburl}>/?m=ask&s=ask_list"><{$lang.allq}></a> | 
+
+						<a href="<{$config.weburl}>/?m=ask&s=ask_list&cat=1">Требуют решения</a> | 
+
+						<a href="<{$config.weburl}>/?m=ask&s=ask_list&cat=reward"><{$lang.req}></a> | 
+
+						<a href="<{$config.weburl}>/?m=ask&s=ask_list&cat=2"><{$lang.hres}></a> | 
+
+						<a href="<{$config.weburl}>/?m=ask&s=ask_list&cat=3">Истекшие</a>
+
+						</td>
+
+					 </tr>
+
+					 <{if $subc}>
+
+						<tr>
+
+							<td colspan="4"  style="height:auto;line-height:30px;">
+
+								<{foreach item=gcat from=$subc}>
+
+								<a href="<{$config.weburl}>/?m=ask&s=ask_list&id=<{$gcat.catid}>"><{$gcat.cat}></a>
+
+								<{/foreach}>
+
+							</td>
+
+						</tr>
+
+					　<{/if}>
+
+				</table>
+
+				<div>
+
+					<table border="0" cellspacing="0" width="100%" style="font-size:12px;">
+
+						<tr>
+
+						 <td width="52%" style="border-bottom:1px #cfcfcf solid;"> <{$lang.qt}></td>
+
+						 <td width="10%" style="border-bottom:1px #cfcfcf solid;"><{$lang.anss}></td>
+
+						 <td width="8%" style="border-bottom:1px #cfcfcf solid;"><{$lang.qsta}></td>
+
+						 <td width="15%" style="border-bottom:1px #cfcfcf solid;"> <{$lang.qtime}></td>
+
+					  </tr>
+
+						 <{foreach item=alist from=$quest.lists}>
+
+						<tr height="29">
+
+							<td>
+
+							<{if $alist.reward>0}><img src="<{$config.weburl}>/image/default/mon.gif" /><{$alist.reward}><{/if}>
+
+							 <a href="<{$config.weburl}>/?m=ask&s=question&id=<{$alist.id}>">
+
+							 <{$alist.title|truncate:50:"...":true}>
+
+							 </a>[<{$alist.cat}>]
+
+						  </td>
+
+							<td><{$alist.answer_nums}></td>
+
+							<td>
+
+							<{if $alist.statu=='1'}><img src="<{$config.weburl}>/image/default/nask.gif"/>
+
+							<{elseif $alist.statu=='2'}><img src="<{$config.weburl}>/image/default/answer.gif"/>
+
+							<{elseif $alist.statu=='3'}><img src="<{$config.weburl}>/image/default/expired.gif"/>
+
+							<{/if}>
+
+							</td>
+
+							<td><{$alist.uptime|date_format}></td>
+
+						</tr>
+
+						<{/foreach}>
+
+				  </table>
+
+				  <div class="pages"><{$quest.pages}></div>
+
+			  </div>				
+
+		   </div> 
+
+	</div>
+
+</div>

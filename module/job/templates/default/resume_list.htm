@@ -1,0 +1,85 @@
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+       <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <a href='<{$config.weburl}>/?m=job'><{$lang.jobme}></a> &raquo; <{$lang.resumelist}>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+<link href="<{$config.weburl}>/templates/<{$config.temp}>/job.css" rel="stylesheet" type="text/css" />
+
+<div id="mainbody1" class="m1">
+    <div class="job_left">
+    	<div class="bottom">
+            <div id="tits">
+            <div><h3><{$lang.resumelist}></h3></div>
+            </div>
+            <div id="cons">
+            	<table cellpadding="0" cellspacing="0" border="0">
+             <tr id="tr">
+                <td align="left"><{$lang.name}></td>
+                <td width="32%" align="left"><{$lang.ep}></td>
+                <td width="18%"><{$lang.we}></td>
+                <td width="16%"><{$lang.qs}></td>
+                <td width="14%"><{$lang.time}></td>
+             </tr>
+             <{foreach item=list from=$re.list}>	
+             <tr>
+                <td><a target="_blank"  href="<{$config.weburl}>/?m=job&s=resume_detail&id=<{$list.rid}>"><{$list.uname}></a></td>
+                <td><{$list.catname}></td>
+                <td align="center"><{$list.experience_years}></td>
+                <td align="center"><{foreach item=val key=num from=$hrmoney}><{if $num==$list.money}><{$val}><{/if}><{/foreach}></td>
+                <td align="center"><{$list.time|date_format}></td>
+             </tr>  
+             <{/foreach}>
+            </table>
+           <div class="page"><{$re.page}></div>
+           <div class="clear"></div>
+            </div>
+        </div>
+    </div>  
+    
+    <div class="job_right">
+					<div class="nav_w">
+					<div id="navleft_w">
+						<ul>
+							
+							<li class="nav_w"><a href="main.php?action=m&m=job&s=admin_resume&menu=user"><{$lang.add_resume_w}></a><li>
+						</ul>
+					</div>	
+				</div>
+		    <div class="job_cat">
+         	<div class="sectitle">
+                 <h2><{$lang.jobres}></h2>
+             </div>
+             <div class="seccon">
+                <form action="<{$config.weburl}>/" method="get">
+                <input type="hidden" name="m" value="<{$smarty.get.m}>" />
+               <input type="hidden" name="s" value="resume_list" />
+               <table cellpadding="0" cellspacing="0" border="0">
+                  <tr><td width="28%" class="td1"><{$lang.education}>:</td><td><select name="degree" id="degree" style="font-size:11px;"><option value="-1" style="font-size:11px;"><{$lang.all}></option><{foreach item=list from=$degree key=num}><option <{if $smarty.get.degree==$num}>selected="selected"<{/if}> value="<{$num}>" ><{$list}></option>
+<{/foreach}></select></td></tr>
+                  <tr><td class="td1"><{$lang.date}>:</td><td><select name="jobdate" id="jobdate" style="font-size:11px;"> <{foreach item=list from=$hrdropdate key=num}><option value="<{$num}>" <{if $num==$smarty.get.jobdate}>selected<{/if}> ><{$list}></option>
+<{/foreach}></select></td></tr>
+				  <tr><td class="td1"><{$lang.nature}>:</td><td><{foreach item=list from=$job_type key=num}><input type="radio" class="radio" value="<{$num}>" name="pro" <{if $num==$smarty.get.pro}>checked="checked"<{/if}> /><u><{$list}></u><br /><{/foreach}></td></tr>
+                   <tr><td class="td1"><{$lang.sex}>:</td><td>
+                   <input type="radio" name="sex" class="radio" <{if $smarty.get.sex==0}> checked="checked"<{/if}> value="0" /><u><{$lang.male}></u>
+                   <input type="radio" name="sex" class="radio" <{if $smarty.get.sex==1}> checked="checked"<{/if}> value="1" /><u><{$lang.female}></u></td></tr>
+                   <tr height="28" valign="bottom"><td></td><td><input type="submit" value="<{$lang.search}>" /></td></tr>
+               </table>
+               </form>
+            </div>
+            <div class="b"></div>
+         </div>
+         <div id="box" class="job_cat">
+         	<div class="sectitle">
+             <h2><{$lang.jobcats}></h2>
+             
+             </div>
+             <div class="seccon">
+             <{insert name="label" type="jobcat" temp="jobcat" }>
+             </div>
+         </div>
+    </div>	
+	
+    
+</div>

@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+
+.clear{ clear:both}
+.brandmain{  width:960px; margin-top:8px;}
+.left{border-left:#AACCEE 1px solid; border-right:#AACCEE 1px solid; border-bottom:#AACCEE 1px solid; width:640px; float:left;}
+.right{ width:300px; float:right;}
+.left_top{ height:28px; line-height:28px; background-image:url("../../../../image/default/index_31.gif"); text-align:left; font-weight:bold; color:#1B4C7A; font-size:14px;}
+.left_top a{ color:#1B4C7A;}
+.left_content{text-align:center; padding:8px;}
+.con{ border:none;  width:120px; margin-left:30px; margin-top:20px;}
+.right_top{  height:28px; line-height:28px; background-image:url("../../../../image/default/index_31.gif"); text-align:left; font-weight:bold; color:#1B4C7A; font-size:14px;border:#AACCEE 1px solid; border-top:none; border-bottom:none; }
+.left_content img{border:1px #CCCCCC solid; padding:1px;}
+.brand_img{ padding:20px;}
+.mgt{margin-top:10px;}
+.right_tj{border-left:#AACCEE 1px solid; border-right:#AACCEE 1px solid; border-bottom:#AACCEE 1px solid; padding:5px;}
+.right_tj img{border:1px #CCCCCC solid; padding:1px;}

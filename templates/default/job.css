@@ -1,0 +1,127 @@
+@charset "utf-8";
+/* CSS Document */
+body{ cursor:default}
+.dis{ display:none}
+.noborder{ border-bottom:none !important;}
+.clear{ clear:both}
+h3{ font-size:14px; font-weight:bold; font:Arial, Verdana, Geneva, sans-serif; margin:0px; }
+
+.radio{ float:left; margin-right:4px;}
+.radio { margin-top:5px } 
+* html .radio { margin-top:0px } 
+*+html .radio { margin-top:0px}
+u{ text-decoration:none; float:left; margin-right:6px;}
+
+#box{ margin-top:10px;}
+
+#tits{background:url(../../image/default/title3.gif) repeat-x;height:31px;line-height:31px; border:1px solid #cfcfcf; border-bottom:none;}
+#tits div h3{ float:left; margin-left:20px; color:#000; font-size:14px;}
+#tits div a{ float:right; color:#000; font-size:12px; margin-right:20px; text-decoration:none}
+#cons{border:1px solid #cfcfcf; border-top:none; padding:10px 20px;}
+.job_left{ width:702px; float:left; text-align:left}
+.job_right{ width:250px; margin-left:8px; float:left; text-align:left}
+
+/*--job_index.htm--*/
+.job_left .topleft{ width:291px; float:left; }
+.job_left .topleft .i_bottom{ height:138px; padding:6px; border:1px solid #cfcfcf;}
+.job_left .topleft .i_bottom li{ width:88%;float:left; text-indent:1px;}
+.job_left .topleft .i_bottom a{ float:left; width:50%;}
+.job_left .topleft .i_bottom b{ font-size:14px; margin-left:10px;}
+
+.job_left .topright{ width:401px; float:left; height:160px; margin-left:10px;}
+.job_left .bottom{clear:both;}
+.job_left .bottom table{width:92%;}
+.job_left .bottom table #tr{ line-height:24px; height:30px; font-weight:bold; text-align:center; color:#005AA6;}
+.job_right .m{height:230x; margin-top:0px; border:1px solid #cfcfcf;}
+.job_right .m table{ width:95%; margin:10px auto; line-height:24px;}
+.job_right .m table select{ width:150px; padding-left:1px; height:20px; border:1px solid #ddd; color:#444}
+.job_right .m table .input{ width:150px; height:20px; border:1px solid #ddd; padding-left:3px; color:#444}
+.job_right .m table .td1{ text-align:right; padding-right:10px;}
+
+.job_right .job_cat b{ color:#FFF; margin-left:28px; margin-top:10px; line-height:20px;}
+.job_right .job_cat .aa{ float:right; margin-right:20px;}
+
+.job_right .job_cat .jobcat{ margin:10px auto; width:95%;}
+.job_right .job_cat .jobcat .td1,.job_right .job_cat .jobcat .td2{  border-bottom:1px dotted #ddd; line-height:24px;}
+.job_right .job_cat .jobcat .td1 { width:80%;}
+.job_right .job_cat .jobcat .td1 a{ color:#005AA6; font-weight:bold;}
+.job_right .job_cat .jobcat .td2 a{ color:#005AA6; }
+.job_right .job_cat .jobcat .td3{ color:#6a6a6a ;}
+.job_right .job_cat .jobcat .td3 a{ color:#6a6a6a ;}
+
+
+/*--job_detail.htm--*/
+.job_left .job .tr1 td{ padding:10px 0px; font-weight:bold; font-size:14px; line-height:24px;}
+.job_left .job .tr2{ background:url(../../image/default/job_detail_tr2_bg.png); color:#FFF; height:30px;}
+.job_left .job .tr2 .td1{ font-weight:bold; padding-left:18px; line-height:22px; letter-spacing:1px;}
+.job_left .job .tr2 .td2{ width:18%; font-size:12px;}
+.job_left .job .tr3 .td1 div{ border:1px solid #e93939; margin:5px auto 0px auto; padding:5px 0px;}
+.job_left .job .tr3 .td1 table{ width:94%; margin:auto; font-size:12px; line-height:24px;}
+.job_left .job .tr3 .td1 table td{ padding:0px;}
+.job_left .job .tr4 td{ border:1px solid #ddd; border-bottom:none; padding:10px 0px 5px 10px; color:#0132cc; font-weight:bold}
+.job_left .job .tr5 td{ border:1px solid #ddd; border-bottom:none; border-top:none; padding:0px 11px 15px 11px; color: #333333;
+font: 12px/1.5 Verdana,Arial,Helvetica,sans-serif,"arial,helvetica,verdana,sans-serif"; line-height: 1.8;}
+.job_left .job .tr6 td{ padding:15px 0px; border:1px solid #ddd; border-top:none; text-align:center}
+
+.job_left .tr1 td{ padding:10px 0px; font-weight:bold; font-size:14px; line-height:24px;}
+.job_left .tr2{ background:#FFF; height:30px;}
+.job_left .tr2 .td1{ font-weight:bold; padding-left:18px; line-height:22px;border-bottom:1px dashed #FFD6D6;}
+.job_left .tr2 .borderR{line-height:22px;border-bottom:1px dashed #FFD6D6;}
+.job_left .tr3 .borderR{line-height:22px;border-bottom:1px dashed #FFD6D6;}
+.job_left .tr2 .td2{ width:18%; font-size:12px;}
+.job_left .tr3 .td1 div{ border:1px solid #e93939; margin:5px auto 0px auto; padding:5px 0px;}
+.job_left .tr3 .td1 table{ width:94%; margin:auto; font-size:12px; line-height:24px;}
+.job_left .tr3 .td1 table td{ padding:0px;}
+.job_left .tr4 td{ border:1px solid #ddd; border-bottom:none; padding:10px 0px 5px 10px; color:#0132cc; font-weight:bold}
+.job_left .tr5 td{ border:1px solid #ddd; border-bottom:none; border-top:none; padding:0px 11px 15px 11px; color: #333333;
+font: 12px/1.5 tahoma,Arial,Helvetica,sans-serif; line-height: 1.8;}
+.job_left .tr6 td{ padding:15px 0px; border:1px solid #ddd; border-top:none; text-align:center}
+
+.nav_w {
+    border-bottom: 3px solid #1A78B8;
+    height: 27px;
+    line-height: 27px;
+    overflow: hidden;
+    width: 250px;
+    }
+.nav_w li{
+    background-image: url("../../image/default/off.jpg");
+    float: left;
+    list-style: none outside none;
+    margin-right: 5px;
+    text-align: center;
+    width: 92px;
+    }
+
+/*---resume.htm-*/
+#msgObj {border:2px solid #ddd !important;}
+#msgObj tr td{ background:url(../../image/default/window_title_bg.gif) repeat-x; color:#FF5F00!important; font-weight:bold;}
+#msgObj tr:nth-last-child(1) td { background:none; }
+#msgObj tr td img{ margin-right:10px;}
+
+.send_resume{ width:90%; margin:auto;}
+.send_resume tr td span{ background:url(../../image/default/arrow02.gif) 0 -1px no-repeat; padding-left:18px; font-weight:bold; font-size:12px; line-height:30px;}
+.send_resume .tr1 .td1{ padding-left:18px;}
+.send_resume .tr1 .td1 select{ width:150px;}
+.send_resume .tr1 .td2 img{ border:none;}
+
+
+/*--resume_detail.htm--*/
+.job_left .reusme caption{ font-weight:bold; line-height:28px; letter-spacing:2px; font-size:16px;}
+.job_left .reusme .tr1{ background:url(../../image/default/resume_title_bg.png) 0px 5px repeat-x; height:25px;}
+.job_left .reusme .tr1 td{ line-height:24px; font-size:13px; font-weight:bold; letter-spacing:2px; padding:7px 0px 2px 15px;}
+.job_left .reusme .tr2 { line-height:24px;}
+.job_left .reusme .tr2 .td1{ padding-left:15px;} 
+.job_left .reusme .tr2 .td1 div{ color: #333333; font: 12px/1.5 Verdana,Arial,Helvetica,sans-serif,"arial,helvetica,verdana,sans-serif"; line-height: 1.8; padding:5px 15px 5px 0px;}
+.job_left .reusme .bor td{ border-top:1px dotted #e2e2e2}
+
+
+
+
+
+
+
+
+
+
+

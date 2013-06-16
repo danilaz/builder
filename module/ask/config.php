@@ -1,0 +1,18 @@
+<?php
+if($config['language']=='cn')
+{
+	//=====================用户中心===================
+	$menu['inquire']['sub'][]=array(
+							'module'=>'ask',
+							'name'=>$lang['ask'],
+							'action'=>array('?action=m&m=ask&s=admin_question&menu='.$_GET['menu']=>$lang['ask']),
+						);
+	//==============================================
+	$mem[5][1][]=array(
+		'Вопросы',
+		array(
+			'question_manage.php,1,ask,Управление'
+		)
+	);
+}
+?>

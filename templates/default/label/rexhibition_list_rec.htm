@@ -1,0 +1,14 @@
+<{foreach item=list from=$exhibition}>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom:1px dashed #DDDDDD; margin-bottom:1px;">
+  <tr>
+    <td height="22"><b><a href="<{$config.weburl}>/?m=exhibition&s=exhibition_detail&id=<{$list.id}>"><{$list.title}></a></b></td>
+  </tr>
+  <tr>
+    <td height="22"><{$list.stime|date_format}> / <{$list.etime|date_format}></td>
+  </tr>
+    <tr>
+    <td height="22"><{$list.country}> <{$list.city}></td>
+  </tr>
+</table>
+
+<{/foreach}>

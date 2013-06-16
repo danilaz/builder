@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<style>
+body{margin:0px; background-color:#FFFFFF; font-size:12px;}
+td{font-size:12px; padding:8px;}
+</style>
+</head>
+
+<body>
+<{if $smarty.post.submit}>
+	<script>
+    window.parent.location='main.php?menu=<{$smarty.get.menu}>&action=m&m=product&s=admin_sellorder';
+    </script>
+<{/if}>
+<form id="fortopm" name="fortopm" method="post" action="">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td colspan="2">Значение &quot;-&quot; указывает на скидку. Введите нормальное количественное увеличение.<br />Например: 20 млн. руб. пишутся как "-20", а количество 20 рублей, пишутся, как "20"</td>
+    </tr>
+    <tr>
+      <td align="left" width="100"> <input type="text" name="price" id="price" /></td>
+      <td align="left"><input type="submit" name="submit" id="submit" value="Отправить" /></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

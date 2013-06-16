@@ -1,0 +1,83 @@
+<script type="text/javascript">
+function ref(id,type,v)
+{	
+	var url = 'module/product/ajax_update.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&'+v;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'get', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		var tempStr = originalRequest.responseText;
+		if(tempStr!=''&&type=='rec'){
+			if(tempStr==1){
+				$('p_'+id).style.border='solid 5px #FF0000';
+				$('rec_'+id).style.display='none';
+			}
+			if(tempStr==2)
+				alert('<{$lang.num_limit}>');
+		}
+		if(tempStr!=''&&type=='unrec')
+		{
+			if(tempStr==1){
+				$('p_'+id).style.border='none';
+				$('rec_'+id).style.display='none';
+			}
+		}
+		if(tempStr==1&&type=='ref')
+			$('ref_'+id).style.display='none';
+	}
+}
+</script>
+<div class="admin_right_top">
+<span style="float:left"><{$lang.product_list}></span>
+<button onClick="window.location='?action=m&m=product&s=admin_product_list&menu=info&update=all'" style="float:right; height:22px;margin-right:10px;"><{$lang.refresh}></button>
+</div>
+<table width="100%" border="0" cellpadding="4" cellspacing="1">
+	<tr bgcolor="#E8E8E8" style="font-weight:bold" height="22"> 
+	  <td colspan="2" align="left"><{$lang.product_name}></td>
+	  <td width="174" align="center"><{$lang.refresh_time}></td>
+      <td width="174" align="center"><{$lang.statu}></td>
+	  <td width="157" align="center"><{$lang.operation}></td>
+	</tr>
+	<{foreach item=list from=$re.list}>
+	<tr bgcolor="#F7F7F7" height="22"> 
+	  <td width="85" align="center" valign="middle">
+	  	<{if $list.nopic }>
+        	<img <{if in_array($list.id,$pro_rec)}>style="border:solid 2px #CCCCCC"<{/if}> id="p_<{$list.id}>" width=80 height=70 src="<{$config.weburl}>/image/default/nopic.gif"  alt="<{$list.pname}>" />
+        <{else}>
+        	<img <{if in_array($list.id,$pro_rec)}>style="border:solid 2px #CCCCCC"<{/if}> id="p_<{$list.id}>" width=80 height=70 src="<{$config.weburl}>/uploadfile/comimg/small/<{$list.id}>.jpg"  alt="<{$list.pname}>" />
+        <{/if}>	
+       </td>
+	  <td width="146"><{$list.pname}></td>
+	  <td align="center"><{$list.uptime|date_format}></td>
+      <td align="center">
+	  <{if $list.id|readauditing:'p' and $list.statu<0 }><img align="absmiddle" title="<{$list.id|readauditing:'p'}>" src="<{$config.weburl}>/image/default/nask.gif" /><{/if}>
+	  <{foreach  item=val key=num from=$lang.status}><{if ($num-1)==$list.statu}><{$val}><{/if}><{/foreach}></td>
+	  <td align="center" width="146">
+      <{if in_array($list.id,$pro_rec)}>
+	  <span id="rec_<{$list.id}>">
+	  <a href="javascript:ref(<{$list.id}>,'unrec','rec=<{$list.id}>&action=admin_product_list&type=unrec')">
+	  <img src="/image/default/layout_delete.png" width="16" height="16" title="<{$lang.unrec}>"></a></span>&nbsp;
+	  <{else}>
+	  <span id="rec_<{$list.id}>">
+	  <a href="javascript:ref(<{$list.id}>,'rec','rec=<{$list.id}>&action=admin_product_list&type=rec')">
+	  <img src="/image/default/layout_add.png" title="<{$lang.rec}>"></a></span>
+	  <{/if}>
+	  <span id="ref_<{$list.id}>">
+	  <a href="javascript:ref(<{$list.id}>,'ref','update=<{$list.id}>&action=admin_product_list')">
+	  
+	  <img src="/image/default/arrow_refresh.png" title="<{$lang.refresh}>"></a></span>
+	  <a href="?menu=<{$smarty.get.menu}>&edit=<{$list.id}>&action=m&m=product&s=admin_product">
+	  
+	  <img src="/image/default/page_edit.png" title="<{$lang.modify}>"></a>
+	  <a href="?deid=<{$list.id}>&action=m&m=product&s=admin_product_list" onClick="return confirm('<{$lang.sure_del}>?');">
+	  
+	  <img src="/image/default/delete.png " title="<{$lang.del}>"></a>
+      </td>
+	</tr> 
+	<{/foreach}>
+  </table>
+<div align="right"><{$re.page}></div>

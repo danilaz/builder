@@ -1,0 +1,153 @@
+<script type="text/javascript" src="<{$config.weburl}>/script/Validator.js"></script>
+<script type="text/javascript">
+function ref_custom_cat(custom_cat_id){
+    window.location="?menu=<{$smarty.get.menu}>&action=m&m=album&s=admin_album&catid="+custom_cat_id;
+}
+</script>
+<div class="admin_right_top"><{$lang.album}></div>
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#DDDDDD">
+<tr bgcolor="#EAEFF3">
+	  <td colspan="2" align="left"><{$lang.pic_upload}>&nbsp;&nbsp;<span class="admin_red" style="width:200px;"><{if $smarty.get.info==1}><{$lang.post_successful}><{/if}> <{if $smarty.get.info==2}><{$lang.editor_successful}><{/if}></span></td>
+  </tr>
+  </table>
+<div id="multi">
+<form action="" method="post" enctype="multipart/form-data" onSubmit="return Validator.Validate(this,3)">
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#DDDDDD">
+	<tr bgcolor="#EAEFF3">
+	  <td width="17%" height="30" align="left" bgcolor="#FFFFFF"><{$lang.phcat}> <span class="admin_red">*</span></td>
+	  <td width="83%" height="30" bgcolor="#FFFFFF">&nbsp;<select name="album_custom_cat" id="album_custom_cat">
+      	
+	  <{foreach item=album_cat from=$album_custom_cat}>
+	        <option value="<{$album_cat.id}>" <{if $re.custom_cat_id==$album_cat.id  || $smarty.get.catid==$album_cat.id}>selected<{/if}>><{$album_cat.name}></option>
+		<{/foreach}>
+	    </select><a href="?menu=<{$smarty.get.menu}>&action=m&m=album&s=admin_album_cat"><{$lang.creat_album}></a>
+	  </td>
+	</tr>
+	<tr bgcolor="#EAEFF3">
+	  <td width="17%" height="30" align="left" bgcolor="#FFFFFF"><{$lang.pic_name}> <span class="admin_red">*</span></td>
+	  <td width="83%" height="30" bgcolor="#FFFFFF">&nbsp;<input name="name1" type="text" id="name1" style="width:300px;" value="<{$re.zname}>" dataType="Require" msg="<{$lang.rename}>" /></td>
+	</tr>
+	<tr bgcolor="#EAEFF3">
+	  <td height="30" align="left" bgcolor="#FFFFFF"><{$lang.description}></td>
+	  <td height="70" bgcolor="#FFFFFF">&nbsp;<textarea name="con1" id="con1" style="height:60px;width:300px;font-size:12px; padding:2px;"><{$re.con}></textarea></td>
+	</tr>
+	<{if !$smarty.get.editid}>
+	<tr bgcolor="#EAEFF3">
+	  <td height="30" align="left" bgcolor="#FFFFFF"><{$lang.select_pic}> <span class="admin_red">*</span></td>
+	  <td height="30" bgcolor="#FFFFFF">&nbsp;<input name="pic1" type="file" id="pic1" style="width:300px;" dataType="Filter" msg="<{$lang.upload_correct_pic}>" accept="jpg, gif, png,JPG,jpeg,JPEG,GIF" /><br />(<{$lang.support_format}>:jpg,jpeg,gif,png)
+	  </td>
+	</tr>
+	<{/if}>
+
+	<tr bgcolor="#EAEFF3" style="display:none" id="name_2">
+	  <td width="17%" height="30" align="left" bgcolor="#FFFFFF"><{$lang.pic_name}> <span class="admin_red">*</span></td>
+	  <td width="83%" height="30" bgcolor="#FFFFFF">&nbsp;<input name="name2" type="text" id="name2" style="width:300px;" value=""/></td>
+	</tr>
+	<tr bgcolor="#EAEFF3" style="display:none" id="con_2">
+	  <td height="30" align="left" bgcolor="#FFFFFF"><{$lang.description}></td>
+	  <td height="70" bgcolor="#FFFFFF">&nbsp;<textarea name="con2" id="con2" style="height:60px;width:300px;font-size:12px; padding:2px;"></textarea></td>
+	</tr>
+	<tr bgcolor="#EAEFF3" style="display:none" id="pic_2">
+	  <td height="30" align="left" bgcolor="#FFFFFF"><{$lang.select_pic}> <span class="admin_red">*</span></td>
+	  <td height="30" bgcolor="#FFFFFF">&nbsp;<input name="pic2" type="file" id="pic2" style="width:300px;" /><br />(<{$lang.support_format}>:jpg,jpeg,gif,png)
+	  </td>
+	</tr>
+
+	<tr bgcolor="#EAEFF3" style="display:none" id="name_3">
+	  <td width="17%" height="30" align="left" bgcolor="#FFFFFF"><{$lang.pic_name}> <span class="admin_red">*</span></td>
+	  <td width="83%" height="30" bgcolor="#FFFFFF">&nbsp;<input name="name3" type="text" id="name3" style="width:300px;" value=""  /></td>
+	</tr>
+	<tr bgcolor="#EAEFF3" style="display:none" id="con_3">
+	  <td height="30" align="left" bgcolor="#FFFFFF"><{$lang.description}></td>
+	  <td height="70" bgcolor="#FFFFFF">&nbsp;<textarea name="con3" id="con3" style="height:60px;width:300px;font-size:12px; padding:2px;"></textarea></td>
+	</tr>
+	<tr bgcolor="#EAEFF3" style="display:none" id="pic_3">
+	  <td height="30" align="left" bgcolor="#FFFFFF"><{$lang.select_pic}> <span class="admin_red">*</span></td>
+	  <td height="30" bgcolor="#FFFFFF">&nbsp;<input name="pic3" type="file" id="pic3" style="width:300px;"/><br />(<{$lang.support_format}>:jpg,jpeg,gif,png)
+	  </td>
+	</tr>
+
+	<tr bgcolor="#EAEFF3" style="display:none" id="name_4">
+	  <td width="17%" height="30" align="left" bgcolor="#FFFFFF"><{$lang.pic_name}> <span class="admin_red">*</span></td>
+	  <td width="83%" height="30" bgcolor="#FFFFFF">&nbsp;<input name="name4" type="text" id="name4" style="width:300px;" value=""/></td>
+	</tr>
+	<tr bgcolor="#EAEFF3" style="display:none" id="con_4">
+	  <td height="30" align="left" bgcolor="#FFFFFF"><{$lang.description}></td>
+	  <td height="70" bgcolor="#FFFFFF">&nbsp;<textarea name="con4" id="con4" style="height:60px;width:300px;font-size:12px; padding:2px;"></textarea></td>
+	</tr>
+	<tr bgcolor="#EAEFF3" style="display:none" id="pic_4">
+	  <td height="30" align="left" bgcolor="#FFFFFF"><{$lang.select_pic}> <span class="admin_red">*</span></td>
+	  <td height="30" bgcolor="#FFFFFF">&nbsp;<input name="pic4" type="file" id="pic4" style="width:300px;" /><br />(<{$lang.support_format}>:jpg,jpeg,gif,png)
+	  </td>
+	</tr>
+
+	<tr bgcolor="#EAEFF3" style="display:none" id="name_5">
+	  <td width="17%" height="30" align="left" bgcolor="#FFFFFF"><{$lang.pic_name}> <span class="admin_red">*</span></td>
+	  <td width="83%" height="30" bgcolor="#FFFFFF">&nbsp;<input name="name5" type="text" id="name5" style="width:300px;" value=""/></td>
+	</tr>
+	<tr bgcolor="#EAEFF3" style="display:none" id="con_5">
+	  <td height="30" align="left" bgcolor="#FFFFFF"><{$lang.description}></td>
+	  <td height="70" bgcolor="#FFFFFF">&nbsp;<textarea name="con5" id="con5" style="height:60px;width:300px;font-size:12px; padding:2px;"></textarea></td>
+	</tr>
+	<tr bgcolor="#EAEFF3" style="display:none" id="pic_5">
+	  <td height="30" align="left" bgcolor="#FFFFFF"><{$lang.select_pic}> <span class="admin_red">*</span></td>
+	  <td height="30" bgcolor="#FFFFFF">&nbsp;<input name="pic5" type="file" id="pic5" style="width:300px;" /><br />(<{$lang.support_format}>:jpg,jpeg,gif,png)
+	  </td>
+	</tr>
+
+	<tr bgcolor="#EAEFF3">
+	  <td height="30" align="left" bgcolor="#FFFFFF">&nbsp;</td>
+	  <td height="30" bgcolor="#FFFFFF">
+	    <input name="Submit" type="submit" id="Submit" value=" <{$lang.submit}> " />&nbsp;&nbsp;
+		<span id="href_2"><a href="#" onclick="showMoreUpload();return false;"><{$lang.upload_more}></a></span>
+        <input name="action" type="hidden" id="action" value="<{if $smarty.get.editid}>edit<{else}>submit<{/if}>" />
+        <input name="up_type" type="hidden" id="up_type" value="multi" />
+	  </td>
+	  </tr>
+	
+</table>
+</form>
+</div>
+<script type="text/javascript">
+var total = 5;
+var current = 2;
+function showMoreUpload() {
+    $("name_"+current).style.display="";
+    $("con_"+current).style.display="";
+    $("pic_"+current).style.display="";
+    if (total==current) {
+        $("href_2").style.display="none";
+    }
+    current++;
+}
+</script>
+
+<br />
+
+<table width="100%" border="0" cellpadding="4" cellspacing="1" bgcolor="#DDDDDD">
+	  <tr bgcolor="#EAEFF3">
+	  <td align="left">
+      <{$lang.view_pic}>
+      <select name="catid" id="catid" onChange="ref_custom_cat(this.value);">	
+		<option value=""><{$lang.allcat}></option>
+	     <{foreach item=album_cat from=$album_custom_cat}>
+	       <{if $smarty.get.catid==$album_cat.id}>selected<{/if}> ><{$album_cat.name}><{if $smarty.get.catid==$album_cat.id}>selected<{/if}> ><{$album_cat.name}><option value="<{$album_cat.id}>"  <{if $smarty.get.catid==$album_cat.id}>selected<{/if}> ><{$album_cat.name}></option>
+		<{/foreach}>
+	    </select></td>
+	  </tr>
+      <tr>
+      <td bgcolor="#FFFFFF">
+      <{foreach item=list from=$de.list}>
+          <div style="float:left; height:140px; width:120px;">
+              <img style="border: solid 1px #A9BAD3; padding:2px;" height="80" width="110" src="<{$config.weburl}>/uploadfile/zsimg/size_small/<{$list.id}>.jpg" /><br />
+              <{$list.zname}>
+              <a href='?editid=<{$list.id}>&action=m&m=album&s=admin_album&menu=<{$smarty.get.menu}>&catid=<{$smarty.get.catid}>'><{$lang.edit}></a>|
+              <a onClick="return confirm('<{$lang.sure_del}>');" href='?deid=<{$list.id}>&action=m&m=album&s=admin_album&menu=<{$smarty.get.menu}>&catid=<{$smarty.get.catid}>'><{$lang.del}></a>
+          </div>
+      <{foreachelse}>
+      <{$lang.no_upload}>
+      <{/foreach}>
+      </td>
+      </tr>       
+</table>
+<div align="right"><{$de.page}></div>

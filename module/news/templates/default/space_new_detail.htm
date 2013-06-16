@@ -1,0 +1,97 @@
+<script src="script/prototype.js" type=text/javascript></script>
+<script type="text/javascript">
+function showreview()
+{
+    document.getElementById("reviewt").style.display='block'; 
+} 
+function getfav()
+{	
+	var url = '<{$config.weburl}>/ajax_back_end.php';
+	var myurl=document.location.href;
+	var u='<{$smarty.cookies.USER}>';
+	if(u=='')
+	{
+	  alert('<{$lang.nologo}>');
+	  return false;
+	}
+	var fu='<{$smarty.get.id}>';
+ 	var typ='1';
+	var ttil='<{$info.title}>';
+	var mpic='';
+	var des='<{$info.con|strip_tags|truncate:100:"...":true|escape:"javascript"}>';
+    var pars = 'user='+u+'&fid='+fu+'&type='+typ+'&title='+ttil+'&url='+myurl+'&des='+des+'&picurl='+mpic;
+	var myAjax = new Ajax.Request(url,{method: 'post', parameters: pars, onComplete: showResponse});
+	function showResponse(originalRequest)
+	{
+	    if(originalRequest.responseText>1)
+	       alert('<{$lang.favok}>');
+		else if (originalRequest.responseText>0)
+	       alert('<{$lang.favisbe}>');
+		else
+	       alert('<{$lang.faverror}>');
+	}
+}
+function rewiew()
+{
+    var myurl = '<{$config.weburl}>/ajax_back_end.php';
+	var conid='<{$smarty.get.id}>';
+	var fu='<{$smarty.cookies.USER}>';
+	if(fu=='')
+	{
+	  alert('<{$lang.nologo}>');
+	  return false;
+	}
+	var typ='1';
+	var cons=$('reviewcon').value;
+	if (cons.length<10 || cons.length>100)
+	{
+        alert('<{$lang.vwmsg}>');
+		return false;
+	}
+	var rand=$('myrands').value;
+    if (rand=='')
+	{
+        alert('<{$lang.encode}>');
+		return false;
+	}
+    var pars = 'cid='+conid+'&ctype='+typ+'&con='+cons+'&user='+fu+'&crands='+rand;
+	var myAjax = new Ajax.Request(myurl,{method: 'post', parameters: pars, onComplete: showResponse});
+	function showResponse(originalRequest)
+	{
+	    if(originalRequest.responseText>2)
+	        alert('<{$lang.codeerror}>');
+		else if (originalRequest.responseText>1)
+	        alert('<{$lang.thanksvw}>');
+		else if (originalRequest.responseText>0)
+		    alert('<{$lang.vmisbe}>');
+		else
+	        alert('<{$lang.faverror}>');
+	}
+}
+
+</script>
+
+<div class="common_box">	
+	<form name="infod" id="infod" method="POST">
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr align="left">
+    <td height="30" class="guide_ba"><strong><{$lang.news_detail}></strong></td>
+  </tr>
+  <tr>
+    <td align="left" valign="top" style="height:auto">
+			<div style="padding-left:20px; font-size:16px; font-weight:bold"><{$info.title}></div>
+		
+		<div style="padding-left:20px;">
+			<{$lang.upt}>: <{$info.uptime|date_format}>
+			<!-- <{insert name="label" type="statics" temp='statics_default' ctype=1 id=$info.nid}> -->
+		</div>
+		<div style="padding-left:20px; border-bottom:1px dashed #CCCCCC">&nbsp;</div>
+		<div class="news_conaa" style="padding:20px;">
+			<{$info.con}>
+		</div>
+        
+    </td>
+  </tr>
+</table>
+</form>
+</div>

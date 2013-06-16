@@ -1,0 +1,111 @@
+<!-- <{include file="header.htm"}> -->
+
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+       <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <a href="<{$config.weburl}>/?m=job"><{$lang.jobme}></a> &raquo; <a href="<{$config.weburl}>/?m=job&s=resume_list"><{$lang.resumelist}></a> &raquo; Резюме: <{$resume.name}> <{$resume.uname}>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+<link href="<{$config.weburl}>/templates/<{$config.temp}>/job.css" rel="stylesheet" type="text/css" />
+
+<div id="mainbody1" class="m1">
+    <div class="job_left">
+      <div id="box">
+   		  <table cellpadding="0" cellspacing="0" width="100%" border="0" class="reusme">
+             <caption>Резюме: <{$resume.name}> <{$resume.uname}></caption>
+             <tr class="tr1">
+               <td colspan="4"><{$lang.binfo}></td>
+             </tr>
+             <tr class="tr2">
+               <td width="18%" class="td1"><{$lang.name}>:</td><td width="35%" class="borderR"><{$resume.name}> <{$resume.uname}></td>
+               <td width="18%" class="td1"><{$lang.sex}>:</td><td class="borderR"><{foreach item=list key=num from=$lang.sex_arr}><{if $resume.usex==$num}><{$list}><{/if}><{/foreach}></td>
+             </tr>
+             <tr class="tr2">
+               <td class="td1"><{$lang.birth}>:</td><td class="borderR"><{$resume.uage}></td> <td class="td1"><{$lang.raddress}>:</td><td class="borderR"><{$resume.uaddress}></td>
+             </tr>
+             <tr class="tr2">
+               <td class="td1"><{$lang.telephone}>:</td><td class="borderR"><{$resume.utel}></td><td class="td1"><{$lang.mobile}>:</td><td class="borderR"><{$resume.uphone}></td>
+             </tr>
+             <tr class="tr2">
+               <td class="td1"><{$lang.email}>:</td><td class="borderR"><{$resume.umail}></td><td class="td1"><{$lang.degree}>:</td><td class="borderR"><{foreach item=list key=num from=$degree}><{if $resume.degree==$num}><{$list}><{/if}><{/foreach}></td>
+             </tr>
+             <tr class="tr2">
+               <td class="td1"><{$lang.professional}>:</td><td class="borderR"><{$resume.discipline}></td><td class="td1"><{$lang.we}>:</td><td class="borderR"><{$resume.experience_years}><{$lang.year}></td>
+             </tr>
+             <tr class="tr1">
+               <td colspan="4"><{$lang.selfevaluation}></td>
+             </tr>
+             <tr class="tr2">
+               <td colspan="4" class="td1"><div><{$resume.detail}></div></td>
+             </tr>
+             <tr class="tr1">
+               <td colspan="4"><{$lang.intention}></td>
+             </tr>
+             <tr class="tr2">
+               <td colspan="4" class="td1"><{$lang.nwe}>: <{foreach item=list key=num from=$job_type}><{if $resume.salary==$num}><{$list}><{/if}> <{/foreach}></td>
+             </tr>
+              <tr class="tr2">
+               <td colspan="4" class="td1"><{$lang.wae}>: <{if $resume.aaddress!=""}><{$resume.aaddress}><{else}>нет<{/if}></td>
+             </tr>
+             <tr class="tr2">
+               <td colspan="4" class="td1"><{$lang.je}>: <{$resume.catname}></td>
+             </tr>
+             <tr class="tr2">
+               <td colspan="4" class="td1"><{$lang.sej}>:<{foreach item=list key=num from=$hrmoney}><{if $resume.salary==$num}><{$list}><{/if}> <{/foreach}></td>
+             </tr>
+              <tr class="tr2">
+               <td colspan="4" class="td1"><{$lang.cws}>: <{$resume.situation}></td>
+             </tr>
+             <tr class="tr1">
+               <td colspan="4"><{$lang.wep}></td>
+             </tr>
+            <{foreach item=list key=num name=name from=$resume.experience_detail}>
+             <tr class="tr2 <{if $smarty.foreach.name.iteration!=1}>bor<{/if}>">
+               <td class="td1"><{$lang.times}>:</td><td class="borderR"><{$list.0}>--<{$list.1}></td><td class="td1"><{$lang.comname}>:</td><td class="borderR"><{$list.2}></td>
+             </tr>
+             <tr class="tr2">
+               <td class="td1"><{$lang.departments}>:</td><td class="borderR"><{$list.3}></td><td class="td1"><{$lang.position}>:</td><td class="borderR"><{$list.4}></td>
+             </tr>
+             <{/foreach}>
+             <tr class="tr1">
+               <td colspan="4"><{$lang.ee}></td>
+             </tr>
+             <{foreach item=list key=num name=name from=$resume.education}>
+             <tr class="tr2 <{if $smarty.foreach.name.iteration!=1}>bor<{/if}>">
+               <td class="td1"><{$lang.times}>:</td><td class="borderR"><{$list.0}>--<{$list.1}></td><td class="td1"><{$lang.school}>:</td><td class="borderR"><{$list.2}></td>
+             </tr>
+             <tr class="tr2">
+               <td class="td1"><{$lang.professionals}>:</td><td class="borderR"><{$list.3}></td><td class="td1"><{$lang.educations}>:</td><td class="borderR"><{$list.4}></td>
+             </tr>
+             <{/foreach}>
+             <tr class="tr1">
+               <td colspan="4"><{$lang.language}></td>
+             </tr>
+             <tr class="tr2">
+               <td class="td1"><{$lang.fl}>:</td><td class="borderR"><{foreach item=list key=num from=$lang.language_arr}><{if $resume.language.0==$num}><{$list}><{/if}><{/foreach}></td>
+                <td class="td1"><{$lang.mastery}>:</td><td class="borderR"><{foreach item=list key=num from=$lang.language_darr}><{if $resume.language.1==$num}><{$list}><{/if}><{/foreach}></td>
+             </tr>
+             <tr class="tr2">
+               <td class="td1"><{$lang.sa}>:</td><td class="borderR"><{foreach item=list key=num from=$lang.language_darr}><{if $resume.language.2==$num}><{$list}><{/if}><{/foreach}></td>
+             </tr>
+           </table>
+       </div>
+     </div>
+    
+    <div class="job_right">
+         <div id="box_" class="job_cat">
+             <b><{$lang.jobcats}></b>
+             				<div class="nav_w">
+					<div id="navleft_w">
+						<ul>
+							
+							<li class="nav_w"><a href="main.php?action=m&m=job&s=admin_resume&menu=user"><{$lang.add_resume_w}></a><li>
+						</ul>
+					</div>	
+				</div>
+             <{insert name="label" type="jobcat" temp="jobcat" }>
+         </div>
+    </div>
+
+</div>

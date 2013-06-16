@@ -1,0 +1,22 @@
+<div class="qg_con_ul1">
+	<ul>
+		<{foreach item=list key=num from=$pro}>
+			<{if $num<8}>
+			<li><a target="_blank" href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$list.id}>"><{$list.pname|truncate:40:"...":true}>
+			<span class="smoney">(<{$list.price}> <{$config.money}>)</span></a>
+			</li>
+			<{/if}>
+		<{/foreach}>
+	</ul>
+ </div>
+<div class="qg_con_ul2">
+	<ul>
+		<{foreach item=list key=num from=$pro}>
+			<{if $num>=8}>
+			<li><a target="_blank" href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$list.id}>"><{$list.pname|truncate:40:"...":true}>
+			<span class="smoney">(<{$list.price}> <{$config.money}>)</span></a>
+			</li>
+			<{/if}>
+		<{/foreach}>
+	</ul>
+ </div>

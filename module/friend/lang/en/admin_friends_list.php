@@ -1,0 +1,30 @@
+<?php
+$lang_ext = array(
+	'myf' => 'My business friend',
+	'msg_1' => 'Message sent successfully!',
+	'msg_2' => 'Empty message content, delivery failure!',
+	'queryt' => 'Search type:',
+	'sqt' => 'Select query type',
+	'uname' => 'User name',
+	'conc' => 'Contacts',
+	'tel' => 'Tel',
+	'fax' => 'Fax',
+	'addr' => 'Address',
+	'comn' => 'company name',
+	'kw' => 'Keywords:',
+	'addt' => 'Time from',
+	'to' => 'To',
+	'msg' => 'Message',
+	'fname' => 'Name',
+	'fc' => 'Country',
+	'fcom' => 'Company',
+	'addtime' => 'Add time',
+	'maction' => 'Action',
+	'readnow' => 'Search',
+	'mod' => 'Modify',
+	'suredel' => 'Are you sure to delete?',
+	'smsg' => 'Send Message',
+	'bsm' => 'Batch to send a message',
+);
+$lang = array_merge($lang, $lang_ext);
+?>

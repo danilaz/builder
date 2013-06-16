@@ -1,0 +1,32 @@
+<?php
+$lang_ext = array(
+'orderm' => 'Order Management', 
+'osearch' => 'Order Search', 
+'ouname' => 'Username:', 
+'otype' => 'Order Type:', 
+'otypeall' => 'all', 
+'osell' => 'sales', 
+'obuy' => 'order', 
+'ostatus' =>' Order Status: ', 
+'oso' => 'New orders and wait for the seller accepted',
+'ost' => 'The two sides confirmed that the order to complete',	
+'oss' => 'Buyers canceled, wait for the seller Cancel',
+'ose'=>'Cancel sellers waiting for buyers cancel',
+'osend'=>'Termination orders', 
+'ougroup' => 'Member group:', 
+'oum' => 'Member Order List', 
+'oprice' => 'Order total:', 
+'oid' => 'Order Number', 
+'obuyer' => 'Buyers', 
+'oseller' => 'Seller', 
+'obuy' => 'Order', 
+'opname' => 'Order product name', 
+'odprice' => 'Purchase price', 
+'onums' =>' Order number ', 
+'oallprice' => 'Purchase price', 
+'otime' => 'Time order', 
+'oaction' => 'Action', 
+'odetail' => 'Show details',
+);
+$lang = array_merge($lang, $lang_ext);
+?>

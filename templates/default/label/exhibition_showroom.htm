@@ -1,0 +1,39 @@
+<style>
+.hot_zhanhui{
+	margin:0 auto 5px auto;
+	border-bottom:1px silver dashed; padding-bottom:10px;
+}
+.hot_zhanhui a:visited,.hot_zhanhui a:link{
+	text-decoration:none;
+	color:#333;
+}
+.hot_zhanhui a:hover{
+	text-decoration:underline;
+	color:#ff6600;
+}
+.hot_zhanhui_logo{
+	width:80px;
+	height:50px;
+	padding:4px;
+	overflow:hidden;
+	float:left;
+}
+.hot_zhanhui_logo img{ width:80px; height:50px;}
+.hot_zhanhui_item{
+	float:right;
+	width:175px;
+	height:22px;
+	line-height:22px;
+	overflow:hidden;
+	color:#333;
+}
+</style>
+<{foreach item=list  from=$showroom}>
+<ul class="hot_zhanhui">
+				<li class="hot_zhanhui_logo"><a href="<{$config.weburl}>/?m=exhibition&s=exhibition_list&sroom=<{$list.show_room_name}>"><img src="<{$list.show_room_pic}>"></a></li>
+				<li class="hot_zhanhui_item"><strong><a href="<{$config.weburl}>/?m=exhibition&s=exhibition_list&sroom=<{$list.show_room_name}>"><{$list.show_room_name}></a></strong></li>
+				<li class="hot_zhanhui_item">Описание: <{$list.show_room_intro|truncate:30:"...":true}></li>
+				<li class="hot_zhanhui_item">Расположение: <{$list.show_room_addr}></li>
+                <li style="clear:both;"></li>
+</ul>
+<{/foreach}>

@@ -1,0 +1,109 @@
+<script src="<{$config.weburl}>/script/prototype.js" type=text/javascript></script>
+<script type="text/javascript">
+function getfav()
+{	
+	var url = 'ajax_back_end.php';
+	var myurl=document.location.href;
+	var u='<{$smarty.cookies.USER}>';
+	if (u=='')
+	{
+	  alert('<{$lang.nologo}>');
+	   window.location.href='login.php';
+	  return false;
+	}
+	var fu='<{$info.id}>';
+ 	var typ='2';
+	var ttil='<{$info.title}>';
+	var mpic='/uploadfile/zsimg/<{$info.pic.0}>.jpg';
+	var des='<{$info.con|strip_tags|truncate:100:"...":true|escape:"javascript"}>';
+    var pars = 'user='+u+'&fid='+fu+'&type='+typ+'&title='+ttil+'&url='+myurl+'&des='+des+'&picurl='+mpic;
+	var myAjax = new Ajax.Request(url,{method: 'post', parameters: pars, onComplete: showResponse});
+	function showResponse(originalRequest)
+	{
+	    if(originalRequest.responseText>1)
+	            alert('<{$lang.favok}>');
+		else if (originalRequest.responseText>0)
+	            alert('<{$lang.favisbe}>');
+		else
+	            alert('<{$lang.faverror}>');
+	}
+}
+function seebig(id)
+{
+    $('imgmove').innerHTML='<a href="<{$config.weburl}>/uploadfile/zsimg/'+id+'.jpg" target="_blank"><img border="0" src="<{$config.weburl}>/uploadfile/zsimg/'+id+'.jpg" width="200"></a>';
+}
+</script>
+<div class="common_box">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="guide_ba" colspan="3"><span style=" float:left;padding-left:10px;"><strong><{$lang.offers}></strong></span></td>
+    </tr>
+  <tr>
+    <td width="28%" rowspan="8" align="left" valign="top" >
+    <div id="imgmove" style="border:1px solid #E4F3FA;margin:0px; height:170px;overflow:hidden;">
+    	<{if $info.pic.0!=''&&$info.pic.0!=0}>
+            <a href="<{$config.weburl}>/uploadfile/zsimg/<{$info.pic.0}>.jpg" target="_blank" >
+                <img border="0" src="<{$config.weburl}>/uploadfile/zsimg/<{$info.pic.0}>.jpg" height="200" width="250">            </a>
+        <{else}>
+        	<img src="image/default/nopic.gif"  alt="&lt;{$info.pname}&gt;" height="230" width="230"/>
+        <{/if}>    </div>
+    <div id="infopic" style="overflow:hidden;width:250;text-align:center;margin-top:0px;">
+    <{foreach item=pic from=$info.pic}>
+        <{if $pic}>
+            <li style="float:left;padding-left:5px;padding-top:5px;">
+            <img onMouseOver="seebig('<{$pic}>')" style="cursor:pointer" src="<{$config.weburl}>/uploadfile/zsimg/size_small/<{$pic}>.jpg" border=0 width="45" height="40">            </li>
+        <{/if}>
+    <{/foreach}>    </div>    </td>
+    <td width="15%" height="32" class="borderC"><{$lang.offer_type}></td>
+    <td width="57%" height="32" class="borderC">
+	<img border="0" src="<{$config.weburl}>/image/<{$config.temp}>/offer_<{$info.type}>.gif"/></td>
+  </tr>
+  <tr>
+    <td height="25" class="borderC"><{$lang.title}></td>
+    <td class="borderC"><{$info.title}></td>
+  </tr>
+  <tr>
+    <td height="25" class="borderC"><{$lang.price}></td>
+    <td class="borderC"><{$info.price}>/<{$info.priceDes}></td>
+ </tr>
+    <tr>
+      <td height="25" class="borderC"><{$lang.time}></td>
+      <td class="borderC"><{$info.uptime|date_format}></td>
+    </tr>
+  <tr>
+    <td height="25" class="borderC"><{$lang.valid}></td>
+    <td class="borderC"><{$info.valid_time}></td>
+  </tr>
+  <tr>
+    <td height="25" class="borderC"><{$lang.trad_type}></td>
+    <td class="borderC"><{$info.offer_type}></td>
+  </tr>
+    <tr>
+    
+    <td colspan=2 class="borderC"><{insert name="label" type="statics" temp='statics_default' ctype=2 id=$info.id}>	</td>
+  </tr>
+    <tr>
+    <td colspan="2" class="borderC"><img src="http://b2bbuilder66.chinascript.ru/image/default/icon_mail.gif">&nbsp; 
+	<a href="<{$config.weburl}>/shop.php?uid=<{$info.userid}>&action=mail&tid=<{$info.id}>&contype=2">Связаться</a> | 
+	<a href="#" onClick="getfav();">В избранное</a>	</td>
+    </tr>
+  <tr>
+    <td  height="100%" colspan="3" align="left" valign="top" style="height:100%;">
+	<div style="margin-top:40px;"><{$info.detail}></div>  </td>
+    </tr>
+</table>
+<br />
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="780" height="40">
+		<strong><{$lang.myview}></strong><br />
+		<textarea id="reviewcon" name="reviewcon" cols="90" rows="4" style="font-size:12px;"></textarea>
+		<br />
+		<{$lang.encode}>
+		<input name="myrands" type="text" id="myrands" size="10" maxlength="5">
+		<img style="padding-top:3px;" src='includes/rand_func.php'/>
+		<input type="button" name="rewiews" value="<{$lang.subm}>" onClick="rewiew()"/>
+	  </td>
+    </tr>
+  </table>
+</div>

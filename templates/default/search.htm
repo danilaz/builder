@@ -1,0 +1,483 @@
+<{include file="header.htm"}>
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <strong><a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <{$lang.advsearch}></strong>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+<script type="text/javascript" src="script/Validator.js"></script>
+<script language="javascript" src="script/Calendar.js"></script>
+<script language="javascript">
+var cdr = new Calendar("cdr");
+document.write(cdr);
+cdr.showMoreDay = true;
+var scatid='';
+var tcatid='';
+<{if $smarty.get.stype==1}>
+var st='&cattype=offer&pcatid=';
+<{/if}>
+<{if $smarty.get.stype==2||$smarty.get.stype==''}>
+var st='&cattype=pro&pcatid=';
+<{/if}>
+<{if $smarty.get.stype==3}>
+var st='&cattype=com&pcatid=';
+<{/if}>
+function getinfocat(v,ob)
+{	
+	var url = '<{$config.weburl}>/ajax_back_end.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+st+v;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'post', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+		var i=1;var j=0;
+		eval(tempStr);
+		for(var s in MyMe)
+		{
+			++j;
+		}
+		if(j>0)
+			$(ob).style.visibility="visible";
+		else
+			$(ob).style.visibility="hidden";
+		$(ob).options.length =j+1;
+		$(ob).options[0].value = '';
+		$(ob).options[0].text = '<{$lang.allcat}>';
+		$(ob).options[0].selected = true;
+		for(var k in MyMe)
+		{
+			var cityId=MyMe[k][0];
+			var ciytName=MyMe[k][1];
+			if(ob=='tcatid'&&i==1)
+			{
+				if(tcatid!='')
+	 				getinfocat(tcatid,'scatid');
+				else
+					getinfocat(cityId,'scatid');
+			}
+			$(ob).options[i].value = cityId;
+			$(ob).options[i].text = ciytName;
+			if(cityId==scatid||cityId==tcatid)
+				$(ob).options[i].selected = true;
+			i++;
+	　	}
+	 }
+　}
+var province='';
+var city='';
+function getcity(v)
+{
+	var ob="city";
+	var url = '<{$config.weburl}>/ajax_back_end.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&prov_id='+v;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'post', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+		var i=0;var j=0;
+		eval(tempStr);
+		for(var s in MyMe)
+		{
+			++j;
+		}
+		$(ob).options.length =j+1;
+		for(var k in MyMe)
+		{
+			var cityId=MyMe[k][0];
+			var ciytName=MyMe[k][1];
+			$(ob).options[k].value = cityId;
+			$(ob).options[k].text = ciytName;
+			if(city!=''&&city==ciytName)
+				$(ob).options[k].selected = true;
+	　	}
+	 }
+　}
+<{if $co.country>=0}>
+getprovince('');
+<{/if}>
+<{if $co.city}>
+getcity('');
+<{/if}>
+function getprovince(v)
+{
+	var ob="province";
+	var url = '<{$config.weburl}>/ajax_back_end.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&country_id='+v;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'post', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{ 
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+		var i=0;var j=0;
+		eval(tempStr);
+
+		for(var s in MyMe)
+		{
+			++j;
+		}
+        if(j==0){
+		    $('pc1').style.display='';
+		    $('pc2').style.display='none';
+		    $('city').value='';
+		    $('province').value='';
+		    $('city').value='';
+		    $('province').value='';
+            return;
+        }else{
+		    $('pc2').style.display='';
+		    $('pc1').style.display='none';
+		    $('city1').value='';
+		    $('province1').value='';
+        }
+		$(ob).options.length =j+1;
+		for(var k in MyMe)
+		{
+			var provinceId=MyMe[k][1];
+			var provinceName=MyMe[k][1];
+			$(ob).options[k].value = provinceId;
+			$(ob).options[k].text = provinceName;
+			if(province!=''&&province==provinceName)
+				$(ob).options[k].selected = true;
+	　	}
+	 }
+}
+</script>
+<div id="mainbody1" class="topm reg">
+<{if $smarty.get.stype==1 }>
+<div class="asearch" id="offer">
+<form action="search_result.php" method="GET" id="fsearch">
+<input type="hidden" name="searchtype" id="searchtype" value="1"/>
+<input type="hidden" name="m" value="<{$m}>"/> 
+<table cellpadding="3" cellspacing="3" width="100%">
+<tr>
+<td width="137" height="34" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.seatype}></td>
+<td colspan="3" align="left" style="border-bottom: 1px dotted #999999;">
+  <input name="stype" type="radio"  value="1" onclick="location.href='<{$config.weburl}>/search.php?stype=1&m=offer'" <{if $stype==1 && $m=='offer'}>checked<{/if}>/><{$lang.offer}>
+  <input name="stype" type="radio"  value="1" onclick="location.href='<{$config.weburl}>/search.php?stype=1&m=demand'" <{if $stype==1 && $m=='demand'}>checked<{/if}>/>Спрос
+<!--
+<input name="stype" type="radio"  value="2" onclick="location.href='<{$config.weburl}>/search.php?stype=2'" <{if $stype==2}>checked<{/if}> /><{$lang.pro}> 
+-->
+  <input name="stype" type="radio"  value="3" onclick="location.href='<{$config.weburl}>/search.php?stype=3'" <{if $stype==3}>checked<{/if}> /><{$lang.com}> 
+</tr>
+<tr>
+<td width="137" height="34" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.keyword}></td>
+<td colspan="3" align="left" style="border-bottom: 1px dotted #999999;"><input name="kwords" id="kwords" type="text"  value="" size="60" maxlength="30"/></td>
+</tr>
+<tr>
+  <td height="35" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.incat}></td>
+  <td colspan="3" align="left" style="border-bottom: 1px dotted #999999;"><select name="catid" id="catid" onchange="getinfocat(this.value,'tcatid')">
+ <option value=""><{$lang.inallcat}></option>
+    <{foreach item=infolist from=$infocat}>
+        <option value="<{$infolist.catid}>">
+              <{$infolist.cat}></option>
+    <{/foreach}>  
+ </select>
+<select style="visibility:hidden" name="tcatid" id="tcatid" onchange="getinfocat(this.value,'scatid')"></select>
+<select style="visibility:hidden"  name="scatid" id="scatid"></select>&nbsp;</td>
+  </tr>
+<tr>
+  <td height="33" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.inadd}></td>
+  <td colspan="3" align="left" style="border-bottom: 1px dotted #999999;">
+  <div style="float:left;">
+  <div id="mpc" style="float:left;width:120px;">
+  <select onchange="getprovince(this.value);" name="country" id="country" style="width:120px;">
+    <option value=""><{$lang.allcountry}></option>
+	<{foreach item=clist key=num from=$country}>
+			<option value="<{$clist.id}>"><{$clist.name}></option>
+	<{/foreach}>
+</select>	
+</div>
+<div id="pc1" style="display:none;float:left;width:300px;">
+       &nbsp;&nbsp; <input style="width:120px;" id="province1" name="province1" type="text" />
+        &nbsp;&nbsp;<input style="width:120px;" id="city1" name="city1" type="text"/>
+</div>
+<div id="pc2" style="display:none;float:left;width:410px;margin-left:20px;">
+		<select  name="province" id="province" onChange="getcity(this.value)" style="width:100px;" />
+		<option value=""><{$lang.allprovince}></option>
+		</select>
+        
+        <select name="city" id="city" style="width:100px;" />
+		<option value=""><{$lang.allcity}></option>
+    	</select>
+</div> 
+</div></td>
+  </tr>
+<tr>
+<td height="33" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.alldate}></td>
+<td colspan="3" align="left" style="border-bottom: 1px dotted #999999;">с <input name="stime" type="text" id="stime" size="22"  onFocus="cdr.show(this);">
+  по 
+<input onFocus="cdr.show(this);" name="etime" type="text" id="etime" size="22"> </td>
+</tr>
+<tr>
+<td height="34" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.infotype}></td>
+<td width="487" align="left" style="border-bottom: 1px dotted #999999;">			
+<select name="infotype" >
+ <{foreach item=ilist key=num from=$infotype}>
+        <option value="<{$num}>"><{$ilist}></option>
+    <{/foreach}> 
+</select>&nbsp;</td>
+<td width="137" align="left" style="border-bottom: 1px dotted #999999;"><{$lang.usergroup}></td>
+<td width="307" align="left" style="border-bottom: 1px dotted #999999;"><select name="usergroup" >
+  <option value="" ><{$lang.alluser}></option>
+  <{foreach item=ulist  from=$usergroup}>
+  <option value="<{$ulist.group_id}>"><{$ulist.name}></option>
+  <{/foreach}>
+</select></td>
+</tr>
+<tr>
+  <td height="36" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.pic}></td>
+  <td align="left" style="border-bottom: 1px dotted #999999;"><input type="radio" name="pic" id="pic" value="1">
+    <{$lang.thereispic}>
+    <input type="radio" name="pic" id="pic2" value="0">
+    <{$lang.nopic}>
+  <input type="radio" name="pic" id="pic3" value="" checked>
+    <{$lang.allpic}></td>
+  <td align="left" style="border-bottom: 1px dotted #999999;"><{$lang.pricefw}></td>
+  <td align="left" style="border-bottom: 1px dotted #999999;"><input name="minprice" type="text" value="" size="10" maxlength="10"/>
+    ~
+    <input name="maxprice" type="text" value="" size="10" maxlength="10"/></td>
+</tr>
+<tr>
+<td height="31" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.ordertype}></td>
+<td colspan="3" align="left" style="border-bottom: 1px dotted #999999;">
+  <select name="ordertype" >
+    <option value="" selected=selected><{$lang.noorder}></option><option value="1"><{$lang.priceorder}></option><option value="2"><{$lang.pricedg}></option><option value="3"><{$lang.usergo}></option><option value="4"><{$lang.userdg}></option><option value="5"><{$lang.offergd}></option><option value="6"><{$lang.offerdg}></option>
+  </select></td>
+</tr>
+</tr>
+<tr>
+<td colspan="4" align="center">
+<input type="submit" value="<{$lang.adsearch}>"/></td>
+</tr>
+</table>
+</form>
+</div>
+<{/if}>
+
+
+<!-- ================================================== -->
+
+<{if $smarty.get.stype==2 || $smarty.get.stype==''}>
+<div class="asearch" id="product">
+<form action="search_result.php" method="GET" id="fsearch">
+<input type="hidden" name="searchtype" id="searchtype" value="2"/>
+<table cellpadding="3" cellspacing="3" width="100%">
+<tr>
+<td width="110" height="34" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.seatype}></td>
+<td colspan="3" align="left" style="border-bottom: 1px dotted #999999;">
+  <input name="stype" type="radio"  value="1" onclick="location.href='<{$config.weburl}>/search.php?stype=1&m=offer'" <{if $stype==1 && $m=='offer'}>checked<{/if}>/><{$lang.offer}>
+  <input name="stype" type="radio"  value="1" onclick="location.href='<{$config.weburl}>/search.php?stype=1&m=demand'" <{if $stype==1 && $m=='demand'}>checked<{/if}>/>Спрос
+<!--
+  <input name="stype" type="radio"  value="2" onclick="location.href='<{$config.weburl}>/search.php?stype=2'" <{if $stype==2}>checked<{/if}> /><{$lang.pro}>
+-->
+  <input name="stype" type="radio"  value="3" onclick="location.href='<{$config.weburl}>/search.php?stype=3'" <{if $stype==3}>checked<{/if}> /><{$lang.com}>
+</td>
+</tr>
+<tr>
+<td width="110" height="34" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.keyword}></td>
+<td colspan="3" align="left" style="border-bottom: 1px dotted #999999;">
+  <input name="kwords" id="kwords" type="text"  value="" size="60" maxlength="30"/></td>
+</tr>
+<tr>
+  <td height="35" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.incat}></td>
+  <td colspan="3" align="left" style="border-bottom: 1px dotted #999999;"><select name="catid" id="catid" onchange="getinfocat(this.value,'tcatid')">
+ <option value=""><{$lang.inallcat}></option>
+    <{foreach item=plist from=$procat}>
+        <option value="<{$plist.catid}>">
+              <{$plist.cat}> 
+	     </option>
+    <{/foreach}>  
+ </select>
+<select style="visibility:hidden" name="tcatid" id="tcatid" onchange="getinfocat(this.value,'scatid')"></select>
+<select style="visibility:hidden"  name="scatid" id="scatid"></select>&nbsp;</td>
+  </tr>
+<tr>
+  <td height="33" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.inadd}></td>
+  <td colspan="3" align="left" style="border-bottom: 1px dotted #999999;">
+  <div style="float:left;">
+  <div id="mpc" style="float:left;width:120px;">
+  <select onchange="getprovince(this.value);" name="country" id="country" style="width:120px;">
+    <option value=""><{$lang.allcountry}></option>
+	<{foreach item=clist key=num from=$country}>
+			<option value="<{$clist.id}>"><{$clist.name}></option>
+	<{/foreach}>
+	</select>	
+</div>
+<div id="pc1" style="display:none;float:left;width:300px;">
+        &nbsp;&nbsp;<input style="width:120px;" id="province1" name="province1" type="text" />
+        &nbsp;&nbsp;<input style="width:120px;" id="city1" name="city1" type="text"/>
+</div>
+<div id="pc2" style="display:none;float:left;width:410px;margin-left:20px;">
+		<select  name="province" id="province" onChange="getcity(this.value)" style="width:100px;" />
+		<option value=""><{$lang.allprovince}></option>
+		</select>
+        
+        <select name="city" id="city" style="width:100px;" />
+		<option value=""><{$lang.allcity}></option>
+    	</select>
+</div> 
+</div></td>
+  </tr>
+<tr>
+<td height="33" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.alldate}></td>
+<td colspan="3" align="left" style="border-bottom: 1px dotted #999999;"><input name="stime" type="text" id="stime" size="22"  onFocus="cdr.show(this);">
+   <{$lang.to}>
+<input onFocus="cdr.show(this);" name="etime" type="text" id="etime" size="22"> </td>
+</tr>
+<tr>
+<td height="34" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.infotype}></td>
+<td width="364" align="left" style="border-bottom: 1px dotted #999999;">			
+<select name="infotype" >
+
+ <{foreach item=plist key=num from=$trade_type}>
+        <option value="<{$num}>">
+              <{$plist}> 
+       </option>
+    <{/foreach}> 
+</select>&nbsp;</td>
+<td width="113" align="left" style="border-bottom: 1px dotted #999999;"><{$lang.usergroup}></td>
+<td width="330" align="left" style="border-bottom: 1px dotted #999999;"><select name="usergroup" >
+  <option value="" ><{$lang.alluser}></option>
+  <{foreach item=ulist  from=$usergroup}>
+  <option value="<{$ulist.group_id}>"><{$ulist.name}></option>
+  <{/foreach}>
+</select></td>
+</tr>
+<tr>
+  <td height="36" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.pic}></td>
+  <td align="left" style="border-bottom: 1px dotted #999999;"><input type="radio" name="pic" id="pic" value="1">
+    <{$lang.thereispic}>
+    <input type="radio" name="pic" id="pic2" value="0">
+    <{$lang.nopic}>
+  <input type="radio" name="pic" id="pic3" value="" checked>
+    <{$lang.allpic}></td>
+  <td align="left" style="border-bottom: 1px dotted #999999;"><{$lang.pricefw}></td>
+  <td align="left" style="border-bottom: 1px dotted #999999;"><input name="minprice" type="text" value="" size="10" maxlength="10"/>
+    ~
+    <input name="maxprice" type="text" value="" size="10" maxlength="10"/></td>
+</tr>
+<tr>
+<td height="31" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.ordertype}></td>
+<td colspan="3" align="left" style="border-bottom: 1px dotted #999999;">
+  <select name="order" >
+    <option value="0" selected=selected><{$lang.noorder}></option><option value="1"><{$lang.priceorder}></option><option value="2"><{$lang.pricedg}></option><option value="3"><{$lang.usergo}></option><option value="4"><{$lang.userdg}></option><option value="5"><{$lang.upointgd}></option><option value="6"><{$lang.upointdg}></option>
+  </select></td>
+</tr>
+</tr>
+<tr>
+<td colspan="4" align="center">
+<input type="submit" value="<{$lang.adsearch}>"/></td>
+</tr>
+</table>
+</form>
+</div>
+<{/if}>
+
+<!-- ============================================= -->
+
+<{if $smarty.get.stype==3}>
+<div class="asearch" id="company">
+<form action="search_result.php" method="GET" id="fsearch">
+<input type="hidden" name="searchtype" id="searchtype" value="3"/>
+<table cellpadding="3" cellspacing="3" width="100%">
+<tr>
+<td width="127" height="34" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.seatype}></td>
+<td colspan="3" align="left" style="border-bottom: 1px dotted #999999;">
+  <input name="stype" type="radio"  value="1" onclick="location.href='<{$config.weburl}>/search.php?stype=1&m=offer'" <{if $stype==1 && $m=='offer'}>checked<{/if}>/><{$lang.offer}>
+  <input name="stype" type="radio"  value="1" onclick="location.href='<{$config.weburl}>/search.php?stype=1&m=demand'" <{if $stype==1 && $m=='demand'}>checked<{/if}>/>Спрос
+  <!--
+  <input name="stype" type="radio"  value="2" onclick="location.href='<{$config.weburl}>/search.php?stype=2'" <{if $stype==2}>checked<{/if}> /><{$lang.pro}>
+  -->
+  <input name="stype" type="radio"  value="3" onclick="location.href='<{$config.weburl}>/search.php?stype=3'" <{if $stype==3}>checked<{/if}> /><{$lang.com}> 
+</td>
+</tr>
+<tr>
+<td height="34" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.keyword}></td>
+<td colspan="3" align="left" style="border-bottom: 1px dotted #999999;"><input name="kwords" id="kwords" type="text"  value="" size="60" maxlength="30"/></td>
+</tr>
+<tr>
+  <td height="35" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.incat}></td>
+  <td colspan="3" align="left" style="border-bottom: 1px dotted #999999;"><select name="catid" id="catid" onchange="getinfocat(this.value,'tcatid')">
+ <option value=""><{$lang.inallcat}></option>
+    <{foreach item=infolist from=$comcat}>
+        <option value="<{$infolist.catid}>">
+              <{$infolist.cat}></option>
+    <{/foreach}>  
+ </select>
+<select style="visibility:hidden" name="tcatid" id="tcatid" onchange="getinfocat(this.value,'scatid')"></select>
+<select style="visibility:hidden"  name="scatid" id="scatid"></select>&nbsp;</td>
+  </tr>
+<tr>
+  <td height="33" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.inadd}></td>
+  <td colspan="3" align="left" style="border-bottom: 1px dotted #999999;">
+  <div style="float:left;">
+  <div id="mpc" style="float:left;width:120px;">
+  <select onchange="getprovince(this.value);" name="country" id="country" style="width:120px;">
+  <option value=""><{$lang.allcountry}></option>
+	<{foreach item=clist key=num from=$country}>
+			<option value="<{$clist.id}>"><{$clist.name}></option>
+	<{/foreach}>
+</select>	
+</div>
+<div id="pc1" style="display:none;float:left;width:300px;">
+        &nbsp;&nbsp;<input style="width:120px;" id="province1" name="province1" type="text" />
+        &nbsp;&nbsp;<input style="width:120px;" id="city1" name="city1" type="text"/>
+</div>
+<div id="pc2" style="display:none;float:left;width:410px;margin-left:20px;">
+		<select  name="province" id="province" onChange="getcity(this.value)" style="width:100px;" />
+		<option value=""><{$lang.allprovince}></option>
+		</select>
+        
+        <select name="city" id="city" style="width:100px;" />
+		<option value=""><{$lang.allcity}></option>
+    	</select>
+</div> </div></td>
+  </tr>
+
+<tr>
+<td height="34" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.usertype}></td>
+<td width="254" align="left" style="border-bottom: 1px dotted #999999;">			
+<select name="infotype" >
+
+ <{foreach item=clist  from=$comtype}>
+        <option value="<{$clist}>"><{$clist}></option>
+    <{/foreach}> 
+</select>&nbsp;</td>
+<td width="101" align="left" style="border-bottom: 1px dotted #999999;"><{$lang.usergroup}></td>
+<td width="452" align="left" style="border-bottom: 1px dotted #999999;"><select name="usergroup" >
+  <option value="" ><{$lang.alluser}></option>
+  <{foreach item=ulist  from=$usergroup}>
+  <option value="<{$ulist.group_id}>"><{$ulist.name}></option>
+  <{/foreach}>
+</select></td>
+</tr>
+
+<tr>
+<td height="31" align="right" style="border-bottom: 1px dotted #999999;"><{$lang.ordertype}></td>
+<td colspan="3" align="left" style="border-bottom: 1px dotted #999999;">
+  <select name="order" >
+    <option value="0" selected=selected><{$lang.noorder}></option><option value="1"><{$lang.priceorder}></option><option value="2"><{$lang.pricedg}></option><option value="3"><{$lang.rankgd}></option><option value="4"><{$lang.rankdg}></option><option value="5"><{$lang.upointgd}></option><option value="6"><{$lang.upointdg}></option>
+  </select></td>
+</tr>
+</tr>
+<tr>
+<td colspan="4" align="center">
+<input type="submit" value="<{$lang.adsearch}>"/></td>
+</tr>
+</table>
+</form>
+</div>
+<{/if}>
+</div>
+<{include file="footer.htm"}>

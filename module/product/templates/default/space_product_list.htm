@@ -1,0 +1,108 @@
+<div class="common_box">
+<form action="shop.php" method="get">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr align="left">
+    <td class="guide_ba" colspan="2">
+	<span><{$lang.prolist}></span>
+	<a href="shop.php?uid=<{$com.userid}>&action=product_list&list_type=1&cat=<{$smarty.get.cat}>&m=product"><img style="vertical-align:middle;" src="<{$config.weburl}>/image/default/col_list.gif"></a>
+	<a href="shop.php?uid=<{$com.userid}>&action=product_list&list_type=2&cat=<{$smarty.get.cat}>&m=product"><img style="vertical-align:middle;" src="<{$config.weburl}>/image/default/row_list.gif"></a>
+    <{if $cat }>
+    <select onchange="if(this.value!='')  window.location='shop.php?uid=<{$com.userid}>&action=product_list&list_type=1&m=product&cat='+this.value">
+   		<option value="" ><{$lang.pro}></option>
+    	<{foreach item=list from=$cat}>
+        	<option value="<{$list.id}>" <{if $list.id==$smarty.get.cat }>selected="selected"<{/if}> ><{$list.name}></option>
+        <{/foreach}>
+    </select>
+    <{/if}>
+	</td>
+  </tr>
+      
+	  <tr>
+        <td class="com_intro">
+        <{assign var="list_type" value=$smarty.get.list_type|default:$shopconfig.shop_pro_list}>
+        <{foreach item=list from=$info.list}>
+        	<{if $list_type=='1' }>
+                 	  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="20" valign="top" style="border:0px;border-bottom:1px #CCCCCC dashed;"><input name="tid[]" type="checkbox" value="<{$list.id}>" /></td>
+                        <td width="100" style="border:0px;border-bottom:1px #CCCCCC dashed;">
+						<div class="probox">
+						<{if $com.open_info_type}>
+						<a href="shop.php?uid=<{$list.userid}>&action=product_detail&id=<{$list.id}>&m=product" title="<{$list.pname}>" target="_blank">
+						<{else}>
+						<a href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$list.id}>" title="<{$list.pname}>" target="_blank">
+						<{/if}>
+							<{assign var="imgs" value=$list.id}>
+							<{html_image file=uploadfile/comimg/small/$imgs.jpg width=150 alt=$list.pname}>
+                        </a>
+						</div>
+						</td>
+                        <td valign="top" style="border:0px;border-bottom:1px #CCCCCC dashed;">
+						<{if $com.open_info_type}>
+						<a href="shop.php?uid=<{$list.userid}>&action=product_detail&id=<{$list.id}>&m=product" title="<{$list.pname}>" target="_blank">
+						<{else}>
+						<a href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$list.id}>" title="<{$list.pname}>" target="_blank">
+						<{/if}>
+                        <strong><{$list.pname}></strong>
+                        </a><br />
+                        <{$list.con|strip_tags|truncate:220:"...":true}>
+						</td>
+						<td width="100" style="border:0px;border-bottom:1px #CCCCCC dashed;"><{$list.uptime|date_format}></td>
+                      </tr>
+                    </table>
+             <{/if}>
+             
+             <{if $list_type=='2' }>
+             	<div class="pro_list_col">
+                      <ul>
+                        <li>
+						<div class="probox">
+						<{if $com.open_info_type}>
+						<a href="shop.php?uid=<{$list.userid}>&action=product_detail&id=<{$list.id}>&m=product" title="<{$list.pname}>" target="_blank">
+						<{else}>
+						<a href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$list.id}>" title="<{$list.pname}>" target="_blank">
+						<{/if}>
+						<{assign var="imgs" value=$list.id}>
+						<{html_image file=uploadfile/comimg/small/$imgs.jpg width=100 alt=$list.pname}>
+						</a>
+						</div>
+						<input name="tid[]" type="checkbox" value="<{$list.id}>" />
+                           <{if $com.open_info_type}>
+						<a href="shop.php?uid=<{$list.userid}>&action=product_detail&id=<{$list.id}>&m=product" title="<{$list.pname}>" target="_blank">
+						<{else}>
+						<a href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$list.id}>" title="<{$list.pname}>" target="_blank">
+						<{/if}>
+						   <strong><{$list.pname}></strong>
+                            </a>
+                        </li>
+                     </ul>
+ 				</div>
+             <{/if}>
+        <{/foreach}>
+          </td>
+      </tr>
+      <tr><td colspan="2">
+      <span style="float:left; margin-left:10px;">
+		<input onclick="do_select();" type="checkbox" value="" />
+		<input value="<{$lang.inquiry}>" type="submit"/>
+		<input name="action" type="hidden" value="mail" />
+		<input name="uid" type="hidden" value="<{$smarty.get.uid}>" />
+      </span>
+	  <div class="pages"><{$info.page}></div>
+      </td></tr>
+</table>
+<script language="javascript">
+function do_select()
+{
+	 var box_l = document.getElementsByName("tid[]").length;
+	 for(var j = 0 ; j < box_l ; j++)
+	 {
+	  	if(document.getElementsByName("tid[]")[j].checked==true)
+	  	  document.getElementsByName("tid[]")[j].checked = false;
+		else
+		  document.getElementsByName("tid[]")[j].checked = true;
+	 }
+}
+</script>
+</form>
+</div>

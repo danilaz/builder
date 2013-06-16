@@ -1,0 +1,71 @@
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+       <{$lang.you_are_here}><a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <{$lang.buy_cat}></a>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+	<!--主体开始 -->
+	<div id="mainbody1" class="m1">
+		<!--主体左侧开始 -->
+		<div class="leftbar">
+			<div class="title4"><div class="title_left2 L2"><{$lang.buy_cat}></div><div class="more"><a href="<{$config.weburl}>/?m=offer&s=offer_list"><img src="<{$config.weburl}>/image/<{$config.temp}>/more.gif"  border="0" /></a></div>
+				</div>
+			<div class="content4 overflow">
+					<ul class="list6">
+                    <li>
+                 <{foreach item=cList key=num from=$cat}>
+				       <{if ($num)%2==0}>
+                  			<div class="L_left">
+						<{else}>
+						   <div class="R_left">
+						   <{/if}>
+								<h3>
+                                <a href="<{$config.weburl}>/?m=offer&s=offer_list&id=<{$cList.catid}>" 
+                                title="<{$cList.cat}>"><{$cList.cat}></a>(<{$cList.rec_nums}>)
+                                </h3>
+				  				<p class="sub_cat">
+                                 <{if $cList.sub}>
+                                        <{foreach item=sublist from=$cList.sub key=nums}>
+											<{if $nums>0}>|<{/if}>
+                                            <a href="<{$config.weburl}>/?m=offer&s=offer_list&id=<{$sublist.catid}>" 
+                                            title="<{$sublist.cat}>"><{$sublist.cat}></a>
+                                        <{/foreach}>
+                                        <a href="<{$config.weburl}>/?m=offer&s=offer_list&id=<{$cList.catid}>">...</a>
+                                 <{/if}>
+                                <p>	
+				 			</div>
+                            <{if ($num+1)%2==0}>
+                            		</li><li>
+                            <{/if}>
+                      <{/foreach}>
+					</li>
+				</ul>
+			  </div>
+		</div>
+		<!--主体左侧结束 -->
+		
+		<!--主体右侧开始 -->
+		<div class="rightbar">
+			<div class="right1">
+				<div class="sectitle" ><div class="title_left1 L2"><{$lang.rec_Product}></div></div>
+				 <div class="seccon">
+					<ul class=" li_list">
+					 	<{insert name="getOffers" leng="32" rec=true  limit=15 img=true}>
+				   </ul>
+				   <div class="clear"></div>
+			    </div>
+				</div>
+			<div class="right1 m1">
+				<div class="sectitle" ><div class="title_left1 L2"><{$lang.new_Product}></div></div>
+				<div class="seccon" >
+					<ul class=" li_list">
+					 	<{insert name="getOffers" leng="32"   img=true limit=15 }>
+				   </ul>
+				   <div class="clear"></div>
+			    </div>
+			</div>
+		</div>		
+		<!--主体右侧结束 -->
+	</div>
+	<!--主体结束 -->	

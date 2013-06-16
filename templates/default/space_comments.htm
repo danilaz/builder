@@ -1,0 +1,132 @@
+<script type="text/javascript">
+function checkvalue()
+{
+	 if (document.fortopm.description.value=="")
+		{ 
+         alert("<{$lang.comments_nocontent}>") 
+         return false;  
+        }  
+     else 
+		 {return true;} 
+
+}
+</script>
+<div class="common_box">
+<{if $smarty.get.type==1}>
+	<div style="height:200px; padding:50px;"><{$lang.comments_msg}></div>
+<{else}>
+<form method="post" action="" name="fortopm">
+ <{if $smarty.cookies.USER}>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+         <tr>
+         <td class="guide_ba" colspan="3"><span><{$lang.comments_option}></span></td>
+          </tr>
+         <{foreach key=key item=lb from=$liebiao}>
+        <tr>
+          <td width="6%" height="20">&nbsp;</td>
+          <td width="27%" height="20"><{$key+1}>:<{$lb.name}></td>
+          <td width="67%">
+          <{if $lb.subcat.0.name==''}>
+                 <select name="point[<{$lb.id}>]" id="<{$lb.id}>">
+				 <option value="0">0<{$lang.comments_ponit}></option>
+				 <option value="10">10<{$lang.comments_ponit}></option>
+				 <option value="20">20<{$lang.comments_ponit}></option>
+				 <option value="30">30<{$lang.comments_ponit}></option>
+                 <option value="40">40<{$lang.comments_ponit}></option>
+                 <option value="50">50<{$lang.comments_ponit}></option>
+                 <option value="60">60<{$lang.comments_ponit}></option>
+                 <option value="70">70<{$lang.comments_ponit}></option>
+                 <option value="80">80<{$lang.comments_ponit}></option>
+                 <option value="90">90<{$lang.comments_ponit}></option>
+                 <option value="100" selected>100<{$lang.comments_ponit}></option>
+                 </select>
+            <{/if}>             </td>
+          </tr>
+            <{foreach key=key item=zlb from=$lb.subcat}>
+            <tr>
+              <td height="20">&nbsp;</td>
+              <td height="20" style="padding-left:20px;"><{$zlb.name}></td>
+              <td>
+			     <select name="point[<{$zlb.id}>]" id="<{$zlb.id}>">
+				 <option value="0">0<{$lang.comments_ponit}></option>
+				 <option value="10">10<{$lang.comments_ponit}></option>
+				 <option value="20">20<{$lang.comments_ponit}></option>
+				 <option value="30">30<{$lang.comments_ponit}></option>
+                 <option value="40">40<{$lang.comments_ponit}></option>
+                 <option value="50">50<{$lang.comments_ponit}></option>
+                 <option value="60">60<{$lang.comments_ponit}></option>
+                 <option value="70">70<{$lang.comments_ponit}></option>
+                 <option value="80">80<{$lang.comments_ponit}></option>
+                 <option value="90">90<{$lang.comments_ponit}></option>
+                 <option value="100" selected>100<{$lang.comments_ponit}></option>
+                 </select>			  </td>
+            </tr>
+            <{/foreach}>
+        <{/foreach}> 
+        <tr>
+          <td height="21" colspan="3"><{$lang.comments_descript}></td>
+          </tr>
+        <tr>
+        <td height="88">&nbsp;</td>
+        <td height="88" colspan="2">
+          <textarea name="description" id="description" cols="45" rows="5"></textarea>        </td>
+        </tr>
+      <tr>
+        <td height="20">&nbsp;</td>
+        <td height="20" colspan="2">
+		  <input type="submit" name="submit" id="submit" value="<{$lang.comments_submit}>" onclick="return checkvalue();" <{if $uname.user==$smarty.cookies.USER}>disabled<{/if}>/>
+		  <input type="hidden" name="touid" id="touid" value="<{$smarty.get.uid}>" />		  </td>
+        </tr>
+    </table>
+     <{/if}>
+     
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr> <td class="guide_ba" colspan="3"><span><{$lang.comments_results}></span></td></tr>
+        <{foreach key=key item=lb from=$liebiao}>
+        <tr>
+          <td width="6%" height="20">&nbsp;</td>
+          <td width="25%" height="20"><{$key+1}>:<{$lb.name}></td>
+          <td width="69%">
+          <{if $lb.subcat.0.name==''}>
+		       <{if $lb.point==''}>
+               <{$lang.comments_noponit}>
+		       <{else}>
+               <{$lb.point}><{$lang.comments_ponit}>
+			    <{/if}>
+            <{/if}>          </td>
+        </tr>
+        <{foreach key=key item=zlb from=$lb.subcat}>
+        <tr>
+          <td height="20">&nbsp;</td>
+          <td height="20" style="padding-left:20px;"><{$zlb.name}></td>
+          <td>
+          <{if $zlb.point==''}>
+          <{$lang.comments_noponit}>
+		  <{else}>
+          <{$zlb.point}><{$lang.comments_ponit}> <{/if}></td>
+        </tr>
+           <{/foreach}>
+        <{/foreach}> 
+        <tr>
+          <td height="19" colspan="3"><strong><{$lang.all_comments}></strong><hr/></td>
+          </tr>
+        <tr>
+          <td height="56">&nbsp;</td>
+          <td height="56" colspan="2" valign="top">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+            <{foreach item=deslist from=$des.list}>
+              <tr>
+                <th width="15%" scope="col" style="border-bottom: 1px dotted #999999;"><a href='shop.php?uid=<{$deslist.uid}>'><{$deslist.user}></a> </th>
+                <th width="70%" scope="col" style="border-bottom: 1px dotted #999999;"><{$deslist.con}></th>
+                <th width="15%" scope="col" style="border-bottom: 1px dotted #999999;"><{$deslist.time|date_format}></th>
+              </tr>
+              <{/foreach}> 
+              <tr>
+                <th colspan="3" align="right"><{$des.page}></th>
+                </tr>
+            </table>            </td>
+          </tr>
+      </table>
+</form>
+<{/if}> 
+</div>

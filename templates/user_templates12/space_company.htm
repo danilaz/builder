@@ -1,0 +1,170 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="60%" valign="top">
+
+    <div class="common_box">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr><td width="332" class="guide_ba"><span>О компании</span></td>
+        <td style="text-align:right;" class="guide_ba">
+		<a href="shop.php?uid=<{$smarty.get.uid}>&action=mail"><img src="<{$img}>/more.jpg" /></a>
+		</td>
+      </tr>
+      <tr>
+        <td height="100" colspan="2">
+        <{if $com.img!=""}>
+        <img src="<{$com.img}>" style="float:right; width:200px; border:solid 1px #999999;">
+        <{/if}>
+        <{$com.intro}>
+        </td>
+      </tr>
+    </table>
+</div>
+
+
+
+</td>
+    <td width="40%" valign="top" >
+	<script language="javascript" src="<{$config.weburl}>/script/my_lightbox.js"></script>
+    <div class="common_box">
+    	<div class="com_contact">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td colspan="2" width="352" class="guide_ba"><span><{$shopconfig.home_contact_name}></span></td>
+                     <td align="right" class="guide_ba">
+					 <a href="shop.php?uid=<{$smarty.get.uid}>&action=mail"><img src="<{$img}>/more.jpg" /></a>
+					 </td>
+                  </tr>
+				  <tr><td colspan="2">
+				  <table>
+				  <tr>
+                    <td><strong><{$lang.conetct_name}></strong>
+					<br />
+					<{$com.contact }> (<{$com.position}>)</td>
+                  </tr>
+                  <tr>
+                    <td><strong><{$lang.tel}></strong>
+					<br /><{$com.tel }></td>
+                  </tr>
+                  <{if $com.mobile}>
+                  <tr>
+                    <td><strong><{$lang.mobile}></strong>
+					<br /><{$com.mobile }></td>
+                  </tr>
+                  <{/if}>
+                  <tr>
+                    <td><strong><{$lang.fax}></strong>
+					<br /><{$com.fax}></td>
+                  </tr>
+				   <tr>
+                    <td><strong><{$lang.addr}></strong>
+					<br /><{$com.addr }></a>
+				    </td>
+                  </tr>
+
+				  </table>
+				  </td></tr>
+                </table>
+        </div>
+    </div>
+	
+	
+    <div class="common_box">
+    	<div class="com_contact">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td colspan="2" width="352" class="guide_ba"><span><{$shopconfig.home_contact_maps}></span></td>
+                     <td align="right" class="guide_ba">
+					 <a onclick="alertWin('Map','',600,450,'<{$config.weburl}>/templates/default/map_big.php?addr=<{$com.addr|urlencode}>');" href="#" /><img src="<{$img}>/more.jpg" /></a>
+					 </td>
+                  </tr>
+				  <tr><td>
+						<table>
+							<tr>
+							<td>
+						<iframe src="<{$config.weburl}>/templates/default/map.php?addr=<{$com.addr|urlencode}>" width="250" height="250" scrolling="no" frameborder="0"></iframe>
+						<div style="padding:5px 0px 0px 5px;"><a onclick="alertWin('Map','',600,450,'<{$config.weburl}>/templates/default/map_big.php?addr=<{$com.addr|urlencode}>');" href="#" class="btn_nomal">Подробнее</a></div>
+							</td>
+							</tr>
+						</table>
+						</td></tr>
+                </table>
+        </div>
+    </div>
+	
+	
+</td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+
+
+<div class="common_box">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="352" class="guide_ba"><span><{$shopconfig.home_recpro_name}></span></td>
+     <td class="guide_ba">
+	 	<a href="shop.php?uid=<{$smarty.get.uid}>&action=product_list&m=product"><img src="<{$img}>/more.jpg" /></a>
+	 </td>
+  </tr>
+  <tr>
+  	<td colspan="2" valign="middle">
+<style>
+.blk_29 { OVERFLOW: hidden; ZOOM: 1; POSITION: relative}
+.blk_29 .LeftBotton{ BACKGROUND: url(<{$img}>left.jpg) no-repeat 0px 0px; LEFT: 5px; FLOAT: left; WIDTH: 17px; CURSOR: pointer;  HEIGHT: 100px;margin-top:50px;}
+.blk_29 .RightBotton { RIGHT: 5px; BACKGROUND: url(<{$img}>right.jpg) no-repeat; FLOAT: right; WIDTH: 17px; CURSOR: pointer;  HEIGHT: 100px;margin-right:-10px;margin-top:50px;}
+.blk_29 .Cont { MARGIN: 0px auto; OVERFLOW: hidden; WIDTH: 300px; PADDING-TOP: 5px; float:left;}
+.blk_29 .box { FLOAT: left; WIDTH: 120px; TEXT-ALIGN: center; border:1px solid #CCCCCC; height:100px; margin:3px;}
+</style>
+<div class="blk_29">
+	<div class="LeftBotton" id="LeftArr"></div>
+	<div class="Cont" id="ISL_Cont_1">
+		<{foreach item=list key=num from=$rec_pro}>
+		<div class="box">
+			<a href="<{geturl type='prod' uid=$com.userid user=$com.user tid=$list.id open=1}>" target="_blank">
+			<{assign var="imgs" value=$list.id}>
+			<{html_image file=uploadfile/comimg/big/$imgs.jpg width=100 alt=$list.pname}>
+			</a>
+		</div>
+		<{/foreach}>
+	</div>
+	<div class="RightBotton" id="RightArr"></div>
+</div>
+<script src="<{$img}>flow.js"></script>
+<script language=javascript type=text/javascript>
+  var scrollPic_02 = new ScrollPic();
+  scrollPic_02.scrollContId   = "ISL_Cont_1"; //内容容器ID
+  scrollPic_02.arrLeftId      = "LeftArr";//左箭头ID
+  scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
+  scrollPic_02.frameWidth     = 322;//显示框宽度
+  scrollPic_02.pageWidth      = 110; //翻页宽度
+  scrollPic_02.speed          = 10; //移动速度(单位毫秒，越小越快)
+  scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
+  scrollPic_02.autoPlay       = true; //自动播放
+  scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
+  scrollPic_02.initialize(); //初始化
+</script>
+     </td>
+  </tr>
+</table>
+</div>
+
+</td>
+    <td width="50%" valign="top">
+    <div class="common_box">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr><td class="guide_ba"><span><{$shopconfig.home_news_name}></span></td>
+       <td width="10" align="right" class="guide_ba">
+	   <a href="shop.php?uid=<{$smarty.get.uid}>&action=news_list&m=news"><img src="<{$img}>/more.jpg" /></a>
+	   </td></tr>
+      <tr>
+        <td height="100" colspan="2">
+            <div class='newoffer'>
+            <{insert name="getNews" leng="100"  limit=$shopconfig.home_news_nums  user="true" userid=$com.userid}>
+            </div>
+        </td>
+      </tr>
+    </table>
+    </div>
+    </td>
+  </tr>
+</table>

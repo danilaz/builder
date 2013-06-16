@@ -1,0 +1,55 @@
+<div class="common_box">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr><td class="guide_ba"><span><{$lang.offer_dir}></span></td></tr>
+<tr><td>
+<{assign var="list_type" value=$shopconfig.shop_pro_list}>
+<{foreach item=list from=$info.list}>
+<{if $list_type==1}>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="border:none; border-bottom:1px #CCCCCC dashed;" width="100">
+		<{assign var="img" value=$list.pic|explode_one:","}>
+		<{html_image file=uploadfile/zsimg/size_small/$img.jpg width=100 style="border:1px solid #CCCCCC; padding:1px" alt=$list.title}>
+		</div>
+	</td>
+	<td valign="top" style="border:none; border-bottom:1px #CCCCCC dashed;">
+	<img src="<{$config.weburl}>/image/<{$config.temp}>/offer_<{$list.type}>.gif"/>
+	<{if $com.open_info_type}>
+	<a href="shop.php?uid=<{$list.userid}>&action=offer_detail&id=<{$list.id}>&m=offer" title="<{$list.title}>" target="_blank">
+	<{else}>
+	<a href="<{$config.weburl}>/?m=offer&s=offer_detail&id=<{$list.id}>" title="<{$list.title}>" target="_blank">
+	<{/if}>
+	<strong><{$company.open_info_type}><{$list.title}></strong></a><br />
+	<{$list.con|strip_tags|truncate:160:"...":true}>
+	</td>
+	<td style="border:none; border-bottom:1px #CCCCCC dashed;" width="100"><{$list.uptime|date_format}></td>
+  </tr>
+</table>
+<{else}>
+<div class="pro_list_col" style="width:170px;">
+	  <ul>
+		<li>
+		<div class="probox">
+		<{assign var="img" value=$list.pic|explode_one:","}>
+		<img src="uploadfile/zsimg/size_small/<{$img}>.jpg" alt=<{$list.title}> />
+		</div>
+		</li>
+		<li>
+		<{if $com.open_info_type}>
+		<a href="shop.php?uid=<{$list.userid}>&action=offer_detail&id=<{$list.id}>&m=offer" title="<{$list.title}>" target="_blank">
+		<{else}>
+		<a href="<{$config.weburl}>/?m=offer&s=offer_detail&id=<{$list.id}>" title="<{$list.title}>" target="_blank">
+		<{/if}>
+		<{$company.open_info_type}><{$list.title}></a>
+		</li>
+	 </ul>
+</div>
+<{/if}>
+<{foreachelse}>
+	<{$lang.on_offers}>
+<{/foreach}>
+
+</td></tr>
+</table>
+	<div class="page" align="right"><{$info.page}></div>
+</div>

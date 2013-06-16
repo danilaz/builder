@@ -1,0 +1,119 @@
+<script>
+function setTab1(c)
+{
+	for(i=0;i<=3;i++)
+	{
+		$('tabmenu_0'+i).className='lst';
+		$('tabcontent_0'+i).style.display='none';
+	}
+	$('tabmenu_0'+c).className='now';
+	$('tabcontent_0'+c).style.display='block';
+}
+</script>
+<div class="Contentbox">
+	<div id="inf_l">
+		<div style="padding-left:30px;"><{insert name="label" type="news" temp="news_top" limit=6 top=true img=true leng=120}></div>                       
+		<div id="itetopm">                        
+		  <div id="inf-tab">
+			<a onmouseover="setTab1(0);" class="now" href="<{$config.weburl}>/?m=news&s=news_list&id=<{$newstag.0.catid}>" id="tabmenu_00"><{$newstag.0.cat}></a>
+			<a onmouseover="setTab1(1);" href="<{$config.weburl}>/?m=news&s=news_list&id=<{$newstag.1.catid}>" id="tabmenu_01" class="lst"><{$newstag.1.cat}></a>
+			<a onmouseover="setTab1(2);" href="<{$config.weburl}>/?m=news&s=news_list&id=<{$newstag.2.catid}>" class="lst" id="tabmenu_02"><{$newstag.2.cat}></a>
+			<a onmouseover="setTab1(3);" href="<{$config.weburl}>/?m=news&s=news_list&id=<{$newstag.3.catid}>" class="lst" id="tabmenu_03"><{$newstag.3.cat}></a>
+			</div>
+	  <div style="overflow:hidden;height:61px;font-weight:normal;">                      
+		<div id="tabcontent_00">
+		  <ul>
+			<{foreach item=slist key=num from=$newstag.0.newsList}>
+			<{if $num<2}>
+			<li>
+			<a href="<{$config.weburl}>/?m=news&s=newsd&id=<{$slist.nid}>" target="_blank" <{$slist.style}> >
+			<{$slist.title|truncate:232}></a>
+			</li>
+			<{/if}>
+		<{/foreach}>  	
+		  </ul>
+		</div>                      
+		<div id="tabcontent_01" style="display: none;">
+		  <ul>                          
+			<{foreach item=slist key=num from=$newstag.1.newsList}>
+			<{if $num<2}>
+			<li>
+			<a href="<{$config.weburl}>/?m=news&s=newsd&id=<{$slist.nid}>" target="_blank" <{$slist.style}> >
+			<{$slist.title|truncate:232}></a>
+			</li>
+			<{/if}>
+		<{/foreach}>  	              
+		  </ul>
+		</div>                      
+		<div id="tabcontent_02" style="display: none;">
+		  <ul>                          
+			<{foreach item=slist key=num from=$newstag.2.newsList}>
+			<{if $num<2}>
+			<li>
+			<a href="<{$config.weburl}>/?m=news&s=newsd&id=<{$slist.nid}>" target="_blank" <{$slist.style}> >
+			<{$slist.title|truncate:232}></a>
+			</li>
+			<{/if}>
+		<{/foreach}>  	                                       
+		  </ul>
+		  </div>
+		<div id="tabcontent_03" style="display: none;">
+		  <ul>                          
+			<{foreach item=slist key=num from=$newstag.3.newsList}>
+			<{if $num<2}>
+			<li>
+			<a href="<{$config.weburl}>/?m=news&s=newsd&id=<{$slist.nid}>" target="_blank" <{$slist.style}> >
+			<{$slist.title|truncate:232}></a>
+			</li>
+			<{/if}>
+		<{/foreach}>  	                                       
+		  </ul>
+		  </div>    
+		<div id="tabcontent_04" style="display: none;">
+		  <ul>                          
+			<{foreach item=slist key=num from=$newstag.4.newsList}>
+			<{if $num<2}>
+			<li>
+			<a href="<{$config.weburl}>/?m=news&s=newsd&id=<{$slist.nid}>" target="_blank" <{$slist.style}> >
+			<{$slist.title|truncate:332}></a>
+			</li>
+			<{/if}>
+		<{/foreach}>  	                                       
+		  </ul>
+		  </div>
+	  </div>                        
+	</div>
+</div>
+
+<!-- <div id="inf_m">		      
+<ul>	        
+	 <li id="b2">
+	 <{insert name="label" type="news" temp="news_list_a" limit=1 rec=1 user=true leng=30}>
+	 </li>
+	<{insert name="label" type="news" temp="news_default_list" limit=9 leng=30}>
+</ul> 
+</div>-->
+<!--<div id="inf_r">		      
+	<h3><a href="<{$config.weburl}>/?m=news&s=news_list&id=<{$newstag.3.catid}>">[<{$newstag.3.cat}>]</a></h3>
+	<ul>
+		<{foreach item=slist key=num from=$newstag.3.newsList}>
+			<{if $num<4}>
+			<li>
+			<a href="<{$config.weburl}>/?m=news&s=newsd&id=<{$slist.nid}>" target="_blank" <{$slist.style}> >
+			<{$slist.title|truncate:32}></a>
+			</li>
+			<{/if}>
+		<{/foreach}>          
+	</ul>					        
+	<h3><a href="<{$config.weburl}>/?m=news&s=news_list&id=<{$newstag.4.catid}>">[<{$newstag.4.cat}>]</a></h3>
+	<ul>					        
+		<{foreach item=slist key=num from=$newstag.4.newsList}>
+			<{if $num<4}>
+			<li>
+			<a href="<{$config.weburl}>/?m=news&s=newsd&id=<{$slist.nid}>" target="_blank" <{$slist.style}> >
+			<{$slist.title|truncate:32}></a>
+			</li>
+			<{/if}>
+		<{/foreach}>  				
+	</ul>					        
+</div> -->

@@ -1,0 +1,41 @@
+<div class="common_box">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="guide_ba" colspan="2"><span><{$lang.hr_detail}></span></td>
+          </tr>
+          <tr>
+            <td width="13%" height="22" class="borderC"><{$lang.hr_postion}> </td>
+            <td width="87%" height="22" class="borderC"><{$rc.title}> </td>
+          </tr>
+          <tr>
+            <td class="borderC"><{$lang.hr_type}></td>
+            <td class="borderC"><{$rc.catid}></td>
+          </tr>
+          <tr>
+            <td class="borderC"><{$lang.hr_num}></td>
+            <td class="borderC"><{$rc.num}></td>
+          </tr>
+          <tr>
+            <td class="borderC"><{$lang.hr_sal}></td>
+            <td class="borderC"><{$rc.money}></td>
+          </tr>
+          <tr>
+            <td class="borderC"><{$lang.hr_time}> </td>
+            <td class="borderC"><{$rc.uptime|date_format}> </td>
+          </tr>
+           <tr>
+            <td class="borderC"><{$lang.valid}></td>
+            <td class="borderC"><{$rc.valid}></td>
+          </tr>
+          <tr>
+            <td class="borderC"><{$lang.hr_req}></td>
+            <td class="borderC" valign="top"><{$rc.con}></td>
+          </tr>
+          <tr>
+            <td height="48" colspan="2" align="center" valign="top" >
+			<a href='shop.php?uid=<{$com.userid}>&action=mail' target="_blank"><{$lang.get_postion}></a>
+            </td>
+          </tr>
+        </table>
+</div>

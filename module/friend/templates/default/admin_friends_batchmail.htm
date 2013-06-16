@@ -1,0 +1,49 @@
+<div class="admin_right_top"><span style="float:left"><{$lang.myf}></span></div>
+<form name="myfriend" action="" method="post" >
+<table border="0" cellpadding="4" cellspacing="1" bgcolor="#FFFFFF" width="100%">
+	
+	<tr bgcolor="#E8E8E8" style="font-weight:bold;width:100%;"> 
+		<td height="22" colspan="2" bgcolor="#E8E8E8"><{$lang.fbs}></td>
+    </tr>
+	<tr bgcolor="#F7F7F7">
+	  <td  height="22"><{$lang.fname}></td>
+	  <td  height="22">|
+	  <{foreach item=list from=$re}>
+		<{if $list.name}><{$list.name}><{elseif $list.username}><{$list.username}><{else}><{$list.email}><{/if}>|
+	  <{/foreach}>	  </td>
+    </tr>
+	<tr bgcolor="#F7F7F7">
+	  <td  height="22"><{$lang.mt}></td>
+	  <td  height="22"><input name="msgtitle" type="text" id="msgtitle" size="60" maxlength="100" /></td>
+    </tr>
+	<tr bgcolor="#F7F7F7">
+	  <td  height="22"><{$lang.mc}><font color="red"> *</font></td>
+	  <td  height="22">
+	  		<script type="text/javascript" src="lib/fckeditor/fckeditor.js"></script>
+			<script type="text/javascript">
+			var oFCKeditor = new FCKeditor( 'msgcon' ) ;
+			oFCKeditor.Config['ToolbarStartExpanded'] = true ;
+			<{if $config.language=='en'}>
+				oFCKeditor.Config['DefaultLanguage']='en';
+			<{else}>
+				oFCKeditor.Config['DefaultLanguage']='zh-cn';
+			<{/if}>
+			oFCKeditor.BasePath		= 'lib/fckeditor/' ;
+			oFCKeditor.ToolbarSet	= 'frant' ;
+			oFCKeditor.Width='100%';
+			oFCKeditor.Height=400;
+			oFCKeditor.Create() ;
+			</script>	  </td>
+    </tr>
+	<tr bgcolor="#F7F7F7">
+	  <td  height="22"><{$lang.msmail}></td>
+	  <td  height="22"><input type="checkbox" name="semail"  value="1" /></td>
+    </tr>
+	<tr bgcolor="#F7F7F7"> 
+		<td width="14%"  height="22">&nbsp;</td>
+	  <td width="86%"  height="22"><input type="hidden" name="sendid" id="sendid" value="<{foreach item=list from=$re}><{$list.id}>,<{/foreach}>
+	"/><input type="submit" name="msgsend" id="msgsend" value="<{$lang.ms}>" />
+      </td>
+    </tr>
+</table>
+</form>

@@ -1,0 +1,37 @@
+<?php
+$lang["you_here"]="You are heare:";
+$lang['home']='Home';
+$lang['shop']='Product';
+$lang['pro_det']='Detail';
+$lang['brand']='Brand:';
+$lang['pard']='Specifications:';
+$lang['model']='model:';
+$lang['ptime']='Date:';
+$lang['price']='Price:';
+$lang['valid_time']='Period:';
+$lang['trde_type']='Type';
+$lang['pro_city']='Privince/City';
+$lang['same_pro']='Similar Trade';
+$lang['more']='More...';
+$lang['seller_det']='Seller Information';
+$lang['no_right']='NO right!<a href="'.$config['weburl'].'/main.php?action=admin_upgrade_group">Upgrade You Level</a>';
+$lang['user_g']='Member Level:';
+$lang['pass_th']='This company have submit certification information';
+$lang['not_pass']="This company haven't submit certification information";
+$lang['cont']='Contact:';
+$lang['tel']='Tel:';
+$lang['fax']='Fax:';
+$lang['mobile']='Mobile:';
+$lang['addr']='Address:';
+$lang['com_newpro']='Other Product ';
+$lang['add_friend']='Add friend';
+$lang['allcity']='All Citys';
+$lang['fieldadd']="Other Info";
+$lang['copysuc']='Content copying is done! You can paste.';
+$lang['noace']="Your browser doesn\'t support automatic replication feature, you can hold down the Ctrl + C, copy down the link to baby.";
+$lang['share']='Share to my friends';
+$lang['purl']='Product Url:';
+$lang['copysend']='Copy and send to my friends';
+$lang['summary']='Summary';
+$lang['attach']='attach files';
+?>

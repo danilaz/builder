@@ -1,0 +1,58 @@
+<style>
+.buttons{background-image:url(image/default/searchbutton.gif); margin:5px; width:76px; height:21px; border:0px; display:block; text-align:center; padding-top:5px; overflow:hidden; float:left;}
+</style>
+<div class="admin_right_top"><{$lang.mybuyorder}></div>
+<script src="script/my_lightbox.js" language="javascript"></script>
+<table class="admin_table" border="0" cellspacing="1" align="center">
+<tr bgcolor="#EAEFF3">
+  <td colspan="2" align="left" bgcolor="#FFFFFF" style="border-bottom:2px solid #FF9900;">
+  <{foreach item=list key=num from=$slist.process}>
+  <div style="background:#FFF1DE;float:left;margin:2px;padding:3px; border:1px solid #FFDCAB"><a href="<{$config.weburl}>/main.php?menu=<{$smarty.get.menu}>&action=m&m=product&s=admin_sellorder&status=<{$num}>"><{$list}></a></div>
+  <{/foreach}>
+  </td>
+  </tr>
+<{foreach item=sellist from=$slist.list}>
+<tr bgcolor="#EFFAFE" width="100%">
+    <td align="center" bgcolor="#EFFAFE" width="100%">
+    <table width="100%"  cellspacing="1" style="border:1px solid #999999;">
+      <tr>
+        <td colspan="7" style=" border-bottom: 1px dotted #999999;text-align:left;">
+            <{$lang.ordid}>:<{$sellist.id}>
+            <{if $sellist.status==1||$sellist.status==2}><img src="image/default/neworder.gif">
+            <{/if}>
+            <{$lang.ordertim}><{$sellist.ordertime|date_format}>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#FFFFFF" width="70" height="57">
+            <a href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$sellist.product.proid}>">
+            <img src="<{$config.weburl}>/uploadfile/comimg/small/<{$sellist.product.proid}>.jpg" width="70" height="50" />
+            </a>
+        </td>
+        <td bgcolor="#FFFFFF" width="150">
+        	<a href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$sellist.product.proid}>">
+            <{$sellist.product.pname}>
+            </a>
+        </td>
+        <td bgcolor="#FFFFFF" width="100"><{$sellist.product.pprice|number_format:2}> <{$config.money}></td>
+        <td bgcolor="#FFFFFF" width="50"><b><{$sellist.product.nums}></b></td>
+        <td bgcolor="#FFFFFF" width="80"> <{$sellist.price|number_format:2}> <{$config.money}><br /><{$lang.includedfreight}></td>
+        <td bgcolor="#FFFFFF" width="200">
+         <span style="color:#FF0000; font-weight:bold;"><{$sellist.statu_text}></span><br /><{$sellist.next_action}>
+		</td>
+        <td bgcolor="#FFFFFF">
+	    <a href="<{$config.weburl}>/main.php?menu=<{$smarty.get.menu}>&action=m&m=product&s=admin_orderdetail&id=<{$sellist.id}>&type=sell"><{$lang.orderoption}></a>
+        <{if $sellist.status==1}>|<a href="javascript:alertWin('<{$lang.modifyprice}>','',300,130,'main.php?menu=<{$smarty.get.menu}>&action=m&m=product&s=admin_edit_price&oid=<{$sellist.id}>');"><{$lang.modifyprice}></a><{/if}>
+		</td>
+      </tr>
+    </table></td>
+  </tr>	
+  <{foreachelse}>
+	   <tr bgcolor="#EAEFF3">
+	  <td colspan="3" align="left" bgcolor="#FFFFFF"><{$lang.noorder}></td>
+	  </tr>
+  <{/foreach}>  
+     <tr>
+       <td colspan="3" align="left" bgcolor="#EFFAFE"><{$slist.page}></td>
+     </tr>
+</table>

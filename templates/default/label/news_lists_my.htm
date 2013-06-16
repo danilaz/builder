@@ -1,0 +1,24 @@
+<div class="qg_con_ul1">
+	<ul>
+		<{foreach item=list key=num from=$news}>
+			<{if $num<8}>
+			<li>
+				<a <{if $list.color}>style="color:<{$list.color}>"<{/if}> href="<{$list.url}>"><{$list.title|truncate:80}></a>
+			</li>
+			<{/if}>
+		<{/foreach}>
+	</ul>
+ </div>
+<div class="qg_con_ul2">
+	<ul>
+		<{foreach item=list key=num from=$news}>
+			<{if $num>=8}>
+			<li>
+				<a <{if $list.color}>style="color:<{$list.color}>"<{/if}> href="<{$list.url}>"><{$list.title|truncate:80}></a>
+			</li>
+			<{/if}>
+		<{/foreach}>
+	</ul>
+ </div>
+
+

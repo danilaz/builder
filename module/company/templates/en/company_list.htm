@@ -1,0 +1,164 @@
+<script>
+function do_select()
+{
+	 var box_l = document.getElementsByName("inquery").length;
+	 for(var j = 0 ; j < box_l ; j++)
+	 {
+		if(document.getElementsByName("inquery")[j].checked==true)
+		  document.getElementsByName("inquery")[j].checked = false;
+		else
+		  document.getElementsByName("inquery")[j].checked = true;
+	 }
+}
+function goto()
+{
+	window.location='<{$config.weburl}>/?m=company&s=company_list&ct='+$('companyType').value;
+}
+function get_inquery()
+{	
+	var pid='';
+	var boxes = document.getElementsByName("inquery");   
+	for (var i = 0; i < boxes.length; i++)  
+	{  
+		if(boxes[i].checked)  
+		{  
+			pid+=boxes[i].value+',';  
+		} 
+	}
+	window.location='<{$config.weburl}>/inquire.php?contype=3&userid='+pid;
+}
+</script> 
+
+	<div class="menu_bottom L1">				
+		<div class="headtop_L">
+		   <{$lang.you_are_here}><a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <a href='<{$config.weburl}>/?m=company'><{$lang.comcat}></a> &raquo; <{$guide}>
+		</div>
+		<div class="headtop_R"></div>		
+	</div>
+	<div id="mainbody1" class="m1">	
+		<div class="leftbar">
+		<{if $subcat.0.cat}>
+			<div class="title4"><div class="title_left2 L2"><{$lang.com_nav}></div></div>
+				<div class="content4" >
+					<ul class="nav_list">
+					 <{foreach item=cList from=$subcat}>
+                      <a href="<{$config.weburl}>/company-<{$cList.catid}>/"><{$cList.cat}>(<{$cList.rec_nums}>)</a>
+					<{/foreach}>
+				   </ul>
+			    </div>
+            <div class="bottom4" style="margin-bottom:5px"></div>
+		<{/if}>
+		<div class="title4">
+        <div class="title_left2 L2"><{$lang.user_list}></div>
+        <div class="lookmore">
+            <{if $config.domaincity&&$config.base_url}>
+                <a href="http://www.<{$config.base_url}>/company-<{$smarty.get.id}>/"><{$lang.lookmore}><{$current_cat}></a>
+            <{/if}>
+        </div>
+        </div>
+		<div class="content4 overflow">	   
+			<div class="comlist">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td align="left" style="border-bottom:1px dashed #DDDDDD; padding-left:10px;">
+                      <{if $info.list.0.userid}>
+                          <div style="padding:7px;">
+                          <input onclick="do_select();" name="" type="checkbox" value="" />&nbsp;
+                          <input onclick="get_inquery();" name="" type="button" value="Inquire Now" />
+                          <input onclick="add_inquery('com','<{$config.weburl}>','');" name="" type="button" value="Add to Inquiry Basket" />
+                          </div>
+                      <{/if}>
+                </td>
+                <td align="right" style="border-bottom:1px dashed #DDDDDD;">
+                
+                <select id="companyType" onchange="goto();" name="companyType">
+                <option value="">ALL</option>
+                <{foreach item=clist from=$companyType}>
+                <{if $smarty.get.ct==$clist}>selected="selected"<{/if}> value="<{$clist}>"><{$clist}><option <{if $smarty.get.ct==$clist}>selected="selected"<{/if}> value="<{$clist|urlencode}>"><{$clist}></option>
+                <{/foreach}>
+                </select>
+                </td>
+              </tr>
+            </table>
+			<style>
+			.comlist span{float:left;height:21px;overflow:hidden;width:200px;color:#737277;}
+			.comlist .span1{width:170px;}
+			.comlist .span2{width:540px;}
+			.comlist .span3{width:60px;}
+			</style>
+			
+				<{foreach item=list from=$info.list}>
+				<div class="comdetail">
+                    <div class="comright" style="width:10px; padding-top:10px;"><input name="inquery" type="checkbox" value="<{$list.userid}>" /></div>
+					<div class="comright">
+						<li class="com_name">
+							<a target="_blank" href="<{geturl type='' uid=$list.userid user=$list.user tid='' com=$list.company}>"><{$list.company}></a>
+							
+							<{if $list.country}>
+							<img src="<{$config.weburl}>/image/cflag/<{$list.country}>.gif" />
+							<{/if}>
+							
+							<{if $list.video}>
+							<img src="<{$config.weburl}>/image/default/ico_video.gif" border="0" align="absmiddle" />
+							<{/if}>
+							<{$list.user_type}>
+                        </li>
+						<li class="comlist">
+						<span>Company Type:<{$list.ctype}></span>
+						<span class="span1">turnover：<{$list.turnover}></span>
+						<span class="span1">contacts：<{$list.contact}></span>
+						<span class="span1">Employees：<{$list.staff_num}></span>
+						<span class="span2">The company address：<{$list.addr}></span>
+						<span class="span3">The main products：</span><{$list.main_pro}><br />
+						
+						<a href="<{geturl type='prolist' uid=$list.userid user=$list.user}>"><{$lang.rel_pro}></a> |
+						<a href="<{geturl type='mail' uid=$list.userid user=$list.user}>"><{$lang.email_requir}></a>
+						</li>
+					</div>
+                    
+                    <div class="Lb1">
+					     <{assign var="img" value=$list.logo}>
+                		 <{html_image file=uploadfile/userimg/$img width=85 alt=$list.pname}>
+						 <br />
+                         [<{$list.province}>-<{$list.city}>]<br />
+						 
+					</div>
+                </div>
+				<{foreachelse}>
+				  <div style="padding:20px; font-weight:bold">
+				  <{$lang.no_cominfo}> 
+				  <a href="<{$config.weburl}>/<{$config.regname}>">
+				   <{$lang.reg_user}>
+				  </a>
+				  </div>
+				<{/foreach}>
+			   <div class="pre"><{$info.pages}></div>
+		   </div>
+		</div>
+		<div class="bottom4"></div>
+		</div>
+		<!--  会员列表结束 -->
+		<!--主体右侧开始 -->
+		<div class="rightbar">
+			<div class="right1">
+				<div class="sectitle" ><div class="title_left1 L2"><{$lang.vip_user}></div></div>
+				 <div class="seccon">
+					<ul class="li_list">
+					 	<{insert name="getUser" field="company" filter="star" leng="36" limit="12"}>
+				    </ul>
+				   <div class="clear"></div>
+			    </div>
+				</div>
+			<div class="right1 m1">
+				<div class="sectitle" ><div class="title_left1 L2"><{$lang.last_reg}></div></div>
+				<div class="seccon" >
+					<ul class="li_list">
+					 	<{insert name="getUser" field="company"  leng="36" limit="12"}>
+				   </ul>
+				   <div class="clear"></div>
+			    </div>
+
+			</div>
+		</div>		
+		<!--主体右侧结束 -->
+</div>

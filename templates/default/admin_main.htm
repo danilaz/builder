@@ -1,0 +1,122 @@
+ <div id="new-notice" class="new-notice">
+      <div class="new-notiec-top">
+        <div class="nn-tl"></div>
+        <div class="nn-tr"></div>
+        <div class="nn-tm"></div>
+      </div>
+		<div class="new-notice-content"><div class="new-notice-content-main">
+    <p><span class="notice-title">Уважаемый, <{$smarty.cookies.USER}>!</span></p>
+    <p><span class="notice-content">
+	   <img src="<{$config.weburl}>/image/admin/offfice.gif" />
+       Добро пожаловать, в Ваш офис <{$config.company}>!
+	   
+	   <br />
+		<{$lang.you_url}>
+		<{if $shopurl!=''}>
+		  <a href="http://<{$shopurl}>" target="_blank">http://<{$shopurl}></a>
+		<{else}>
+			<{if $config.opensuburl==1}>
+					<a href="http://<{$smarty.cookies.USER}>.<{$config.baseurl}>" target="_blank">http://<{$smarty.cookies.USER}>.<{$config.baseurl}></a>
+			<{else}>
+				   <a href="<{$config.weburl}>/shop.php?uid=<{$buid}>" target="_blank"><{$config.weburl}>/shop.php?uid=<{$buid}></a>
+			<{/if}>
+		<{/if}>
+<br />
+   <{$lang.youisg}> <font color="green"><{$cominfo.rank}></font>
+   <{if $cominfo.stime!='' or $cominfo.etime!=''}>(период
+	   <{$cominfo.stime|date_format}>
+	   <{$lang.to}><{$cominfo.etime|date_format}>)
+   <{/if}>
+<br /> 
+  <!-- <{$lang.vip}>
+   <br />
+   <div align="center"><a href="main.php?menu=<{$smarty.get.menu}>&action=admin_upgrade_group" style="text-decoration:underline;"><{$lang.upvip}></a></div>
+-->
+   <script src='<{$config.weburl}>/api/ad.php?id=43&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+   <br />
+   
+   
+   <{if $config.opensuburl==1}>
+   	   <span class="notice-content2"><{$lang.spurl}></span>: 
+	   <input type=text name=lat size=10 style="width:350px" value="http://<{$smarty.cookies.USER}>.<{$config.baseurl}>/?spread=<{$buid}>"> 
+	   <br /><font color="grey"><{$lang.spreadmsg}></font>
+	   <!--<a target="_blank" href="http://<{$smarty.cookies.USER}>.<{$config.baseurl}>/?spread=<{$buid}>">http://<{$smarty.cookies.USER}>.<{$config.baseurl}>/?spread=<{$buid}></a>-->
+   <{else}>
+       <span class="notice-content2"><{$lang.spurl}></span>: 
+	   <input type=text name=lat size=10 style="width:350px" value="<{$config.weburl}>/shop.php?uid=<{$buid}>&spread=<{$buid}>"> 
+	   <br /><font color="grey"><{$lang.spreadmsg}></font>
+	   <!--<a target="_blank" href="<{$config.weburl}>/shop.php?uid=<{$buid}>&spread=<{$buid}>"><{$config.weburl}>/shop.php?uid=<{$buid}>&spread=<{$buid}></a>-->
+   <{/if}>
+	</span></p>
+</div></div>
+      <div class="new-notice-bottom">
+        <div class="nn-bl"></div>
+       <div class="nn-br"></div>
+        <div class="nn-bm"></div>
+      </div>
+    </div>
+    <div class="block">
+      <div class="block-left">
+        <div class="content-title">
+          <div class="c-left"></div>
+          <div class="c-middle"><span class="c-title">Центр сообщений</span></div>
+          <div class="c-right"></div>
+        </div>
+        <div style="line-height:200%;" class="content-detail content-special content-table">
+		  <table width="100%" border="0" cellspacing="1" cellpadding="0">
+			  <tr>
+				<td>
+				   <{$lang.yoursmail}> 
+				   <a href="main.php?menu=<{$smarty.get.menu}>&action=admin_mail_list">
+				   (<{$mailNum.new}>/<{math equation="x + y" x=$mailNum.new y=$mailNum.read}>)
+				   </a>
+				</td>
+				<td>
+					  <{$lang.readtimes}> <{$cominfo.view_times}> <{$lang.tims}>
+					  <{$lang.urew}> <{$cominfo.comments}> <{$lang.reviews}> 
+					  <a target="_blank" href="shop.php?uid=<{$buid}>&action=comments"><{$lang.readre}></a>
+				</td>
+			  </tr>
+			</table>
+        </div>
+		
+		
+	</div>
+      <div class="block-right">
+      	<div class="tm-title">
+          <div class="c-left"></div>
+          <div class="c-middle"><span style="float: left;" class="c-title">Анонс сайта</span></div>
+          <div class="c-right"></div>
+        </div>
+        <div class="tm-detail">
+          <ul class="tm-list">
+            <{insert name="getNotice" limit=5}>
+		  </ul>
+		  <script src='<{$config.weburl}>/api/ad.php?id=44&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+	  </div>
+		<div class="tm-title">
+          <div class="c-left"></div>
+          <div class="c-middle"><span class="c-title">Последние посетители</span></div>
+          <div class="c-right"></div>
+        </div>
+        <div class="tm-detail">
+         <table width="100%" border="0" cellspacing="5" cellpadding="0">
+		  <tr>
+		  <{foreach item=list key=nums from=$uvlist}>
+			<td align="center">
+			<{if $list.logo!=0}>
+				<img height="50" src="uploadfile/user_portrait/<{$list.logo}>" />
+			<{else}>
+				<img height="50" src="image/default/nopic.gif" />
+			<{/if}>
+			<br /><a target="_blank" href="shop.php?uid=<{$list.userid}>"><{$list.user}></a>
+			</td>
+			<{if ($nums+1)%3==0}></tr><tr><{/if}>
+			<{foreachelse}>
+			<td>Нет посетителей</td>
+		  <{/foreach}>
+		  </tr>
+		</table>
+	  	</div>
+      </div>
+    </div>

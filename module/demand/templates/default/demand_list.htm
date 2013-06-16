@@ -1,0 +1,288 @@
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <a href='<{$config.weburl}>/?m=demand'>Спрос</a> &raquo; <{$guide}></a>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+<div id="mainbody1" class="m1">
+	  <div class="navigation">
+			<{if $subcat.0.catid}>
+				<div class="title10"><div class="title_left L2"><{$lang.cat_nav}></div></div>
+				<div class="content10" style="padding:5px 20px;">
+						<{foreach item=list from=$subcat}>
+							<p><a href="<{$config.weburl}>/?m=demand&s=demand_list&id=<{$list.catid}>"><{$list.cat}> <span style="color:#CCCCCC;font-size:small"></span><!-- (<{$list.rec_nums}>) --></a></p>
+						<{/foreach}>
+                    <div class="clear"></div>
+				</div>
+				<div class="bottom10" style="margin-bottom:5px"></div>
+			<{/if}>
+<div class="left2 m1">
+				<div class="title9" >
+					<div class="title_left1 L2">Регионы</div><div class="more"></div>
+		        </div>
+				 <div class="content9">
+					<ul class="list2">
+					<{insert name="label" type="province" temp='province_buylist_demand'}>
+				   </ul>
+			    </div>
+			</div>
+	  </div>
+	  			<!--主体左侧结束 -->
+		<div class="rightbar1">
+			
+			<div style="border:1px solid #CFCFCF; margin-bottom:8px; padding:8px;clear:both; height:25px;">
+				<div style="float:left; width:50%; padding-left:20px;">
+				<{foreach item=list key=num from=$infoType}>
+				<a href="<{$config.weburl}>/?m=demand&s=demand_list&catType=<{$num}>&id=<{$smarty.get.id}>&key=<{$smarty.get.key|urlencode}>"><img alt="<{$list}>" src="<{$config.weburl}>/image/default/demand_<{$num}>.gif"/></a>
+				<{/foreach}>
+				</div>
+				<div style="float:right; width:40%; text-align:right;">
+				<{if $smarty.get.ifpay==1}>
+				<input onchange="window.location='<{$config.weburl}>/?m=demand&s=demand_list&catType=<{$smarty.get.catType}>&id=<{$smarty.get.id}>&ifpay=0';" name="" type="checkbox" checked value="1" /> 
+				<{else}>
+                <!--
+				<input onchange="window.location='<{$config.weburl}>/?m=demand&s=demand_list&catType=<{$smarty.get.catType}>&id=<{$smarty.get.id}>&ifpay=1';" name="" type="checkbox" value="1" /> 
+				<{/if}>
+				
+				Товары пользователей
+                -->
+				</div>
+				<{if $config.domaincity&&$config.base_url}>
+					<a href="http://www.<{$config.base_url}>/?m=demand&s=demand_list&id=<{$smarty.get.id}>">
+					<{$lang.lookmore}><{$current_cat}>
+					</a>
+				<{/if}>
+			</div>
+			<div class="clear"></div>
+
+            <div class="ad"><script src='<{$config.weburl}>/api/ad.php?id=4&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script></div>
+
+        	
+
+   
+
+            <div class="clear"></div>
+			<div class="clear"></div>
+			<div class="title10"></div>
+			<div class="content10">
+			      <ul class="list9" style="padding-top:5px; padding-bottom:0px;">
+			    <input onclick="do_select();" type="checkbox" />
+                <input onclick="get_inquery();" type="button" value="Массовая рассылка" />
+                <input onclick="add_inquery('info','<{$config.weburl}>','');" type="button" value="Добавить в рассылку" />
+				</ul>
+        <ul class="list9">
+		<script src='<{$config.weburl}>/api/ad.php?id=15&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+		<{foreach item=list from=$info.list}>
+        	<li>
+            	<div class="Lb0"><input name="inquery" type="checkbox" value="<{$list.id}>" /></div>
+				<div class="Lb1" style="width:110px;">
+                <{assign var="img" value=$list.pic|explode_one:","}>
+                <a href="<{$config.weburl}>/?m=demand&s=demand_detail&id=<{$list.id}>" target="_blank" title="<{$list.title}>"><{html_image file=uploadfile/zsimg/size_small/$img.jpg width=100 alt=$list.title}></a>
+                </div>
+                
+                <div class="Lb77">
+                <p style="font-size:14px; font-weight:bold;">
+                <img src="<{$config.weburl}>/image/default/demand_<{$list.type}>.gif"  align="absmiddle">
+				<a href="<{$config.weburl}>/?m=demand&s=demand_detail&id=<{$list.id}>" target="_blank" title="<{$list.title}>"><{$list.title}></a>
+				<{$list.uptime|date_format}>
+                </p>
+				<{$list.con|strip_tags|truncate:200:"...":true}><br/>
+                <{if !$smarty.get.key}>
+				<span><a rel="nofollow" href="<{$config.weburl}>/shop.php?uid=<{$list.userid}>&action=demand_list&m=demand" target="_blank" style="color:#005BA6" />Все предложения</a> от компании <a rel="nofollow" style="color:#005BA6" href="<{geturl type='' uid=$list.userid user=$list.user}>" target="_blank" ><{$list.company}></a> <img src='<{$config.weburl}>/image/cflag/<{$list.flag}>.gif' /> <{$list.province}> | <{$list.city}></span>
+                <{/if}>
+				
+                <div class="Lb67">
+				<a rel="nofollow" href="<{geturl type='mail' uid=$list.userid user=$list.user}>"><{$lang.now_requier}></a><br />
+				<a href="javascript:add_inquery('info','<{$config.weburl}>','<{$list.id}>');">В рассылку</a>
+                </div>
+				</div>
+		</li>
+		<{/foreach}>
+        </ul>
+		<div class="page"><{$info.page}></div>
+        <div class="clear"></div>
+		<!--  PRODUCT LIST END -->
+	</div>
+</div>
+</div>
+		<div class="leftbar1">
+			<{if $smarty.cookies.USER==''}>
+		<div id="loginb2b">
+
+				<div class="login_tit">
+
+                <h2>Вход для участников</h2></div>
+
+                <div class="login_con">
+
+                <div id="login1">
+<!--
+                    <ul>
+
+                    <form autocomplete="off" method="post" action="login.php" name="login" id="login">
+
+		<div style="padding-bottom:3px;">Логин<span style="padding-left:20px;"><input type="text" onBlur="this.value=this.value==''?'Ваш логин':this.value" onFocus="this.value=this.value=='Ваш логин'?'':this.value" value="Ваш логин" class="k" name="user" id="user"></span></div>
+
+		<div>Пароль<span style="padding-left:10px;"><input type="password" onBlur="this.value=this.value==''?'Пароль':this.value" onFocus="this.value=this.value=='Пароль'?'':this.value" value="Пароль" class="k" id="password" name="password"><input type="image" src="<{$config.weburl}>/image/default/login.jpg"></div>
+
+                    <input type="hidden" value="submit" name="action">
+
+                    </form>
+
+                    </ul>
+-->
+                    <ul class="u2">
+
+                      <a href="register.php">Регистрация</a> | <a href="lostpass.php">Забыли пароль?</a>
+
+                    </ul>
+
+                </div>
+
+                <ul class="phone"><span style="padding-left:25px;">Горячая линия:</span><br />
+
+		<span class="o16" style="padding-left:25px;"><{$config.owntel}></span></ul>
+
+                <ul style="height:60px;"><li><a href="/register.php"><img width="99" height="28" src="<{$config.weburl}>/image/default/btn1.jpg"></a></li>
+
+                  <li><a href="main.php?action=m&amp;m=demand&amp;s=admin_demand&amp;menu=info"><img width="99" height="28" src="<{$config.weburl}>/image/default/btn2.jpg"></a></li></ul></div>
+
+                 </div>
+	<{else}>
+
+				<div id="loginb2bno">
+	<div class="login_tit">
+
+                <h2>Техническая поддержка</h2></div>
+
+                <div class="nologin_con">
+
+                <ul class="phone"><span style="padding-left:25px;">Горячая линия:</span><br />
+
+                <span class="o16" style="padding-left:25px;"><{$config.owntel}></span></ul>
+
+                <ul style="height:28px;">
+
+				<!-- <li><a href="/register.php"><img width="99" height="28" src="<{$config.weburl}>/image/default/btn1.jpg"></a></li> -->
+
+                  <li><a href="main.php?action=m&amp;m=demand&amp;s=admin_demand&amp;menu=info"><img width="99" height="28" src="<{$config.weburl}>/image/default/btn2.jpg"></a></li></ul></div>
+
+                 </div>					
+
+				<{/if}>				 
+
+           
+
+                 <div class="topm" id="company">
+
+					<div class="sectitle">
+
+						<h2>Компании</h2>
+
+						<span style="float: right; margin-top:5px; margin-right:10px;"><a href="<{$config.weburl}>/?m=company"><img src="image/default/more.gif" width="36" height="13" border="0" /></a></span>
+
+					</div>
+
+                    <div class="seccon">
+
+                    	<div id="conr1" class="conr1">
+
+                        	<ul>
+
+                            	<{insert name="getUser" leng="200" field="company" filter="new" limit=13}>
+
+                            </ul>
+
+                        </div>
+
+                        <div id="conr2" class="conr2">
+
+                        	<ul>
+
+                            	<{insert name="getUser" leng="200" field="company" filter="rec" limit=13}>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                 </div>
+<!--
+                 <div class="topm" id="exhibition">
+
+                 	<div class="sectitle">
+
+                    	<h2>Новые выставки</h2>
+			<span style="float: right; margin-top:5px; margin-right:10px;"><a href="<{$config.weburl}>/?m=exhibition"><img src="image/default/more.gif" width="36" height="13" border="0" /></a></span>
+                    </div>
+
+                    <div class="seccon">
+
+                    	<ul>
+
+                           <{insert name="label" type='exhibition' temp='exhibition_index_lasted' limit=2}>
+
+  						</ul>
+
+
+                    </div>
+
+                 </div>
+-->
+                 <div class="ad"><script src='<{$config.weburl}>/api/ad.php?id=6&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script></div>
+
+<!--
+				<div class="topm" id="voting">
+
+                 	<div class="sectitle"><h2>Вопросы и ответы</h2><span style="float: right; margin-top:5px; margin-right:10px;">
+
+	   <a href="<{$config.weburl}>/?m=ask&s=ask_list"><img src="image/default/more.gif" width="36" height="13" border="0" /></a></span></div>
+
+                    <div class="seccon">
+
+                        <{insert name="label" type="ask" temp="ask_text_list" limit=10}>
+
+                    </div>
+
+                 </div>
+-->
+				 <div class="ad"><script src='<{$config.weburl}>/api/ad.php?id=7&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script></div>
+
+            </div>
+
+            <div class="clear"></div>
+			<script src='<{$config.weburl}>/api/ad.php?id=16&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+		</div>
+
+
+	<!--contents end-->
+	</div>
+</div>
+<!--bodybox end-->
+<script>
+function do_select()
+{
+	 var box_l = document.getElementsByName("inquery").length;
+	 for(var j = 0 ; j < box_l ; j++)
+	 {
+		if(document.getElementsByName("inquery")[j].checked==true)
+		  document.getElementsByName("inquery")[j].checked = false;
+		else
+		  document.getElementsByName("inquery")[j].checked = true;
+	 }
+}
+function get_inquery()
+{	
+	var pid='';
+	var boxes = document.getElementsByName("inquery");   
+	for (var i = 0; i < boxes.length; i++)  
+	{  
+		if(boxes[i].checked)  
+		{  
+			pid+=boxes[i].value+',';  
+		} 
+	}
+	window.location='<{$config.weburl}>/inquire.php?contype=2&demandid='+pid;
+}
+</script>

@@ -1,0 +1,7 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<{foreach item=list from=$news}>
+  <tr>
+    <td><li style="line-height:20px"><a <{if $list.color}>style="color:<{$list.color}>"<{/if}> href="<{$list.url}>"><{$list.cat}><{$list.title|truncate:32}></a></li>
+  </tr>
+<{/foreach}>
+</table>

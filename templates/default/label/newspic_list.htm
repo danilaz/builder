@@ -1,0 +1,11 @@
+<style>
+.aa td{ border-bottom:1px #CCCCCC dashed; padding:3px;}
+</style>
+<table class="aa" width="100%" border="0" cellpadding="0" cellspacing="0">
+<{foreach item=list from=$news}>
+<tr>
+<td width="85"><a href="<{$config.weburl}>/?m=news&s=newsd&id=<{$list.newsid}>"><img src="<{$config.weburl}>/uploadfile/newsimg/sizec/<{$list.pic}>" width="80" height="78" /></a></td>
+<td valign="top"><a href="<{$config.weburl}>/?m=news&s=newsd&id=<{$list.newsid}>"><b><{$list.title|truncate:12}></b></a><br /><{$list.body|truncate:40}></td>
+</tr>
+<{/foreach}>
+</table>

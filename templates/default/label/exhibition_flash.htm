@@ -1,0 +1,21 @@
+<script>
+	var url='<{$config.weburl}>';
+	var focus_width=325
+	var focus_height=215;
+	var text_height=20;
+	var pics=links=texts='';
+	<{foreach item=list key=num from=$news }>
+		<{if $list.pic!=''}>
+			<{if $num==0}>
+				pics+='<{$config.weburl}>/uploadfile/newsimg/sizec/<{$list.pic}>';
+				links+='<{$config.weburl}>/?m=news&s=newsd&id=<{$list.newsid}>';
+				texts+="<{$list.title}>";
+			<{else}>
+				pics+='|<{$config.weburl}>/uploadfile/newsimg/sizec/<{$list.pic}>';
+				links+='|<{$config.weburl}>/?m=news&s=newsd&id=<{$list.newsid}>';
+				texts+="|<{$list.title}>";
+			<{/if}>
+		<{/if}>
+	 <{/foreach}>
+</script>
+<script src='<{$config.weburl}>/script/slide.js'></script>

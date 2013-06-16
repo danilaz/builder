@@ -1,0 +1,637 @@
+<script src="script/my_lightbox.js" language="javascript"></script>
+
+
+
+<script>
+
+
+
+closeimg='<{$config.weburl}>/image/default/icon_close.gif';
+
+
+
+weburl='<{$config.weburl}>';
+
+
+
+</script>
+
+
+
+<script type="text/javascript" src="script/Validator.js"></script>
+
+
+
+<script type="text/javascript">
+
+
+
+var city='<{$de.city}>';
+
+
+
+var province='<{$de.province}>';
+
+
+
+function getHTML(v)
+
+
+
+{	
+
+
+
+	var ob="city";
+
+
+
+	var url = '<{$config.weburl}>/ajax_back_end.php';
+
+
+
+	var sj = new Date();
+
+
+
+	var pars = 'shuiji=' + sj+'&prov_id='+v;
+
+
+
+	var myAjax = new Ajax.Request(
+
+
+
+				url,
+
+
+
+				{method: 'post', parameters: pars, onComplete: showResponse}
+
+
+
+				);
+
+
+
+	function showResponse(originalRequest)
+
+
+
+	{
+
+
+
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+
+
+
+		var i=0;var j=0;
+
+
+
+		eval(tempStr);
+
+
+
+		for(var s in MyMe)
+
+
+
+			++j;
+
+
+
+		$(ob).options.length =j+1;
+
+
+
+		for(var k in MyMe)
+
+
+
+		{
+
+
+
+			var cityId=MyMe[k][0];
+
+
+
+			var ciytName=MyMe[k][1];
+
+
+
+			$(ob).options[k].value = cityId;
+
+
+
+			$(ob).options[k].text = ciytName;
+
+
+
+			if(city!=''&&city==ciytName)
+
+
+
+				$(ob).options[k].selected = true;
+
+
+
+	　	}
+
+
+
+	 }
+
+
+
+　}
+
+
+
+<{if $de.city}>
+
+
+
+	getHTML('<{$de.province}>');
+
+
+
+<{/if}>
+
+
+
+function ref()
+
+
+
+{
+
+
+
+	window.location='main.php?action=admin_personal&menu=<{$smarty.get.menu}>';
+
+
+
+	window.location.hash="add";
+
+
+
+}
+
+
+
+</script>
+
+
+
+	<{$slogin}>
+
+
+
+	<div class="admin_right_top"><{$lang.profile}></div>
+
+
+
+	<table border="0" cellpadding="7" cellspacing="1" bgcolor="#DDDDDD" class="admin_table">
+
+
+
+	 <form action="" method="post" enctype="multipart/form-data" onSubmit="return Validator.Validate(this,3)"><tr> 
+
+
+
+		<td width='20%' height="20" align="left" bgcolor="#EAEFF3"><{$lang.userid}></td>
+
+
+
+	    <td width='85%' height="20" bgcolor="#FFFFFF" style="font-weight:normal"><{$smarty.cookies.USER}></td>
+
+
+
+	 </tr>
+
+
+
+	 <tr> 
+
+
+
+		<td width='20%' height="20" align="left" bgcolor="#EAEFF3"><{$lang.fullname}>* </td>
+
+
+
+	   <td width='85%' height="20" bgcolor="#FFFFFF">
+
+
+
+	   <input name='name' type='text' id="name" value="<{$de.name}>" dataType="Require" msg="<{$lang.ar_con_user}>" style="width:300px;">	</td>
+
+
+
+	 </tr>
+
+
+
+	 	 <tr> 
+
+
+
+		<td width='20%' height="20" align="left" bgcolor="#EAEFF3"><{$lang.position}>* </td>
+
+
+
+	   <td width='85%' height="20" bgcolor="#FFFFFF"> <input name='position' type='text' id="position" value="<{$de.position}>" dataType="Require" msg="<{$lang.ar_position}>" style="width:300px;">	</td>
+
+
+
+	 </tr>
+
+
+
+	  <tr>
+
+
+
+		<td height="20" align="left" bgcolor="#EAEFF3"><{$lang.xingbie}>*</td>
+
+
+
+		<td height="20" bgcolor="#FFFFFF" style="font-weight:normal">
+
+
+
+            <input name="sex" type="radio"  value="1" style="width:20px;border:none;"  <{if $de.sex==1}>checked="checked"<{/if}>/>
+
+
+
+            <{$lang.boy}>
+
+
+
+            <input name="sex" type="radio"  value="2" style="width:20px;border:none;"  <{if $de.sex==2}>checked="checked"<{/if}>/>
+
+
+
+            <{$lang.gilr}>        </td>
+
+
+
+	  </tr>
+
+
+
+	  <tr> 
+
+
+
+		<td width='20%' height="20" align="left" bgcolor="#EAEFF3">Email* </td>
+
+
+
+		<td width='85%' height="20" bgcolor="#FFFFFF">
+
+
+
+		<input name='email' type='text' value="<{$de.email}>" dataType="Require" msg="<{$lang.ar_email}>" style="width:300px;"></td>
+
+
+
+	  </tr>
+
+
+
+	  <tr> 
+
+
+
+		<td width='20%' height="20" align="left" bgcolor="#EAEFF3"><{$lang.tel}>* </td>
+
+
+
+		<td width='85%' height="20" bgcolor="#FFFFFF"><input name='tel' type='text' value="<{$de.tel}>"  maxlength="200" dataType="Require" msg="<{$lang.ar_tel}>" style="width:300px;"></td>
+
+
+
+	  </tr>
+
+
+
+	  <tr>
+
+
+
+	    <td height="20" align="left" bgcolor="#EAEFF3"><{$lang.mobile}></td>
+
+
+
+	    <td height="20" bgcolor="#FFFFFF"><input name="mobile" type="text" id="mobile" value="<{$de.mobile}>" style="width:300px;"></td>
+
+
+
+       </tr>
+
+
+
+	  <tr>
+
+
+
+		<td height="20" align="left" bgcolor="#EAEFF3">ICQ</td>
+
+
+
+		<td height="20" bgcolor="#FFFFFF" style="font-weight:normal"><input name="qq" type="text" value="<{$de.qq}>" maxlength="10" style="width:300px;"></td>
+
+
+
+	  </tr>
+
+
+
+	  <tr>
+
+
+
+		<td width='20%' height="20" align="left" bgcolor="#EAEFF3">vk_id</td>
+
+
+
+		<td height="20" bgcolor="#FFFFFF"><input name="msn" type="text" value="<{$de.msn}>" maxlength="30" style="width:300px;"></td>
+
+
+
+	  </tr>  
+
+
+
+	  <tr>
+
+
+
+		<td height="24" align="left" bgcolor="#EAEFF3">skype</td>
+
+
+
+		<td bgcolor="#FFFFFF"><input name="skype" type="text" value="<{$de.skype}>"  style="width:300px;"></td>
+
+
+
+	  </tr>
+
+
+
+
+
+
+
+	  <tr> 
+
+
+
+		<td width="20%" height="24" align="left" bgcolor="#EAEFF3"><{$lang.province}>/<{$lang.city}>* </td>
+
+
+
+		<td bgcolor="#FFFFFF" width="85%">
+
+        
+
+<select  name="province" id="province" onChange="getHTML(this.value)" style="width:150px;" />
+
+
+
+		  <option value=""><{$lang.ar_province}></option>
+
+
+
+			<{$prov}>
+
+
+
+			</select>
+
+       
+
+        <input style="width:146px;" id="city" name="city" type="text" value="<{$de.city}>"/>
+
+
+
+ 
+
+
+
+			
+
+
+
+
+
+
+
+       	</td>
+
+
+
+	  </tr>
+
+
+
+  <tr> 
+
+
+
+	<td width="20%" align="left" bgcolor="#EAEFF3"><{$lang.picture}></td>
+
+
+
+	<td width="85%" bgcolor="#FFFFFF" style="font-weight:normal">
+
+
+
+		<input style="width:300px;" name="logo" type="text" id="logo" value="<{$de.logo}>">
+
+
+
+		[<a href="javascript:uploadfile('Загрузить логотип','logo',300,300)">Загрузить</a>] 
+
+
+
+		[<a href="javascript:preview('logo');">Предпросмотр</a>]
+
+
+
+		[<a onclick="javascript:$('logo').value='';" href="#">Удалить</a>]
+
+
+
+	</td>
+
+
+
+  </tr>
+
+
+
+  <tr> 
+
+
+
+	<td width='20%' height="24" align="right" bgcolor="#EAEFF3"> </td>
+
+
+
+	<td width='85%' bgcolor="#FFFFFF">
+
+
+
+	  <input  type='submit' name='Submit' value='<{$lang.submit}>' style="width:100px;">
+
+
+
+	  <input name="action" type="hidden" id="action" value="update" />
+
+
+
+	  </td>
+
+
+
+  </tr>
+
+
+
+  </form>
+
+
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+<{if $de.pid==''}>
+
+
+
+	<br /><a name="add"></a>
+
+
+
+	<div class="admin_right_top">Добавление нескольких контактов</div>
+
+
+
+	<script src="script/my_lightbox.js" language="javascript"></script>
+
+
+
+	<table width="100%" border="0" cellpadding="7" cellspacing="1" bgcolor="#DDDDDD" class="admin_table">
+
+
+
+	  <tr>
+
+
+
+		<td width="15%" bgcolor="#EAEFF3">ID пользователя</td>
+
+
+
+		<td width="18%" bgcolor="#EAEFF3">Имя пользователя</td>
+
+
+
+		<td width="22%" bgcolor="#EAEFF3">Должность</td>
+
+
+
+		<td width="17%" bgcolor="#EAEFF3">Мобильный</td>
+
+
+
+		<td width="15%" bgcolor="#EAEFF3">Email</td>
+
+
+
+		<td width="13%" bgcolor="#EAEFF3">Действие</td>
+
+
+
+	  </tr>
+
+
+
+	  <{foreach item=list from=$plist}>
+
+
+
+	  <tr>
+
+
+
+		<td bgcolor="#FFFFFF"><{$list.user}></td>
+
+
+
+		<td bgcolor="#FFFFFF"><{$list.name}></td>
+
+
+
+		<td bgcolor="#FFFFFF"><{$list.position}></td>
+
+
+
+		<td bgcolor="#FFFFFF"><{$list.mobile}></td>
+
+
+
+		<td bgcolor="#FFFFFF"><{$list.email}></td>
+
+
+
+		<td bgcolor="#FFFFFF">
+
+
+
+		<a href="javascript:alertWin('Добавить контакт','sss',600,400,'main.php?menu=user&action=admin_personal&adduser=true&editid=<{$list.userid}>');">Просмотр и редактирование</a> | 
+
+
+
+		<a href="main.php?action=admin_personal&deid=<{$list.userid}>&menu=<{$smarty.get.menu}>#add"><{$lang.delete}></a></td>
+
+
+
+	  </tr>
+
+
+
+	  <{/foreach}>
+
+
+
+	</table>
+
+
+
+	<div style="padding:5px;">
+
+
+
+	<input value="+Добавить" onclick="alertWin('Добавить контакт','sss',600,400,'main.php?menu=user&action=admin_personal&adduser=true');" type="button" />
+
+
+
+	</div>
+
+
+
+<{/if}>

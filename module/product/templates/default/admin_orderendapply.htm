@@ -1,0 +1,37 @@
+<div class="admin_right_top"><{$lang.orderendappl}></div>
+<form name="apply" action="?menu=<{$smarty.get.menu}>&action=m&m=product&s=admin_orderendapply" method="POST">
+<table  border="0" cellspacing="1" cellpadding="6" align="center" bgcolor="#DDDDDD" width="100%">
+  <tr bgcolor="#EAEFF3">
+    <td width="139"><{$lang.oid}></td>
+    <td width="760"><input name="orderid" type="text" id="orderid" size="20"  value="<{$oendapply.id}>" readonly></td>
+  </tr>
+  <tr bgcolor="#EAEFF3">
+    <td><{$lang.oprice}></td>
+    <td><{$oendapply.price}> <{$config.money}></td>
+  </tr>
+  <tr bgcolor="#EAEFF3">
+    <td height="38"><{$lang.cname}></td>
+    <td><input name="company" type="text" id="company" size="60" maxlength="60" value="<{$oendapply.company}>"></td>
+  </tr>
+  <tr bgcolor="#EAEFF3">
+    <td height="38"><{$lang.concat}></td>
+    <td><input name="contact" type="text" id="contact" size="30" maxlength="30" value="<{$oendapply.contact}>"></td>
+  </tr>
+  <tr bgcolor="#EAEFF3">
+    <td height="38"><{$lang.ctel}></td>
+    <td><input name="tel" type="text" id="tel" size="30" maxlength="30" value="<{$oendapply.tel}>"></td>
+  </tr>
+  <tr bgcolor="#EAEFF3">
+    <td height="31">E-mail</td>
+    <td><input name="email" type="text" id="email" size="30" maxlength="30" value="<{$oendapply.email}>"></td>
+  </tr>
+  <tr bgcolor="#EAEFF3">
+    <td height="63"><{$lang.reas}></td>
+    <td><textarea name="endreasone" id="endreasone" cols="60" rows="6"></textarea></td>
+  </tr>
+  <tr bgcolor="#EAEFF3">
+    <td></td>
+    <td><input type="submit" name="endapply" id="endapply" value="<{$lang.applyi}>" style="width:200px;height:35px;"></td>
+  </tr>
+</table>
+</form>

@@ -1,0 +1,3485 @@
+<script type="text/javascript" src="script/Validator.js"></script>
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+
+
+
+
+var city='<{$de.city}>';
+
+
+
+
+
+
+
+var province='<{$de.province}>';
+
+
+
+
+
+
+
+function getHTML(v)
+
+
+
+
+
+
+
+{	
+
+
+
+
+
+
+
+	var ob="city";
+
+
+
+
+
+
+
+	var url = '<{$config.weburl}>/ajax_back_end.php';
+
+
+
+
+
+
+
+	var sj = new Date();
+
+
+
+
+
+
+
+	var pars = 'shuiji=' + sj+'&prov_id='+v;
+
+
+
+
+
+
+
+	var myAjax = new Ajax.Request(
+
+
+
+
+
+
+
+				url,
+
+
+
+
+
+
+
+				{method: 'post', parameters: pars, onComplete: showResponse}
+
+
+
+
+
+
+
+				);
+
+
+
+
+
+
+
+	function showResponse(originalRequest)
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+
+
+
+
+
+
+
+		var i=0;var j=0;
+
+
+
+
+
+
+
+		eval(tempStr);
+
+
+
+
+
+
+
+		for(var s in MyMe)
+
+
+
+
+
+
+
+		{
+
+
+
+
+
+
+
+			++j;
+
+
+
+
+
+
+
+		}
+
+
+
+
+
+
+
+		$(ob).options.length =j+1;
+
+
+
+
+
+
+
+		for(var k in MyMe)
+
+
+
+
+
+
+
+		{
+
+
+
+
+
+
+
+			var cityId=MyMe[k][0];
+
+
+
+
+
+
+
+			var ciytName=MyMe[k][1];
+
+
+
+
+
+
+
+			$(ob).options[k].value = cityId;
+
+
+
+
+
+
+
+			$(ob).options[k].text = ciytName;
+
+
+
+
+
+
+
+			if(city!=''&&city==ciytName)
+
+
+
+
+
+
+
+				$(ob).options[k].selected = true;
+
+
+
+
+
+
+
+	　	}
+
+
+
+
+
+
+
+	 }
+
+
+
+
+
+
+
+　}
+
+
+
+
+
+
+
+<{if $de.city}>
+
+
+
+
+
+
+
+getHTML('<{$de.province}>');
+
+
+
+
+
+
+
+<{/if}>
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+<{$slogin}>
+
+
+
+
+
+
+
+	<div class="admin_right_top"><{$lang.profile}></div>
+
+
+
+
+
+
+
+	<table width="100%" border="0" cellpadding="6" cellspacing="1" bgcolor="#DDDDDD" style="margin-bottom:4px;">
+
+
+
+
+
+
+
+  <tr>
+
+
+
+
+
+
+
+    <td height="45" align="left" valign="middle" bgcolor="#FBFEDE">
+
+
+
+
+
+
+
+	    <div style="font-weight:normal;font-size:12px; width:100%; color:#999999;">
+
+
+
+
+
+
+
+			<!--<{$lang.notice}>-->
+
+
+
+
+
+
+
+	　　	    <{if $smarty.get.info==1}><{$lang.info1}><{/if}>
+
+
+
+
+
+<{if $smarty.get.info==2}><span style="font-weight:normal;color:#cc0000;"><{$lang.info2}></span><{/if}>
+
+
+
+
+
+
+
+			<{if $smarty.get.info==3}><span style="font-weight:normal;color:green;"><{$lang.info3}></span><{/if}>
+
+
+
+
+
+
+
+			<{if !$smarty.get.info}><span style="font-weight:normal;color:green;"><{$lang.info4}></span><{/if}>
+
+			
+
+
+
+
+
+
+
+	    </div>
+
+
+
+
+
+
+
+	</td>
+
+
+
+
+
+
+
+  </tr>
+
+
+
+
+
+
+
+</table>
+
+
+
+
+
+
+
+	<table width='100%' border="0" cellpadding="7" cellspacing="1" bgcolor="#DDDDDD" class="admin_table">
+
+
+
+
+
+
+
+	 <form action="" name="form" method="post" enctype="multipart/form-data" onSubmit="return Validator.Validate(this,3)">
+
+
+
+
+
+
+
+	   <tr>
+
+
+
+
+
+
+
+	     <td colspan="2" class="smalltitle"><{$lang.company_base}></td>
+
+
+
+
+
+
+
+       </tr>
+
+
+
+
+
+
+
+	   <tr> 
+
+
+
+
+
+
+
+	<td width='20%' height="24" align="left" bgcolor="#FFFFFF"><{$lang.company}>* </td>
+
+
+
+
+
+
+
+	<td width='85%' bgcolor="#FFFFFF"><input name='company' type='text' value="<{$de.company}>" dataType="Limit" min=5 msg="<{$lang.ar_company}>" style="width:300px;"></td>
+
+
+
+
+
+
+
+  </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 <tr> 
+
+
+
+
+
+
+
+		<td width='20%' height="20" align="left" bgcolor="#FFFFFF"><{$lang.con_user}>* </td>
+
+
+
+
+
+
+
+	   <td width='85%' height="20" bgcolor="#FFFFFF">
+
+
+
+
+
+
+
+	   <input name='contact' type='text' id="contact" value="<{$de.contact}>" dataType="Require" msg="<{$lang.ar_con_user}>" style="width:300px;">	</td>
+
+
+
+
+
+
+
+	 </tr>
+
+
+
+
+
+
+
+	  <tr> 
+
+
+
+
+
+
+
+		<td width='20%' height="20" align="left" bgcolor="#FFFFFF"><{$lang.tel}>* </td>
+
+
+
+
+
+
+
+		<td width='85%' height="20" bgcolor="#FFFFFF">
+
+
+
+
+
+
+
+		<input name='tel' type='text' value="<{$de.tel}>"  maxlength="200" dataType="Require" msg="<{$lang.ar_tel}>" style="width:300px;">
+
+
+
+
+
+
+
+		</td>
+
+
+
+
+
+
+
+	  </tr>
+
+
+
+
+
+
+
+	  <tr> 
+
+
+
+
+
+
+
+		<td width='20%' height="20" align="left" bgcolor="#FFFFFF"><{$lang.fax}></td>
+
+
+
+
+
+
+
+		<td width='85%' height="20" bgcolor="#FFFFFF"><input name='fax' type='text' value="<{$de.fax}>"  style="width:300px;"></td>
+
+
+
+
+
+
+
+	  </tr>
+
+
+
+
+
+
+
+	    	  <tr> 
+
+
+
+
+
+
+
+		<td width='20%' height="20" align="left" bgcolor="#FFFFFF"><{$lang.post_code}>*</td>
+
+
+
+
+
+
+
+		<td width='85%' height="20" bgcolor="#FFFFFF"><input name='zip' type='text' value="<{$de.zip}>" style="width:300px;"> </td>
+
+
+
+
+
+
+
+	  </tr>
+
+
+
+
+
+
+
+  <tr> 
+
+
+
+
+
+
+
+	<td width='20%' height="24" align="left" bgcolor="#FFFFFF"><{$lang.addr}>* </td>
+
+
+
+
+
+
+
+	<td width='85%' bgcolor="#FFFFFF"><input name='addr' type='text' value="<{$de.addr}>" maxlength="200" dataType="Require" msg="<{$de.ar_addr}>"  style="width:300px;"></td>
+
+
+
+
+
+
+
+  </tr>
+
+
+
+
+
+
+
+  <tr> 
+
+
+
+
+
+
+
+	<td width='20%' height="24" align="left" bgcolor="#FFFFFF"><{$lang.url}></td>
+
+
+
+
+
+
+
+	<td width='85%' bgcolor="#FFFFFF" style="font-weight:normal">
+
+
+
+
+
+
+
+	<input name='url' type='text' value="<{if $de.url!=''}><{$de.url}><{else}>http://<{/if}>" maxlength="50" style="width:300px;">
+
+
+
+
+
+
+
+	</td>
+
+
+
+
+
+
+
+  </tr>
+
+
+
+
+
+
+
+	  <tr> 
+
+
+
+
+
+
+
+		<td width="20%" height="24" align="left" bgcolor="#FFFFFF"><{$lang.province}>/<{$lang.city}> </td>
+
+
+
+
+
+
+
+		<td bgcolor="#FFFFFF" width="85%">
+
+
+
+        
+
+
+
+<select  name="province" id="province" onChange="getHTML(this.value)" style="width:150px;" />
+
+
+
+
+
+
+
+		  <option value=""><{$lang.ar_province}></option>
+
+
+
+
+
+
+
+			<{$prov}>
+
+
+
+
+
+
+
+			</select>
+
+
+
+       
+
+
+
+        <input style="width:146px;" id="city" name="city" type="text" value="<{$de.city}>"/>
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       	</td>
+
+
+
+
+
+
+
+	  </tr>
+
+
+
+
+
+
+
+      <tr>
+
+
+
+
+
+
+
+        <td colspan="2" class="smalltitle"><{$lang.company_biz}></td>
+
+
+
+
+
+
+
+       </tr>
+
+
+
+
+
+
+
+      <tr> 
+
+
+
+
+
+
+
+	<td width='20%' height="24" align="left" bgcolor="#FFFFFF"><{$lang.company_type}>* </td>
+
+
+
+
+
+
+
+	<td width='85%' bgcolor="#FFFFFF">
+
+
+
+
+
+
+
+	<{foreach item=list from=$companyType}>
+
+
+
+
+
+
+
+	<label><input <{if $de.ctype==$list}>checked="checked"<{/if}> name="ctype" type="radio" value="<{$list}>" /><{$list}></label>
+
+
+
+
+
+
+
+	<{/foreach}>
+
+
+
+
+
+
+
+	</td>
+
+
+
+
+
+
+
+  </tr>
+
+
+
+
+
+
+
+<{if $com_cat.0.catid}>
+
+
+
+
+
+
+
+    <tr> 
+
+
+
+
+
+
+
+	<td width='20%' height="24" align="left" bgcolor="#FFFFFF"><{$lang.company_cat}>* </td>
+
+
+
+
+
+
+
+	<td width='85%' bgcolor="#FFFFFF">
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+<p style="padding:5px 0;">
+
+
+
+
+
+
+
+<select  onChange="getHTMLs(this.value,'tcatid')"  name="catid" id="catid"  size="8" style="width: 300px;vertical-align:top;font-size:11px;">
+
+
+
+
+
+
+
+<{foreach item=list from=$com_cat}>
+
+
+
+
+
+
+
+<option value="<{$list.catid}>" ><{$list.cat}></option>
+
+
+
+
+
+
+
+<{/foreach}>
+
+
+
+
+
+
+
+</select>
+
+
+
+
+
+
+
+<select  name="tcatid" id="tcatid" onChange="getHTMLs(this.value,'scatid')"  size="8" style="width: 300px;vertical-align:top;visibility:hidden;font-size:11px;"></select>
+
+
+
+
+
+
+
+<select  name="scatid" id="scatid" onChange="getHTMLs(this.value,'fcatid')"  size="8" style="width: 300px;vertical-align:top;visibility:hidden;font-size:11px;"></select>
+
+
+
+
+
+
+
+<select  name="fcatid" id="fcatid"  size="8" style="width: 235px;vertical-align:top; visibility:hidden;"></select>
+
+
+
+
+
+
+
+</p>
+
+
+
+
+
+
+
+<br/><p style="padding:5px 0;"><{$lang.select_category}><br/>
+
+
+
+
+
+
+
+<input name="Submitadd" type="button"  value="<{$lang.add_category}>" style="padding:3px;" onclick="doSubmit1('select')" /> 
+
+
+
+
+
+
+
+<input name="Submitdel" type="button"  value="<{$lang.remove_category}>" style="padding:3px;" onclick="doSubmit1('deselect')"/>
+
+
+
+
+
+
+
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<select name="right_category_id[]"  size="8" multiple="multiple" id="right_category_id" style="width: 500px; vertical-align:top">
+
+
+
+
+
+
+
+	<{foreach item=list from=$de.catinfo}>
+
+
+
+
+
+
+
+		<{if $list.cat!=''}>
+
+
+
+
+
+
+
+			<option value="<{$list.catid}>"><{$list.cat}></option>
+
+
+
+
+
+
+
+		<{/if}>
+
+
+
+
+
+
+
+	<{/foreach}>
+
+
+
+
+
+
+
+</select>     	 
+
+
+
+
+
+
+
+</td>
+
+
+
+
+
+
+
+  </tr>
+
+
+
+
+
+
+
+<{/if}>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+    <tr>
+
+
+
+
+
+
+
+      <td height="24" align="left" bgcolor="#FFFFFF"><{$lang.main_pro}>*</td>
+
+
+
+
+
+
+
+      <td bgcolor="#FFFFFF"><input name='main_pro' type='text' value="<{$de.main_pro}>" dataType="Limit" min=5 msg="<{$lang.main_pro}>" style="width:300px;"><{$lang.main_product_des}></td>
+
+
+
+
+
+
+
+    </tr>
+
+
+
+
+
+
+
+      <tr> 
+
+
+
+
+
+
+
+	<td width='20%' height="24" align="left" bgcolor="#FFFFFF"><{$lang.employees}>*</td>
+
+
+
+
+
+
+
+	<td width='85%' bgcolor="#FFFFFF"><input name='staff_num' type='text' value="<{$de.staff_num}>" dataType="Number" msg="<{$lang.pls_num}>" style="width:300px;"></td>
+
+
+
+
+
+
+
+  </tr>
+
+
+
+  <tr> 
+
+
+
+
+
+
+
+	<td width="20%" align="left" bgcolor="#FFFFFF"><{$lang.company_logo}></td>
+
+
+
+
+
+
+
+	<td width="85%" bgcolor="#FFFFFF" style="font-weight:normal">
+
+
+
+
+
+
+
+	<{if $de.logo}><img src="<{$config.weburl}>//uploadfile/userimg/<{$de.logo}>" width=150 ><br /><{/if}>
+
+
+
+
+
+
+
+	<input name="pic" type="file" id="pic" style="width:300px;">	</td>
+
+
+
+
+
+
+
+  </tr>
+
+
+
+
+
+
+
+  <tr> 
+
+
+
+
+
+
+
+	<td width='20%' height="24" align="right" bgcolor="#FFFFFF"> </td>
+
+
+
+
+
+
+
+	<td width='85%' bgcolor="#FFFFFF">
+
+
+
+
+
+
+
+	  <input onclick="select_all();"  type='submit' name='Submit' value='<{$lang.submit}>' style="width:100px;">
+
+
+
+
+
+
+
+	  <input name="action" type="hidden" id="action" value="submit" />
+
+
+
+
+
+
+
+	  </td>
+
+
+
+
+
+
+
+  </tr>
+
+
+
+
+
+
+
+  </form>
+
+
+
+
+
+
+
+</table>
+
+
+
+
+
+
+
+<script>
+
+
+
+
+
+
+
+function removeOptions(src, dst)
+
+
+
+
+
+
+
+{
+
+
+
+
+
+
+
+	for(var i = 0; i < src.length; i++)
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		if(src[i].selected) src[i] =null;
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+function getHTMLs(v,ob)
+
+
+
+
+
+
+
+{	
+
+
+
+
+
+
+
+	if(ob=='tcatid')
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		$('tcatid').options.selected =false;
+
+
+
+
+
+
+
+		$('tcatid').options.length =0;
+
+
+
+
+
+
+
+		$('scatid').options.length =0;
+
+
+
+
+
+
+
+		$('fcatid').options.length =0;
+
+
+
+
+
+
+
+		$('tcatid').style.visibility="hidden";
+
+
+
+
+
+
+
+		$('scatid').style.visibility="hidden";
+
+
+
+
+
+
+
+		$('fcatid').style.visibility="hidden";
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+	else if(ob=='scatid')
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		$('scatid').options.selected =false;
+
+
+
+
+
+
+
+		$('scatid').options.length =0;
+
+
+
+
+
+
+
+		$('fcatid').options.length =0;
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+		$('scatid').style.visibility="hidden";
+
+
+
+
+
+
+
+		$('fcatid').style.visibility="hidden";
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+	else if(ob=='fcatid')
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		$('fcatid').options.length =0;
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+	var url = 'ajax_back_end.php';
+
+
+
+
+
+
+
+	var sj = new Date();
+
+
+
+
+
+
+
+	var pars = 'shuiji=' + sj+'&cattype=com&pcatid='+v;
+
+
+
+
+
+
+
+	var myAjax = new Ajax.Request(
+
+
+
+
+
+
+
+				url,
+
+
+
+
+
+
+
+				{method: 'post', parameters: pars, onComplete: showResponse}
+
+
+
+
+
+
+
+				);
+
+
+
+
+
+
+
+	function showResponse(originalRequest)
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+
+
+
+
+
+
+
+		if(originalRequest.responseText!='{};')
+
+
+
+
+
+
+
+		{
+
+
+
+
+
+
+
+			var i=0;var j=0;
+
+
+
+
+
+
+
+			eval(tempStr);
+
+
+
+
+
+
+
+			for(var s in MyMe)
+
+
+
+
+
+
+
+			{
+
+
+
+
+
+
+
+				++j;
+
+
+
+
+
+
+
+			}
+
+
+
+
+
+
+
+			if(j>0)
+
+
+
+
+
+
+
+				$(ob).style.visibility="visible";
+
+
+
+
+
+
+
+			else
+
+
+
+
+
+
+
+				$(ob).style.visibility="hidden";
+
+
+
+
+
+
+
+			$(ob).options.length =j;
+
+
+
+
+
+
+
+			for(var k in MyMe)
+
+
+
+
+
+
+
+			{
+
+
+
+
+
+
+
+					var cateId=MyMe[k][0];
+
+
+
+
+
+
+
+					var cateName=MyMe[k][1];
+
+
+
+
+
+
+
+					$(ob).options[i].value = cateId;
+
+
+
+
+
+
+
+					$(ob).options[i].text = cateName;
+
+
+
+
+
+
+
+					i++;
+
+
+
+
+
+
+
+		　	}
+
+
+
+
+
+
+
+		}
+
+
+
+
+
+
+
+	 }
+
+
+
+
+
+
+
+　}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ function doSubmit1(button_clicked)
+
+
+
+
+
+
+
+ {
+
+
+
+
+
+
+
+		var tmpform = document.form;
+
+
+
+
+
+
+
+		var selected_categories = tmpform.right_category_id.options;
+
+
+
+
+
+
+
+		var len = selected_categories.length;
+
+
+
+
+
+
+
+		if( button_clicked !='select'&& button_clicked !='deselect')
+
+
+
+
+
+
+
+		{
+
+
+
+
+
+
+
+			if(testColum())
+
+
+
+
+
+
+
+			{
+
+
+
+
+
+
+
+				var selected_categories = tmpform.right_category_id.options;
+
+
+
+
+
+
+
+				var len = selected_categories.length;
+
+
+
+
+
+
+
+				if ( (len == 0 || len > 6)  )
+
+
+
+
+
+
+
+				{
+
+
+
+
+
+
+
+					alert("Выберите от 1－6 категорий!");
+
+
+
+
+
+
+
+					companyError('Выберите сферу деятельности!');
+
+
+
+
+
+
+
+					return false;
+
+
+
+
+
+
+
+				}
+
+
+
+
+
+
+
+				return true;
+
+
+
+
+
+
+
+			}
+
+
+
+
+
+
+
+			else
+
+
+
+
+
+
+
+				return false;
+
+
+
+
+
+
+
+		}
+
+
+
+
+
+
+
+		if(button_clicked &&(button_clicked == "deselect"||button_clicked == "select"))
+
+
+
+
+
+
+
+		{
+
+
+
+
+
+
+
+		   var fCategories = tmpform.fcatid.options;
+
+
+
+
+
+
+
+		   var sCategories = tmpform.scatid.options;
+
+
+
+
+
+
+
+		   var tCategories = tmpform.tcatid.options;
+
+
+
+
+
+
+
+		   var Categories  = tmpform.catid.options;
+
+
+
+
+
+
+
+		   if(button_clicked == 'select')
+
+
+
+
+
+
+
+		   {
+
+
+
+
+
+
+
+				if(fCategories.length==0)
+
+
+
+
+
+
+
+				{ 
+
+
+
+
+
+
+
+					if(sCategories.length==0)
+
+
+
+
+
+
+
+					{
+
+
+
+
+
+
+
+						if(tCategories.length==0)
+
+
+
+
+
+
+
+							addOptions(Categories, selected_categories,fCategories,sCategories,tCategories,Categories);
+
+
+
+
+
+
+
+						else
+
+
+
+
+
+
+
+							addOptions(tCategories, selected_categories,fCategories,sCategories,tCategories,Categories);
+
+
+
+
+
+
+
+					}
+
+
+
+
+
+
+
+					else 
+
+
+
+
+
+
+
+						addOptions(sCategories, selected_categories,fCategories,sCategories,tCategories,Categories);
+
+
+
+
+
+
+
+		       }
+
+
+
+
+
+
+
+			   else
+
+
+
+
+
+
+
+			  	  addOptions(fCategories, selected_categories,fCategories,sCategories,tCategories,Categories);
+
+
+
+
+
+
+
+		   }
+
+
+
+
+
+
+
+		   else
+
+
+
+
+
+
+
+		   {
+
+
+
+
+
+
+
+				if(button_clicked == 'deselect')
+
+
+
+
+
+
+
+				{   // Remove from right pane
+
+
+
+
+
+
+
+					removeOptions(selected_categories, fCategories);
+
+
+
+
+
+
+
+				}
+
+
+
+
+
+
+
+				button_clicked = '';
+
+
+
+
+
+
+
+				return false;
+
+
+
+
+
+
+
+         }
+
+
+
+
+
+
+
+       }
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+ function addOptions(src, dst,fCategories,sCategories,tCategories,Categories)
+
+
+
+
+
+
+
+ {
+
+
+
+
+
+
+
+    var selected_value = [];
+
+
+
+
+
+
+
+    var selected_text = [];
+
+
+
+
+
+
+
+	var fV = fCategories;
+
+
+
+
+
+
+
+  	var sV = sCategories;
+
+
+
+
+
+
+
+	var tV = tCategories;
+
+
+
+
+
+
+
+   	var V  = Categories;
+
+
+
+
+
+
+
+	var Flag = false;
+
+
+
+
+
+
+
+  	var tFlag = false;
+
+
+
+
+
+
+
+   	var sFlag = false;
+
+
+
+
+
+
+
+   	var fFlag = false;
+
+
+
+
+
+
+
+	var sValue = '';
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+	for(var i = 0;i<fCategories.length;i++)
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		if(fCategories[i].selected)
+
+
+
+
+
+
+
+		{
+
+
+
+
+
+
+
+			fV= fCategories[i].text;
+
+
+
+
+
+
+
+			fFlag = true;
+
+
+
+
+
+
+
+			fValue = fCategories[i].value;
+
+
+
+
+
+
+
+			break;
+
+
+
+
+
+
+
+		}
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+	for(var i = 0;i<sCategories.length;i++)
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		if(sCategories[i].selected)
+
+
+
+
+
+
+
+		{
+
+
+
+
+
+
+
+			sV= sCategories[i].text;
+
+
+
+
+
+
+
+			sFlag = true;
+
+
+
+
+
+
+
+			sValue = sCategories[i].value;
+
+
+
+
+
+
+
+			break;
+
+
+
+
+
+
+
+		}
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+	for(var i = 0;i<tCategories.length;i++)
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		if(tCategories[i].selected)
+
+
+
+
+
+
+
+		{
+
+
+
+
+
+
+
+			tV= tCategories[i].text;
+
+
+
+
+
+
+
+			tFlag = true;
+
+
+
+
+
+
+
+			tValue = tCategories[i].value;
+
+
+
+
+
+
+
+			break;
+
+
+
+
+
+
+
+		}
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+	for(var i = 0;i<Categories.length;i++)
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		if(Categories[i].selected)
+
+
+
+
+
+
+
+		{
+
+
+
+
+
+
+
+			V= Categories[i].text;
+
+
+
+
+
+
+
+			Flag = true;
+
+
+
+
+
+
+
+			break;
+
+
+
+
+
+
+
+		}
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+    // Get items from dst
+
+
+
+
+
+
+
+    for(var i = 0; i < dst.length; i++)
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		selected_value[selected_value.length] = dst[i].value;
+
+
+
+
+
+
+
+		selected_text[selected_text.length] = dst[i].text;
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+	var len = selected_value.length;
+
+
+
+
+
+
+
+	if( len >= 6 )
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		alert('Вы можете выбрать не более шести направлений бизнеса!');
+
+
+
+
+
+
+
+		return ;
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+    // Get items from src
+
+
+
+
+
+
+
+	for(var i = 0; i < src.length; i++)
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		if(src[i].selected)
+
+
+
+
+
+
+
+		{
+
+
+
+
+
+
+
+			var exists = 0;
+
+
+
+
+
+
+
+			fFlag  = true;
+
+
+
+
+
+
+
+			for(var j = 0; j < dst.length; j++)
+
+
+
+
+
+
+
+			{
+
+
+
+
+
+
+
+				if(dst[j].value == src[i].value)
+
+
+
+
+
+
+
+				{
+
+
+
+
+
+
+
+					exists = 1;
+
+
+
+
+
+
+
+					break;
+
+
+
+
+
+
+
+				}
+
+
+
+
+
+
+
+			}
+
+
+
+
+
+
+
+			if(exists&&exists==1)
+
+
+
+
+
+
+
+			{
+
+
+
+
+
+
+
+				alert('Вы превысили лимит направлений!');
+
+
+
+
+
+
+
+				return;
+
+
+
+
+
+
+
+			}
+
+
+
+
+
+
+
+			if(!exists)
+
+
+
+
+
+
+
+			{
+
+
+
+
+
+
+
+				selected_value[selected_value.length] = src[i].value;
+
+
+
+
+
+
+
+				if(fV==src[i].text)
+
+
+
+
+
+
+
+					selected_text[selected_text.length] = V+"/"+tV+"/"+sV+"/"+fV;
+
+
+
+
+
+
+
+				else if(sV==src[i].text)
+
+
+
+
+
+
+
+					selected_text[selected_text.length] = V+"/"+tV+"/"+sV;
+
+
+
+
+
+
+
+				else if(tV==src[i].text)
+
+
+
+
+
+
+
+					selected_text[selected_text.length] = V+"/"+tV;
+
+
+
+
+
+
+
+				else
+
+
+
+
+
+
+
+				{
+
+
+
+
+
+
+
+					selected_text[selected_text.length] = V;
+
+
+
+
+
+
+
+				}
+
+
+
+
+
+
+
+			}
+
+
+
+
+
+
+
+		}
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	if(Flag ==false && tFlag==false&& sFlag==false&& fFlag==false)
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		alert("Вы не выбрали категорий!");
+
+
+
+
+
+
+
+		return ;
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+	else
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+		if(tFlag ==false&&$('tcatid').style.visibility=="visible")
+
+
+
+
+
+
+
+		{
+
+
+
+
+
+
+
+			alert("Вы не выбрали конечную категорию для Вашего бизнеса!")
+
+
+
+
+
+
+
+			return;
+
+
+
+
+
+
+
+		}
+
+
+
+
+
+
+
+		else if(sFlag ==false&&$('scatid').style.visibility=="visible")
+
+
+
+
+
+
+
+		{
+
+
+
+
+
+
+
+			alert("Вы не выбрали конечную категорию для Вашего бизнеса!")
+
+
+
+
+
+
+
+			return;
+
+
+
+
+
+
+
+		}
+
+
+
+
+
+
+
+		else if(fFlag ==false&&$('fcatid').style.visibility=="visible")
+
+
+
+
+
+
+
+		{
+
+
+
+
+
+
+
+			alert("Вы не выбрали конечную категорию для Вашего бизнеса!")
+
+
+
+
+
+
+
+			return;
+
+
+
+
+
+
+
+		}
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+	while(dst.length > 1) dst[1] = null;
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+	for(var j = 0; j < selected_value.length; j++)
+
+
+
+
+
+
+
+	{
+
+
+
+
+
+
+
+	  dst[j] = new Option(selected_text[j], selected_value[j]);
+
+
+
+
+
+
+
+	}
+
+
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  function select_all()
+
+
+
+
+
+
+
+  {
+
+
+
+
+
+
+
+  		for(i=0;i<$('right_category_id').options.length;i++)
+
+
+
+
+
+
+
+		{
+
+
+
+
+
+
+
+			$('right_category_id').options[i].selected = true;
+
+
+
+
+
+
+
+		}
+
+
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+</script>

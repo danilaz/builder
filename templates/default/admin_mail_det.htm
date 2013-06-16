@@ -1,0 +1,98 @@
+<div class="admin_right_top"><{$lang.mail_detail}></div>
+<table class="admin_table" border="0" cellpadding="0" cellspacing="1" bgcolor="#DDDDDD">
+<{if $re.fromuserid}>
+<tr> 
+  <td width="157" height="30" align="center" bgcolor="#FFFFFF">
+  <{if $re.msgtype=='2'}><{$lang.receiv}><{else}><{$lang.cname}><{/if}>  </td>
+  <td width="600" height="30" bgcolor="#FFFFFF">
+  <a href="shop.php?uid=<{$re.fromInfo.userid}>" target="_blank"><{$re.fromInfo.company}></a>
+  <{if $re.is_myfriend}>
+  	<a href="main.php?menu=user&action=m&m=friend&s=admin_friends&detail_id=<{$re.is_myfriend}>" target="_blank">
+    <img height="20" src="image/default/icon_person.gif" />    </a>
+  <{else}>
+  (<a target="_blank" href="main.php?menu=user&action=m&m=friend&s=admin_friends&friendid=<{$re.fromInfo.userid}>">Добавить в контакт лист</a>)
+  <{/if}>  </td>
+</tr>
+<tr> 
+  <td width="157" height="30" align="center" bgcolor="#FFFFFF"><{$lang.caddr}></td>
+  <td height="30" bgcolor="#FFFFFF"><{$re.fromInfo.addr}></td>
+</tr>
+<tr> 
+  <td width="157" height="30" align="center" bgcolor="#FFFFFF"><{$lang.ccode}></td>
+  <td height="30" bgcolor="#FFFFFF"><{$re.fromInfo.zip}></td>
+</tr>
+<tr> 
+  <td width="157" height="30" align="center" bgcolor="#FFFFFF"><{$lang.ccontact}></td>
+  <td height="30" bgcolor="#FFFFFF"><{$re.fromInfo.contact}></td>
+</tr>
+<tr> 
+  <td width="157" height="30" align="center" bgcolor="#FFFFFF"><{$lang.ctel}></td>
+  <td height="30" bgcolor="#FFFFFF"><{$re.fromInfo.tel}></td>
+</tr>
+<tr> 
+  <td width="157" height="30" align="center" bgcolor="#FFFFFF"><{$lang.cfax}></td>
+  <td height="30" bgcolor="#FFFFFF"><{$re.fromInfo.fax}></td>
+</tr>
+<{elseif $re.fromInfo!=''}>
+<tr> 
+  <td width="157" height="23" align="center" bgcolor="#FFFFFF"><{$lang.cinfo}></td>
+  <td height="30" bgcolor="#FFFFFF"><{$re.fromInfo}></td>
+</tr>
+<{/if}>
+<{if $re.about!=''}>
+<tr> 
+  <td width="157" height="30" align="center" bgcolor="#FFFFFF"><{$lang.about}></td>
+  <td height="30" bgcolor="#FFFFFF"><{$re.about}></td>
+</tr>
+<{/if}>
+<tr> 
+  <td width="157" height="30" align="center" bgcolor="#FFFFFF"><{$lang.ctitle}></td>
+  <td height="30" bgcolor="#FFFFFF"><{$re.sub}></td>
+</tr>
+<tr> 
+  <td width="157" align="center" valign="top" bgcolor="#FFFFFF"><{$lang.ccon}></td>
+  <td valign="top" bgcolor="#FFFFFF">
+  <{$re.con|nl2br}><br />
+  <{if $re.reply_by}>
+  <font color="red">Прошу мне ответить до <{$re.reply_by|date_format}></font>
+  <{/if}>
+  </td>
+</tr>
+<{if $re.receive_type}>
+<tr> 
+  <td width="157" height="30" align="center" bgcolor="#FFFFFF">Вид запроса</td>
+  <td height="30" bgcolor="#FFFFFF"><{$re.receive_type}></td>
+</tr>
+<{/if}>
+</table>
+<br>
+<{if $re.fromuserid&&$re.msgtype==1}>
+<div class="admin_right_top"><{$lang.reback}></div>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" bordercolor="#DDDDDD" class="admin_table">
+<form method="post" action="">
+<tr> 
+  <td width="228" height="30" align="center" bgcolor="#F3F3F3"><{$lang.mail_title}></td>
+  <td width="886" height="30" bgcolor="#F3F3F3">
+	  <input style="width:400px;" type="text" name="sub" value="Re:<{$re.sub}>">
+	  <input type="hidden" name="touserid" value="<{$re.fromuserid}>">
+	  <input type="hidden" name="id" value="<{$re.id}>">
+	  <input type="hidden" name="toemail" value="<{$re.fromInfo.email}>">
+  </td>
+</tr>
+<tr> 
+  <td width="228" height="2" align="center" valign="top" bgcolor="#F3F3F3"><{$lang.mail_con}></td>
+  <td bgcolor="#F3F3F3" height="2" valign="top"> 
+	<textarea name="con" cols="60" rows="15" style="width:400px;padding:3px;">
+<{$re.con}>
+	</textarea>
+  </td>
+</tr>
+<tr>
+  <td width="228" bgcolor="#F3F3F3" height="2" valign="top">&nbsp;</td>
+  <td bgcolor="#F3F3F3" height="2" valign="top">
+	<input type="submit" name="cc" value=" <{$lang.sresend}> ">
+  </td>
+</tr></form>
+</table>
+<{/if}>
+		  

@@ -1,0 +1,82 @@
+ <link href="<{$config.weburl}>/templates/<{$config.temp}>/company.css" rel="stylesheet" type="text/css" />
+    <div class="menu_bottom L1">				
+        <div class="headtop_L">
+           <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <{$lang.com_res}></a>
+        </div>
+        <div class="headtop_R"></div>		
+    </div>
+	<!--主体开始 -->
+	<div id="mainbody1" class="m1">	
+<div class="categories">
+<ul id="all_cate_list" class="cat_list_show" style="margin-top:-1px;">
+
+      <{foreach from=$cat item=list}>
+
+      <li>
+
+     	 <div><a <{if $list.sub!=null}>class="sup"<{/if}> href="<{$config.weburl}>/?m=company&s=company_list&id=<{$list.catid}>"><{$list.cat}></a></div>
+
+         <{if $list.sub!=null}>
+
+         <p>
+
+          <{foreach from=$list.sub item=item}>     
+
+            <a href="<{$config.weburl}>/?m=company&s=company_list&id=<{$item.catid}>"><{$item.cat}></a>
+
+          <{/foreach}>
+
+        </p>
+
+        <{/if}>
+
+        </li>
+
+      <{/foreach}>
+
+    </ul>
+</div>
+		<!--主体左侧开始 -->
+		<div class="leftbar">
+        	<div id="starcompany">
+            	<div class="title4"><div class="title_left2 L2"><{$lang.star_com}></div></div>
+				<div class="content4">
+					<ul>
+            			<{insert name="getUser" field="company" filter="star" logo=true leng=200 limit=4}>
+						<script src='<{$config.weburl}>/api/ad.php?id=18&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+					</ul>
+					<div class="clear"></div>
+            	</div>
+            </div>
+					<div class="right1 m1">
+				<div class="sectitle" ><div class="title_left1 L2"><{$lang.last_reg}></div></div>
+				<div class="seccon">
+					<ul class="li_list">
+					 	<{insert name="getUser" field="company" filter="new" limit="10" leng="200"}>
+				   </ul>
+                   <div class="clear"></div>
+			    </div>
+				<div class="clear"></div>
+			</div>	
+            <div class="m1" id="companydetail">        	
+                <{insert name="label" type="cat" temp="com_cat" ctype='com'}>
+            </div>
+		</div>
+		<!--主体左侧结束 -->
+		
+		<!--主体右侧开始 -->
+		<div class="rightbar">
+			<div class="right1">
+				<div class="sectitle" ><div class="title_left1 L2">Реклама</div></div>
+				 <div class="seccon">
+					<ul class="list7">
+					 	<!-- <{insert name="getPlayer" height="200" width="190"}> -->
+						<script style="width:200px;height:220px" src='<{$config.weburl}>/api/ad.php?id=19&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+				    </ul>
+                   <div class="clear"></div>
+			    </div>
+				</div>
+			
+		</div>		
+		<!--主体右侧结束 -->
+	</div>

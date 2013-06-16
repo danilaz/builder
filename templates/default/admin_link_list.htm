@@ -1,0 +1,19 @@
+<div class="admin_right_top"><{$lang.link}></div>
+<table class="admin_table"  border="0" cellspacing="1" align="center" bgcolor="#DDDDDD">
+	<tr bgcolor="#EAEFF3">
+	  <td width="91%" align="left" bgcolor="#EAEFF3">&nbsp;&nbsp;<strong><{$lang.link_list}></strong></td>
+	  <td width="9%" align="left" bgcolor="#EAEFF3"><strong><{$lang.operation}></strong></td>
+	</tr>
+	<{foreach item=list from=$link}>
+	<tr bgcolor="#EAEFF3">
+	  <td align="left" bgcolor="#FFFFFF">
+		  <a href="<{$list.link_url}>" target="_blank"><{$list.link_name}></a>
+		  <br />
+		  <{$lang.description}>：<{$list.link_con}>
+	  </td>
+	  <td bgcolor="#FFFFFF">
+	  <a href="?menu=<{$smarty.get.menu}>&action=admin_link_list&deid=<{$list.link_id}>" onclick="return confirm('<{$lang.sure_del}>')"><{$lang.del}></a>
+	  </td>
+  </tr>
+	 <{/foreach}> 
+</table>

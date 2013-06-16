@@ -1,0 +1,330 @@
+<style>
+body {
+	font-size:12px;
+}
+#searchCatlist {
+	list-style-type:none;
+	padding:0;
+	margin:0;
+	text-align:left;
+	overflow:hidden;
+}
+#searchCatlist li {
+	list-style-type:none;
+	background:#DDDDDD;
+	line-height:23px;
+	margin:1px 0px;
+}
+#searchCatlist li a {
+	color:blue;
+	margin-left:20px;
+	text-decoration:none;
+	font-size:12px;
+}
+#searchCatlist li a:hover
+{
+	text-decoration:underline;
+	color:#ff7300;
+}
+.togg_tab
+{
+	background:#DEEBFE;
+	line-height:30px;
+	overflow:hidden;
+	width:242px;
+	margin:0 auto;
+	text-align:center;
+}
+.togg_tab a
+{
+	display:block;
+	float:left;
+	color:#FF7300;
+	text-decoration:none;
+	text-align:center;
+	width:120px;
+	border-left:1px solid #FFFFFF;
+	font-size:13px;
+	font-weight:bold;
+}
+.togg_tab a:hover,.togg_tab .curr
+{
+	color:#FFFFFF;
+	background:#197CC0;
+}
+</style>
+<script src="<{$config.weburl}>/script/prototype.js" type=text/javascript></script>
+<script src="<{$config.weburl}>/script/index.js" type=text/javascript></script>
+<script language="javascript">
+var currTab = 0;
+function toggCategory(e,i)
+{
+	e.className='curr';
+	i==1?$('cate_t_2').className='':$('cate_t_1').className='';
+	if(i==currTab)
+		return;
+	cateInit();
+	currTab = i;
+	getHTML('','tcatid');
+	if(i==1)
+	{
+		$('sys_category').style.display='none';	
+		$('sear_category').style.display='';		
+	}
+	else
+	{
+		$('sear_category').style.display='none';	
+		$('sys_category').style.display='';		
+	}	
+}
+</script>
+<form method="get" action="" id="cate_search">
+  <div style="text-align:center; border-bottom:2px solid #197CC0">
+    <div class="togg_tab"><a href="javascript:void(0);" onclick="toggCategory(this,1)" id="cate_t_1"><{$lang.sear_cate}></a><a href="javascript:void(0);" class="curr" id="cate_t_2" onclick="toggCategory(this,2)"><{$lang.sele_cate}></a></div>
+  </div>
+  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:10px;">
+    <tr>
+      <td><table width="100%" border="0" align="center" cellpadding="6" cellspacing="1" bgcolor="#DDDDDD" class="admin_table" id="sys_category" style="display:none">
+          <tr height="35px;">
+            <td bgcolor="#FFFFFF" valign="top" align="center"><select style="width:460px;" onchange="getid(this.value);" <{if !$get_user_common_cat}>disabled="disabled"<{/if}>>
+                <option value=""><{$lang.selec_com_cat}></option>
+                <{foreach item=list key=num from=$get_user_common_cat}> <{if $list}>
+                <option value="<{$num}>"><{$list}></option>
+                <{/if}> <{/foreach}>
+              </select></td>
+          </tr>
+          <tr>
+            <td bgcolor="#FFFFFF" valign="top"><select style="width:230px; height:308px;" name="catid" size="25" id="catid" onchange="getHTML(this.value,'tcatid')">
+                <option value=""><{$lang.selec_category}></option>
+                <{foreach item=list from=$cat}>
+                <option value="<{$list.catid}>" ><{$list.cat}></option>
+                <{/foreach}>
+              </select>
+              <select style="width:230px; height:308px;" name="tcatid" id="tcatid" onChange="getHTML(this.value,'scatid')" size="25">
+              </select>
+              <select style="width:230px; height:308px;"  name="scatid" id="scatid"  onChange="getHTML(this.value,'sscatid')" size="25">
+              </select>
+              <select style="width:230px; height:308px;"  onchange="allCatList()" name="sscatid" id="sscatid" size="25">
+              </select></td>
+          </tr>
+        </table>
+        <table width="100%" border="0" align="center" cellpadding="6" cellspacing="1" bgcolor="#DDDDDD" class="admin_table" id="sear_category" style="display:table-block">
+          <tr>
+            <td bgcolor="#FFFFFF" valign="top" align="center"><p>
+                <label style="font-size:12px"><{$lang.keyword}>:<input type="text" value="<{$smarty.get.key_word}>" maxlength="50" name="keyword" id="key_word">
+                <input onclick="javascript:chooseCategory($('key_word').value);" value="<{$lang.search}>" type="button" name="input"></label>
+              </p></td>
+          </tr>
+          <tr style="height:320px;">
+            <td bgcolor="#FFFFFF" valign="top">
+            <div id="re_list" style="display:none">
+              <p id="re_tip" style="font-size:12px">
+            	<div style="font-size:12px"><{$lang.sear_detail}>：</div>
+              </p>
+              <div style="overflow:hidden; margin-top:10px;">
+                <ul id="searchCatlist">
+                </ul>
+              </div>
+            </div>
+            <div id="re_null" style="display:block; font-size:12px;"></div></td>
+          </tr>
+        </table></td>
+    </tr>
+    <tr bgcolor="#EAEFF3">
+      <td align="center" bgcolor="#FFFFFF" style="padding-top:10px;">
+        <span style="font-size:12px; color:#666666;"><{$lang.curr_s_cate}>：<label id='cruu_cate_text'></label>&nbsp;&nbsp;</span><input id="submit" onclick="chooseComplete()" type="button" value="<{$lang.submit}>" style="width:100px;"/></td>
+    </tr>
+  </table>
+  <input type="hidden" id="cat" value="" />
+  <input type="hidden" id="tcat" value="" />
+  <input type="hidden" id="scat" value="" />
+  <input type="hidden" id="category_id" name="category_id" value="" />
+</form>
+<script type="text/javascript">
+window.onload=function() {
+	$('scatid').style.visibility="hidden";
+	$('sscatid').style.visibility="hidden";
+	$('tcatid').style.visibility="hidden";
+	cateInit();
+	if($('key_word').value!='')
+	{	
+		chooseCategory($('key_word').value);
+		toggCategory($('cate_t_1'),1);
+	}
+	else
+	{
+		toggCategory($('cate_t_2'),2);
+	}
+}
+function chooseComplete()
+{
+	if($('category_id').value==''){alert('<{$lang.product_category}>');return false;}
+	parent.setCategory($('category_id').value);
+}
+function cateInit()
+{
+	$('category_id').value='';
+	$('cruu_cate_text').innerHTML ='';
+	$('submit').disabled = true;
+}
+function getText(ob)
+{
+	return ob.selectedIndex>0?ob.options[ob.selectedIndex].text:'';
+}
+function getCatList()
+{
+	 var catList = $('cat').value;
+	 $('category_id').value = $('catid').value;
+	 if($('tcat').value!=''){
+	 	catList += '>'+$('tcat').value;
+		$('category_id').value = $('tcatid').value;
+	 }
+	 if($('scat').value!=''){
+	 	catList += '>'+$('scat').value;
+		$('category_id').value = $('scatid').value; 
+	 }
+	return catList;
+}
+function allCatList()
+{
+	var catList = getCatList();
+	if(catList!=''&&$('sscatid').value!=''){
+		catList += '>'+getText($('sscatid'));
+		$('category_id').value = $('sscatid').value; 
+	}
+	$('cruu_cate_text').innerHTML=catList;
+}
+function getid(v)
+{	
+	id=v.split(',');
+	var sscatid=id[3]*1;
+	var scatid=id[2]*1;
+	var tcatid=id[1]*1;
+	var catid=id[0]*1;
+	for(i=0;i<$('catid').options.length;i++)
+	{
+		if($('catid').options[i].value==catid)
+		{
+			$('catid').options[i].selected = true;
+			$('cat').value = $('catid').options[i].text;
+		}
+	}
+	getHTML(catid,'tcatid',sscatid,scatid,tcatid);
+}
+function getHTML(v,ob,sscatid,scatid,tcatid)
+{	
+	if(ob=='tcatid'){
+		$('scatid').options.length=0;
+		$('sscatid').options.length=0;
+		$('scatid').style.visibility="hidden";
+		$('sscatid').style.visibility="hidden";
+		$('cat').value = getText($('catid'));//
+		$('tcat').value = '';
+		$('scat').value = '';
+	}
+	if(ob=='scatid'){
+		$('sscatid').options.length=0;
+		$('sscatid').style.visibility="hidden";
+		$('tcat').value = getText($('tcatid'));//
+		$('scat').value= '';
+	}
+	if(ob=='sscatid')
+	{
+		$('scat').value= getText($('scatid'));//
+	}
+    var url = '<{$config.weburl}>/ajax_back_end.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&cattype=pro&pcatid='+v;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'post', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		var getstr=originalRequest.responseText;
+		var tempStr = 'var MyMe = ' + getstr; 
+		var i=1;var j=0;
+		eval(tempStr);
+		for(var s in MyMe)
+		{
+			++j;
+		}
+		if(j>0)
+			$(ob).style.visibility="visible";
+		else
+			$(ob).style.visibility="hidden";
+		$(ob).options.length =j+1;
+		$(ob).options[0].value = '';
+		$(ob).options[0].text = '<{$lang.select_sub_categories}>';
+		$(ob).options[0].selected = true;
+		
+		for(var k in MyMe)
+		{
+			var cityId=MyMe[k][0];
+			var ciytName=MyMe[k][1];
+			$(ob).options[i].value = cityId;
+			$(ob).options[i].text = ciytName;
+			
+			if(cityId==scatid||cityId==tcatid||cityId==sscatid)
+			{
+				$(ob).options[i].selected = true;
+				scityid=cityId;
+			}
+			i++;
+	　	}
+	  
+		if(ob=='tcatid')
+			getHTML(scityid,'scatid',sscatid,scatid,tcatid);
+		
+		if(ob=='scatid')
+			getHTML(scityid,'sscatid',sscatid,scatid,tcatid);
+	 }
+	 $('cruu_cate_text').innerHTML = getCatList();
+	 if($('catid').value=='')
+	 	cateInit();
+	 else
+	 	$('submit').disabled = false;
+　}
+function thirdCata(k,cat)
+{
+	$('cruu_cate_text').innerHTML = cat;
+	$('category_id').value = k;
+	$('submit').disabled = false;
+}
+function chooseCategory(key)
+{
+	if(key=='')
+	{
+		alert('Пожалуйста, укажите ключевые слова!');	
+		return;
+	}
+	var url = window.location.href+'&oper=ajax&call=search_cate';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&key_word='+key;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'post', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		var getstr=originalRequest.responseText;
+		var tempStr = 'var MyMe = ' + getstr; 
+		eval(tempStr);
+		var str='';
+		for(var k in MyMe)
+		{
+			var catName=MyMe[k];
+			str += "<li><a onclick=\"thirdCata('"+k+"','"+catName+"');\" href=\"javascript:void(0)\"><span>"+catName+"</span>("+k+")</a></li>";
+		}
+		if(str!=''){
+			$('re_null').style.display ='none';
+			$('searchCatlist').innerHTML = str;
+			$('re_list').style.display ='';
+		}else{
+			$('re_list').style.display ='none';
+			$('re_null').style.display ='';
+			$('re_null').innerHTML = "Не найдено искомое: “"+key+"”. Попробуйте заменить ключевое слово или категорию.";
+		}
+	}
+}
+</script>

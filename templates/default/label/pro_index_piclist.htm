@@ -1,0 +1,24 @@
+<{foreach item=list key=num from=$pro}>
+
+<li>
+
+	
+
+		<a target="_blank" href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$list.id}>"><img src='<{$list.img}>' title="<{$list.pname}>" /></a>
+
+	
+
+		<h5><a target="_blank" href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$list.id}>"><{$list.pname|truncate:200:"...":true}></a></h5>
+
+		
+
+		<span class="smoney">(<{$list.price}> <{$config.money}>)</span>
+
+</li>
+
+<{/foreach}>
+
+
+
+
+

@@ -1,0 +1,19 @@
+<?php
+include_once("$config[webroot]/lang/".$config['language']."/user_admin/global.php");
+include_once("$config[webroot]/module/product/lang/".$config['language']."/".$_GET['s'].".php");
+include_once("module/product/includes/plugin_order_class.php");
+$order=new order();
+//---------------------------------------------------------
+if(!empty($_POST['payaction'])&&$_POST['payaction']=='pay')
+{
+	$re=$order->orderpayupdate();
+	if($re)
+		msg("main.php?action=m&m=product&s=admin_buyorder&menu=$_GET[menu]");
+}
+if(!empty($_GET['id'])&&is_numeric($_GET['id']))
+	$tpl->assign("orderpay",$order->orderpay($_GET['id']));
+//----------------------------------------------------------
+$tpl->assign("config",$config);
+$tpl->assign("lang",$lang);
+$output=tplfetch("admin_orderpay.htm");
+?>

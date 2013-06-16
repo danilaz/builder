@@ -1,0 +1,227 @@
+<script type="text/javascript">
+var tcatid='<{$tcat}>';
+var scatid='<{$scat}>';
+<{if $incat}>
+getHTML('<{$incat}>','tcatid');
+<{/if}>
+function getHTML(v,ob)
+{	
+	var url = 'ajax_back_end.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&&cattype=pro&pcatid='+v;
+	var myAjax = new Ajax.Request(url,{method: 'post', parameters: pars, onComplete: showResponse});
+	function showResponse(originalRequest)
+	{
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+		var i=1;var j=0;
+		eval(tempStr);
+		for(var s in MyMe)
+		{
+			++j;
+		}
+		if(j>0)
+			$(ob).style.visibility="visible";
+		else
+			$(ob).style.visibility="hidden";
+		$(ob).options.length =j+1;
+		$(ob).options[0].value = '';
+		$(ob).options[0].text = '<{$lang.plsel}>';
+		$(ob).options[0].selected = true;
+		for(var k in MyMe)
+		{
+			var cityId=MyMe[k][0];
+			var ciytName=MyMe[k][1];
+			if(ob=='tcatid'&&i==1&&tcatid!='')
+	 			getHTML(tcatid,'scatid');
+			$(ob).options[i].value = cityId;
+			$(ob).options[i].text = ciytName;
+			if(cityId==scatid||cityId==tcatid)
+			{
+				$(ob).options[i].selected = true;
+				tcatid='';
+			}
+			i++;
+	　	}
+	 }
+　}
+function getmsg()
+{
+	var tar=document.getElementById('questiondes');
+	var s=trim(tar.value);
+	var len=10000-s.length;
+	if(len>=0)
+	{
+		document.getElementById('msg').innerHTML='<{$lang.youcane}>'+len+'<{$lang.det}>';
+		return;
+	}
+	else
+	{		
+		document.getElementById('msg').innerHTML='<{$lang.tsmsg}>';
+		return;
+	}
+}
+function trim(str)
+{    
+   return str.replace(/\s/g,'');    
+}
+function isNumber(str)
+{ 
+	if(""==str)
+	{ 
+		return false; 
+	} 
+	var reg = /\D/; 
+	return str.match(reg)==null; 
+}
+function checkvalue()
+{    
+	var qt=trim(document.getElementById('qtitle').value);
+	var qc=trim(document.getElementById('questiondes').value);
+	var rd=trim(document.getElementById('myrands').value);
+	var allpoints='<{$allp}>';
+	var rews=document.getElementById('reward').value;
+	if(!document.getElementById('catid').value)
+	{
+		alert('<{$lang.plselask}>');
+		return false;
+	}
+	if(qt.length<1)
+	{
+		alert('<{$lang.titnull}>');
+		document.getElementById('qtitle').focus();
+		return false;
+	}
+	if(!isNumber(rews) || (rews-allpoints)>0 || rews<0)
+	{
+		alert('<{$lang.rewarderr}>');
+		document.getElementById('reward').value='';
+		document.getElementById('reward').focus();
+		return false;
+	}
+	if(qc.length>10000)
+	{
+		alert('<{$lang.deslerr}>');
+		return false;
+	}
+	if(rd.length!=4)
+	{
+		alert('<{$lang.randcodeerr}>');
+		document.getElementById('myrands').focus();
+		return false;
+	}
+}
+function initvalue()
+{ 
+	document.getElementById('qtitle').focus();
+}
+</script>
+<link href="<{$config.weburl}>/module/ask/templates/default/ask.css" rel="stylesheet" type="text/css" />
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <a href="<{$config.weburl}>/?m=ask">Вопрос</a> &raquo; Сообщение
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+<div id="askright">   
+	<div class="asktitle">
+		<ul class="center2">
+			<span class="normaltitle"><{$lang.qcat}></span>
+			<a href="<{$config.weburl}>/?m=ask&s=ask_list"><span class="askmore"><{$lang.qm}></span></a>
+		</ul>
+	</div>
+	<div class="askcatcon">
+		<div style="border-bottom:1px #bdd7f4 solid;margin-left:10px; line-height:22px;">
+			<span ><a href="<{$config.weburl}>/?m=ask&s=ask_list&cat=1" style="color:green;width:100%"><{$lang.unresol}><{$newq}></a></span><br/>
+			<span ><a href="<{$config.weburl}>/?ask_list&cat=2" style="color:green;width:100%"><{$lang.resol}><{$resq}></a> </span><br/>
+			<span><a href="<{$config.weburl}>/?ask_list&cat=reward" style="color:green;width:100%"><{$lang.rewar}><{$rewq}></a> </span>
+		</div>
+		<div id="askcat">
+			<{foreach item=cList key=num from=$cat}>
+			<ul>
+				<li>
+					<a class="btitle" href="<{$config.weburl}>/?m=ask&s=ask_list&id=<{$cList.catid}>" title="<{$cList.cat}>"><{$cList.cat}></a>
+					<{if $cList.sub}>
+					<br/>
+					<{foreach item=sublist from=$cList.sub key=nums}>
+					<{if $nums<5}>
+					<a href="<{$config.weburl}>/?m=ask&s=ask_list&id=<{$sublist.catid}>" title="<{$sublist.cat}>"><{$sublist.cat}></a> |
+					<{/if}>
+				   <{/foreach}>
+				   <{/if}>
+				</li>			
+			</ul>
+		  <{/foreach}>
+		</div>
+	</div>
+</div>
+
+<div class="askmain">
+<{if !$smarty.cookies.USER}>
+<{$lang.login}>
+<{else}>
+
+<div class="myasktitle"><ul class="center"><span class="normaltitle">Вопрос</span></ul></div>
+
+<div class="mynewaskd"> 
+<form action="" method="post">
+<table width="100%"  border="0" align="center" cellpadding="0" cellspacing="1">
+	<tr>
+	 <td>Категория вопроса</td>
+	<td height="30" align="left">
+	<select name="catid" id="catid" onChange="getHTML(this.value,'tcatid')">
+	<option value=""><{$lang.plselask}></option>
+	<{foreach item=list from=$qcat}>
+	<option value="<{$list.catid}>" <{if $list.catid==$incat}>selected="selected"<{/if}>><{$list.cat}></option>
+	<{/foreach}>  
+	</select>
+	<select style="visibility:hidden"  name="tcatid" id="tcatid" onChange="getHTML(this.value,'scatid')">
+	</select>
+	<select style="visibility:hidden"  name="scatid" id="scatid">
+	</select>
+	</td>
+<tr>
+<td  height="30" align="left"><{$lang.qtit}></td>
+<td  align="left"><input type="text" name="qtitle" id="qtitle" maxlength="100" style="width:480px;" value="<{$editq.title}>"/></td>
+</tr>
+<tr>
+<td height="30"  align="left"><{$lang.qdes}></td>
+<td align="left"><textarea name="questiondes" id="questiondes" style="width:480px;height:240px;" onKeyUp="getmsg();"><{$editq.content}></textarea></td>
+</tr>
+<tr>
+<td height="30" align="left"><{$lang.rewf}></td>
+<td align="left"><input type="text" name="reward" id="reward" maxlength="10" style="width:100px;" value="<{ if $editq.reward>0}><{$editq.reward}><{else}>0<{/if}>"/><{$lang.youhre}><img src="image/default/mon.gif"><{if $allp}><{$allp}><{else}>0<{/if}></td>
+</tr>
+<tr>
+	<td><{$lang.rcode}></td>
+  <td  align="left">
+  <span style="float:left;">
+      <input style="height:19px;" name="myrands" type="text" id="myrands" size="5" maxlength="5" >
+      <img id="randfunc" onClick="get_randfunc(this);" style="margin-left:5px;margin-top:5px; cursor:pointer;" src='<{$config.weburl}>/includes/rand_func.php'/>
+      <{if $smarty.get.errorcode}>
+      <font color="red"><{$lang.rcodeerr}></font>
+      <{/if}>
+  </span>
+  <span id="msg" style="float:right;color:#CCCCCC;margin-right:50px;font-size:12px;"></span>
+  </td>
+</tr>
+<tr>
+<td></td>
+<td height="40" align="center">
+  <input type="submit" name="add_question" id="add_question" value="<{$lang.asub}>" onClick="return checkvalue();">
+  <input onClick="window.parent.close_win();" type="button" name="cancela" id="cancela" value="<{$lang.acancel}>">
+  <input  type="hidden" name="editid" id="editid" value="<{$smarty.get.qid}>">
+</td>
+</tr>
+</table>
+</form>
+<{/if}>
+</div>
+
+
+
+
+
+
+
+</div>

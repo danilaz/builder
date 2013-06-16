@@ -1,0 +1,208 @@
+<script src="script/my_lightbox.js" language="javascript"></script>
+<script>
+closeimg='<{$config.weburl}>/image/default/icon_close.gif';
+weburl='<{$config.weburl}>';
+</script>
+<style>
+#pic_view{width:100%}
+#pic_view li{ float:left; width:55px;}
+</style>
+<script>
+var province='<{$de.province}>';
+var city='<{$de.city}>';
+function getcity(v)
+{	
+	var ob="city";
+	var url = 'ajax_back_end.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&prov_id='+v;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'post', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+		var i=0;var j=0;
+		eval(tempStr);
+		for(var s in MyMe)
+		{
+			++j;
+		}
+		$(ob).options.length =j+1;
+		for(var k in MyMe)
+		{
+			var cityId=MyMe[k][0];
+			var ciytName=MyMe[k][1];
+			$(ob).options[k].value = ciytName;
+			$(ob).options[k].text = ciytName;
+			if(city!=''&&city==ciytName)
+				$(ob).options[k].selected = true;
+	　	}
+	 }
+　}
+<{if !$de.country}>
+getprovince('');
+<{else}>
+getprovince('<{$de.country}>');
+<{/if}>
+<{if $de.city}>
+getcity('<{$de.province}>');
+<{/if}>
+function getprovince(v)
+{
+	var ob="province";
+	var url = 'ajax_back_end.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&country_id='+v;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'post', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+		var i=0;var j=0;
+		eval(tempStr);
+
+		for(var s in MyMe)
+		{
+			++j;
+		}
+        if(j==0){
+		    $('pc1').style.display='';
+		    $('pc2').style.display='none';
+		    $('city').value='';
+		    $('province').value='';
+		    $('city').value='';
+		    $('province').value='';
+            return;
+        }else{
+		    $('pc2').style.display='';
+		    $('pc1').style.display='none';
+		    $('city1').value='';
+		    $('province1').value='';
+        }
+		$(ob).options.length =j+1;
+		for(var k in MyMe)
+		{
+			var provinceId=MyMe[k][1];
+			var provinceName=MyMe[k][1];
+			$(ob).options[k].value = provinceName;
+			$(ob).options[k].text = provinceName;
+			if(province!=''&&province==provinceName)
+				$(ob).options[k].selected = true;
+	　	}
+	 }
+}
+</script>
+<form method="post" action="" enctype="multipart/form-data">
+<div class="admin_right_top"><{if $smarty.get.edit}><{$lang.edit_brand}><{else}><{$lang.add_brand}><{/if}></div>
+		<table  border="0" cellspacing="1" cellpadding="6" align="left" bgcolor="#DDDDDD" class="admin_table" width="100%">
+        <tr>
+            <td width="18%" align="left" bgcolor="#EAEFF3">Бренды<font color="red">*</font> </td>
+            <td bgcolor="#FFFFFF" width="82%" style="font-weight:normal">
+            <input type="text" value="<{$de.name}>" id="name" name="name" style="width:200px;" />
+            </td>
+        </tr>
+        <tr>
+            <td align="left" bgcolor="#EAEFF3">Название компании</td>
+            <td bgcolor="#FFFFFF">
+            <input type="text" value="<{$de.company}>" id="company" name="company" style="width:200px;" />
+            </td>
+        </tr>
+        <tr>
+            <td align="left" bgcolor="#EAEFF3">Телефон</td>
+            <td bgcolor="#FFFFFF">
+            <input type="text" value="<{$de.tel}>" name="tel" style="width:200px;" />
+            </td>
+        </tr>
+        <tr>
+            <td align="left" bgcolor="#EAEFF3">Веб-сайт</td>
+            <td bgcolor="#FFFFFF">
+            <input type="text" value="<{$de.url}>" name="url" style="width:200px;" />
+            </td>
+        </tr>
+        <tr>
+            <td align="left" bgcolor="#EAEFF3">Страна</td>
+            <td bgcolor="#FFFFFF">
+                <select onchange="getprovince(this.value);" name="country" id="country">
+                <{foreach item=clist key=num from=$country}><option value="<{$clist.id}>" <{if $clist.name=='Китай' and $de.country=="" }> selected="selected"<{elseif $clist.id==$de.country}> selected="selected"<{/if}> ><{$clist.name}></option><{/foreach}>
+                </select>	
+            </td>
+        </tr>
+        <tr>
+            <td align="left" bgcolor="#EAEFF3">Области, города</td>
+            <td bgcolor="#FFFFFF">
+            <div id="pc1" style="display:none; float:left;">
+            <input id="province1" name="province1" type="text" value="<{$de.province}>" />
+            <input id="city1" name="city1" type="text" value="<{$de.city}>"/>
+            </div>
+            <div id="pc2" style="display:none; float:left;">
+            <select name="province" id="province" onChange="getcity(this.value)"/><option value="">Выберите область</option></select>
+            <select name="city" id="city" /> <option value="">Выберите город</option></select>
+            </div> 
+            </td>
+        </tr>
+        <tr>
+            <td align="left" bgcolor="#EAEFF3">Описание<font color="red">*</font> </td>
+            <td bgcolor="#FFFFFF">
+            <{if $de.con}>
+			<{$de.con}>
+			<{else}>
+			<script type="text/javascript" src="lib/fckeditor/fckeditor.js"></script>
+			<script type="text/javascript">
+			var oFCKeditor = new FCKeditor( 'con' ) ;
+			oFCKeditor.Config['ToolbarStartExpanded'] = true ;
+			<{if $config.language=='en'}>
+				oFCKeditor.Config['DefaultLanguage']='en';
+			<{else}>
+				oFCKeditor.Config['DefaultLanguage']='zh-cn';
+			<{/if}>
+			oFCKeditor.BasePath		= 'lib/fckeditor/' ;
+			oFCKeditor.ToolbarSet	= 'frant' ;
+			oFCKeditor.Width='100%';
+			oFCKeditor.Height=500;
+			oFCKeditor.Create() ;
+			</script>
+            <{/if}>
+            </td>
+        </tr>
+        <tr>
+            <td align="left" bgcolor="#EAEFF3">Логотип<font color="red">*</font> </td>
+            <td bgcolor="#FFFFFF">
+            <input name="pic" type="text" id="pic" value="<{$de.pic}>" size="60">
+		 [<a href="javascript:uploadfile('Загрузить логотип','pic',120,80)">Загрузить</a>] 
+		 [<a href="javascript:preview('pic');">Препромотр</a>]
+		 [<a onclick="javascript:$('pic').value='';" href="#">Удалить</a>]
+            </td>
+        </tr>
+        <tr bgcolor="#EAEFF3">
+            <td></td>
+            <td bgcolor="#FFFFFF">
+                <input onclick="return check_value();" name="Submit" type="submit" id="Submit" value="<{$lang.submit}>" style="width:100px;" />
+                <input name="submit" type="hidden" id="submit" value="<{if $de.id}>edit<{else}>submit<{/if}>" />
+                <input name="editID" type="hidden" id="editID" value="<{$de.id}>" />
+            </td>
+        </tr>
+</table>
+</form>
+<script>
+function check_value()
+{
+	
+	if(!$('name').value){
+		alert('Укажите название!');
+		$('name').focus();
+		return false;
+	}
+	
+	if(!$('pic').value) 
+	{
+		alert("Укажите логотип!");
+		$('pic').focus();
+		return false;
+	}
+
+}
+</script>

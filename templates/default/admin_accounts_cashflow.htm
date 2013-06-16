@@ -1,0 +1,57 @@
+<div class="admin_right_top"><{$lang.flow_a}></div>
+	<table width='100%' border="0" cellpadding="7" cellspacing="1" bgcolor="#DDDDDD" class="admin_table">
+    <form action="" method="post">
+  <tr>
+	<td height="24" align="left" bgcolor="#EAEFF3"><{$lang.flow_b}></td>
+	<td bgcolor="#FFFFFF"><input type="text" name="tstart" value="<{ $smarty.post.tstart }>" size="20"> - <input type="text" name="tend" value="<{ $smarty.post.tend }>" size="20"> 
+    <br>
+    <{$lang.flow_c}>
+    </td>
+  </tr>
+  <tr>
+	<td height="24" align="left" bgcolor="#EAEFF3"><{$lang.flow_n}></td>
+	<td bgcolor="#FFFFFF">
+	
+    <select name="cashflow_type" style="width:120px;">
+	<option value=""><{$lang.flow_q}></option>
+	<{foreach item=list key=nums from=$cashconfig}>
+        <option value="<{$nums}>" <{if $smarty.post.cashflow_type==$nums}>selected<{/if}>><{$list}></option>
+    <{/foreach}> 
+    </select></td>
+  </tr>
+  <tr>
+	<td height="24" align="right" bgcolor="#EAEFF3"> </td>
+	<td bgcolor="#FFFFFF">
+	  <input  type='submit' name='Submit' value='<{$lang.flow_a}>' style="width:100px;">
+	  <input name="action" type="hidden" id="action" value="search" /></td>
+  </tr>
+
+  </form>
+</table>
+<br>
+<table width='100%' border="0" cellpadding="7" cellspacing="1" bgcolor="#DDDDDD" class="admin_table">
+  <tr bgcolor="#EAEFF3">
+	<td width='10%' height="24" align="left"><{$lang.flow_f}></td>
+    <td width='12%' height="24" align="left"><{$lang.flow_g}></td>
+    <td width='20%' height="24" align="left"><{$lang.flow_i}></td>
+    <td width='15%' height="24" align="left"><{$lang.flow_j}></td>
+    <td width='15%' height="24" align="left"><{$lang.flow_k}></td>
+    <td width='*%' height="24" align="left"><{$lang.flow_l}></td>
+  </tr>
+<{foreach item=list from=$re.list}>
+  <tr bgcolor="#ffffff">
+	<td height="24" align="left"><{ $list.id }></td>
+    <td height="24" align="left"><{ $list.amount}> <{$config.money}></td>
+    <td height="24" align="left"><{$list.cashflow_type}></td>
+    <td height="24" align="left"><{ $list.add_time|date_format }></td>
+    <td height="24" align="left"><{ $list.is_succeed }></td>
+    <td height="24" align="left"><{ $list.user_note }></td>
+  </tr>
+<{/foreach}>
+  <tr bgcolor="#EAEFF3">
+	<td colspan="7"><{$lang.flow_h}> <{$earning}> <{$config.money}>&nbsp;&nbsp;&nbsp;<{$lang.flow_o}> <{$pay|number_format:2}> <{$config.money}>&nbsp;&nbsp;&nbsp;<{$lang.flow_p}><{$allt|number_format:2}> <{$config.money}></td>
+  </tr>
+  <tr bgcolor="#EAEFF3">
+	<td colspan="7"><{$re.page}></td>
+  </tr>
+</table>

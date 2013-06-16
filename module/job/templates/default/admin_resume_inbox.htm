@@ -1,0 +1,81 @@
+<link href="<{$config.weburl}>/templates/<{$config.temp}>/job.css" rel="stylesheet" type="text/css" />
+<style>
+.radio { margin-top:3px; } 
+</style>
+<script src="script/my_lightbox.js" language="javascript"></script>
+<div class="admin_right_top"><span style=" float:left"><{$lang.resumme_inbox}></span>
+
+<a style="float:right; margin-right:10px; font-size:12px; text-decoration:none; color:#333" href="main.php?action=m&m=job&s=admin_resume_inbox&menu=usershop<{if $smarty.get.jid==""}>&jid=0<{/if}>"><{if $smarty.get.jid==""}><{$lang.all_resumme}><{else}><{$lang.all_job}><{/if}></a>
+
+</div>
+<table class="admin_table" width="100%" border="0" cellspacing="1" bgcolor="#FFFFFF">
+<form action="" method="post">
+    <{if $smarty.get.jid==""}>
+    <tr bgcolor="#E8E8E8"  style="font-weight:bold"> 
+	  <td><{$lang.recruit_post}></td>
+	  <td align="center" width="8%"><{$lang.resumme_num}></td>
+      <td align="center" width="8%"><{$lang.read_num}></td>
+      <td align="center" width="8%"><{$lang.feedback_num}></td>
+      <td align="center" width="15%"><{$lang.operation}></td>
+	</tr>
+    <{foreach item=list from=$re.list}>
+	<tr bgcolor="#F7F7F7"> 
+	  <td><{$list.title}></td>
+	  <td align="center"><{$list.anum}></td>
+      <td align="center"><{$list.fnum}></td>
+	  <td align="center"><{$list.lnum}></td>
+      <td align="center"><a href="main.php?action=m&m=job&s=admin_resume_inbox&menu=usershop&jid=<{$list.id}>"><{$lang.look}></a></td>
+	</tr>
+	<{/foreach}>
+    <{/if}>
+    <{if $smarty.get.jid!=""}>
+    <tr>
+      <td colspan="7" style="padding:0px;">
+     	<table width="100%" border="0" cellspacing="1">
+        <tr bgcolor="#E8E8E8" style="font-weight:bold"><td colspan="5"><{$lang.search}></td></tr>
+        <tr>
+             <td bgcolor="#E8E8E8"><{$lang.state}></td>
+             <td bgcolor="#F7F7F7" colspan="4">
+             <{foreach item=val key=num from=$state}><input type="radio" class="radio" name="state" value="<{$num+1}>" <{if $smarty.post.state==($num+1) or $num==0 and $smarty.post.state==""}>checked="checked" <{/if}> ><u><{$val}></u><{/foreach}>
+             </td>
+         </tr>
+         <tr>
+            <td bgcolor="#E8E8E8" width="10%"><{$lang.degree}></td>
+            <td bgcolor="#F7F7F7" width="18%">
+            <select name="degree" style="width:100px;"><option <{if $smarty.post.degree=="-1" or $smarty.post.degree=="0"}>selected="selected"<{/if}> value="-1"><{$lang.no}></option><{foreach item=val key=num from=$degree}><option value="<{$num+1}>" <{if $smarty.post.degree==($num+1)}>selected="selected"<{/if}> ><{$val}></option><{/foreach}></select>
+            </td>
+            <td bgcolor="#E8E8E8" width="10%"><{$lang.sex}></td>
+            <td bgcolor="#F7F7F7">
+            <input type="radio" class="radio" name="sex" value="-1" <{if $smarty.post.sex=="-1" or $smarty.post.sex==""}>checked="checked"<{/if}> ><u><{$lang.no}></u>
+            <input type="radio" class="radio" name="sex" value="0" <{if $smarty.post.sex=="0"}> checked="checked"<{/if}> ><u><{$lang.male}></u>
+            <input type="radio" class="radio" name="sex" value="1" <{if $smarty.post.sex=="1"}> checked="checked"<{/if}> ><u><{$lang.female}></u></td>
+            <td bgcolor="#F7F7F7"><input type="submit" value="<{$lang.search}>" /></td>
+         </tr>
+         </table><br />
+       </td>
+    </tr>
+    <tr bgcolor="#E8E8E8"  style="font-weight:bold"> 
+	  <td><{$lang.name}></td>
+	  <td align="center" width="15%"><{$lang.sex}></td>
+	  <td align="center" width="15%"><{$lang.degree}></td>
+      <td align="center" width="15%"><{$lang.experience_years}></td>
+      <td align="center" width="18%"><{$lang.sendtime}></td>
+      <td align="center" width="15%"><{$lang.operation}></td>
+	</tr>
+    <{foreach item=list from=$re.list}>
+	<tr bgcolor="#F7F7F7">
+      <td><{$list.uname}></td>
+	  <td align="center"><{if $list.usex==0}><{$lang.male}><{else}><{$lang.female}><{/if}></td>
+	  <td align="center"> <{foreach item=val key=num from=$degree}><{if $val.degree==$num}><{$val}><{/if}><{/foreach}></td>
+      <td align="center"><{$list.experience_years}><{$lang.year}></td>
+	  <td align="center"><{$list.time|date_format}></td>
+      <td align="center"><a href="<{$config.weburl}>/?m=job&s=resume_detail&id=<{$list.rid}>"><{$lang.look}></a> <a onclick="alertWin('<{$lang.resumereply}>','',550,530,'<{$config.weburl}>/?m=job&s=resume_feedback&id=<{$list.rid}>');" ><{$lang.feedback}></a> <a href="main.php?action=m&m=job&s=admin_resume_inbox&menu=usershop&rbid=<{$list.rbid}>"><{$lang.delete}></a></td>
+	</tr>
+    <{/foreach}>
+    <tr>
+       <td colspan="7" align="left"></td>
+    </tr>
+    <{/if}>
+</form>
+</table>
+<div align="right"><{$re.page}></div>

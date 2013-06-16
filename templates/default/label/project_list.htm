@@ -1,0 +1,16 @@
+<{foreach item=list from=$project}>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom:1px dashed #DDDDDD; margin-bottom:3px;">
+  <tr>
+    <td width="80" align="left" style="width:80px; height:80px; border:solid 1px #999999; padding:3px;">
+    <{assign var="pic" value=$list.pictures|explode_one:"," }>
+    <{html_image file="uploadfile/zsimg/size_small/$pic.jpg" width=80}>    </td>
+    <td width="300" align="left" style="padding:5px;">
+        <a href="<{$config.weburl}>/shop.php?menu=<{$smarty.get.menu}>&action=project&uid=<{$list.userid}>&id=<{$list.id}>">
+         <{$list.projecttitle}>        </a>
+        <br />
+        Date:<{$list.uptime|date_format}>
+    </td>
+    <td width="*" rowspan="2"><img src="<{$config.weburl}>/image/<{$config.temp}>/listicon_inquiry.gif" width="18" align="absmiddle" border="0" height="14"> <a rel="nofollow" href="<{geturl type='mail' uid=$list.userid user=$list.user}>">Connect Now</a></td>
+  </tr>
+</table>
+<{/foreach}>

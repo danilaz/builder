@@ -1,0 +1,1 @@
+<?php $mail_config = unserialize('a:5:{s:9:"emailPass";s:0:"";s:5:"email";s:0:"";s:4:"smtp";s:0:"";s:11:"detail_mail";s:1:"0";s:10:"mail_statu";s:1:"1";}');?>

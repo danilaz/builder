@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* CSS Document */
+body{ cursor:default}
+h3{ font-size:14px; font-weight:bold; font: Arial, Verdana, Geneva, sans-serif; margin:0px; }
+.dis{ display:none}
+.noborder{ border-bottom:none !important;}
+.clear{ clear:both}
+#box{ border:1px solid #cfcfcf; border-top:none; margin-bottom:10px;}
+#tit{ font-size:14px; color:#000; font-weight:bold; background:url(../../image/default/bg_title_r.png) repeat-x; height:28px; line-height:28px;}
+#tit div{ margin-left:20px;}
+#con{ padding:5px 15px; text-align:left ;}
+#tits{background:url(../../image/default/title3.gif) repeat-x;height:31px;line-height:31px; border-top:1px solid #cfcfcf;}
+#tits div{ margin-left:20px;}
+#tits div h3{ float:left; margin-top:2px;}
+#tits div a{ float:right; color:#0087ff; font-size:12px; margin:3px 10px 0px; text-decoration:none}
+#cons{ padding:5px 15px; text-align:left ;}
+#cons li,#con li{ background:url("../../image/default/icon1.jpg") no-repeat left center; padding-left:10px;float:left; border-bottom:1px dotted #f3f3f3; width:94%; height:20px; overflow:hidden;}
+.project_left{ float:left; width:250px;}
+.project_center{ float:left; margin:0 10px; width:440px; }
+.project_right{ float:right; width:250px;}
+.project_right1{ float:right; width:700px;  margin:0 0 0 10px;}
+
+/*--滑动门--*/
+.tab_proj h3{padding:8px 10px 9px 8px; width:14px; line-height:18px; border-right:1px solid #E2E2E2; border-bottom:1px solid #E2E2E2;}
+.tab_proj #tab2{ border-bottom:none}
+.tab_proj .current{ background:url(../../image/default/proj_tab_2.png) no-repeat; border-right:none; padding-left:10px;}
+.tab_proj .tabs{ background:url(../../image/default/proj_tab_1.png)}
+.tab_proj .tab_con{ padding:5px 10px;}
+/*--创业资金--*/
+.proj_money #con a{ padding:0px 8px 0px 0px;}
+/*--创业类别--*/
+.proj_cat{ border-bottom:1px dotted #e2e2e2; line-height:20px; padding:2px 0px} 
+.proj_cat p{ line-height:22px; font-weight:bold;}
+.proj_cat p a,.proj_cat p a:visited{ color:#005AA6;}
+/*--最近项目--*/
+.tab_proj_list tr td { width:33%;}
+/*--厂商展厅--*/
+.tab_proj_com tr td{ width:16.6%; height:135px; padding:15px 0px 5px 0px; text-align:center; line-height:16px;}
+.tab_proj_com tr td a{ text-decoration:none; color:#666}
+.tab_proj_com img{ width:95px; height:75px; margin-bottom:5px;}
+.tab_proj_com .class_1{ cursor:hand; }
+.tab_proj_com .class_2{  cursor:hand; font-size:14px; padding-top:5px;}
+.tab_proj_com .class_2 img { width:110px; height:85px;}
+
+.proj_box #box{ width:32%; float:left;}
+.content10{ padding:2px 20px;}

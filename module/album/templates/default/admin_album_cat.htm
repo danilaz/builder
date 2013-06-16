@@ -1,0 +1,182 @@
+<div class="admin_right_top">
+<span style="float:left"><{$lang.album_cat_list}></span>
+</div>
+<div>
+<{if !$smarty.get.edit && $re}>
+<table class="admin_table" border="0" cellspacing="1" bgcolor="#FFFFFF">
+	<tr bgcolor="#E8E8E8" style="font-weight:bold" height="22">
+	  <td width="10%" align="left"><{$lang.album_cat_cover}></td>
+	  <td width="13%" align="left"><{$lang.album_cat_name}></td>
+	  <td width="*%"  align="left"><{$lang.album_cat_des}></td>
+	  <td width="22%" align="center"><{$lang.operation}></td>
+	</tr>
+	<{foreach item=list from=$re}>
+	<tr>
+	  <td align="left">
+      <a href="?menu=<{$smarty.get.menu}>&action=m&m=album&s=admin_album&catid=<{$list.id}>">
+      <{assign var="img" value=$list.id}>
+      <{html_image file=uploadfile/catimg/size_small/$img.jpg width=100 alt="$list.name"}>
+      </a>
+      </td>
+	  <td valign="top"><{$list.name}><br />(<a href="?menu=<{$smarty.get.menu}>&action=m&m=album&s=admin_album&catid=<{$list.id}>"><{$list.count}> фото</a>)</td>
+	  <td valign="top"><{$list.des}></td>
+	  <td valign="top" align="center">
+        <a href="?menu=<{$smarty.get.menu}>&action=m&m=album&s=admin_album&catid=<{$list.id}>">
+		<img src="/image/default/image_add.png" title="Загрузить фото"></a>
+		<a href="?menu=<{$smarty.get.menu}>&action=m&m=album&s=admin_album_cat&edit=<{$list.id}>">
+		<img src="/image/default/image_edit.png" title="Редактировать альбом"></a>
+		<a href="?menu=<{$smarty.get.menu}>&action=m&m=album&s=admin_album_cat&deid=<{$list.id}>" onclick="return confirm('<{$lang.confirm}>');">
+		<img src="/image/default/image_delete.png " title="Удалить альбом"></a>
+        </td>
+	</tr>
+	<{/foreach}>
+  </table>
+	<{/if}>
+
+
+<form method="post" action="" enctype="multipart/form-data" onsubmit="return check_value();">
+<table border="0" cellspacing="1" bgcolor="#FFFFFF" class="admin_table">
+	<tr bgcolor="#e8e8e8" style="font-weight:bold" height="22">
+	  <td colspan="2"><{if $smarty.get.edit && $re}><{$lang.album_cat_edit}><{else}><{$lang.album_cat_add}><{/if}></td>
+	</tr>
+    <tr bgcolor="#f7f7f7">
+      <td align="left"><{$lang.sys_cat}></td>
+      <td>
+      		<select name="catid" id="catid" onchange="getHTML(this.value,'tcatid')">
+            <option value=""><{$lang.select_category}></option>
+            <{foreach item=list from=$cat}>
+              <option value="<{$list.catid}>" <{if $list.catid==$re.catid}>selected="selected"<{/if}> >
+              <{$list.cat}>
+              </option>
+            <{/foreach}>  
+            </select>
+			<select style="visibility:hidden" name="tcatid" id="tcatid" onchange="getHTML(this.value,'scatid')"></select>
+			<select style="visibility:hidden"  name="scatid" id="scatid"></select>
+            </td>
+    </tr>
+    <tr bgcolor="#f7f7f7"> 
+        <td align="left" width="20%">
+            <{$lang.album_cat_name}><span class="admin_red">*</span>        </td>
+      <td width="80%">
+          <input name="name" id="name" maxlength="50" type="text" style="width:300px;" value="<{if $smarty.get.edit && $re}><{$re.name}><{/if}>" />        </td>
+    </tr>
+    <tr bgcolor="#f7f7f7">
+        <td align="left">
+            <{$lang.album_cat_des}><span class="admin_red">*</span>        </td>
+        <td>
+            <textarea name="des" id="des" maxlength="300" style="width:300px;font-size:12px; height:60px;"><{if $smarty.get.edit && $re}><{$re.des}><{/if}></textarea>        </td>
+    </tr>
+    <tr bgcolor="#f7f7f7">
+        <td align="left">
+            <{$lang.album_cat_cover}><span class="admin_red">*</span>        </td>
+        <td>
+            <{if $smarty.get.edit && $re}>
+            <img src="<{$config.weburl}>//uploadfile/catimg/size_small/<{$re.id}>.jpg" /><br />
+            <{/if}>
+            <input name="pic" id="pic" type="file" />        </td>
+    </tr>
+    <tr bgcolor="#f7f7f7">
+        <td align="left">
+            <input name="action" type="hidden" id="submit" value="<{if $smarty.get.edit && $re}>edit<{else}>submit<{/if}>" />        </td>
+        <td>
+            <input name="editid" type="hidden" value="<{$re.id}>" />
+            <input type="submit" style="height: 22px;" value=" <{if $smarty.get.edit && $re}><{$lang.album_cat_edit}><{else}><{$lang.album_cat_add}><{/if}>" /></td>
+        </tr>
+  </table>
+  </form>
+</div>
+<script type="text/javascript">
+
+//==========================================
+function check_value()
+{
+	if(!$('name').value){
+		alert('<{$lang.name_notice}>');
+		$('name').focus();
+		return false;
+	}
+	if(!$('des').value){
+		alert('<{$lang.des_notice_req}>');
+		$('des').focus();
+		return false;
+	}else if($('des').value.lenght>180){
+		alert('<{$lang.des_notice_max}>');
+		$('des').focus();
+		return false;
+    }
+	<{if !$smarty.get.edit}>
+	v=$('pic').value;
+	if(!v){
+		alert('<{$lang.pic_notice}>');
+		$('pic').focus();
+		return false;
+	}
+	else
+	{
+		Ary = v.split('.');
+		filetype=Ary[Ary.length-1];
+		if (filetype=='jpg'||filetype=='jpeg'||filetype=='gif'||filetype=='png'||filetype=='JPEG'||filetype=='JPG'||filetype=='GIF'){
+			return true;
+		}
+		else{
+			alert ('<{$lang.picture_not_correct}>');
+			return false;
+		}
+	}
+	<{/if}>
+
+}
+
+
+var scatid='<{$re.scatid}>';
+var tcatid='<{$re.tcatid}>';
+function getHTML(v,ob)
+{	
+	var url = 'ajax_back_end.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&cattype=album&pcatid='+v;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'post', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+		var i=1;var j=0;
+		eval(tempStr);
+		for(var s in MyMe)
+		{
+			++j;
+		}
+		if(j>0)
+			$(ob).style.visibility="visible";
+		else
+			$(ob).style.visibility="hidden";
+		$(ob).options.length =j+1;
+		$(ob).options[0].value = '';
+		$(ob).options[0].text = '<{$lang.select_sub}>';
+		$(ob).options[0].selected = true;
+		//alert(j);
+		for(var k in MyMe)
+		{
+			var cityId=MyMe[k][0];
+			var ciytName=MyMe[k][1];
+			if(ob=='tcatid'&&i==1)
+			{
+				if(tcatid!='')
+	 				getHTML(tcatid,'scatid');
+				else
+					getHTML(cityId,'scatid');
+			}
+			$(ob).options[i].value = cityId;
+			$(ob).options[i].text = ciytName;
+			if(cityId==scatid||cityId==tcatid)
+				$(ob).options[i].selected = true;
+			i++;
+	　	}
+	 }
+　}
+<{if $re.catid}>
+getHTML('<{$re.catid}>','tcatid');
+<{/if}>
+</script>

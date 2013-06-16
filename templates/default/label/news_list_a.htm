@@ -1,0 +1,3 @@
+<{foreach item=list name=name from=$news}>
+<a target="_blank" title="<{$list.title}>" <{$list.style}> href="<{$list.url}>"><{$list.ftitle|truncate:$leng}></a>
+<{/foreach}>

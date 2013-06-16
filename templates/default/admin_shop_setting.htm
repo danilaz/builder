@@ -1,0 +1,149 @@
+<div class="admin_right_top"><{$lang.shop_setting}></div>
+<script language="javascript"> 
+function change()
+{
+	var el= document.getElementsByTagName('input');     
+	var len = el.length;     
+	for(var i=0; i<len; i++)     
+	{         
+		if((el[i].type=="checkbox")&&(el[i].checked==false))        
+		{ 
+			el[i].checked=true; 
+			el[i].value="2";
+		}    
+	} 
+}
+</script>
+<form action="" method="post" enctype="multipart/form-data">
+<table width='100%' border="0" cellpadding="7" cellspacing="1" bgcolor="#DDDDDD" class="admin_table">
+<tr>
+<td bgcolor="#EAEFF3"><{$lang.menu_t}></td>
+<td bgcolor="#FFFFFF">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr> 
+		<td bgcolor="#FFFFFF" style="font-weight:normal"><{$lang.is_show}></td>
+		<td bgcolor="#FFFFFF" style="font-weight:normal"><{$lang.order_s}></td>
+		<td bgcolor="#FFFFFF" style="font-weight:normal"><{$lang.titles}></td>
+	</tr>
+	<{foreach item=list key=num  from=$shopconfig.menu}>
+	 <tr> 
+	   <td width='50' bgcolor="#FFFFFF"><input name="menu_show[]" type="checkbox"  value="1" <{if $list.menu_show=='1'}>checked<{/if}>></td>
+       <td width='20' bgcolor="#FFFFFF">
+	   <{if $have_set}>
+	   <input name="menu_order[]" type="text" value="<{$list.menu_order}>"  size="5" maxlength="3" >
+	   <{else}>
+	   <input name="menu_order[]" type="text" value="<{$num}>"  size="5" maxlength="3" >
+	   <{/if}>
+	   </td>
+       <td width='*%' bgcolor="#FFFFFF"><input name="menu_name[]" type="text" value="<{$list.menu_name}>"  size="20" maxlength="100" ><input name="menu_link[]" type="hidden" value="<{$list.menu_link}>">
+	    <input name="module[]" type="hidden" value="<{$list.module}>">
+	   </td>
+       </tr>
+	<{/foreach}>
+</table>
+</td>
+</tr>
+<tr>
+<td bgcolor="#EAEFF3"><{$lang.home_page}></td>
+<td bgcolor="#FFFFFF">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+    <td height="24" bgcolor="#FFFFFF"><span ><input type="checkbox" name="home_intro_show" value="1" <{if $shopconfig.home_intro_show=='1'}>checked<{/if}>> </span></td>
+    <td bgcolor="#FFFFFF"><span><input name="home_intro_name" type="text"  size="20" maxlength="100" value="<{$shopconfig.home_intro_name}>">
+    </span></td>
+    </tr>
+		<tr>
+    <td height="24" bgcolor="#FFFFFF"><span ><input type="checkbox" name="home_recpro_show"  value="1" <{if $shopconfig.home_recpro_show=='1'}>checked<{/if}>> </span></td>
+    <td bgcolor="#FFFFFF"><span><input name="home_recpro_name" type="text"   size="20" maxlength="100" value="<{$shopconfig.home_recpro_name}>">
+    </span><{$lang.sums}>
+	<input name="home_recpro_nums" type="text"   size="5" maxlength="5" value="<{$shopconfig.home_recpro_nums}>">
+	</td>
+    </tr>
+		<tr>
+
+    <td height="24" bgcolor="#FFFFFF"><span ><input type="checkbox" name="home_newoffer_show"  value="1" <{if $shopconfig.home_newoffer_show=='1'}>checked<{/if}>> </span></td>
+    <td bgcolor="#FFFFFF"><span><input name="home_newoffer_name" type="text"   size="20" maxlength="100" value="<{$shopconfig.home_newoffer_name}>">
+    </span><{$lang.sums}>
+	<input name="home_newoffer_nums" type="text"   size="5" maxlength="5" value="<{$shopconfig.home_newoffer_nums}>"></td>
+    </tr>
+		<tr>
+    <td height="24" bgcolor="#FFFFFF"><span ><input type="checkbox" name="home_news_show"  value="1" <{if $shopconfig.home_news_show=='1'}>checked<{/if}>> </span></td>
+    <td bgcolor="#FFFFFF"><span><input name="home_news_name" type="text"  size="20" maxlength="100" value="<{$shopconfig.home_news_name}>">
+    </span><{$lang.sums}>
+	<input name="home_news_nums" type="text"   size="5" maxlength="5" value="<{$shopconfig.home_news_nums}>"></td>
+    </tr>
+		<tr>
+    <td height="24" bgcolor="#FFFFFF"><span ><input type="checkbox" name="home_contact_show" value="1" <{if $shopconfig.home_contact_show=='1'}>checked<{/if}>> </span></td>
+    <td bgcolor="#FFFFFF"><span><input name="home_contact_name" type="text"   size="20" maxlength="100" value="<{$shopconfig.home_contact_name}>">
+    </span></td>
+    </tr>
+	</table>
+	</td>
+	</tr>
+<tr>
+    <td height="24" align="left" bgcolor="#EAEFF3"><{$lang.prolisttype}></td>
+    <td bgcolor="#FFFFFF"><span >
+     <input type="radio" name="shop_pro_list" id="radio" value="1" <{if $shopconfig.shop_pro_list=='1'}>checked<{/if}>/>
+<{$lang.row_t}>
+<input type="radio" name="shop_pro_list" id="radio2" value="2" <{if $shopconfig.shop_pro_list=='2'}>checked<{/if}>/>
+<{$lang.col_t}></span></td>
+ </tr>
+  <tr>
+    <td height="24" align="left" bgcolor="#EAEFF3"><{$lang.head_img}></td>
+    <td bgcolor="#FFFFFF" >
+		<span>
+<{if $shopconfig.headimage!=''}>
+<img src="<{$shopconfig.headimage}>" height="50"/>
+<input type="checkbox" name="home_del_headimage" value="1"><{$lang.del_img}>
+<{/if}>
+<br/>
+      <input name="headimage" type="file" id="headimage" size="40" >
+    </span></td>
+    </tr>
+
+<tr>
+    <td height="24" align="left" bgcolor="#EAEFF3"><{$lang.styleimage}></td>
+    <td bgcolor="#FFFFFF" >
+		<span>
+<{if $shopconfig.styleimg!=''}>
+<img src="<{$shopconfig.styleimg}>" height="50"/>
+<input type="checkbox" name="home_del_styleimg" value="1"><{$lang.del_img}>
+<{/if}>
+<br/>
+     <input name="styleimg" type="file" id="styleimg" size="40" >
+    </span></td>
+</tr>
+
+ <tr>
+    <td height="24" align="left" bgcolor="#EAEFF3"><{$lang.advscon}></td>
+    <td bgcolor="#FFFFFF" >
+		<span><input name="home_advs_content" type="text"   size="45" maxlength="50" value="<{$shopconfig.home_advs_content}>"><span ><input type="checkbox" name="home_advs_show" value="1" <{if $shopconfig.home_advs_show=='1'}>checked<{/if}>><{$lang.is_show}></span>
+    </span>
+	</td>
+ </tr>
+
+
+  <tr>
+    <td height="24" align="left" bgcolor="#EAEFF3"><{$lang.com_title}> </td>
+    <td bgcolor="#FFFFFF"><span >
+      <input name="hometitle" type="text" id="hometitle" size="70" maxlength="80" value="<{$shopconfig.hometitle}>">
+ <{$lang.no_title}></span></td>
+    </tr>
+  <tr>
+    <td height="24" align="left" bgcolor="#EAEFF3"><{$lang.kw}></td>
+    <td bgcolor="#FFFFFF"><span >
+      <input name="homekeyword" type="text" id="homekeyword" size="70" maxlength="80" value="<{$shopconfig.homekeyword}>">
+ <{$lang.no_title}></span></td>
+    </tr>
+  <tr>
+
+    <td height="24" align="left" bgcolor="#EAEFF3"><{$lang.sitedes}></td>
+    <td bgcolor="#FFFFFF"><span >
+      <input name="homedes" type="text" id="homedes" size="70" maxlength="80" value="<{$shopconfig.homedes}>">
+     <{$lang.no_title}> </span></td>
+    </tr>
+  <tr> 
+	<td height="24" colspan="4" align="center" bgcolor="#EAEFF3"><input type="submit" name="sconfig" id="sconfig" value="<{$lang.isrue}>" onclick="change();"></td>
+	</tr>
+</table>
+</form>

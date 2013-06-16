@@ -1,0 +1,235 @@
+<{include file="header.htm"}>
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <a href='<{$config.weburl}>/?m=product'><{$lang.procat}></a> &raquo; <{$guide}>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+	<div id="mainbody1" class="topm">
+	
+		<div class="leftbar1">
+			<div class="left2">
+				<div class="title9" >
+					<div class="title_left1 L2"><{$lang.recpro}></div><div class="more"></div>
+		        </div>
+				 <div class="content9">
+					<ul class="list8">
+					 	<{insert name="getPro" leng="20" rec="2" img="true" limit=6 }>
+				   </ul>
+			    </div>
+			  	<div class="bottom9"></div>
+			</div>
+		</div>
+
+		<div class="big_img_div" id="big_img_div" style="display:none;">&nbsp;</div>
+		<div class="rightbar1_search">
+        <{if $subcat.0.cat||$brand.0.name}>
+			<div class="title10">
+            	<div class="title_left L2"><{$lang.catnav}></div>
+            </div>
+				<div class="content10">
+					 <{foreach item=list from=$subcat}>
+						&nbsp;<a href="<{$config.weburl}>/?m=product&s=product_list&id=<{$list.catid}>"><{$list.cat}> (<{$list.rec_nums}>)</a> &nbsp;
+					 <{/foreach}>
+
+                   
+                   <{if $brand.0.name}>
+                   	<br><hr size="1"  noshade style="border:1px dotted #dddddd;float:left;width:750px;display:inline;"><br>
+                      <span style="width:100%;float:left;text-align:left;line-height:25px;"><{$lang.brands}></span>
+                   <{foreach item=list from=$brand}>
+                    <a href="<{$config.weburl}>/?m=product&s=product_list&brand=<{$list.name}>&id=<{$smarty.get.id}>&trade_type=<{$smarty.get.trade_type}>"><{$list.name}></a> &nbsp;&nbsp;
+                   <{/foreach}>
+                   <{/if}>
+			    </div>
+            <div class="bottotopm0" style="margin-bottom:5px"></div>
+		<{/if}>
+
+			<div class="title10">
+            	<div class="title_left L2"><{$lang.prolist}></div>
+                <div class="lookmore">
+                    <{if $config.domaincity&&$config.base_url}>
+                        <a href="http://www.<{$config.baseurl}>/?m=product&s=product_list&id=<{$smarty.get.id}>"><{$lang.lookmore}><{$current_cat}></a>
+                    <{/if}>
+                </div>
+            </div>
+			<div class="content10">
+			<div style="float:left;width:780px; padding:10px;text-align:left; border-bottom:2px solid #BAD9EF;">
+            <form action="<{$config.weburl}>/" method="get">
+			<input id="m" name="m" type="hidden" value="product" />
+			<input id="s" name="s" type="hidden" value="product_list" />
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="230" style="line-height:30px;">
+                <{$lang.keyw}><input style="width:150px;" size="5" name="key" value="<{$smarty.get.key}>" type="text" /><br />
+                 <{$lang.tt}><select style="width:155px;"  name="trade_type">
+                        <{foreach item=prot key=num from=$trade_type}>
+                          <{if $smarty.get.trade_type==$num}>selected='selected'<{/if}> ><{$prot}><option value="<{$num}>" <{if $smarty.get.trade_type==$num}>selected='selected'<{/if}> ><{$prot}></option>
+                        <{/foreach}>
+                        </select>
+                </td>
+                <td width="200" style="line-height:30px;">
+                <{$lang.pric}><input size="5" name="sprice" type="text" value="<{$smarty.get.sprice}>" />-<input value="<{$smarty.get.eprice}>" size="5" name="eprice" type="text" /><br />
+                 <{$lang.utype}><select name="ifpay" style="width:110px;">
+                  <option value="0"><{$lang.allu}></option>
+                  <{foreach item=list key=num from=$group}>
+                      <{if $num>1&&$list.statu==1}>
+                      <option value="<{$list.group_id}>" <{if $smarty.get.ifpay==$list.group_id}>selected='selected'<{/if}> ><{$list.name}></option>
+                      <{/if}>
+                  <{/foreach}>
+                </select>
+                </td>
+                <td><input type="submit" value="<{$lang.isure}>" /></td>
+              </tr>
+            </table>
+           			<script>
+					function do_select()
+					{
+						 var box_l = document.getElementsByName("inquery").length;
+						 for(var j = 0 ; j < box_l ; j++)
+						 {
+							if(document.getElementsByName("inquery")[j].checked==true)
+							  document.getElementsByName("inquery")[j].checked = false;
+							else
+							  document.getElementsByName("inquery")[j].checked = true;
+						 }
+					}
+					function goto(v,type)
+					{
+						var url='<{$queryurl}>';
+						if(type==1)
+							window.location='<{$config.weburl}>/?m=product&s=product_list&orderby='+v+url;
+						if(type==2)
+							window.location='<{$config.weburl}>/?m=product&s=product_list&province='+v+url;
+					}
+					function get_inquery()
+					{	
+						var pid='';
+						var boxes = document.getElementsByName("inquery");   
+						for (var i = 0; i < boxes.length; i++)  
+						{  
+							if(boxes[i].checked)  
+							{  
+								pid+=boxes[i].value+',';  
+							} 
+						}
+						window.location='<{$config.weburl}>/inquire.php?contype=1&pid='+pid;
+					}
+					</script>
+			 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-top:1px dashed #BAD9EF; margin-top:5px;">
+                  <tr style="padding:3px;">
+                    <td width="310">
+                    <input onclick="do_select();" name="" type="checkbox" value="" />
+                    <input onclick="get_inquery();" name="" type="button" value="Пакетный запрос" />
+                    <input onclick="add_inquery('pro','<{$config.weburl}>','');" name="" type="button" value="Добавить в корзину" />
+                	</td>
+                    <td width="300" align="center">
+                     <a href="<{$config.weburl}>/?m=product&s=product_list&show_type=1<{$queryurl}>">
+                     <img src="<{$config.weburl}>/image/default/col_list.gif" /><{$lang.ls}>
+                     </a>
+                     <a href="<{$config.weburl}>/?m=product&s=product_list&show_type=2<{$queryurl}>">
+                     <img src="<{$config.weburl}>/image/default/row_list.gif" /><{$lang.bp}>
+                     </a>
+                   <{$lang.rsl}><select name="orderby" onchange="goto(this.value,1)">
+                      <option <{if $smarty.get.orderby==1}>selected='selected'<{/if}> value="1"> <{$lang.auf}></option>
+                      <option <{if $smarty.get.orderby==2}>selected='selected'<{/if}> value="2"><{$lang.tf}></option>
+                      <option <{if $smarty.get.orderby==3}>selected='selected'<{/if}> value="3"><{$lang.tsf}></option>
+                      <option <{if $smarty.get.orderby==4}>selected='selected'<{/if}> value="4"><{$lang.pf}></option>
+                      <option <{if $smarty.get.orderby==5}>selected='selected'<{/if}> value="5"><{$lang.psf}></option>
+                    </select>
+                    &nbsp;&nbsp;
+                    <{$lang.dfee}>
+                    </td>
+                    <td>
+                    <{$lang.addrs}><select name="province" onchange="goto()">
+                      <option value="0"><{$lang.allcity}></option>
+                      <{$province}>
+                    </select>
+                	</td>
+                  </tr>
+                </table>
+				<input  name="id" type="hidden" value="<{$smarty.get.id}>" />
+				 </form>
+			</div>
+			  <ul class="list9">
+			  <{foreach item=list from=$info.list}>
+              <{if $smarty.get.show_type==2}>
+              	 <table class="listimg">
+                 <tr>
+                 <td align="center" colspan="2" valign="middle" class="listimg1">
+                  <a rel="nofollow" href="<{geturl type='prod' uid=$list.userid user=$list.user tid=$list.id}>">
+                  <{html_image file=$list.img width=165 alt=$list.pname}>
+                  </a>
+                  </td></tr>
+                  <tr><td colspan="2" align="center">
+                  <a href="<{geturl type='prod' uid=$list.userid user=$list.user tid=$list.id}>"><{$list.pname|truncate:20}></a>
+                  </td></tr>
+                  <tr height="27">
+                      <td align="left" class="smoney">
+                      <input name="inquery" type="checkbox" value="<{$list.id}>" /><{$list.price|number_format:2}> <{$config.money}>/<{$list.unit}>
+                      </td>
+                      <td valign="top" align="right">
+                           <{if $list.skype!=''}>
+                            <a href="skype:<{$list.skype}>?call"><img height="12" src="<{$config.weburl}>/image/default/skypeonline.png"></a>
+                            <{/if}>
+                            <{if $list.msn!=''}>
+                            <a href="msnim:chat?contact=<{$list.msn}>">
+                            <img src="<{$config.weburl}>/image/default/ico_msn.gif" height="12" align="absmiddle"/>
+                            </a>
+                            <{/if}>
+                      </td>
+                  </tr>
+                  <tr style="color:#808080">
+                  <td>Доставка: <{$list.freight|explode_one:","}> <{$config.money}></td>
+                  <td width="80" align="right"><{$list.province}></td>
+                  </tr>
+                  <tr><td colspan="2"><a style="color:#808080" href="<{geturl type='' uid=$list.userid user=$list.user}>"><{$list.company}></a></td></tr>
+                  </table> 
+              <{else}>
+                <li>
+                  <div class="Lb0"><input name="inquery" type="checkbox" value="<{$list.id}>" /></div>
+                  <div class="Lb1">
+                  <a rel="nofollow" href="<{geturl type='prod' uid=$list.userid user=$list.user tid=$list.id}>">
+                  <{html_image onmouseout="view_big_img(this, '');" onmouseover="view_big_img(this, this.src);" file=$list.img width=80 alt=$list.pname}>
+                  </a>
+                  </div>
+                  <div class="Lb2">
+                    <p style="font-size:14px;"><a href="<{geturl type='prod' uid=$list.userid user=$list.user tid=$list.id}>">
+					<strong><{$list.pname}></strong></a></p>
+                    <p><{$list.con|strip_tags|truncate:100:"...":true}></p>
+                    <p>
+                    <{$lang.seller}>
+					<a href="<{geturl type='' uid=$list.userid user=$list.user}>"><{$list.company}><{$list.user_type}>
+					</a>
+                    </p>
+                  </div>
+                 
+                  <div class="Lb3"> <span class="bmoney"><{$list.price|number_format:2}> <{$config.money}>/<{$list.unit}></span></div>
+                  <div class="Lb3" style="width:40px;"><{$list.freight|explode_one:","}></div>
+                  <div class="Lb3" style="color:#666666;">
+				  <{$list.province}><{$list.city}><br />
+				  <a href="<{$config.weburl}>/inquire.php?contype=1&pid=<{$list.id}>">Отправить запрос</a><br />
+				  <a href="javascript:add_inquery('pro','<{$config.weburl}>','<{$list.id}>');">Добавить в корзину</a>
+				  </div>
+                </li>
+                <{/if}>
+				<{foreachelse}>
+				  <div style="padding:20px; font-weight:bold">
+				  <{$lang.norelinfo}>
+				  <a href="<{$config.weburl}>/main.php">
+				   <{$lang.clicktoadd}>
+				  </a>
+				  </div>
+				<{/foreach}>
+		      </ul>
+              <div style="padding:7px;">
+              <input onclick="do_select();" name="" type="checkbox" value="" />&nbsp;
+              <input onclick="get_inquery();" name="" type="button" value="Пакетный запрос" />
+              </div>
+			  <div class="page"><{$info.page}></div>
+			  <div class="clear"></div>
+		  </div>
+			<div class="bottotopm0"></div>
+		</div>	
+	</div>
+	<{include file="footer.htm"}>

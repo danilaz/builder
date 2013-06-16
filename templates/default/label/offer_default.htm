@@ -1,0 +1,3 @@
+<{foreach item=list from=$offer}>
+<li><img src="<{$config.weburl}>/image/<{$config.temp}>/offer_<{$list.type}>.gif" /><a href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$list.id}>"><{$list.title}></a></li>
+<{/foreach}>

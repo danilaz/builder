@@ -1,0 +1,30 @@
+<{include file="header.htm"}>
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <strong><a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <{$lang.mservices}></strong>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+<div id="mainbody1" class="topm">
+<table width='100%' border="0" cellpadding="5" cellspacing="1" bgcolor="#E4E4E4" class="member_sev"> 
+	<tr class="title4">
+      <td width="200"><{$msg.2}></td>
+	  <{foreach item=list key=num  from=$gs}>
+		  <{if $num>1&&$list.statu==1}>
+		  	<td><{$list.name}></td>
+		  <{/if}>
+      <{/foreach}>
+    </tr>
+	<{foreach item=list  from=$gp}>
+		<{if $list.0!=''}>
+			<tr bgcolor="#FFFFFF">
+			 <{foreach item=gz  from=$list}>
+			 	<td><{$gz}></td>
+			 <{/foreach}>
+			</tr>
+		<{/if}>
+	<{/foreach}>
+</table>
+</div>
+<{include file="footer.htm"}>

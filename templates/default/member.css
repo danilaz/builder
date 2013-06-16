@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+.wrapper{ margin-top:8px;}
+#imageFlow{top:450px; width:600px; left:470px; background-color:#CCCCCC;}
+.company_info{ border: solid 1px #A9BAD3; width:748px;min-height:400px; text-align:left;}
+.company_info object{float:right}
+.guide_ba{font-weight:bold; font-size:14px; text-align:left;background:url(../../image/default/mem_con_tit.jpg) repeat-x; height:27px; line-height:27px;color:#000000}
+.guide_ba span{ display:inline;background:url(../../image/default/icon10.jpg) no-repeat left center; padding-left:15px; float:left;}
+.guide_ba a{ float:right; margin-right:20px; margin-top:5px;}
+.info_text{text-align:left}
+.space_left{width:200px; float:left;}
+.space_left_body{border:1px solid #e2e2e2;}
+.space_conn ul{ padding:15px;}
+.space_left_body li{line-height:30px; height:30px; text-align:center; font-size:14px; background:#eeeeee; border-bottom:1px solid #FFF;}
+.space_header {background-image:url(../../image/default/member_tit.jpg);font-size:14px;font-weight:bold;height:27px;line-height:27px; color:#FFFFFF;}
+.space_header h2{ background:url(../../image/default/icon6.jpg) no-repeat left center; padding-left:20px; margin-left:10px;}
+.space_header_connect h2{ background:url(../../image/default/icon7.jpg) no-repeat left center; padding-left:20px; margin-left:10px;}
+.space_conn .now{ display:block; width:168px; height:30px; background:#ffe6b9; border-bottom:1px solid #fa8a15;}
+.space_con{width:752px; margin-left:8px; float:left;}
+.space_con td{padding:5px 15px;}
+.space_left_connect{ border:1px solid #fa8a15;}
+.space_header_connect{background-image:url(../../image/default/member_tit2.png);font-size:14px;font-weight:bold;height:27px;line-height:27px; color:#FFFFFF;}
+.space_con_con{ padding:8px;}
+.common_box{ border:1px solid #e1e1e1; border-top:none;}
+.com_intro li img{ margin-right:10px;}
+.li_pro_list{ padding-top:0px!important; padding-top:5px; width:100%; height:90px; background-color:#FFFFFF;}
+.li_pro_list li{width:85px; height:90px;float:left;}
+.li_pro_list li img{width:82px; height:75px;padding:3px;}
+.li_pro_list_img{width:85px; float:left;}
+.li_pro_list_con{float:right; width:620px;}
+.pro_list_col{float:left; width:110px; margin-left:7px;}
+.space_con_con h3{ font-size:12px; color:#e60611;}
+.space_con_con li{background:url(../../image/default/xline.jpg) no-repeat center bottom; line-height:25px;}
+.space_con_con li span{ margin-right:10px;}
+#supply,#news{ float:left; width:372px;}
+.mem_scroll td li{ float:left; width:115px; height:125px;text-align:center;}
+.com_intro_ li{ height:25px; line-height:25px;}
+.mem_scroll{ float:left;}
+.probox{ text-align:center;}
+.probox img{padding:1px; border:1px #CCCCCC solid;}
+.common_box table{ border:0px; padding:0px; margin:0px;}
+.borderC {border-bottom:1px dashed #cccccc}

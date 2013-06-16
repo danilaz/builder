@@ -1,0 +1,855 @@
+<script src="script/my_lightbox.js" language="javascript"></script>
+
+<script language="javascript" src="<{$config.weburl}>/script/Calendar.js"></script>
+
+<script language="javascript">
+
+	var cdr = new Calendar("cdr");
+
+	document.write(cdr);
+
+	cdr.showMoreDay = true;
+
+</script>
+
+<style>
+
+#pic_view{width:100%}
+
+#pic_view li{ float:left; width:55px;}
+
+.admin_table{line-height:20px;}
+
+</style>
+
+<form method="post" action="" enctype="multipart/form-data">
+
+<div class="admin_right_top"><{$lang.product_releases}></div>
+
+<table width="100%" border="0" align="center" cellpadding="6" cellspacing="1" bgcolor="#dddddd" class="admin_table">
+
+<tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.name}><font color="red"> *</font> </td>
+
+              <td bgcolor="#FFFFFF">
+
+			  <input maxlength="100" name="title" type="text" id="title" style="width:420px;" value="<{$de.pname}>" />               </td>
+
+            </tr>
+
+                         <tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.keyword}></td>
+
+              <td bgcolor="#FFFFFF">
+
+			  <input name="keyword" id="key_word" type="text" value="<{$de.keyword}>" style="width:420px;" /><br>
+
+			  <{$lang.key_des}>
+
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.category}><font color="red"> *</font> </td>
+
+              <td bgcolor="#FFFFFF">
+
+              <span id="cate_show"><{$typenames}></span>&nbsp;
+
+              <input type="button" onclick="showCategory();" value="<{$lang.product_category}>">
+
+              <input name="catid" id="catid" type="hidden" value="<{$de.catid}>" />
+
+              <input name="tcatid" id="tcatid" type="hidden" value="<{$de.tcatid}>" />
+
+              <input name="scatid" id="scatid" type="hidden" value="<{$de.scatid}>" />
+
+              <input name="sscatid" id="sscatid" type="hidden" value="<{$de.sscatid}>" />
+
+              </td>
+
+            </tr>
+
+                    <tr>
+
+			  <td bgcolor="#EAEFF3"><{$lang.cus_cat}></td>
+
+			  <td bgcolor="#FFFFFF">
+
+              <select name="custom_cat" style="width:133px">
+
+                <option value=""><{$lang.no_cat}></option>
+
+              <{foreach item=list from=$custom_cat}>
+
+              	<{if $de.custom_cat_id==$list.id}>selected="selected"<{/if}> value="<{$list.id}>"><{$list.name}><option <{if $de.custom_cat_id==$list.id}>selected="selected"<{/if}> value="<{$list.id}>"><{$list.name}></option>
+
+              <{/foreach}>
+
+              </select>
+
+              [<a target="_blank" href="main.php?action=m&m=product&s=admin_product_cat&menu=info"><{$lang.mag_cat}></a>]              </td>
+
+    		</tr>
+
+        <tr>
+
+          <td align="left" bgcolor="#EAEFF3"><{$lang.price}> (<{$config.money}>)</td>
+
+          <td bgcolor="#FFFFFF" style="font-weight:normal">
+
+           <input type="text" name="price" id="price" style="width:130px;" value="<{$de.price}>" /> /
+
+           <select name="unit" onchange="$('pro_unit_des').innerHTML='('+this.value+')'">
+
+               <{foreach item=list from=$unit}>
+
+               <option <{if $list==$de.unit}>selected="selected"<{/if}> ><{$list}></option>
+
+               <{/foreach}>
+
+               </select>         
+
+           </td>
+
+        </tr>
+
+         <tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.specifications}></td>
+
+              <td bgcolor="#FFFFFF">
+
+			  <input  type="text" id="gg" name="gg" style="width:170px;" value="<{$de.gg}>" /></td>
+
+            </tr>
+
+			<tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.model}></td>
+
+              <td bgcolor="#FFFFFF">
+
+			  <input  type="text" id="model" name="model" style="width:170px;" value="<{$de.model}>" /></td>
+
+            </tr>
+
+            <tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.brand}></td>
+
+              <td bgcolor="#FFFFFF">
+
+              	<span id="brand"><input type="text" value="<{$de.pp}>" style="width:170px;" name="pinpai" maxlength="20"></span>
+
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.picture}><font color="red"> *</font> </td>
+
+              <td bgcolor="#FFFFFF">
+
+            <div id="pic_view"></div>
+
+			<div id="overlay"></div>
+
+            <input type="button"  value="<{$lang.add_pic}>" onclick="alertWin('<{$lang.add_pic}>','',550,430,'');" />
+
+            <input name="pic" id="pic" type="hidden" value="" />
+
+            </td>
+
+            </tr><tr>
+
+            <td bgcolor="#EAEFF3"><{$lang.summary}><font color="red"> *</font> </td>
+
+            <td bgcolor="#FFFFFF">
+
+            <textarea maxlength="100" style="width:100%; height:40px;" name="con" id="con"><{$de.con}></textarea>
+
+            </td>
+
+          </tr>           
+
+            <tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.introduction}><font color="red"> *</font> </td>
+
+              <td bgcolor="#FFFFFF">
+
+			<{if $de.detail}>
+
+			<{$de.detail}>
+
+			<{else}>
+
+			<script type="text/javascript" src="lib/fckeditor/fckeditor.js"></script>
+
+			<script type="text/javascript">
+
+			var oFCKeditor = new FCKeditor( 'detail' ) ;
+
+			oFCKeditor.Config['ToolbarStartExpanded'] = true ;
+
+			<{if $config.language=='en'}>
+
+				oFCKeditor.Config['DefaultLanguage']='en';
+
+			<{else}>
+
+				oFCKeditor.Config['DefaultLanguage']='zh-cn';
+
+			<{/if}>
+
+			oFCKeditor.BasePath		= 'lib/fckeditor/' ;
+
+			oFCKeditor.ToolbarSet	= 'frant' ;
+
+			oFCKeditor.Width='100%';
+
+			oFCKeditor.Height=400;
+
+			oFCKeditor.Create() ;
+
+			</script>
+
+            <{/if}>
+
+            </td>
+
+            </tr>
+
+            <tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.validTime}></td>
+
+              <td bgcolor="#FFFFFF" >
+
+              <{foreach item=list key=num from=$validTime}>
+
+			  <input name="validTime" type="radio" value="<{$num}>" <{if $num==$de.validTime}>checked="checked"<{/if}> />
+
+              <{$list}> 
+
+              <{/foreach}>
+
+              </td>
+
+            </tr>
+
+            <tr id="add_pro_tb">
+
+            	<td colspan="2" style="padding:0" bgcolor="#FFFFFF">
+
+            		<table cellspacing="1" cellpadding="6" bgcolor="#DDDDDD" style="width:100%;margin:0; display:table-block" border="0">
+
+            <tr id="fv_list" style="display:<{if $firstvalue.0!=''}>table-block<{else}>none<{/if}>;">
+
+              <td  colspan="2" class="smalltitle"><{$lang.pro_property}></td>
+
+              </tr>
+
+              <tr>
+
+              <td id="fv_box" bgcolor="#FFFFFF" colspan="2" style="padding:0">
+
+               <table width="100%" cellspacing="1" cellpadding="6" bgcolor="#DDDDDD" >
+
+                    <{foreach item=list key=num from=$firstvalue}>
+
+                        <{$list}>
+
+                    <{/foreach}>
+
+               </table>
+
+               </td>
+
+            </tr>
+
+           <tr>
+
+              <td colspan="2" class="smalltitle"><{$lang.freight}></td>
+
+            </tr>
+
+           <tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.addr}></td>
+
+              <td bgcolor="#FFFFFF"  width="84%">
+
+            <select  name="province" id="province" onChange="getHTML(this.value)" style="width:150px;" />
+
+            <option value=""><{$lang.prov}></option>
+
+            <{$prov}>
+
+            </select>
+
+            <select name="city" id="city" style="width:150px;" />
+
+            <option value=""><{$lang.city}></option>
+
+            </select>
+
+             </td>
+
+    </tr>
+
+              <tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.ship}></td>
+
+              <td bgcolor="#FFFFFF">
+
+			 <input onclick="$('wl').style.display='none'" checked="checked" name="freight_type" type="radio" value="1" /><{$lang.sell_ship}><br />
+
+             <input onclick="$('wl').style.display='block'" <{if $de.freight_type==2}>checked="checked"<{/if}> name="freight_type" type="radio" value="2" /><{$lang.buy_ship}>
+
+              <div id="wl" style="background:#F8F8F8; padding:20px; display:none;<{if $de.freight_type==2}>display:block;<{/if}>">
+
+                  <{$lang.postal_delivery}><input style="width:30px;" value="<{$de.freight.0}>" name="freight[]" type="text" /> 
+
+                  <{$lang.express}><input style="width:30px;" value="<{$de.freight.1}>" name="freight[]" type="text" />　
+
+                  <{$lang.ems}><input style="width:30px;" value="<{$de.freight.2}>" name="freight[]" type="text" />
+
+              </div>
+
+               </td>
+
+            </tr>
+
+            <tr>
+
+              <td colspan="2" class="smalltitle"><{$lang.other_info}></td>
+
+            </tr>
+
+            <tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.stime}></td>
+
+              <td bgcolor="#FFFFFF" >
+
+              <input checked="checked" name="stime_type" type="radio" value="1" /><{$lang.now}><br />
+
+              <input <{if $de.stime_type==2}>checked="checked"<{/if}> name="stime_type" type="radio" value="2" /><{$lang.set_time}> 
+
+              <input value="<{$de.stime|date_format}>" onFocus="cdr.show(this);" readonly="readonly" name="stime" type="text" /><br />
+
+              <input <{if $de.stime_type==3}>checked="checked"<{/if}> name="stime_type" type="radio" value="3" /><{$lang.add_lib}>
+
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.amount}></td>
+
+              <td bgcolor="#FFFFFF" >
+
+			   <input maxlength="7" name="amount" type="text" style="width:170px;" value="<{$de.amount}>"/><label id="pro_unit_des"></label>
+
+              </td>
+
+            </tr>
+
+            <tr>
+
+			  <td bgcolor="#EAEFF3"><{$lang.protypes}><font color="red"> *</font></td>
+
+			  <td bgcolor="#FFFFFF">
+
+			<select name="trade_type" id="trade_type">
+
+				<{foreach item=prot key=num from=$trade_type}>
+
+					<{if $num>0}>
+
+					 <{if $num==$de.trade_type}>selected="selected"<{/if}> ><{$prot}><option value="<{$num}>" <{if $num==$de.trade_type}>selected="selected"<{/if}> ><{$prot}></option>
+
+					 <{/if}>
+
+				<{/foreach}>  
+
+			</select>
+
+            </td>
+
+			</tr><tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.ptype}><font color="red"> *</font> </td>
+
+              <td bgcolor="#FFFFFF">
+
+              <{foreach item=list key=num from=$ptype}>
+
+              	<input name="ptype" type="radio" value="<{$num}>" <{if $num==$de.ptype}>checked="checked"<{/if}> /><{$list}>
+
+              <{/foreach}>
+
+              </td>
+
+    </tr>
+
+            <tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.invoice}></td>
+
+              <td bgcolor="#FFFFFF">
+
+			   <input name="invoice" type="radio" value="1" checked="checked" /><{$lang.no}>
+
+               <input name="invoice" type="radio" value="2" <{if $de.invoice==2}>checked="checked"<{/if}> /><{$lang.have}>
+
+              </td>
+
+            </tr>
+
+           <tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.maintenance}></td>
+
+              <td bgcolor="#FFFFFF">
+
+			   <input name="maintenance" type="radio" value="1" checked="checked" /><{$lang.no}>
+
+               <input name="maintenance" type="radio" value="2" <{if $de.maintenance==2}>checked="checked"<{/if}> /><{$lang.have}>
+
+             </td>
+
+    </tr>
+
+            <tr>
+
+              <td bgcolor="#EAEFF3"><{$lang.rec_pro}></td>
+
+              <td bgcolor="#FFFFFF"><input <{if $de.rec_pro}>checked="checked"<{/if}> name="rec_pro" type="checkbox" value="1" /></td>
+
+            </tr>	
+
+                	</table>
+
+            	</td>
+
+            </tr>
+
+            <tr>
+
+              <td bgcolor="#EAEFF3">&nbsp;</td>
+
+              <td bgcolor="#FFFFFF">
+
+			  <input type="submit" value="<{$lang.submit}>" style="width:100px;" onClick="return check_value();"/>
+
+			  <input name="submit" type="hidden" id="submit" value="<{if $de.id}>edit<{else}>submit<{/if}>" />
+
+			  <input name="editID" type="hidden" id="editID" value="<{$de.id}>" />
+
+              </td>
+
+            </tr>			
+
+</table>
+
+</form>
+
+<script>
+
+<{if !$de}>
+
+window.onload = function()
+
+{
+
+	$('sscatid').value = '';
+
+	$('scatid').value = '';	
+
+	$('tcatid').value = '';
+
+	$('catid').value = '';	
+
+}
+
+<{/if}>
+
+function showCategory()
+
+{
+
+	var key= $('key_word').value;
+
+	alertWin('<{$lang.product_category}>','',580,480,'<{$config.weburl}>/main.php?action=m&m=<{$smarty.get.m}>&s=<{$smarty.get.s}>&step=1&key_word='+key);
+
+}
+
+function setCategory(catid)
+
+{
+
+	var url = '<{$config.weburl}>/main.php?action=m&m=<{$smarty.get.m}>&s=<{$smarty.get.s}>&oper=ajax&call=get_cate';
+
+	var sj = new Date();
+
+	var pars = 'shuiji=' + sj+'&catid='+catid;
+
+	var myAjax = new Ajax.Request(
+
+				url,
+
+				{method: 'post', parameters: pars, onComplete: showResponse}
+
+				);
+
+	function showResponse(originalRequest)
+
+	{
+
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+
+		var i=0;var j=0;
+
+		eval(tempStr);
+
+		if(MyMe){
+
+			$('sscatid').value = '';
+
+			$('scatid').value = '';	
+
+			$('tcatid').value = '';
+
+			$('catid').value = '';
+
+			if(catid.length>8)
+
+				$('sscatid').value = catid;
+
+			if(catid.length>6)
+
+				$('scatid').value = catid.substr(0,8);	
+
+			if(catid.length>4)
+
+				$('tcatid').value = catid.substr(0,6);
+
+			$('catid').value = catid.substr(0,4);
+
+			
+
+			$('cate_show').innerHTML= MyMe.cat;
+
+			$('brand').innerHTML= MyMe.brand;
+
+			$('fv_box').innerHTML = '<table width="100%">'+MyMe.firstvalue+'</table>';
+
+			
+
+			$('fv_list').style.display=MyMe.firstvalue!=''?'':'none';
+
+		}			
+
+
+
+	 }
+
+	close_win();
+
+}
+
+//--------------------------
+
+var city='<{$de.city}>';
+
+var province='<{$de.province}>';
+
+function getHTML(v)
+
+{	
+
+	var ob="city";
+
+	var url = '<{$config.weburl}>/ajax_back_end.php';
+
+	var sj = new Date();
+
+	var pars = 'shuiji=' + sj+'&prov_id='+v;
+
+	var myAjax = new Ajax.Request(
+
+				url,
+
+				{method: 'post', parameters: pars, onComplete: showResponse}
+
+				);
+
+	function showResponse(originalRequest)
+
+	{
+
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+
+		var i=0;var j=0;
+
+		eval(tempStr);
+
+		for(var s in MyMe)
+
+		{
+
+			++j;
+
+		}
+
+		$(ob).options.length =j+1;
+
+		for(var k in MyMe)
+
+		{
+
+			var cityId=MyMe[k][0];
+
+			var ciytName=MyMe[k][1];
+
+			$(ob).options[k].value = cityId;
+
+			$(ob).options[k].text = ciytName;
+
+			if(city!=''&&city==ciytName)
+
+				$(ob).options[k].selected = true;
+
+	　	}
+
+	 }
+
+　}
+
+<{if $de.province}>
+
+getHTML('<{$de.province}>');
+
+<{/if}>
+
+//==========================================
+
+function check_value()
+
+{
+
+	if(!$('title').value)
+
+	{
+
+		alert('<{$lang.notice_title}>');
+
+		$('title').focus();
+
+		return false;
+
+	}
+
+	if($('catid').value=='')
+
+	{
+
+		alert('<{$lang.product_category}>');
+
+		return false;
+
+	}
+
+	if($('price').value)
+
+	{
+
+		var str = $('price').value;
+
+		if(!str.match(/^(:?(:?\d+.\d+)|(:?\d+))$/))
+
+		{
+
+			alert('Неправильная цена');
+
+			$('price').focus();
+
+			return false;
+
+		}
+
+	}
+
+	else
+
+	{
+
+		alert('Пожалуйста, укажите цену товара');
+
+		$('price').focus();
+
+		return false;
+
+	}
+
+	if($('con').value.length>199) 
+
+	{
+
+		alert("<{$lang.sumisbig}>");
+
+		return false;
+
+	}
+
+	if(!$('con').value) 
+
+	{
+
+		alert("<{$lang.notice_con}>");
+
+		return false;
+
+	} 
+
+    var fck = FCKeditorAPI.GetInstance("detail");
+
+    var content = fck.GetXHTML(true);
+
+    if (content.replace(/<(?!img|input|object)[^>]*>|\s+/ig, "") == "")
+
+	{
+
+	   alert("<{$lang.notice_detail}>");
+
+	   fck.Focus();
+
+	   return false;
+
+    }  
+
+}
+
+//=========================================
+
+var arr = new Array()
+
+function picvalue(str)
+
+{
+
+	var arrs=str.split(',');
+
+	for(i=0;i<arrs.length;i++)
+
+	{
+
+		v=arrs[i]*1;
+
+		if(!arr.inArray(v))
+
+			arr.push(v);
+
+	}
+
+	load_pic();
+
+	close_win();
+
+}
+
+function load_pic()
+
+{
+
+	$('pic_view').innerHTML='';
+
+	for(i=0;i<arr.length;i++)
+
+	{
+
+		v=arr[i]*1;
+
+		if(v>0)
+
+		{
+
+			$('pic_view').innerHTML+='<li><img src="uploadfile/zsimg/size_small/'+v+'.jpg" width="50" height="40"><br>['+
+
+			'<a href="javascript:remove(\''+v+'\')"><{$lang.delete}></a>]</li>';
+
+		}
+
+	}
+
+	$('pic').value=arr.join();
+
+}
+
+Array.prototype.inArray = function(valeur) 
+
+{
+
+	for(var i in this) 
+
+	{ 
+
+		if (this[i] === valeur) 
+
+			return true; 
+
+	}
+
+	return false;
+
+}
+
+Array.prototype.remove=function(dx)
+
+{
+
+	for(var i=0,n=0;i<this.length;i++)
+
+	{
+
+		if(this[i]!=dx)
+
+		{
+
+			this[n++]=this[i]
+
+		}
+
+	}
+
+	this.length-=1
+
+}
+
+function remove(v)
+
+{
+
+	arr.remove(v);
+
+	load_pic();
+
+}
+
+<{if $de.pic!=''}>
+
+	picvalue('<{$de.pic}>');
+
+<{/if}>
+
+</script>

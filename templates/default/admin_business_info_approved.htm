@@ -1,0 +1,77 @@
+<script type="text/javascript" src="script/Validator.js"></script>
+<script language="javascript" src="script/Calendar.js"></script>
+	<div class="admin_right_top"><{$lang.title}></div>
+
+	<table width='100%' border="0" cellpadding="7" cellspacing="1" bgcolor="#DDDDDD" class="admin_table">
+	 <form action="" method="post">
+  <tr> 
+	<td align="left" bgcolor="#EAEFF3" colspan="2"><{$lang.info_approve_des}></td>
+  </tr>
+  <tr> 
+	<td width='15%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.person_name}></td>
+	<td width='85%' bgcolor="#FFFFFF"><{$de.person_name}></td>
+  </tr>
+  	  <tr> 
+		<td width='15%' height="20" align="left" bgcolor="#EAEFF3"><{$lang.job}></td>
+		<td width='85%' height="20" bgcolor="#FFFFFF"><{$de.job}></td>
+	  </tr>
+  <tr> 
+	<td width='15%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.com_reg_name}></td>
+	<td width='85%' bgcolor="#FFFFFF"><{$de.com_reg_name}></td>
+  </tr>
+  <tr> 
+	<td width='15%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.com_reg_id}></td>
+	<td width='85%' bgcolor="#FFFFFF"><{$de.com_reg_id}>&nbsp;&nbsp;<input type="radio" value="0" name="com_reg_id_protect" <{if $de.com_reg_id_protect!=1 }>checked<{/if}>>&nbsp;<{$lang.statu_open}>&nbsp;&nbsp;<input type="radio" value="1" name="com_reg_id_protect" <{if $de.com_reg_id_protect==1 }>checked<{/if}>>&nbsp;<{$lang.com_reg_id_protect}>    </td>
+  </tr>
+  <tr> 
+	<td width='15%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.com_reg_add}></td>
+	<td width='85%' bgcolor="#FFFFFF"><{$de.com_reg_add}>&nbsp;&nbsp;<input type="radio" value="0" name="com_reg_add_protect" <{if $de.com_reg_add_protect!=1 }>checked<{/if}>>&nbsp;<{$lang.statu_open}>&nbsp;&nbsp;<input type="radio" value="1" name="com_reg_add_protect" <{if $de.com_reg_add_protect==1 }>checked<{/if}>>&nbsp;<{$lang.statu_protect}></td>
+  </tr>
+  <tr> 
+	<td width='15%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.com_deputy}></td>
+	<td width='85%' bgcolor="#FFFFFF"><{$de.com_deputy}>&nbsp;&nbsp;<input type="radio" value="0" name="com_deputy_protect" <{if $de.com_deputy_protect!=1 }>checked<{/if}>>&nbsp;<{$lang.statu_open}>&nbsp;&nbsp;<input type="radio" value="1" name="com_deputy_protect" <{if $de.com_deputy_protect==1 }>checked<{/if}>>&nbsp;<{$lang.statu_protect}></td>
+  </tr>
+  <tr> 
+	<td width='15%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.com_reg_capital}></td>
+	<td width='85%' bgcolor="#FFFFFF"><{$de.com_reg_capital}>&nbsp;&nbsp;<input type="radio" value="0" name="com_reg_capital_protect" <{if $de.com_reg_capital_protect!=1 }>checked<{/if}>>&nbsp;<{$lang.statu_open}>&nbsp;&nbsp;<input type="radio" value="1" name="com_reg_capital_protect" <{if $de.com_reg_capital_protect==1 }>checked<{/if}>>&nbsp;<{$lang.statu_protect}></td>
+  </tr>
+  <tr> 
+	<td width='15%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.com_reg_type}></td>
+	<td width='85%' bgcolor="#FFFFFF"><{$de.com_reg_type}></td>
+  </tr>
+  <tr> 
+	<td width='15%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.com_reg_time}></td>
+	<td width='85%' bgcolor="#FFFFFF">
+    <{$de.com_reg_time|date_format}></td>
+  </tr>
+  <tr> 
+	<td width='15%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.com_reg_time_ex}></td>
+	<td width='85%' bgcolor="#FFFFFF"><{$de.com_reg_time_ex}></td>
+  </tr>
+  <tr> 
+	<td width='15%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.com_reg_area}></td>
+	<td width='85%' bgcolor="#FFFFFF"><{$de.com_reg_area}></td>
+  </tr>
+  <tr> 
+	<td width='15%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.com_reg_unit}></td>
+	<td width='85%' bgcolor="#FFFFFF"><{$de.com_reg_unit}></td>
+  </tr>
+  <tr> 
+	<td width='15%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.com_check}></td>
+	<td width='85%' bgcolor="#FFFFFF"><{$de.com_check}></td>
+  </tr>
+<{if $de.pic}>
+  <tr>
+    <td height="24" align="right" bgcolor="#EAEFF3"></td>
+    <td bgcolor="#FFFFFF"><img src="<{$de.pic}>" /></td>
+  </tr>
+<{/if}>
+  <tr> 
+	<td width='15%' height="24" align="right" bgcolor="#EAEFF3"> </td>
+	<td width='85%' bgcolor="#FFFFFF">
+	  <input  type='submit' name='Submit' value='<{$lang.submit}>' style="width:100px;">&nbsp;&nbsp;<input  type='reset' name='reset' value='<{$lang.reset}>' style="width:100px;">
+      <input name="type" type="hidden" id="type" value="update_protect" />
+	  <input name="action" type="hidden" id="action" value="submit" />	  </td>
+  </tr>
+  </form>
+</table>

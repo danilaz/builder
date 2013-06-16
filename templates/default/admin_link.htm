@@ -1,0 +1,33 @@
+<script type="text/javascript" src="../script/Validator.js"></script>
+<div class="admin_right_top"><{$lang.link}></div>
+<form method="post" action="" enctype="multipart/form-data" onSubmit="return Validator.Validate(this,3)">
+<table  border="0" cellspacing="1" align="center" bgcolor="#DDDDDD" class="admin_table">
+	<tr bgcolor="#EAEFF3">
+	  <td width="12%" align="right"><{$lang.name}><span class="admin_red">*</span></td>
+	  <td width="88%"><input name="link_name" type="text" id="link_name" style="width:300px;" value="<{$re.link_name}>" dataType="Require" msg="<{$lang.named}>" /></td>
+	</tr>	
+	<tr bgcolor="#EAEFF3">
+	  <td align="right"><{$lang.web}><span class="admin_red">*</span></td>
+	  <td>
+	    <input type="text" name="link_url" value="<{$re.link_url}>"  style="width:300px;" dataType="Require" msg="<{$lang.fill_web}>"/>
+	  </td>
+	  </tr>
+	<tr bgcolor="#EAEFF3">
+	  <td align="right"><{$lang.description}></td>
+	  <td><textarea name="link_con" id="con" style="width:300px;font-size:12px; padding:2px;"><{$re.link_con}></textarea></td>
+	</tr>
+	<tr bgcolor="#EAEFF3">
+	  <td align="right"><{$lang.order}></td>
+	  <td>
+	    <input type="text" name="num" value="<{$re.num}>" dataType="Number" msg="<{$lang.order_figure}>" />
+      </td>
+	</tr>
+	<tr bgcolor="#EAEFF3">
+	  <td height="33" align="left">&nbsp;</td>
+	  <td>
+	    <input name="Submit" type="submit" id="Submit" value=" <{$lang.submit}> " />
+		<input name="editid" type="hidden" value="<{$re.id}>" />
+        <input name="action" type="hidden" id="action" value="<{if $smarty.get.editid}>edit<{else}>submit<{/if}>" />	  </td>
+	  </tr>
+</table>
+</form> 

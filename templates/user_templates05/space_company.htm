@@ -1,0 +1,35 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="50%" valign="top">
+
+    <div class="common_box2">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr class="guide_ba2"><td><{$lang.pro_index}><span>PRODUCTS</span><img src="<{$img}>/more.jpg" /></td>
+        </tr>
+      <tr>
+        <td >
+			<div class="pro_con">
+            		<{if $com.img!=""}>
+						 <img src="<{$img}>/pic5.jpg" style="float:left; width:126px; border:1px solid #CCCCCC;margin-right:10px;">
+					<{/if}>
+        			<{$com.intro}>  
+            </div>
+		</td>
+      </tr>
+    </table>
+</div></td>
+    <td width="40%" valign="top" class="zp">
+    <div>
+    	<div class="com_contact">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr class="item">
+                    <td colspan="2">Видео<span>VIDEO</span></td>
+                  </tr>
+                  <tr>
+                    <td><{insert name="getUserPlayer" height="163" width="215" userid=$com.userid}></td>
+                  </tr>
+                </table>
+        </div>
+    </div></td>
+  </tr>
+  </table>

@@ -1,0 +1,12 @@
+<{foreach item=list key=nums from=$exhibition}>
+<{if $nums==0}>
+<!--
+<div class="zhanhui_news_title"><a href="<{$config.weburl}>/?m=exhibition&s=exhibition_detail&id=<{$list.id}>"><{$list.title|truncate:32:"...":true}></a></div>
+<div class="zhanhui_news_con"><{$list.con|strip_tags|truncate:160:"...":true}></div>
+-->
+<ul>
+<{/if}>
+	<li class="zhanhui_news_ul_title">·<a href="<{$config.weburl}>/?m=exhibition&s=exhibition_detail&id=<{$list.id}>"><{$list.title}></a></li><li class="zhanhui_news_ul_date"><{$list.addTime|date_format}></li>
+<{/foreach}>
+
+</ul>

@@ -1,0 +1,17 @@
+<div id="project">
+<ul class="li_list" style="width:451px; padding-left:5px; overflow:hidden;">
+    <{foreach item=list from=$project}>
+    <li>
+        <span style="float:left;">
+            <a href="<{$config.weburl}>/shop.php?menu=<{$smarty.get.menu}>&action=project&uid=<{$list.userid}>&id=<{$list.id}>">
+            <{$list.projecttitle}>
+            </a>
+        </span>
+        
+        <span style="float:right;"><{$list.uptime|date_format}></span>
+	</li>
+    <{/foreach}>
+</ul>
+</div>
+<script src='<{$config.weburl}>/script/marquee.js' type='text/javascript'></script>
+<script>new Marquee('project',0,1,'451',190,10,4000,5000);</script>

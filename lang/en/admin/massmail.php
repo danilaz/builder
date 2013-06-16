@@ -1,0 +1,35 @@
+<?php
+$lang_ext = array(
+	'send_mail_multiply' => 'Mass-mailing',
+	'please_select_mail_tpl' => 'Please select e-mail templates',
+	'send_to' => 'Recipients',
+	'industry' => 'Industry',
+	'area' => 'Area',
+	'all_industry' => 'All Industry',
+	'all_area' => 'All Area',
+	'all_group' => 'All Member Group',
+	'usergroup' => 'Member Group',
+	'mail_subject' => 'Theme',
+	'mail_content' => 'Content',
+	'send_mail' => 'Send Mail',
+	'mtype' => 'Type',
+	'mmail' => 'Mail',
+	'msms' => 'SMS',
+	'mmsg' => 'Message',
+	'isnullmsg' => 'Theme and content can not be empty!',
+	'logotimes' => 'Login Time',
+	'alllogot' => 'All Time',
+	'owunlogo' => 'One week not logged in',
+	'twunlogo' => 'Two weeks not logged in',
+	'omunlogo' => 'One month not logged in',
+	'tmunlogo' => 'Two months not logged in',
+	'thmunlogo' => 'three months not logged in',
+	'sixmunlogo' => 'Six months not logged in',
+	'oyunlogo' => 'One year not logged in',
+		'contact' => 'Contact',
+	'email' => 'Email',
+	'tel' => 'Phone',
+);
+
+$lang = array_merge($lang, $lang_ext);
+?>

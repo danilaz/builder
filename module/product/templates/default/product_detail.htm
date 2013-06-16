@@ -1,0 +1,369 @@
+<link href="<{$config.weburl}>/templates/<{$config.temp}>/pro.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.content4 li{
+	height:190px;
+}
+</style>
+<script type="text/javascript">
+function getfav()
+{	
+	var url = '<{$config.weburl}>/ajax_back_end.php';
+	var myurl='<{$config.weburl}>/?m=product%26s=product_detail%26id=<{$smarty.get.id}>';
+	var u='<{$smarty.cookies.USER}>';
+	if(u=='')
+	{
+		alert('<{$lang.no_logo}>');
+		window.location.href='<{$config.weburl}>/login.php?forward=?m=product&s=product_detail&id=<{$smarty.get.id}>';
+		return false;
+	}
+	var fu='<{$smarty.get.id}>';
+	var typ='3';
+	var ttil="<{$prod.pname|regex_replace:"/[\r\t\n]/":""}>";
+	var mpic='<{$config.weburl}>/uploadfile/zsimg/<{$prod.showimg}>.jpg';
+	var des="<{$prod.pname|strip_tags}>";
+	var pars = 'user='+u+'&fid='+fu+'&type='+typ+'&title='+ttil+'&url='+myurl+'&des='+des+'&picurl='+mpic;
+	var myAjax = new Ajax.Request(url,{method: 'post', parameters: pars, onComplete: showResponse});
+	function showResponse(originalRequest)
+	{
+		if(originalRequest.responseText>1)
+			alert('<{$lang.fav_ok}>');
+		else if (originalRequest.responseText>0)
+			alert('<{$lang.fav_isbing}>');
+		else
+			alert('<{$lang.error}>');
+	}
+}
+function get_same_pro(prov)
+{	
+	var myurl = '<{$config.weburl}>/ajax_back_end.php';
+	var sj = new Date();
+    var pars = 'sj='+sj+'&province='+prov+'&catid='+<{$prod.catid}>+'&gettype=sameoffer';
+	var myAjax = new Ajax.Request(myurl,{method: 'post', parameters: pars, onComplete: showResponse});
+	function showResponse(originalRequest)
+	{
+	    if(originalRequest.responseText!='')
+	       $('pro_list').innerHTML=originalRequest.responseText;
+	}
+}
+function seebig(id)
+{
+    $('imgmove').innerHTML='<a href="<{$config.weburl}>/uploadfile/zsimg/'+id+'.jpg" target="_blank">'+
+	'<img id="img'+id+'" border="0" src="<{$config.weburl}>/uploadfile/zsimg/'+id+'.jpg" ></a>';
+	if($('img'+id).height>$('img'+id).width)
+		$('img'+id).height=280;
+	else
+		$('img'+id).width=280;
+}
+var weburl='<{$config.weburl}>';
+function copyToClipboard(txt)
+{
+	try{
+		window.clipboardData.setData("Text",txt);  
+		alert('<{$lang.copysuc}>'); 
+	}
+	catch(e){alert('<{$lang.noace}>');}
+}
+</script>
+<script src="<{$config.weburl}>/script/my_lightbox.js" language="javascript"></script>
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+       <a href='<{$config.weburl}>/'><{$lang.home}></a> &raquo; <a href="<{$config.weburl}>/?m=product"><{$lang.shop}></a> &raquo; <{$guide}>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+<div id="mainbody1" class="m1">
+<div class="leftbar_detail">
+	<div class="title4"><div class="title_left2 L2">Продробнее о продукте</div></div>
+    <div class="content4" style="padding:5px 20px;">
+	<div class="newstitle"><{$prod.pname}></div> 
+    <div class="newstime">
+    [<{$lang.read_num}>: <{$prod.read_nums}> <{insert name="label" type="statics" temp='statics_default' ctype=3 id=$prod.id}>]
+    </div>
+			<div class="propic">
+			    <div id="imgmove" class="imgmove">       						 
+                     <{assign var="img" value=$prod.id}>
+                     <{html_image file=uploadfile/comimg/big/$img.jpg width=280 alt=$list.pname}>
+				 </div>
+                 
+				 <div id="infopic" class="small_pic">
+				  <{foreach item=pic key=num from=$prod.pic}>
+						<{if $pic&&$num<4}>
+						 <img onMouseOver="seebig('<{$pic}>')" style="cursor:pointer" src="<{$config.weburl}>/uploadfile/zsimg/size_small/<{$pic}>.jpg" border=0 width="45" height="40">
+						<{/if}>
+				 <{/foreach}>
+				</div>
+                <div style="padding:8px;overflow:hidden;">
+                    <a href="javascript:alertWin('<{$lang.share}>','<br><span style=width:80px;><{$lang.purl}></span><input id=textfield type=text size=45 value=<{$config.weburl}>/?m=product&s=product_detail&id=<{$prod.id}>>
+                    <div style=width:340px;padding-left:60px;text-align:left;><br><button onclick=copyToClipboard(\'<{$config.weburl}>/?m=product&s=product_detail&id=<{$prod.id}>\')><{$lang.copysend}></button></div>',400,120,'');"><img src="<{$config.weburl}>/image/<{$config.temp}>/add_to_share.png" /></a>
+                    <a href="javascript:getfav();"><img src="<{$config.weburl}>/image/<{$config.temp}>/add_to_fav.png" /></a>
+                </div>
+			</div>
+			<div class="proinfo">
+            <form action="<{$config.weburl}>" method="get">
+			<table width="330" border="0">
+				<{if $prod.price>0}>
+            	<tr>
+					 <td class="pro_text"><{$lang.price}></td>
+					 <td class="pro_text"> <span style="color:#FF5500; font-size:24px;"><{$prod.price|number_format:2}></span> <{$config.money}>/<{$prod.unit}></td>
+				 </tr>
+				 <{/if}>
+                 <tr>
+					<td width="120" class="pro_text"><{$lang.freight}></td>
+					<td width="250" class="pro_text">
+                    <{if $prod.freight_type==1}>
+                    	<{$lang.sell_freight}>
+                    <{else}>
+                    	<{$lang.sent_by_post}><{$prod.freight.0}> <{$lang.exp}><{$prod.freight.1}> <{$lang.ems}><{$prod.freight.2}>
+                    <{/if}>
+                    </td>
+				 </tr>
+                <tr>
+					<td width="120" class="pro_text"><{$lang.have_sell}></td>
+					<td width="250" class="pro_text"><{$prod.sell_amount}> <{$prod.unit}></td>
+				 </tr>
+				 <tr>
+					<td width="120" class="pro_text"><{$lang.brand}></td>
+					<td width="250" class="pro_text"><{$prod.pp}></td>
+				 </tr>
+				 <tr>
+					<td class="pro_text"><{$lang.pard}></td>
+					<td class="pro_text"><{$prod.gg}></td>
+				 </tr>
+				 <tr>
+					<td class="pro_text"><{$lang.model}></td>
+					<td class="pro_text"><{$prod.model}></td>
+				 </tr>
+                 <tr>
+					 <td class="pro_text"><{$lang.ptype}></td>
+					 <td class="pro_text"><{$prod.ptype}></td>
+				 </tr>
+                 <tr>
+					 <td class="pro_text"><{$lang.pro_city}></td>
+					 <td class="pro_text"><{$prod.province}> <{$prod.city}></td>
+				 </tr>
+                 <tr>
+					 <td class="pro_text"><{$lang.ptime}></td>
+					 <td class="pro_text"><{$prod.uptime|date_format}></td>
+				 </tr>
+				<tr>
+				 <td class="pro_text"><{$lang.trd_type}></td>
+				 <td class="pro_text"><{$prod.trade_type}></td>
+				 </tr>
+                 <tr><td colspan="2"><br />
+				 <!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=anrysys"></script>
+<!-- AddThis Button END --><br />
+				 </td></tr>
+				 <tr>
+				 <td colspan="2">
+                <{if $isbuy==0&&$prod.price*1>0&&$prod.have_time>0}>
+                 <div style="background-color:#FFF3D9; border:1px solid #FEE2A1; padding:5px; line-height:25px;">
+					 <{if $prod.have_time!=6}>
+					 <{$lang.time_left}>: <span id="endtime"><{$prod.have_time}></span><br />
+					 <{/if}>
+                 <{$lang.nums}>
+                 <input onkeyup="check_nums();" size="5" name="nums" id="nums" type="text" value="1" /> <{$prod.unit}>(<{$lang.stock}><{$prod.amount}><{$prod.unit}>)
+                 <input name="id" type="hidden" value="<{$prod.id}>" />
+				 <input name="m" type="hidden" value="product" />
+				 <input name="s" type="hidden" value="order" />
+                 <br />
+
+                 <input type="image" src="<{$config.weburl}>/image/<{$config.temp}>/buy.gif" />
+                 <a href="<{$config.weburl}>/shop.php?uid=<{$prod.userid}>&action=mail&tid=<{$prod.id}>&contype=1&title=<{$prod.pname}>">
+                 <img src="<{$config.weburl}>/image/<{$config.temp}>/sendmail.gif" />
+                 </a>
+                 </div>
+				<script>
+				var CID = "endtime";
+				if(window.CID != null)
+				{
+					var iTime = document.getElementById(CID).innerHTML;
+					var Account;
+					RemainTime();
+				}
+				function RemainTime()
+				{
+					var iDay,iHour,iMinute,iSecond;
+					var sDay="",sHour="",sMinute="",sSecond="",sTime="";
+					if (iTime >= 0)
+					{
+						iDay = parseInt(iTime/24/3600);
+						if (iDay > 0)
+							sDay = iDay + "<{$lang.day}>";
+						iHour = parseInt((iTime/3600)%24);
+						if (iHour > 0)
+							sHour = iHour + "<{$lang.hour}>";
+						iMinute = parseInt((iTime/60)%60);
+						if (iMinute > 0)
+							sMinute = iMinute + "<{$lang.minute}>";
+						iSecond = parseInt(iTime%60);
+						if (iSecond >= 0)
+							sSecond = iSecond + "<{$lang.second}>";
+						
+						if ((sDay=="")&&(sHour==""))
+							sTime="<span style='color:darkorange'>" + sMinute+sSecond + "</font>";
+						else
+							sTime=sDay+sHour+sMinute+sSecond;
+						if(iTime==0)
+						{
+							clearTimeout(Account);
+							sTime="<span style='color:green'><{$lang.timeisend}></span>";
+						}
+						else
+							Account = setTimeout("RemainTime()",1000);
+						iTime=iTime-1;
+					}
+					else
+						sTime="<span style='color:red'><{$lang.countdownisend}></span>";
+					document.getElementById(CID).innerHTML = sTime;
+				}
+				 function check_nums()
+				 {
+				 	var v=$('nums').value*1;
+				 	if(!v)
+						$('nums').value=1;
+					if(v><{$prod.amount}>*1)
+					{
+						$('nums').value=<{$prod.amount}>*1;
+						return false;
+					}
+				 }
+				 </script>
+                 <{else}>
+                 <a href="<{$config.weburl}>/shop.php?uid=<{$prod.userid}>&action=mail&tid=<{$prod.id}>&contype=1&title=<{$prod.pname}>">
+                 <img src="<{$config.weburl}>/image/<{$config.temp}>/sendmail.gif" />
+                 </a>
+                 <{/if}>
+                 </td>
+				 </tr>
+			</table>
+            </form>
+			</div>
+            <div class="clear"></div>
+ 			<div class="prodetail" id="productdetail">
+            <div class="pro_int"><{$lang.pro_det}></div>
+				<script src='<{$config.weburl}>/api/ad.php?id=12&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+                <{if $addfieldlist}>
+                     <{foreach item=fieldlist from=$addfieldlist}>
+                        <div>
+                        <span class="pro_text" style="width:100px;"><{$fieldlist.catInfo}>:</span> 
+                        <{$fieldlist.fieldvalue}>
+                        </div> 
+                    <{/foreach}>
+                <{/if}>
+                <{$prod.detail}>  
+			</div>
+			<{insert name="label" type="comment" ctype=3 cid=$smarty.get.id temp="comment_default" }>
+            </div>
+            <div class="bottom4"></div>
+			
+			<div class="m1">
+				<div class="title4">
+					<h2><{$lang.com_newpro}></h2>
+                    <span class="titlemore" style="padding-left:20px;">
+                    	[<a href="<{$config.weburl}>/shop.php?uid=<{$prod.userid}>&action=prolist"><{$lang.more}></a>]
+                    </span>
+				</div>
+				<div class="samepro content4">
+                	<ul>
+					<{foreach item=slist from=$relpro}>
+					<li>
+					<a href="<{geturl type='prod' user=$slist.user uid=$slist.userid tid=$slist.id}>">
+					<{assign var="img" value=$slist.id}>
+					<{html_image file=uploadfile/comimg/big/$img.jpg width=115 alt=$list.pname}><br />
+					<{$slist.pname|truncate:120}><span class="bmoney"><br />
+					 <{$slist.price|number_format:2}> <{$config.money}></span>
+					</a>
+					</li>
+					<{/foreach}>
+                    </ul>
+                    <div class="clear"></div>
+				</div>
+			</div>
+</div>
+<!--Правая колонка-->	
+
+<div class="rightbar">
+	 <div class="right1">
+		<div class="sectitle" ><div class="title_left1 L2"><{$lang.seller_det}></div></div>
+		 
+		<div class="seccon">
+		<div>
+			<b><a href="<{geturl type='' user=$cominfo.user uid=$cominfo.userid}>"><{$cominfo.company}></a></b>&nbsp;&nbsp;[<a href="<{$config.weburl}>/main.php?menu=user&action=m&m=friend&s=admin_friends&friendid=<{$cominfo.userid}>">В друзья</a>]<br />
+			<{if $cominfo.business}>
+				 <img src="<{$config.weburl}>/image/default/check_right.gif" /> <{$lang.pass_th}>
+			 <{else}>
+				<img src="<{$config.weburl}>/image/default/no_right.gif" /> <{$lang.not_pass}>
+			 <{/if}>
+		</div>
+			<b><{$lang.user_g}>:</b> <{$cominfo.grouplogo}><br />
+			<b><{$lang.cont}>:</b><br /><{$cominfo.contact}><{if $cominfo.qq!=''}><br />
+			 <a href="tencent://message/?uin=<{$cominfo.qq}>&Site=<{$config.weburl}>&Menu=yes">
+			 <img align="absmiddle" border="0" src="http://wpa.qq.com/pa?p=1:<{$cominfo.qq}>:4" /></a>
+			 <{/if}>
+
+			<{if $cominfo.msn!=''}><br />
+			<a href="msnim:chat?contact=<{$cominfo.msn}>">
+			<img align="absmiddle" src="<{$config.weburl}>/image/default/ico_msn.gif" width="16" height="16"/></a>
+			<{/if}>
+
+			<{if $cominfo.skype!=''}><br />
+			<a href="skype:<{$cominfo.skype}>?call">
+			<img align="absmiddle" border="0" src="<{$config.weburl}>/image/default/skypeonline.png"></a>
+			<{/if}>
+			<br />
+			<b><{$lang.tel}>:</b><br /><{$cominfo.tel}><br />
+			
+			<{if $cominfo.fax!=''}><b><{$lang.fax}>:</b><br /><{$cominfo.fax}> <br /><{else}><{/if}>
+			<{if $cominfo.mobile!=''}><b><{$lang.mobile}>:</b><br /><{$cominfo.mobile}> <br /><{else}><{/if}>
+			<b><{$lang.pro_city}>:</b><br />
+			<{$cominfo.province}><br />
+			<{$cominfo.city}><br />
+			<b><{$lang.addr}>:</b><br /><{$cominfo.addr}><br />
+	   
+   </div>
+		
+		<div class="bottom5"></div>
+		<div class="clear"></div>
+	</div>
+	
+	
+
+		
+		
+		
+	<div class="right1 m1">
+		<div class="sectitle" >
+			<div class="title_left1 L2"><{$lang.same_pro}></div>
+			<div class="more" style="margin-top:3px;padding-top:10px;padding-bottom:10px;"></div>
+		</div>
+		 <div class="seccon" id="pro_list">
+			<{foreach item=list from=$samepro}>
+					
+					<a href="<{geturl type='offer_detail' user=$list.user uid=$list.userid tid=$list.id m='offer'}>">
+					<b><{$list.pname|truncate:120:"...":true}></b>
+					</a> [<{$list.province}>]
+				<{$list.company|truncate:120:"...":true}> | <{$list.tel}>
+				<div style="padding:5px;border:1px dashed #f2f2f2"><span class="more" style="margin-top:3px;padding-top:10px;padding-bottom:10px;">
+				  <select onchange="get_same_pro(this.value)" name="province" style="font-size:12px; width:100%;">
+				    <option value="0" style="font-size:12px;"><{$lang.allcity}></option>
+				    <{$province}>
+			    </select>
+			  </span>&nbsp;</div>
+			 <{/foreach}>
+		</div>
+	</div>
+		
+
+</div>		
+<!--右边结束-->
+</div>

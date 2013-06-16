@@ -1,0 +1,134 @@
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <{$lang.you_are_here}><a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <a href='<{$config.weburl}>/?m=offer'><{$lang.Productcat}></a>&raquo; <{$guide}></a>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+<script>
+function do_select()
+{
+	 var box_l = document.getElementsByName("inquery").length;
+	 for(var j = 0 ; j < box_l ; j++)
+	 {
+		if(document.getElementsByName("inquery")[j].checked==true)
+		  document.getElementsByName("inquery")[j].checked = false;
+		else
+		  document.getElementsByName("inquery")[j].checked = true;
+	 }
+}
+
+function get_inquery()
+{	
+	var pid='';
+	var boxes = document.getElementsByName("inquery");   
+	for (var i = 0; i < boxes.length; i++)  
+	{  
+		if(boxes[i].checked)  
+		{  
+			pid+=boxes[i].value+',';  
+		} 
+	}
+	window.location='<{$config.weburl}>/inquire.php?contype=2&offerid='+pid;
+}
+</script>
+<div id="mainbody1" class="m1">
+		<div class="leftbar1">
+			<div class="left2 m1">
+				<div class="title9" >
+					<div class="title_left1 L2">Location</div><div class="more"></div>
+		        </div>
+				 <div class="content9">
+					<ul class="list2">
+					<{insert name="label" type="province" temp='province_buylist'}>
+				   </ul>
+			    </div>
+			  	<div class="bottom9"></div>
+			</div>
+			
+		</div>
+
+		<!--主体左侧结束 -->
+		<div class="rightbar1">
+				<!---subcat start-->
+			<{if $subcat.0.catid}>
+				<div class="title10"><div class="title_left L2"><{$lang.cat_nav}></div></div>
+				<div class="content10" >
+					<ul class="nav_list">
+						<{foreach item=list from=$subcat}>
+							<a href="<{$config.weburl}>/?m=offer&s=offer_list&id=<{$list.catid}>"><{$list.cat}>(<{$list.rec_nums}>)</a>
+						<{/foreach}>
+					</ul>
+				</div>
+				<div class="bottom10" style="margin-bottom:5px"></div>
+			<{/if}>
+			<!---subcat end-->
+			<div class="title10"><div class="title_left L2"><{$lang.Product_list}></div>
+                 <div class="lookmore">
+                    <{if $config.domaincity&&$config.base_url}>
+                        <a href="http://www.<{$config.base_url}>/?m=offer&s=offer_list&id=<{$smarty.get.id}>"><{$lang.lookmore}><{$current_cat}></a>
+                    <{/if}>
+                </div>
+            
+            </div>
+			<div class="content10">
+				
+			<div style="float:left;width:740px;margin:10px;text-align:left; padding-left:10px;">
+                <{if $info.list.0.title}>
+                <input onclick="do_select();" name="" type="checkbox" value="" />
+                &nbsp;&nbsp;<input onclick="get_inquery();" name="" type="button" value="Inquire Now" />
+                &nbsp;&nbsp;<input onclick="add_inquery('info','<{$config.weburl}>','');" name="" type="button" value="Add to Inquiry Basket" />
+                <{/if}>
+				<{foreach item=list key=num from=$infoType}>
+				<a href="<{$config.weburl}>/?m=offer&s=offer_list&catType=<{$num}>&id=<{$smarty.get.id}>&key=<{$smarty.get.key|urlencode}>"><img alt="<{$list}>" src="<{$config.weburl}>/image/<{$config.temp}>/offer_<{$num}>.gif"/></a>
+				<{/foreach}>
+				<hr size="1" width="99%"  noshade style="border:1px dotted #dddddd">
+			</div>  
+			
+        <ul class="list9" style="float:left;">
+		<{foreach item=list from=$info.list}>
+        	<li>
+            	<div class="Lb0"><input name="inquery" type="checkbox" value="<{$list.id}>" /></div>
+				<div class="Lb1" style="width:110px;">
+                <{assign var="img" value=$list.pic|explode_one:","}>
+                <{html_image file=uploadfile/zsimg/size_small/$img.jpg width=100 alt=$list.title}>
+                </div>
+                
+                <div class="Lb2">
+                <p>
+                <img src="<{$config.weburl}>/image/<{$config.temp}>/offer_<{$list.type}>.gif"  align="absmiddle">
+				<a href="<{$config.weburl}>/?m=offer&s=offer_detail&id=<{$list.id}>" target="_blank" title="<{$list.title}>"><{$list.title}></a>
+                </p>
+                <span class="dateTrade"><{$list.uptime|date_format}></span>&nbsp;&nbsp;&nbsp;&nbsp;<img src='<{$config.weburl}>/image/cflag/<{$list.flag}>.gif' /></h2><br />
+				<{$list.con|strip_tags|truncate:200:"...":true}><br/>
+                <{if !$smarty.get.key}>
+				<span><a rel="nofollow" href="<{$config.weburl}>/shop.php?uid=<{$list.userid}>&action=offer_list&m=offer" target="_blank" ><{$lang.browse_more}></a> From <a rel="nofollow" href="<{geturl type='' uid=$list.userid user=$list.user}>" target="_blank" ><{$list.company}></a></span>
+                <{/if}>
+                </div>
+                <div class="Lb3">
+                 [<{$list.province}><{$list.city}>]
+                </div>
+                <div class="Lb3">
+                <{if !$smarty.get.key}>
+				<img src="<{$config.weburl}>/image/<{$config.temp}>/listicon_inquiry.gif" width="18" align="absmiddle" border="0" height="14"> <a rel="nofollow" href="<{$config.weburl}>/inquire.php?contype=2&offerid=<{$list.id}>,0">Inquire now</a>
+            	<{/if}>
+                </div>
+		</li>
+		<{foreachelse}>
+				  <div style="padding:20px; font-weight:bold">
+				 <{$lang.no_offer}> 
+				  <a href="<{$config.weburl}>/main.php">
+				   <font color="#FF0000">
+				  <{$lang.now_add}>
+				  </font>
+				  </a>
+				  </div>
+			<{/foreach}>
+        </ul>
+		<div class="page"><{$info.page}></div>
+		<!--  PRODUCT LIST END -->
+	</div>
+	<div class="bottom10"></div>
+	<!--contents end-->
+	</div>
+</div>
+<!--bodybox end-->

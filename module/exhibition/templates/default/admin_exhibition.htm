@@ -1,0 +1,144 @@
+<div class="admin_right_top"><{if $smarty.get.edit}>Изменить<{else}>Добавить<{/if}></div>
+<script type="text/javascript" src="script/Validator.js"></script>
+<script language="javascript" src="script/Calendar.js"></script>
+<script>
+var city='<{$de.city}>';
+function getHTML(v)
+{	
+	var ob="city";
+	var url = 'ajax_back_end.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&prov_id='+v;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'post', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+		var i=0;var j=0;
+		eval(tempStr);
+		for(var s in MyMe)
+		{
+			++j;
+		}
+		$(ob).options.length =j+1;
+		for(var k in MyMe)
+		{
+			var cityId=MyMe[k][0];
+			var ciytName=MyMe[k][1];
+			$(ob).options[k].value = cityId;
+			$(ob).options[k].text = ciytName;
+			if(city!=''&&city==ciytName)
+				$(ob).options[k].selected = true;
+	　	}
+	 }
+　}
+<{if $de.city}>
+getHTML('<{$de.province}>');
+<{/if}>
+</script>
+<table border="0" cellspacing="1" cellpadding="5" align="center" bgcolor="#DDDDDD" class="admin_table">
+<form method="post" action="" enctype="multipart/form-data" onSubmit="return Validator.Validate(this,3)">
+    <tr>
+        <td width="12%" align="left" bgcolor="#EAEFF3">Название выстаки</td>
+        <td width="88%" bgcolor="#FFFFFF">
+        	<input name="title" type="text" id="title" style="width:419px;" value="<{$de.title}>"/>
+        </td>
+    </tr>
+   
+   <tr>
+        <td width="12%" align="left" bgcolor="#EAEFF3">Город</td>
+        <td width="88%" bgcolor="#FFFFFF">
+            <select  name="province" id="province" onChange="getHTML(this.value)" style="width:150px;" />
+            	<option value="">Выберите города</option>
+                <{$prov}>
+            </select>
+            
+            <select name="city" id="city" style="width:150px;" />
+            	<option value="">Выберите город</option>
+            </select>
+        </td>
+    </tr>
+    
+    <tr>
+        <td width="12%" align="left" bgcolor="#EAEFF3">Место проведения</td>
+        <td width="88%" bgcolor="#FFFFFF">
+        	<input name="addr" type="text" id="addr" style="width:419px;" value="<{$de.title}>"/>
+        </td>
+    </tr>
+    
+    <tr>
+        <td width="12%" align="left" bgcolor="#EAEFF3">Дата</td>
+        <td width="88%" bgcolor="#FFFFFF">
+			<script language="javascript">
+            var cdr = new Calendar("cdr");
+            document.write(cdr);
+            cdr.showMoreDay = true;
+            </script>
+            <input readonly name="stime" type="text" id="stime" size="22" value="<{$de.stime|date_format}>" onFocus="cdr.show(this);">
+            <input readonly onFocus="cdr.show(this);" name="etime" type="text" id="etime" size="22" value="<{$de.etime|date_format}>">
+        </td>
+    </tr>
+    
+    <tr>
+        <td width="12%" align="left" bgcolor="#EAEFF3">Организаторы</td>
+        <td width="88%" bgcolor="#FFFFFF">
+        	<input name="organizers" type="text" id="organizers" style="width:419px;" value="<{$de.organizers}>"/>
+        </td>
+    </tr>
+    
+    <tr>
+        <td width="12%" align="left" bgcolor="#EAEFF3">Спонсоры</td>
+        <td width="88%" bgcolor="#FFFFFF">
+        	<input name="contractors" type="text" id="contractors" style="width:419px;" value="<{$de.contractors}>"/>
+        </td>
+    </tr>
+  
+    <tr>
+        <td width="12%" align="left" bgcolor="#EAEFF3">Подробнее</td>
+        <td width="88%" bgcolor="#FFFFFF">
+        	<{if $de.con}>
+			<{$de.con}>
+			<{else}>
+			<script type="text/javascript" src="lib/fckeditor/fckeditor.js"></script>
+			<script type="text/javascript">
+			var oFCKeditor = new FCKeditor( 'con' ) ;
+			<{if $config.language=='en'}>
+				oFCKeditor.Config['DefaultLanguage']='en';
+			<{else}>
+				oFCKeditor.Config['DefaultLanguage']='zh-cn';
+			<{/if}>
+			oFCKeditor.Config['ToolbarStartExpanded'] = true ;
+			oFCKeditor.BasePath		= 'lib/fckeditor/' ;
+			oFCKeditor.ToolbarSet	= 'frant' ;
+			oFCKeditor.Width='100%';
+			oFCKeditor.Height=500;
+			oFCKeditor.Create() ;
+			</script>
+            <{/if}>
+        </td>
+    </tr>
+    
+    <tr>
+        <td width="12%" align="left" bgcolor="#EAEFF3">Изображение</td>
+        <td width="88%" bgcolor="#FFFFFF">
+			<{if $de.pic }>
+				 <img src="<{$config.weburl}>/uploadfile/exhibitimg/<{$de.pic}>.jpg"  height="60">
+                 <input type="hidden" name="oldpic" id="oldpic" value="<{$de.pic}>">
+				 <input type="checkbox" name="nopic" id="nopic" value="1">Удалить<br />
+            <{/if}>     
+				 <input name="pic" type="file" id="pic" size="45"> 
+        </td>
+    </tr>
+    
+    <tr bgcolor="#EAEFF3">
+        <td>&nbsp;</td>
+        <td bgcolor="#FFFFFF">
+            <input name="Submit" type="submit" id="Submit" value="<{$lang.submit}>" style="width:100px;" />
+            <input name="submit" type="hidden" id="submit" value="<{if $de.id}>edit<{else}>submit<{/if}>" />
+            <input name="editID" type="hidden" id="editID" value="<{$de.id}>" />
+        </td>
+    </tr>
+</form>  
+</table>

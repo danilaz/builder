@@ -1,0 +1,44 @@
+<script type="text/javascript" src="script/Validator.js"></script>
+<script language="javascript" src="script/Calendar.js"></script>
+	<div class="admin_right_top"><{$lang.pickup_a}></div>
+
+    <{if $smarty.get.casherror==1 }>
+             <{$lang.pickup_b}>
+    <{elseif $smarty.get.casherror==2 }>
+             <{$lang.pickup_c}>
+    <{else}>
+	<table width='100%' border="0" cellpadding="7" cellspacing="1" bgcolor="#DDDDDD" class="admin_table">
+    <form action="" method="post">
+  <tr>
+	<td width='18%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.pickup_d}></td>
+	<td width='82%' bgcolor="#FFFFFF"><{ $re.bank }></td>
+  </tr>
+  <tr>
+	<td height="24" align="left" bgcolor="#EAEFF3"><{$lang.pickup_e}></td>
+	<td bgcolor="#FFFFFF"><{ $re.master }></td>
+  </tr>
+  <tr>
+	<td height="24" align="left" bgcolor="#EAEFF3"><{$lang.pickup_f}></td>
+	<td bgcolor="#FFFFFF"><{ $re.accounts }></td>
+  </tr>
+  <tr>
+	<td height="24" align="left" bgcolor="#EAEFF3"><{$lang.pickup_g}></td>
+	<td bgcolor="#FFFFFF"><{ $re.cash|number_format:2 }> <{$config.money}></td>
+  </tr>
+  <tr>
+	<td height="24" align="left" bgcolor="#EAEFF3"><{$lang.pickup_h}></td>
+	<td bgcolor="#FFFFFF"><input type="text" name="pickup" size="30" value=""/></td>
+  </tr>
+  <tr>
+	<td height="24" align="left" bgcolor="#EAEFF3"><{$lang.pickup_i}></td>
+	<td bgcolor="#FFFFFF"><input type="password" name="pword" size="30" value=""/></td>
+  </tr>
+    <tr>
+	<td height="24" align="right" bgcolor="#EAEFF3"> </td>
+	<td bgcolor="#FFFFFF">
+	  <input  type='submit' name='Submit' value='<{$lang.pickup_j}>' style="width:100px;">
+	  <input name="action" type="hidden" id="action" value="submit" /></td>
+  </tr>
+  </form>
+</table>
+<{/if}>

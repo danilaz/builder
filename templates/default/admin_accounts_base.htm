@@ -1,0 +1,26 @@
+<script type="text/javascript" src="script/Validator.js"></script>
+<script language="javascript" src="script/Calendar.js"></script>
+	<div class="admin_right_top"><{$lang.page_title}></div>
+
+	<table width='100%' border="0" cellpadding="7" cellspacing="1" bgcolor="#DDDDDD" class="admin_table">
+
+        <{if $smarty.get.pickup==1 }>
+  <tr> 
+	<td align="left" bgcolor="#EAEFF3" colspan="2">
+            <{$lang.desc_one}>
+    </td>
+  </tr>
+         <{/if}>
+  <tr>
+	<td width='18%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.cash_one}></td>
+	<td width='82%' bgcolor="#FFFFFF"><{ $re.cash|number_format:2 }> <{$config.money}></td>
+  </tr>
+  <tr>
+	<td width='18%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.cash_two}></td>
+	<td width='82%' bgcolor="#FFFFFF"><{ $re.unreachable }> <{$config.money}></td>
+  </tr>
+  <tr>
+	<td height="24" align="left" bgcolor="#EAEFF3"><{$lang.cash_backup}><{if $re.bank && $re.active==0 }><font color="red">(<{$lang.cash_a}>)</font><{/if}><{if $re.bank && $re.active==1 }><font color="blue">(<{$lang.cash_b}>)</font><{/if}></td>
+	<td bgcolor="#FFFFFF"><{ if $re.bank }><{ $re.bank }>&nbsp;&nbsp;<{ $re.accounts }> &nbsp;&nbsp;<{ $re.master }><{else}><a href="?menu=<{$smarty.get.menu}>&action=admin_accounts_bind"><{$lang.cash_c}></a><{/if}></td>
+  </tr>
+</table>

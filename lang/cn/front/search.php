@@ -1,0 +1,42 @@
+<?php
+$lang['advsearch']='Расширенный поиск';
+$lang['allcat']='Все';
+$lang['seatype']='Сортировать по: ';
+$lang['offer']='Предложения';
+ $lang['demand']='Спрос'; 
+$lang['pro']='Товары';
+$lang['com']='Участники';
+$lang['keyword']='Ключевые слова: ';
+$lang['incat']='Категории: ';
+$lang['inallcat']='Все категории';
+$lang['inadd']='Местонахождение: ';
+$lang['allcountry']='Все страны';
+$lang['allprovince']='Все области';
+$lang['allcity']='Все города';
+$lang['alldate']='Обновлено: ';
+$lang['to']=' -- ';
+$lang['infotype']='Тип продукта: ';
+$lang['alltype']='Все типы';
+$lang['usergroup']='Уровень участников: ';
+$lang['usertype']='Тип компании:';
+$lang['alluser']='Все уровни членства';
+$lang['pic']='Фото: ';
+$lang['thereispic']='С фото';
+$lang['nopic']='Без фото';
+$lang['allpic']='Все';
+$lang['pricefw']='Диапазон цен: ';
+$lang['ordertype']='Сортировать по: ';
+$lang['noorder']='По умолчанию';
+$lang['priceorder']='Цена по убыванию';
+$lang['pricedg']='Цена по возрастанию';
+$lang['usergo']='Участники по убыванию';
+$lang['userdg']='Участники по возрастанию';
+$lang['offergd']='Предложения по убыванию';
+$lang['offerdg']='Предложения по возрастанию';
+$lang['upointgd']='Баллы по возрастанию';
+$lang['upointdg']='Баллы по убыванию';
+$lang['rankgd']='Рейтинг по убыванию';
+$lang['rankdg']='Рейтинг по возрастанию';
+$lang['adsearch']='Расширенный поиск';
+
+?>

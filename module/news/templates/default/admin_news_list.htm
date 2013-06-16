@@ -1,0 +1,27 @@
+<div class="admin_right_top">
+<span style="float:left"><{$lang.manage}></span>
+</div>
+<div>
+<table border="0" cellpadding="4" cellspacing="1" bgcolor="#FFFFFF" width="100%"  style="line-height:30px;">
+	<tr bgcolor="#E8E8E8" style="font-weight:bold"> 
+		<td width="*">&nbsp;<{$lang.title}></td>
+        <td width="10%"><{$lang.onclick}></td>
+        <td width="10%"><{$lang.time}></td>
+        <td width="5%"><{$lang.pass}></td>
+        <td width="10%"><{$lang.action}></td>
+	</tr>
+	<{foreach item=list from=$news.list}>
+	<tr bgcolor="#F7F7F7"> 
+	 	<td>&nbsp;<{if $list.isrec==1}><font color="#FF0000">[<{$lang.tj}>]</font><{/if}><{if $istop.ispass==1}><font color="#FF0000">[<{$lang.top}>]</font><{/if}>&nbsp;<{if $list.ispass==1}><a target="_blank" href="<{$config.weburl}>/shop.php?uid=<{$buid}>&action=newsd&id=<{$list.nid}>" style="text-decoration:none"><{$list.ftitle}></a><{else}><{$list.ftitle}><{/if}></td>
+        <td ><{$list.onclick}></td>
+        <td ><{$list.uptime|date_format}></td>
+        <td ><{if $list.ispass==1}>Размещено<{else}><font color="#FF0000">На проверке</font><{/if}></td>
+        <td >
+        <a href="?menu=<{$smarty.get.menu}>&newsid=<{$list.nid}>&action=m&m=<{$smarty.get.m}>&s=admin_news"><img src="/image/default/page_edit.png" title="<{$lang.modify}>"></a>
+        <a href="?deid=<{$list.nid}>&action=m&m=<{$smarty.get.m}>&s=admin_news_list&menu=<{$smarty.get.menu}>" onClick="return confirm('<{$lang.del_msg}>');"><img src="/image/default/delete.png " title="<{$lang.del}>"></a>
+        </td>
+	</tr>
+	<{/foreach}>
+</table>
+</div>
+<div class="page"><{$news.page}></div>

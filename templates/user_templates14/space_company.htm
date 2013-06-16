@@ -1,0 +1,123 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td valign="top">
+
+    <div class="common_box2">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr class="guide_ba2"><td><span><{$shopconfig.home_news_name}></span> 
+			<a href="shop.php?uid=<{$smarty.get.uid}>&action=news_list&m=news"><img src="<{$img}>/more.jpg" /></a></td>
+			
+        </tr>
+      <tr>
+        <td height="100">
+        <{if $com.img!=""}>
+		 <img src="<{$com.img}>" style="float:right; width:190px; border:1px solid #CCCCCC;margin-left:10px;">
+		<{/if}>
+        <div style="padding:20px;">
+		<{$com.intro}>
+        </div>
+		</td>
+      </tr>
+    </table>
+</div>
+
+
+
+</td>
+    <td valign="top">
+    <div>
+    	<div class="com_contact">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr class="item">
+                    <td colspan="2"><span>Видео</span></td>
+                  </tr>
+                  <tr>
+                    <td><{insert name="getUserPlayer" height="163" width="215" userid=$com.userid}></td>
+                  </tr>
+                </table>
+        </div>
+    </div>
+</td>
+  </tr>
+  <tr>
+    <td valign="top">
+
+<div class="common_box2">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr  class="guide_ba2">
+    <td>
+      <span><{$shopconfig.home_recpro_name}></span>      <a href="shop.php?uid=<{$smarty.get.uid}>&action=product_list&m=product"><img src="<{$img}>/more.jpg" /></a></td>
+     </tr>
+  <tr>
+  	<td>
+    	<style>
+.blk_29 { OVERFLOW: hidden; ZOOM: 1; POSITION: relative}
+.blk_29 .LeftBotton{ BACKGROUND: url(<{$img}>left.jpg) no-repeat 0px 0px; LEFT: 5px; FLOAT: left; WIDTH: 17px; CURSOR: pointer;  HEIGHT: 100px;margin-top:50px;}
+.blk_29 .RightBotton { RIGHT: 5px; BACKGROUND: url(<{$img}>right.jpg) no-repeat; FLOAT: right; WIDTH: 17px; CURSOR: pointer;  HEIGHT: 100px;margin-right:-10px;margin-top:50px;}
+.blk_29 .Cont { MARGIN: 0px auto; OVERFLOW: hidden; WIDTH: 450px; PADDING-TOP: 5px; float:left;}
+.blk_29 .box { FLOAT: left; WIDTH: 120px; TEXT-ALIGN: center; border:1px solid #CCCCCC; height:100px; margin:3px;}
+</style>
+<div class="blk_29">
+	<div class="LeftBotton" id="LeftArr"></div>
+	<div class="Cont" id="ISL_Cont_1">
+		<{foreach item=list key=num from=$rec_pro}>
+		<div class="box">
+			<a href="<{geturl type='prod' uid=$com.userid user=$com.user tid=$list.id open=1}>" target="_blank">
+			<{assign var="imgs" value=$list.id}>
+			<{html_image file=uploadfile/comimg/big/$imgs.jpg width=100 alt=$list.pname}>
+			</a>
+		</div>
+		<{/foreach}>
+	</div>
+	<div class="RightBotton" id="RightArr"></div>
+</div>
+<script src="<{$img}>flow.js"></script>
+<script language=javascript type=text/javascript>
+  var scrollPic_02 = new ScrollPic();
+  scrollPic_02.scrollContId   = "ISL_Cont_1"; //内容容器ID
+  scrollPic_02.arrLeftId      = "LeftArr";//左箭头ID
+  scrollPic_02.arrRightId     = "RightArr"; //右箭头ID
+  scrollPic_02.frameWidth     = 450;//显示框宽度
+  scrollPic_02.pageWidth      = 110; //翻页宽度
+  scrollPic_02.speed          = 10; //移动速度(单位毫秒，越小越快)
+  scrollPic_02.space          = 10; //每次移动像素(单位px，越大越快)
+  scrollPic_02.autoPlay       = false; //自动播放
+  scrollPic_02.autoPlayTime   = 3; //自动播放间隔时间(秒)
+  scrollPic_02.initialize(); //初始化
+</script>
+     </td>
+  </tr>
+</table>
+</div>
+
+</td>
+    <td valign="top">
+    <div>
+    	<div style="margin-top:10px;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr class="item">
+                    <td colspan="2"><span><{$shopconfig.home_contact_name}></span></td>
+                  </tr>
+                  <tr>
+                    <td class="padding10"><{$lang.addr}><br /> <a onclick="alertWin('Map','',500,300,'<{$config.weburl}>/templates/default/map.php?addr=<{$com.addr|urlencode}>');" href="#"><{$com.addr }></a></td>
+                  </tr>
+                  <tr>
+                    <td class="padding10"><{$lang.conetct_name}><br /> <{$com.contact }>(<{$com.position}>)</td>
+                  </tr>
+                  <tr>
+                    <td class="padding10"><{$lang.tel}>:<br /> <{$com.tel }></td>
+                  </tr>
+                  <{if $com.mobile}>
+                  <tr>
+                    <td class="padding10"><{$lang.mobile}>:<br /><{$com.mobile }></td>
+                  </tr>
+                  <{/if}>
+                  <tr>
+                    <td class="padding10"><{$lang.fax}>:<br /><{$com.fax}></td>
+                  </tr>
+                </table>
+        </div>
+    </div>
+</td>
+  </tr>
+</table>

@@ -1,0 +1,101 @@
+<div class="admin_right_top"><span style="float:left"><{$lang.myf}></span></div>
+<script type="text/javascript">
+function checkall()
+{
+	 for(var j = 0 ; j < document.getElementsByName("username[]").length; j++)
+	 {
+	  	if(document.getElementsByName("username[]")[j].checked==true)
+	  	  document.getElementsByName("username[]")[j].checked = false;
+		else
+		  document.getElementsByName("username[]")[j].checked = true;
+	 }
+}
+function getvaule() 
+{
+	 var box_l = document.getElementsByName("username[]").length;
+	 var u='0';
+	 for(var j = 0 ; j < box_l ; j++)
+	 {
+	  	if(document.getElementsByName("username[]")[j].checked==true)
+	  	  u=u+","+document.getElementsByName("username[]")[j].value;
+	 }
+    document.getElementById('uern').value=u;
+} 
+</script>
+<form name="friend" action="" method="get" >
+<input name="action" type="hidden" value="m" />
+<input name="m" type="hidden" value="friend" />
+<input name="s" type="hidden" value="admin_friends_list" />
+<input name="menu" type="hidden" value="user" />
+<table border="0" cellpadding="4" cellspacing="1" bgcolor="#FFFFFF" width="100%">
+ <{if $smarty.get.msgsend=='ok'}>
+<tr>
+	  <td height="32" colspan="6">
+	  <FONT color="red" size="5"><{$lang.msg_1}></font>
+	  </td>
+  </tr>
+  <{/if}>
+   <{if $smarty.get.msgsend=='error'}><tr>
+	  <td height="32" colspan="6">
+	  <FONT color="red" size="5"><{$lang.msg_1}></font>
+	  </td>
+  </tr><{/if}>
+	<tr>
+	  <td height="32" colspan="7">
+        <select name="qtype" id="qtype">
+            <option value=""><{$lang.sqt}></option>
+            <option value="1" <{if $smarty.get.qtype=='1'}>selected<{/if}>><{$lang.uname}></option>
+            <option value="2" <{if $smarty.get.qtype=='2'}>selected<{/if}>><{$lang.conc}></option>
+            <option value="3" <{if $smarty.get.qtype=='3'}>selected<{/if}>><{$lang.tel}></option>
+            <option value="4" <{if $smarty.get.qtype=='4'}>selected<{/if}>><{$lang.fax}></option>
+            <option value="5" <{if $smarty.get.qtype=='5'}>selected<{/if}>><{$lang.addr}></option>
+            <option value="6" <{if $smarty.get.qtype=='6'}>selected<{/if}>><{$lang.comn}></option>
+	    </select>
+		<{$lang.addt}><input type="text" name="stime" id="stime" onFocus="cdr.show(this);" style="width:100px;" value="<{$smarty.get.stime}>">
+		-
+		<input type="text" name="etime" id="etime" onFocus="cdr.show(this);" style="width:100px;" value="<{$smarty.get.etime}>">
+        <input type="text" name="keycon" id="keycon" style="width:200px;" value="<{$smarty.get.keycon}>">
+		<input type="submit" value="<{$lang.submit}>">
+	  </td>
+  </tr>
+	<tr bgcolor="#e8e8e8"> 
+		<td align="center" width="5%"><input type="checkbox" name="allu"  value="1" onClick="checkall();"/></td>
+		 <td width="10%"><{$lang.fname}></td>
+		 <td width="*%"><{$lang.fcom}> </td>
+	     <td width="15%"> <{$lang.tel}></td>
+	     <td width="10%"><{$lang.addtime}></td>
+		 <td width="15%" align="center"><{$lang.maction}></td>
+	</tr>
+	<{foreach item=list from=$re.list}>
+	<tr bgcolor="#F7F7F7"> 
+	  <td align="center"><input type="checkbox" name="username[]"  value="<{$list.id}>"/></td>
+	  <td><a href="?&action=m&m=friend&s=admin_friends&detail_id=<{$list.id}>"><{$list.name}></a></td>
+	  <td><{$list.company}></td>
+	  <td><{$list.tel}><br><{$list.mobile}></td>
+	  <td><{$list.uptime|date_format}></td>
+	  <td  align="center">
+	  <{if $list.fuid}><a href="shop.php?uid=<{$list.fuid}>&action=mail"><img src="/image/default/email_go.png" title="<{$lang.smsg}>"></a>
+	  <{/if}>
+      <a href="?menu=user&action=m&m=friend&s=admin_friends&editid=<{$list.id}>"><img src="/image/default/page_edit.png" title="<{$lang.mod}>"></a>
+      <a href="?menu=user&action=m&m=friend&s=admin_friends_list&delid=<{$list.id}>" onClick="return confirm('<{$lang.suredel}>');"><img src="/image/default/delete.png " title="<{$lang.delete}>"></a></td>
+	</tr>
+	<{/foreach}>
+</table>
+</form>
+<div align="right"><{$re.page}></div>
+<div style="width:100%;" align="left;">
+<form name="batchmsg" action="?menu=user&action=m&m=friend&s=admin_friends_batchmail" method="POST" >
+<input type="hidden" name="uern" id="uern" value=""/>
+<input  type="submit" id="bmail" value="<{$lang.bsm}>" onclick="getvaule();"/>
+
+<input name="action" type="hidden" value="m" />
+<input name="m" type="hidden" value="friend" />
+<input name="s" type="hidden" value="admin_friends_list" />
+</form>
+</div>
+<script language="javascript" src="<{$config.weburl}>/script/Calendar.js"></script>
+<script language="javascript">
+	var cdr = new Calendar("cdr");
+	document.write(cdr);
+	cdr.showMoreDay = true;
+</script>

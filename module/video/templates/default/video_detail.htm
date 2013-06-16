@@ -1,0 +1,50 @@
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+      <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; 
+	  <a href="?m=video&s=video_index">Видео</a> &raquo;<{$de.name}>
+	 </div>
+    <div class="headtop_R"></div>		
+</div>
+
+	<div id="mainbody1" class="m1">
+		<div class="leftbar">
+			<div class="title4"><div class="title_left2 L2">Сведения о видео</div></div>
+			<div class="content4 overflow" style="text-align:center;">
+			<div><{$de.name}></div>	
+	<div>
+    <{if $de.video_url|truncate:4:''=='http'}>
+    	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="VideoPlayer" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" height="373" width="438"><param name="movie" value="<{$de.video_url}>" /><param name="quality" value="high" /><param name="allowScriptAccess" value="always" /><param name="allowFullScreen" value="true" /><embed name="VideoPlayer" src="<{$de.video_url}>" allowScriptAccess="always" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="true" height="373" width="438" /></object>
+	<{elseif $de.type=='swf'}>
+	
+	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="VideoPlayer" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="600"><param name="movie" value="<{$config.weburl}>/uploadfile/video/<{$de.video_url}>" /><param name="quality" value="high" /><param name="allowScriptAccess" value="always" /><param name="allowFullScreen" value="true" /><embed name="VideoPlayer" src="<{$config.weburl}>/uploadfile/video/<{$de.video_url}>" allowScriptAccess="always" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="true" width="600" /></object>
+	<{else}>
+    
+    <embed width="400" height="300" type="application/x-shockwave-flash" allowfullscreen="true" wmode="transparent" quality="high" flashvars="file=<{$config.weburl}>/uploadfile/video/<{$de.video_url}>" src="lib/flvplayer.swf" allowscriptaccess="never" allownetworking="internal">
+    <{/if}>
+	</div>
+	<div><{$de.desc}></div>
+	
+			</div>
+		</div>
+		
+		
+		
+			<div class="rightbar">
+			<div class="right1">
+				<div class="sectitle" >
+					<div class="title_left1 L2">Популярное видео</div>
+		        </div>
+				 <div class="seccon">
+					<ul class="li_list">
+						<{foreach item=list key=num from=$video}>
+						<li>
+						<a href="<{$config.weburl}>/?m=video&s=video_detail&id=<{$list.video_id}>"><{$list.name|truncate:40:""}></a>
+						</li>
+						<{/foreach}>
+					</ul>
+					<div class="clear"></div>
+			    </div>
+			</div>
+		</div>	
+		
+	</div>

@@ -1,0 +1,32 @@
+<div class="admin_right_top">
+	<{$lang.qm}>&nbsp;&nbsp;<a target="_blank" href="/?m=ask&s=add_question"><{$lang.iask}></a>
+</div>
+
+<table border="0" cellspacing="1" bgcolor="#FFFFFF" class="admin_table">
+	<tr bgcolor="#E8E8E8"> 
+	  <td width="60%" align="left"><{$lang.qt}></td>
+	  <td width="5%" align="center"><{$lang.qsta}></td>
+	  <td width="10%" align="center"><{$lang.qstime}></td>
+	  <td width="20%" align="center"><{$lang.qaction}></td>
+	</tr>	
+     <{foreach item=qs from=$rs.lists}>
+	 <tr bgcolor="#F7F7F7"> 
+	   <td align="left"><{if $qs.reward>0}><img src="<{$config.weburl}>/image/default/mon.gif" height="15"/><{$qs.reward}><{/if}>&nbsp;&nbsp;&nbsp;<a target="_blank" href="<{$config.weburl}>/?m=ask&s=question&id=<{$qs.id}>"><{$qs.title}></a>&nbsp;&nbsp;[<{$qs.cat}>]</td>
+	   <td align="center" >
+	   <{if $qs.statu=='1'}><img src="<{$config.weburl}>/image/default/nask.gif" height="15"/><{elseif $qs.statu=='2'}><img src="<{$config.weburl}>/image/default/answer.gif" height="15"/><{else $qs.statu=='3'}><img src="<{$config.weburl}>/image/default/expired.gif" height="15"/> <{/if}>
+	   </td>
+	   <td align="center"><{$qs.uptime|date_format}></td>
+	   <td align="center"><a target="_blank" href="<{$config.weburl}>/?m=ask&s=question&id=<{$qs.id}>"><{$lang.qdetail}></a>&nbsp;&nbsp;
+	   <{if $qs.statu=='1'}>
+	   <a target="_blank" href="<{$config.weburl}>/?m=ask&s=add_question&catid=<{$qs.catid}>&qid=<{$qs.id}>"><{$lang.qed}></a>
+	   <{/if}>
+	   </td>
+       <{foreachelse}>
+	   <tr>
+	  <td colspan="6" align="left" bgcolor="#FFFFFF"><{$lang.noask}></td>
+	  </tr>
+       <{/foreach}>   
+     <tr>
+       <td colspan="6" align="left"><{$rs.pages}></td>
+     </tr>
+</table>

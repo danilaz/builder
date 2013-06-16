@@ -1,0 +1,128 @@
+<script language="javascript" src="<{$config.weburl}>/script/Calendar.js"></script>
+<script language="javascript">
+	var cdr = new Calendar("cdr");
+	document.write(cdr);
+	cdr.showMoreDay = true;
+</script>
+<link href="<{$config.weburl}>/templates/<{$config.temp}>/exhibition.css" rel="stylesheet" type="text/css" />
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <a href="<{$config.weburl}>/?m=exhibition"><{$lang.exh_center}></a>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+	<div id="mainbody1" class="m1">
+		<div class="leftbar_exhibition">
+		<script src='<{$config.weburl}>/api/ad.php?id=31&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+			<div class="title4"><div class="title_left2 L2"><{$lang.exh_list}></div></div>
+			<div class="content4 overflow" style="padding:5px 20px;">
+			<div style="border-bottom:1px solid #cfcfcf;margin-bottom:5px;line-height:28px; text-align:left; padding:5px;">
+<form action="" method="get">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><{$lang.keyword}></td>
+    <td><input name="key" value="<{$smarty.get.key}>" type="text" /></td>
+  </tr>
+  <tr>
+    <td><{$lang.hcity}></td>
+    <td><input name="city" type="text" id="city" size="15" maxlength="20" value="<{if $smarty.get.city}><{$smarty.get.city}><{/if}>"/>
+</td>
+  </tr>
+  <tr>
+    <td><{$lang.eroom}></td>
+    <td>
+<select name="sroom" id="sroom">
+  <option value=""><{$lang.rooms}></option>
+ <{foreach item=list from=$sroom}>
+ <option value="<{$list.show_room_name}>" <{if $smarty.get.sroom==$list.show_room_name}>selected<{/if}>><{$list.show_room_name}></option>
+ <{/foreach}>
+</select></td>
+  </tr>
+    <tr>
+    <td><{$lang.shtime}></td>
+    <td><input name="showtime" type="text" id="showtime" size="15" onFocus="cdr.show(this);" value="<{if $smarty.get.showtime}><{$smarty.get.showtime}><{/if}>"/>
+-
+<input name="endshowtime" type="text" id="endshowtime" size="15" onFocus="cdr.show(this);" value="<{if $smarty.get.endshowtime}><{$smarty.get.endshowtime}><{/if}>"/></td>
+  </tr>
+    <tr>
+    <td>&nbsp;</td>
+    <td>
+	<input name="m" type="hidden" value="exhibition" />
+	<input name="s" type="hidden" value="exhibition_list" />
+	<input type="submit" id="search" value="<{$lang.esearch}>" />
+	</td>
+  </tr>
+</table>
+</form>
+</div>		
+		<ul class="list6">
+                    <li>
+                 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr height="30">
+                        <td colspan="2" bgcolor="#EEEEEE" ><{$lang.exh_list}></td>
+                        <td width="500" bgcolor="#EEEEEE"><{$lang.exh_time}></td>
+                      </tr>
+					  <tr height="4">
+                        <td colspan="2"></td>
+                        <td width="500"></td>
+                      </tr>
+                      <{foreach item=list from=$exhibition.list}>
+                      <tr>
+                        <td width="11%">
+                        <a rel="nofollow" href="<{$config.weburl}>/?m=exhibition&s=exhibition_detail&id=<{$list.id}>">
+						<{if $list.pic!=''}>
+                        &nbsp;&nbsp;<img width="100" src="<{$config.weburl}>/uploadfile/exhibitimg/<{$list.pic}>.jpg"  alt="<{$list.title}>" />
+						<{else}>
+						&nbsp;&nbsp; <img width="100" src="<{$config.weburl}>/image/default/nopic.gif"  alt="<{$list.title}>" />
+						<{/if}>
+                         </a>
+                        </td>
+                        <td width="70%">
+                        <strong><a href="<{$config.weburl}>/?m=exhibition&s=exhibition_detail&id=<{$list.id}>" title="<{$list.title}>" target="_blank" style="margin-left:5px;"><{$list.title|truncate:150:"...":true}></a></strong><br/>
+                        	<font style="font-weight:100;margin-left:5px;"><{$list.con|strip_tags|truncate:150:"...":true}></font><br />
+				            &nbsp;&nbsp;[<{$list.country}>-<{$list.city}>]&nbsp;&nbsp;&nbsp;&nbsp;<{$list.showroom}></td>
+                        <td align="center">&nbsp;<{$list.stime|date_format}><br/>&nbsp;<{$list.etime|date_format}></td>
+                      </tr>
+					  <tr height="1">
+					    <td colspan="3">
+						   <hr size="1" width="100%"  noshade style="border:1px dotted #dddddd">
+						</td>
+					  <tr>
+                      <{foreachelse}>
+                      <tr>
+                        <td colspan="3">
+                        	<{$lang.no_exh}> 
+                            <a href="<{$config.weburl}>/main.php">
+                            <{$lang.add_info}> </a>
+                        </td>
+                      </tr>
+                      <{/foreach}>
+                      <tr><td colspan="3"><{$exhibition.page}></td></tr>
+                    </table>
+
+					</li>
+				</ul>
+			  </div>
+		</div>
+		<!--主体左侧结束 -->
+		
+		<!--主体右侧开始 -->
+		<div class="rightbar">
+		<script src='<{$config.weburl}>/api/ad.php?id=32&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+			<div class="right1">
+			<div class="right1">
+				<div class="sectitle" >
+					<div class="title_left1 L2"><{$lang.rec_exh}></div>
+		        </div>
+				<div class="seccon" >
+					<ul class="li_list">
+					 	<{insert name="getExh" leng="200" limit=15 rec="true"}>
+				   </ul>
+                   <div class="clear"></div>
+			    </div>
+				<div class="clear"></div>
+			</div>
+		</div>		
+		<!--主体右侧结束 -->
+	</div>
+	<!--主体结束 -->	

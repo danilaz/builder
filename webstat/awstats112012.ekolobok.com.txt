@@ -1,0 +1,661 @@
+AWSTATS DATA FILE 6.95 (build 1.943)
+# If you remove this file, all statistics for date 201211 will be lost/reset.
+# Last config file used to build this data file was /etc/awstats/awstats.ekolobok.com.conf.
+
+# Position (offset in bytes) in this file for beginning of each section for
+# direct I/O access. If you made changes somewhere in this file, you should
+# also remove completely the MAP section (AWStats will rewrite it at next
+# update).
+BEGIN_MAP 27
+POS_GENERAL 1958                
+POS_TIME 2648                
+POS_VISITOR 12994               
+POS_DAY 19363               
+POS_DOMAIN 3575                
+POS_LOGIN 3809                
+POS_ROBOT 3964                
+POS_WORMS 4333                
+POS_EMAILSENDER 4464                
+POS_EMAILRECEIVER 4607                
+POS_SESSION 19481               
+POS_SIDER 19688               
+POS_FILETYPES 4742                
+POS_OS 4965                
+POS_BROWSER 5117                
+POS_SCREENSIZE 5923                
+POS_UNKNOWNREFERER 5997                
+POS_UNKNOWNREFERERBROWSER 6186                
+POS_ORIGIN 6268                
+POS_SEREFERRALS 6413                
+POS_PAGEREFS 6568                
+POS_SEARCHWORDS 7646                
+POS_KEYWORDS 8048                
+POS_MISC 2311                
+POS_ERRORS 8371                
+POS_CLUSTER 3665                
+POS_SIDER_404 8489                
+END_MAP
+
+# LastLine    = Date of last record processed - Last record line number in last log - Last record offset in last log - Last record signature value
+# FirstTime   = Date of first visit for history file
+# LastTime    = Date of last visit for history file
+# LastUpdate  = Date of last update - Nb of parsed records - Nb of parsed old records - Nb of parsed new records - Nb of parsed corrupted - Nb of parsed dropped
+# TotalVisits = Number of visits
+# TotalUnique = Number of unique visitors
+# MonthHostsKnown   = Number of hosts known
+# MonthHostsUnKnown = Number of hosts unknown
+BEGIN_GENERAL 8
+LastLine 20121201000000 13371 2252262 7781435461028
+FirstTime 20121129000117
+LastTime 20121130234628
+LastUpdate 20121201000103 13371 0 13370 0 0
+TotalVisits 56                  
+TotalUnique 43                  
+MonthHostsKnown 0                   
+MonthHostsUnknown 228                 
+END_GENERAL
+
+# Misc ID - Pages - Hits - Bandwidth
+BEGIN_MISC 10
+QuickTimeSupport 0 0 0
+JavaEnabled 0 0 0
+JavascriptDisabled 0 0 0
+PDFSupport 0 0 0
+WindowsMediaPlayerSupport 0 0 0
+AddToFavourites 0 61 0
+RealPlayerSupport 0 0 0
+TotalMisc 0 0 0
+DirectorSupport 0 0 0
+FlashSupport 0 0 0
+END_MISC
+
+# Hour - Pages - Hits - Bandwidth - Not viewed Pages - Not viewed Hits - Not viewed Bandwidth
+BEGIN_TIME 24
+0 1099 1426 3601048 143 556 3535472
+1 1069 1287 3153068 128 583 3719421
+2 202 259 868489 82 629 4931097
+3 1 1 146413 123 732 5245369
+4 0 2 16904 137 745 5445155
+5 82 211 952544 141 684 4671642
+6 0 4 33808 138 477 3561740
+7 6 37 388866 162 589 4954991
+8 3 63 698563 134 772 6489913
+9 141 336 1455415 137 790 5603115
+10 91 201 1257383 141 815 5812799
+11 153 167 395124 150 832 5920033
+12 85 140 979688 129 729 4992404
+13 189 223 580285 144 633 5942078
+14 202 256 623478 173 895 5391288
+15 329 559 2662167 233 913 5479358
+16 22 71 308347 178 843 5774602
+17 119 334 1029800 151 869 5883415
+18 81 156 316322 340 827 6160567
+19 359 633 2734903 271 853 6608797
+20 805 2131 8825467 351 1444 7573906
+21 319 865 3237210 298 1159 7305371
+22 783 1315 4071561 332 1279 7570486
+23 262 436 1835778 435 1216 8073169
+END_TIME
+
+# Domain - Pages - Hits - Bandwidth
+# The 10 first Pages must be first (order not required for others)
+BEGIN_DOMAIN 1
+ip 6402 11113 40172631
+END_DOMAIN
+
+# Cluster ID - Pages - Hits - Bandwidth
+BEGIN_CLUSTER 0
+END_CLUSTER
+
+# Login - Pages - Hits - Bandwidth - Last visit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_LOGIN 0
+END_LOGIN
+
+# Robot ID - Hits - Bandwidth - Last visit - Hits on robots.txt
+# The 10 first Hits must be first (order not required for others)
+BEGIN_ROBOT 6
+googlebot 16077 116855480 20121130235953 211
+bot[\s_+:,\.\;\/\\-] 1243 10541152 20121130235750 21
+robot 280 2361979 20121130234409 28
+yandex 60 5486137 20121130233202 5
+wget 2 200410 20121129091755 0
+no_user_agent 1 206 20121130130709 0
+END_ROBOT
+
+# Worm ID - Hits - Bandwidth - Last visit
+# The 5 first Hits must be first (order not required for others)
+BEGIN_WORMS 0
+END_WORMS
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first Hits must be first (order not required for others)
+BEGIN_EMAILSENDER 0
+END_EMAILSENDER
+
+# EMail - Hits - Bandwidth - Last visit
+# The 20 first hits must be first (order not required for others)
+BEGIN_EMAILRECEIVER 0
+END_EMAILRECEIVER
+
+# Files type - Hits - Bandwidth - Bandwidth without compression - Bandwidth after compression
+BEGIN_FILETYPES 9
+css 148 2718633 0 0
+png 503 3275088 0 0
+swf 3 28742 0 0
+php 6022 10027366 0 0
+html 359 4413849 0 0
+jpg 2795 14633867 0 0
+js 420 4628241 0 0
+xml 18 7422 0 0
+gif 845 439423 0 0
+END_FILETYPES
+
+# OS ID - Hits
+BEGIN_OS 10
+linuxandroid 8
+winlong 6
+winxp 1741
+winvista 65
+linux 634
+macosx 476
+winunknown 1
+j2me 2
+Unknown 1
+win2008 8179
+END_OS
+
+# Browser ID - Hits
+BEGIN_BROWSER 45
+msie6.0 8
+firefox5.0 2
+chrome23.0.1271.64 327
+android 6
+chrome22.0.1229 1
+chrome22.0.1229.79 1
+firefox8.0 1
+firefox4.0 1
+safari5.0 197
+chrome7.0.517.44 2
+chrome19.0.1084.5406 159
+chrome17.0.963.47 157
+chrome23.0.1271.95 82
+opera9.80 3669
+msie8.0 33
+chrome19.1.1084.5409 2
+firefox13.0.1 1
+msie7.0 6
+chrome17.0.963.46 2132
+firefox16.0 1632
+opera9.64 2
+chrome6.0.472.63 99
+msie9.0 102
+chrome18.0.1025.1634 121
+chrome16.0.912.63 2
+chrome14.0.835.202 1
+firefox11.0 2
+firefox3.5.6 1
+firefox17.0 5
+chrome18.0.1025.166 2
+safari6.0 276
+firefox10.0.1 1
+firefox3.5.15 1
+firefox12.0 27
+chrome23.0.1271.91 1966
+safari5.1.7 2
+firefox3.5.5 1
+firefox6.0 1
+chrome22.0.1229.94 1
+firefox3.6.12 6
+safari6.0.2 1
+firefox10.0.2 64
+firefox15.0.1 6
+firefox3.6.8 3
+firefox16.0.1 1
+END_BROWSER
+
+# Screen size - Hits
+BEGIN_SCREENSIZE 0
+END_SCREENSIZE
+
+# Unknown referer OS - Last visit date
+BEGIN_UNKNOWNREFERER 1
+Opera/9.80_(Android;_Opera_Mini/7.5.32193/28.3182;_U;_ru)_Presto/2.8.119_Version/11.10 20121130194435
+END_UNKNOWNREFERER
+
+# Unknown referer Browser - Last visit date
+BEGIN_UNKNOWNREFERERBROWSER 0
+END_UNKNOWNREFERERBROWSER
+
+# Origin - Pages - Hits 
+BEGIN_ORIGIN 6
+From0 1178 1548
+From1 0 0
+From2 5 6
+From3 84 570
+From4 5135 8989
+From5 0 0
+END_ORIGIN
+
+# Search engine referers ID - Pages - Hits
+BEGIN_SEREFERRALS 1
+google 5 6
+END_SEREFERRALS
+
+# External page referers - Pages - Hits
+# The 10 first Pages must be first (order not required for others)
+BEGIN_PAGEREFS 24
+http://akmola_region.ekolobok.com 24 92
+http://b2bpoint.ru/i.php 21 21
+http://moscow.ekolobok.com 7 31
+http://astrakhan_region.ekolobok.com 6 41
+http://moscow.ekolobok.com/sub_domain_city.php 6 6
+http://5.63.158.38/myadmin/index.php 4 5
+http://vk.com/im 3 3
+http://vk.com/topic-44309011_27280759 2 2
+http://5.63.158.38/myadmin/navigation.php 2 11
+http://5.63.158.38/myadmin/main.php 2 37
+http://www.102.biglas.ru 0 1
+http://5.63.158.38/myadmin/server_databases.php 1 4
+http://102.biglas.ru 0 101
+http://5.63.158.38/myadmin/db_structure.php 1 17
+http://102.biglas.ru/shop.php 0 31
+http://vk.com/feed 1 1
+http://www.102.biglas.ru 0 8
+http://moscow.ekolobok.com/templates/default/page.css 0 14
+https://5.63.158.38/myadmin/ 1 4
+http://102.biglas.ru 0 85
+http://5.63.158.38/myadmin/server_sql.php 1 1
+http://vk.com/id5216392 1 1
+https://5.63.158.38/manager/ispmgr 1 1
+http://akmola_region.ekolobok.com/templates/default/page.css 0 52
+END_PAGEREFS
+
+# Search keyphrases - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_SEARCHWORDS 2
+berkytt+%d0%bf%d0%b0%d0%bb%d1%8c%d1%82%d0%be 2
+%d0%9c%d1%8b%d0%bb%d0%be+%d1%82%d1%83%d0%b0%d0%bb%d0%b5%d1%82%d0%bd%d0%be%d0%b5+%d0%90%d0%b8%d1%81%d1%82+%d0%af%d0%a2%d0%ac+%d1%81+%d0%bc%d0%b8%d0%bd%d0%b5%d1%80%d0%b0%d0%bb%d0%b0%d0%bc%d0%b8+90%d0%b3 1
+END_SEARCHWORDS
+
+# Search keywords - Number of search
+# The 10 first number of search must be first (order not required for others)
+BEGIN_KEYWORDS 9
+%d0%bf%d0%b0%d0%bb%d1%8c%d1%82%d0%be 2
+berkytt 2
+90%d0%b3 1
+%d0%af%d0%a2%d0%ac 1
+%d1%82%d1%83%d0%b0%d0%bb%d0%b5%d1%82%d0%bd%d0%be%d0%b5 1
+%d1%81 1
+%d0%90%d0%b8%d1%81%d1%82 1
+%d0%bc%d0%b8%d0%bd%d0%b5%d1%80%d0%b0%d0%bb%d0%b0%d0%bc%d0%b8 1
+%d0%9c%d1%8b%d0%bb%d0%be 1
+END_KEYWORDS
+
+# Errors - Hits - Bandwidth
+BEGIN_ERRORS 3
+302 446 182423
+301 11 5746
+404 1683 810722
+END_ERRORS
+
+# URL with 404 errors - Hits - Last URL referer
+BEGIN_SIDER_404 59
+/uploadfile/zsimg/size_small/11275.jpg 4 http://ekolobok.com/main.php
+/uploadfile/all/2012/11/16/1353091216.jpg 1 -
+/uploadfile/all/2012/11/29/1354219846.jpg 10 http://ekolobok.com/shop.php
+/uploadfile/zsimg/11274.jpg 1 -
+/uploadfile/all/2012/11/29/1354217681.jpg 8 http://ekolobok.com/shop.php
+//uploadfile/userimg/1354171092.jpg 1 http://ekolobok.com/main.php
+/uploadfile/news/big/1351457025.jpg%7Chttp://grodno_region.ekolobok.com/uploadfile/news/big/1351284345.jpg%7Chttp://grodno_region.ekolobok.com/uploadfile/news/big/1349434577.jpg%7Chttp://grodno_region.ekolobok.com/uploadfile/news/big/1349621169.jpg%7Chttp: 1 -
+/uploadfile/zsimg/size_small/11270.jpg 58 http://ekolobok.com/
+/uploadfile/zsimg/size_small/11266.jpg 13 http://ekolobok.com/
+/image/cflag/.gif 1 -
+/uploadfile/all/2012/11/29/1354176425.jpg 3 http://ekolobok.com/shop.php
+/uploadfile/all/2012/11/29/1354210721.jpg 1 http://ekolobok.com/upload.php
+/uploadfile/zsimg/size_small/11267.jpg 49 http://ekolobok.com/shop.php
+//uploadfile/userimg/1354275323.jpg 1 http://www.ekolobok.com/main.php
+/uploadfile/zsimg/11273.jpg 1 -
+/uploadfile/zsimg/size_small/11277.jpg 1 http://ekolobok.com/main.php
+/uploadfile/zsimg/size_small/11265.jpg 8 http://ekolobok.com/shop.php
+//uploadfile/userimg/1354217997.jpg 3 http://ekolobok.com/main.php
+/templates/default/page.css 1 http://ekolobok.com/
+/pro.css 438 http://ekolobok.com/
+/http:///aboutus.php 1 -
+/uploadfile/all/2012/11/29/1354184397.jpg 1 -
+/uploadfile/zsimg/size_small/11273.jpg 44 http://ekolobok.com/
+/azivjgmaflkagl.html 1 -
+//uploadfile/userimg/1354176250.jpg 1 http://ekolobok.com/main.php
+/uploadfile/news/big/1351457025.jpg%7Chttp://kirov_region.ekolobok.com/uploadfile/news/big/1351284345.jpg%7Chttp://kirov_region.ekolobok.com/uploadfile/news/big/1349434577.jpg%7Chttp://kirov_region.ekolobok.com/uploadfile/news/big/1349621169.jpg%7Chttp://k 1 -
+/%D0%BD%D0%BE%D0%B2%D0%B0%D1%8F_%D0%B6%D0%B8%D0%B7%D0%BD%D1%8C_%D1%81%D1%82%D0%B0%D1%80%D1%8B%D1%85_%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B9.htm 2 -
+//uploadfile/userimg/1354211425.jpg 3 http://www.ekolobok.com/main.php
+/uploadfile/zsimg/size_small/11280.jpg 104 http://ekolobok.com/
+/image/default/user_admin/icon/menunav4.gif 415 http://ekolobok.com/main.php
+/uploadfile/zsimg/size_small/11272.jpg 45 http://ekolobok.com/
+/uploadfile/zsimg/size_small/11263.jpg 8 http://ekolobok.com/
+/uploadfile/all/2012/11/29/1354218119.jpg 7 http://ekolobok.com/shop.php
+/uploadfile/zsimg/size_small/11264.jpg 8 http://ekolobok.com/main.php
+//uploadfile/userimg/1354220830.jpg 12 http://ekolobok.com/main.php
+/uploadfile/news/big/1351457025.jpg%7Chttp://novosibirsk_region.ekolobok.com/uploadfile/news/big/1351284345.jpg%7Chttp://novosibirsk_region.ekolobok.com/uploadfile/news/big/1349434577.jpg%7Chttp://novosibirsk_region.ekolobok.com/uploadfile/news/big/1349621 1 -
+/i.php 2 -
+//uploadfile/userimg/1354178460.jpg 2 http://ekolobok.com/main.php
+/uploadfile/zsimg/11266.jpg 2 http://ekolobok.com/
+//uploadfile/userimg/1354185019.jpg 2 -
+/uploadfile/zsimg/size_small/11281.jpg 2 http://ekolobok.com/main.php
+/uploadfile/zsimg/11272.jpg 2 -
+//uploadfile/userimg/1354280056.jpg 1 http://ekolobok.com/main.php
+/uploadfile/zsimg/size_small/11268.jpg 42 http://ekolobok.com/
+/uploadfile/all/2012/11/29/1354175748.jpg 5 http://ekolobok.com/upload.php
+//uploadfile/userimg/1354203778.jpg 18 http://ekolobok.com/main.php
+/lkfutxslvfoxfq.html 1 -
+//uploadfile/userimg/1354280117.jpg 3 http://ekolobok.com/main.php
+/uploadfile/zsimg/size_small/11278.jpg 97 http://ekolobok.com/
+/uploadfile/zsimg/size_small/11276.jpg 3 http://ekolobok.com/main.php
+/uploadfile/all/2012/11/29/1354206711.jpg 7 http://ekolobok.com/shop.php
+/uploadfile/all/2012/11/29/1354203093.jpg 19 http://ekolobok.com/shop.php
+/uploadfile/zsimg/size_small/11271.jpg 63 http://ekolobok.com/
+/uploadfile/zsimg/11271.jpg 1 -
+/uploadfile/zsimg/size_small/11269.jpg 37 http://ekolobok.com/
+/uploadfile/zsimg/size_small/11262.jpg 8 http://ekolobok.com/
+/uploadfile/all/2012/11/29/1354170914.jpg 1 http://ekolobok.com/upload.php
+/uploadfile/zsimg/size_small/11279.jpg 102 http://ekolobok.com/
+/uploadfile/zsimg/size_small/11274.jpg 5 http://ekolobok.com/main.php
+END_SIDER_404
+
+# Host - Pages - Hits - Bandwidth - Last visit date - [Start date of last visit] - [Last page of last visit]
+# [Start date of last visit] and [Last page of last visit] are saved only if session is not finished
+# The 10 first Hits must be first (order not required for others)
+BEGIN_VISITOR 228
+176.52.34.184 1065 1477 4232782 20121129201744
+79.173.94.25 814 907 2221221 20121129023656
+79.173.95.156 675 1068 2958315 20121129234136
+77.40.55.213 672 786 1295195 20121129014113
+109.127.135.100 596 686 1121326 20121129021001
+178.71.171.23 396 772 3017992 20121129225912
+46.229.141.85 313 415 1581236 20121129122116
+95.171.14.183 296 455 2044448 20121130155544
+193.41.186.221 220 909 3586520 20121130203322
+109.127.150.209 213 291 914913 20121129234640
+109.254.127.79 0 1 8452 
+95.83.122.33 0 1 8452 
+90.150.251.72 0 1 8452 
+195.206.42.249 0 1 8452 
+217.212.231.110 0 1 8452 
+195.22.104.10 0 1 8452 
+2.94.6.217 0 1 8452 
+95.174.118.78 3 23 207057 20121129175405
+109.184.181.4 0 1 8452 
+178.35.208.52 0 1 8452 
+50.18.84.78 0 2 16904 
+82.193.159.14 0 1 8452 
+178.126.113.51 0 1 8452 
+89.223.47.238 61 200 617827 20121129222332
+95.26.171.50 0 1 8452 
+62.231.175.185 0 2 16904 
+46.200.32.97 45 240 1444146 20121129093325
+176.100.80.96 0 1 8452 
+50.112.50.241 0 1 8452 
+95.25.144.45 1 1 9296 20121130211521
+46.188.32.95 0 2 32046 
+188.113.58.45 92 100 212498 20121129222748
+176.195.239.29 0 1 8452 
+178.165.32.95 12 53 455087 20121129173050
+178.208.131.146 0 1 8452 
+193.107.225.175 1 1 7844 20121130014934
+83.149.2.128 0 1 8452 
+93.159.230.14 3 3 438327 20121130162249
+217.197.206.75 0 1 8452 
+109.161.106.32 0 1 8452 
+128.68.185.233 0 1 8452 
+95.220.178.69 0 1 8452 
+184.169.249.148 0 3 25356 
+213.135.100.250 0 1 8452 
+5.166.208.156 0 1 8452 
+95.182.24.27 0 1 8452 
+95.190.15.33 0 1 8452 
+95.220.172.38 0 1 8452 
+178.64.36.26 0 2 23820 
+79.173.94.16 81 142 411654 20121130211458
+178.95.12.48 0 1 8452 
+62.168.229.58 0 1 8452 
+89.207.69.201 0 1 8452 
+188.134.34.19 18 55 63693 20121130234628
+212.119.161.2 0 1 8452 
+213.129.101.38 0 1 8452 
+83.229.254.97 0 2 16904 
+79.143.72.3 0 1 8452 
+5.138.88.79 0 3 38460 
+82.112.42.4 0 1 8452 
+178.124.23.128 0 1 8452 
+31.180.203.245 0 1 8452 
+95.152.42.205 0 1 8452 
+37.55.138.152 0 5 22765 
+195.131.33.247 0 1 8452 
+90.189.12.128 0 1 8452 
+212.164.166.85 0 1 8452 
+85.119.78.243 0 1 8452 
+92.39.69.198 0 1 8452 
+91.123.25.10 0 1 8452 
+85.21.251.252 0 1 8452 
+128.69.197.104 0 1 8452 
+95.67.212.164 12 12 2712 20121129160258
+92.252.178.25 0 1 8452 
+217.65.218.107 0 1 8452 
+217.118.78.106 0 1 8452 
+82.116.44.18 0 1 8452 
+80.239.242.159 0 1 8452 
+128.68.188.151 0 1 8452 
+91.76.12.232 0 2 21486 
+178.176.191.117 0 1 8452 
+178.93.231.112 0 1 8452 
+46.175.29.158 0 1 8452 
+188.134.44.87 0 1 8452 
+37.204.100.172 0 1 8452 
+50.18.148.174 0 4 33808 
+95.153.163.105 0 1 8452 
+120.43.6.150 2 2 27097 20121129072304
+176.119.173.144 0 1 8452 
+178.67.198.107 0 3 8452 
+95.24.0.3 0 1 8452 
+128.68.57.104 0 2 16904 
+176.195.55.151 0 1 8452 
+37.204.148.32 0 1 8452 
+82.145.208.147 0 1 8452 
+89.189.170.42 45 134 857486 20121130150639
+94.50.184.94 0 1 8452 
+109.124.212.115 0 1 8452 
+5.164.87.32 0 1 8452 
+83.229.128.198 0 1 8452 
+95.55.165.121 14 19 45536 20121130222355
+128.68.157.253 0 1 8452 
+87.244.165.181 0 1 8452 
+178.127.240.75 0 4 17221 
+146.158.5.40 0 1 8452 
+93.80.44.146 0 1 8452 
+54.241.120.56 0 2 16904 
+176.195.213.62 0 1 8452 
+46.147.214.104 0 1 8747 
+217.198.9.219 0 1 8452 
+89.237.38.66 0 2 23191 
+195.58.31.205 4 34 353317 20121130075212
+54.242.226.30 0 1 8452 
+109.123.154.38 0 1 8452 
+84.23.59.170 22 63 388055 20121130210613
+79.105.107.219 0 1 8747 
+178.49.19.36 0 1 8452 
+217.118.66.25 0 1 8452 
+91.222.218.222 0 1 8452 
+2.135.147.90 193 775 3618202 20121130215431
+91.77.173.85 0 1 8452 
+89.106.197.115 0 1 8452 
+93.153.134.250 0 1 8452 
+91.231.40.28 2 2 20794 20121129165210
+109.172.59.83 0 1 8452 
+94.233.162.172 0 1 8452 
+46.120.168.3 0 2 24535 
+83.149.3.45 0 1 8452 
+128.74.235.168 0 1 8452 
+85.26.186.132 0 1 8452 
+109.234.15.101 0 1 8452 
+81.180.118.92 1 1 146263 20121129081550
+178.252.90.236 0 1 8452 
+212.42.62.46 0 1 8452 
+79.173.95.198 6 6 16104 20121129144740
+37.110.230.162 0 5 22765 
+92.241.101.7 0 2 31851 
+89.106.197.70 0 1 8452 
+95.153.167.139 0 1 8452 
+46.73.29.125 0 1 8452 
+109.60.139.38 0 1 8452 
+95.221.47.30 0 1 8452 
+83.246.141.60 0 1 8452 
+109.198.241.143 0 1 8452 
+136.169.133.2 0 1 8452 
+178.34.204.206 0 1 8452 
+85.172.192.12 0 1 8452 
+92.241.100.252 0 1 8452 
+217.212.230.86 0 1 8452 
+79.173.95.177 9 9 30189 20121129140119
+217.151.131.68 0 1 8452 
+212.3.159.148 0 1 8452 
+93.77.83.41 0 1 8452 
+195.211.78.4 0 1 8452 
+95.55.109.22 118 276 1371831 20121129005011
+78.37.237.74 6 26 214095 20121129225348
+74.125.18.218 0 1 8452 
+213.242.23.234 0 1 8452 
+46.229.141.19 52 78 199701 20121129095543
+5.164.104.133 0 1 8452 
+217.118.78.46 0 1 8452 
+195.68.136.78 0 1 8452 
+95.58.244.235 36 211 119046 20121129170745
+95.190.22.71 0 1 8452 
+94.77.181.160 0 1 8452 
+94.50.221.156 0 1 8452 
+176.195.67.183 0 1 8452 
+31.181.235.2 0 1 8452 
+128.68.74.253 0 1 8452 
+95.220.166.21 0 2 16904 
+128.68.218.95 0 1 8452 
+195.189.105.140 0 1 8452 
+80.95.39.88 0 1 8452 
+178.19.251.17 16 70 400791 20121129192135
+91.149.131.246 0 1 8452 
+94.233.179.60 0 1 8452 
+178.120.43.84 0 1 8452 
+212.57.99.202 0 1 8452 
+188.134.38.11 5 34 278495 20121129202652
+92.255.129.245 0 1 8452 
+194.85.224.35 0 1 8452 
+95.25.138.140 0 1 8452 
+80.91.195.135 0 1 8452 
+195.98.71.119 0 1 8452 
+188.254.39.254 0 1 8452 
+178.67.6.123 33 119 1099604 20121129220728
+128.68.215.99 0 1 8452 
+178.90.221.180 0 1 8452 
+79.142.59.134 0 1 8452 
+109.202.58.208 0 2 20348 
+217.118.66.86 0 1 8452 
+82.145.209.101 0 1 8452 
+178.218.28.109 41 99 654023 20121129205220
+93.80.205.94 0 1 8452 
+92.252.156.16 0 1 8452 
+176.195.67.255 0 1 8452 
+92.243.183.99 0 1 8452 
+46.242.30.39 0 1 8452 
+62.122.240.200 0 1 8452 
+37.113.137.43 0 1 8452 
+188.18.204.134 0 1 8452 
+95.174.122.115 9 29 221156 20121130222036
+77.45.168.57 0 1 8452 
+46.48.38.156 0 1 8452 
+176.195.227.153 0 1 8452 
+46.146.227.195 0 1 8452 
+88.81.211.50 0 1 8452 
+81.200.24.78 0 1 8452 
+178.172.186.91 0 1 8452 
+195.218.213.7 0 1 8452 
+83.149.3.19 0 1 8452 
+89.169.21.200 0 1 8452 
+83.149.48.94 0 9 42275 
+146.66.161.55 0 1 8452 
+92.124.89.53 0 1 8452 
+176.195.219.228 0 1 8452 
+88.200.199.29 0 1 8452 
+178.75.114.228 0 2 16904 
+83.149.46.237 46 47 118155 20121129092816
+84.204.30.74 0 1 8452 
+77.39.119.53 0 1 8452 
+46.159.250.60 0 1 8452 
+91.219.29.206 1 1 146413 20121130122710
+46.42.40.11 0 1 8452 
+95.27.123.226 0 1 8452 
+188.32.232.239 0 1 8452 
+195.161.40.7 0 1 8452 
+77.40.32.81 152 255 1117216 20121130012424
+END_VISITOR
+
+# Date - Pages - Hits - Bandwidth - Visits
+BEGIN_DAY 2
+20121129 5343 8111 25967801 33
+20121130 1059 3002 14204830 23
+END_DAY
+
+# Session range - Number of visits
+BEGIN_SESSION 7
+1h+ 11
+5mn-15mn 5
+15mn-30mn 8
+2mn-5mn 1
+0s-30s 22
+30s-2mn 5
+30mn-1h 4
+END_SESSION
+
+# URL - Pages - Bandwidth - Entry - Exit
+# The 10 first Pages must be first (order not required for others)
+BEGIN_SIDER 42
+/api/ad.php 2810 635060 1 24
+/main.php 1396 5451756 4 2
+/ajax_back_end.php 588 217090 0 7
+/login_statu.php 432 187148 0 1
+/ 258 4348454 26 6
+/includes/rand_func.php 159 201537 0 8
+/admin/member.php 132 602898 1 4
+/login.php 88 324848 8 0
+/lib/fckeditor/editor/fckeditor.html 69 27306 0 0
+/upload.php 69 45138 0 0
+/myadmin/server_sql.php 1 3711 0 0
+/admin/to_login.php 60 41499 0 0
+/404.php 2 9068 0 0
+/admin/main.php 16 45877 0 0
+/aboutus.php 10 58806 0 0
+/lib/fckeditor/editor/fckdialog.html 8 7188 0 0
+/login_statu_pro.php 1 369 0 0
+/myadmin/navigation.php 2 11631 0 0
+/lib/fckeditor/fckstyles.xml 18 7422 0 0
+/lib/fckeditor/editor/dialog/fck_paste.html 8 4444 0 0
+/admin/index.php 4 3883 0 0
+/admin/noright.php 1 943 0 0
+/sub_domain_city.php 4 23397 0 0
+/myadmin/index.php 2 3728 0 0
+/admin/clearcahe.php 3 2738 0 0
+/admin/membergroup.php 1 2071 0 0
+/myadmin/phpmyadmin.css.php 3 12579 0 0
+/myadmin/db_structure.php 2 47055 0 0
+/register.php 42 334947 0 1
+/admin/main_index.php 15 22236 0 0
+/myadmin/server_databases.php 2 7902 0 0
+/i.php 28 120065 0 0
+/myadmin/main.php 1 8281 0 0
+/admin/membermod.php 22 23669 0 0
+/myadmin/ 1 3270 0 0
+/lib/fckeditor/editor/dialog/fck_colorselector.html 1 2163 0 0
+/ss.php 5 3647 0 0
+/image/default/hot_new.swf 3 28742 0 0
+/shop.php 51 312334 6 3
+/admin/pro_info_add_cat.php 3 36236 0 0
+/index.php 67 1225219 3 0
+/admin/ 14 21024 7 0
+END_SIDER

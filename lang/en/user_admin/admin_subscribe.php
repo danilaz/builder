@@ -1,0 +1,40 @@
+<?php 
+$lang_ext=array( 
+'sub_scribe' => 'Subscription Management', 
+'nokeyword' => 'keywords can not be empty', 
+'remail' => 'Receive E-mail:', 
+'editemail' => '[edit received mail]', 
+'keywords' => 'Keywords', 
+'ktype' => 'Info Type', 
+'pro' => 'Products', 
+'offer' => 'Trade', 
+'exh' => 'Show', 
+'project' => 'investment', 
+'news' => 'News', 
+'rfreq' => 'Receive Frequency', 
+'oday' => ' Daily', 
+'oweek' => 'weekly', 
+'tweek' => 'Fortnightly', 
+'omonth' => 'Monthly', 
+'vtime' => 'valid time', 
+'osmonth' => '30 days',
+'tmonth' => '60 days', 
+'smonth' => '180 days', 
+'oyear' => '360 days', 
+'kadd' => 'Add', 
+'kedit' => 'Modify', 
+
+'knum' => 'Number', 
+'keytype' => 'Info Type', 
+'subtime' => 'Subscribe  time', 
+'lastrectime' =>'Last receive time',
+'recfre' => 'Receive frequency', 
+'kaction' => 'Action', 
+'dmonth' => 'days', 
+'suredel' => 'Are you sure to delete?', 
+'delit' => 'Delete', 
+'submitit' => 'Submit', 
+
+); 
+$lang = array_merge($lang, $lang_ext); 
+?>

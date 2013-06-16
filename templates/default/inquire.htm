@@ -1,0 +1,151 @@
+<{include file="header.htm"}>
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; Предложения
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+<style>
+.topm td{padding:5px; line-height:22px;}
+</style>
+<script type="text/javascript" src="script/Validator.js"></script>
+<div id="mainbody1" class="topm">
+  <form id="login" name="login" action="" method="post" onSubmit="return Validator.Validate(this,3)">
+  <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#cfcfcf">
+
+  <{if $smarty.get.type==1}>
+  <tr><td height="100" bgcolor="#FFFFFF">Сообщение успешно отправлено!</td></tr>
+  <{else}>
+  <tr>
+    <td width="14%" align="right" bgcolor="#FFFFFF"><strong>Получатель:</strong></td>
+    <td width="86%" align="left" bgcolor="#FFFFFF">
+    <{foreach item=list from = $receive}>
+    <a target="_blank" href="<{$config.weburl}>/shop.php?uid=<{$list.userid}>"><{$list.user}>(<{$list.company}>)</a><br />
+    <input name="toid[]" type="hidden" value="<{$list.userid}>" />
+    <{/foreach}>    </td>
+  </tr>
+  <tr>
+    <td height="24" align="right" bgcolor="#FFFFFF"><strong>* Название:</strong></td>
+    <td align="left" bgcolor="#FFFFFF">
+      <input name="contype" type="hidden" value="<{$smarty.get.contype}>" />
+      <input name="tid" type="hidden" value="<{$smarty.get.pid}>" />
+      <input style="width:300px;" type="text" name="sub" id="sub" dataType="Require" msg="Пожалуйста, укажите название сообщения" /></td>
+  </tr>
+  <tr>
+    <td height="82" align="right" bgcolor="#FFFFFF"><strong>* Подробности:</strong></td>
+    <td align="left" bgcolor="#FFFFFF">
+      <span style="color:#999999">Characters Remaining: 0 / 2000 (Min. 20)</span><br />
+      <textarea name="con" id="con" cols="45" rows="5" dataType="Require" msg="Пожалуйста, заполните содержание сообщения!" ></textarea>    </td>
+  </tr>
+  <tr>
+    <td height="27" align="right" bgcolor="#FFFFFF"><strong>Содержание: </strong></td>
+    <td align="left" bgcolor="#FFFFFF">
+    <{foreach item=list key=num from=$receive_type}>
+    <input name="receive_type[]" type="checkbox" value="<{$list}>" /><{$list}>
+    <{if ($num+1)%3==0}><br /><{/if}>
+    <{/foreach}>
+    </td>
+  </tr>
+  <tr>
+    <td height="44" align="right" bgcolor="#FFFFFF"><strong>Срочность</strong></td>
+    <td align="left" bgcolor="#FFFFFF">
+    <input type="checkbox" name="ask_reply" value="1" id="checkbox" />
+    Прошу ответить мне <{html_select_date end_year='2015' month_format='%m' field_order='YMD' time=$time}></td>
+  </tr>
+  <tr>
+    <td height="44" align="right" bgcolor="#FFFFFF"><strong>* Проверочный код:</strong></td>
+    <td align="left" bgcolor="#FFFFFF">
+    
+    <input type='text' name='yzm' id="yzm"  size="25"  tabindex="3" height="50" class="tstyle" dataType="Require" msg="Пожалуйста, укажите проверочный код"  style="width:100px; <{if $smarty.get.etype==1}>border:3px solid #FF0000<{/if}>"/>
+    <img onclick="get_randfunc(this);" style="padding-left:5px; cursor:pointer; vertical-align:middle;" src='<{$config.weburl}>/includes/rand_func.php'/>    </td>
+  </tr>
+  <{if $buid}>
+  <tr>
+    <td height="23" align="right" bgcolor="#FFFFFF">&nbsp;</td>
+    <td align="left" bgcolor="#FFFFFF">
+    Убедитесь, что Ваша контактная информация верна. <a target="_blank" href="main.php?menu=user&action=myshop">Нажмите здесь, чтобы просмотреть или изменить</a>.
+    </td>
+  </tr>
+  <{else}>
+  <tr>
+      <td colspan="2" align="left">Для отправки сообщения необходимо авторизироваться на сайте!</td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#FFFFFF">*Контактное лицо</td>
+    <td align="left" bgcolor="#FFFFFF"><input dataType="Require" msg="Пожалуйста, заполните контактную информацию!"  style="width:200px;" type="text" name="name" id="name" /></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#FFFFFF">*Название компании</td>
+    <td align="left" bgcolor="#FFFFFF"><input dataType="Require" msg="Пожалуйста, укажите название компании и заполните личные данные!"  style="width:300px;" type="text" name="company" id="company" /></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#FFFFFF">*Страна</td>
+    <td align="left" bgcolor="#FFFFFF">
+       <select name="country" id="country" class="input" style="width:300px;">
+        <{foreach item=list key=num from=$country}>
+        <option value="<{$list.name}>"><{$list.name}></option>
+        <{/foreach}>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#FFFFFF">*Область</td>
+    <td align="left" bgcolor="#FFFFFF">
+    <input dataType="Require" msg="Пожалуйста, укажите область!"  style="width:300px;" type="text" name="province" id="province" /></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#FFFFFF">*Город</td>
+    <td align="left" bgcolor="#FFFFFF">
+    <input dataType="Require" msg="Пожалуйста, укажите город!"  style="width:300px;" type="text" name="city" id="city" />
+    </td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#FFFFFF">*Адрес</td>
+    <td align="left" bgcolor="#FFFFFF">
+    <input dataType="Require" msg="Пожалуйста, укажите адрес!" style="width:300px;" type="text" name="addr" id="addr" />
+    </td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#FFFFFF">Почтовый индекс</td>
+    <td align="left" bgcolor="#FFFFFF"><input name="post" type="text" id="post" size="8" /></td>
+  </tr>
+  <tr>
+      <td align="right" bgcolor="#FFFFFF">*Телефон</td>
+      <td align="left" bgcolor="#FFFFFF">
+        <input style="width:300px;" dataType="Require" msg="Пожалуйста, укажите телефон!"  name="tell" type="text" id="tell" size="4" />
+	 </td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#FFFFFF">Факс</td>
+    <td align="left" bgcolor="#FFFFFF">
+    <input style="width:300px;"  name="fax" type="text" id="fax" />
+	</td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#FFFFFF">Мобильный</td>
+    <td align="left" bgcolor="#FFFFFF"><input style="width:300px;" type="text" name="mobile" id="mobile" /></td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#FFFFFF">*Email</td>
+    <td align="left" bgcolor="#FFFFFF">
+    <input  dataType="Require" msg="Пожалуйста, укажите email!" style="width:300px;" type="text" name="email" id="email" />
+    </td>
+  </tr>
+  <tr>
+    <td align="right" bgcolor="#FFFFFF">Веб-сайт</td>
+    <td align="left" bgcolor="#FFFFFF">
+      <input style="width:300px;" name="url" type="text" id="url" value="http://" />
+      </td>
+  </tr>
+  <{/if}>
+
+  <tr>
+    <td align="right" bgcolor="#FFFFFF">&nbsp;</td>
+    <td align="left" bgcolor="#FFFFFF"><input type="submit" name="submit" id="button" value="Отправить " /></td>
+  </tr>
+  <{/if}>
+</table>
+  </form>
+</div>
+<{include file="footer.htm"}>

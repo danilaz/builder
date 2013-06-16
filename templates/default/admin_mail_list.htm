@@ -1,0 +1,80 @@
+<form action="" method="post">
+<script language="javascript">
+function do_select()
+{
+	 var box_l = document.getElementsByName("deid[]").length;
+	 for(var j = 0 ; j < box_l ; j++)
+	 {
+	  	if(document.getElementsByName("deid[]")[j].checked==true)
+	  	  document.getElementsByName("deid[]")[j].checked = false;
+		else
+		  document.getElementsByName("deid[]")[j].checked = true;
+	 }
+}
+</script>
+<div class="admin_right_top">
+<{if $smarty.get.type=='outbox'}><{$lang.outbox}>
+<{elseif $smarty.get.type=='savebox'}>Сохраненные
+<{elseif $smarty.get.type=='delbox'}>Корзина
+<{else}> <{$lang.inbox}>
+<{/if}>
+</div>
+<table class="admin_table" border="0" cellpadding="4" cellspacing="1" bgcolor="#FFFFFF">
+	<tr bgcolor="#E8E8E8" style="font-weight:bold;"> 
+	  <td width="112" align="left">
+	  <input type="checkbox" style="border:none" onclick="do_select();" /> 
+      <img src="image/default/icon.gif" width="16" height="14" />
+	  </td>
+	  <td width="336" bgcolor="#E8E8E8">
+      <{if $smarty.get.type=='delbox'}>
+      Получатель/Отправитель
+      <{else}>
+      <{if $smarty.get.type=='outbox'}><{$lang.receiv}><{else}><{$lang.from}><{/if}>
+      <{/if}>
+      </td>
+	  <td width="370" bgcolor="#E8E8E8"><{$lang.topics}></td>
+	  <td width="278" align="left" bgcolor="#E8E8E8"><{$lang.date}></td>
+    </tr>
+	<{foreach item=list from=$re.list}>
+	<tr bgcolor="#F7F7F7"> 
+	  <td align="left">
+	  <input type="checkbox" name="deid[]" value="<{$list.id}>" style="border:none" />
+	  <{if !$list.iflook}>
+      	<img src="image/default/unred.gif" width="16" height="14" />
+	  <{elseif $list.ifback}>
+      	<img src="image/default/replied.gif" width="16" height="14" />
+      <{else}>
+        <img src="image/default/read.gif" width="16" height="14" />
+	  <{/if}>
+	  </td>
+	  <td>
+	  <{if $list.fromuserid or $list.msgtype=='3'}>
+	      <{if $list.msgtype=='3'}>
+		         <{$lang.system_msg}>
+		  <{else}>
+		         <{$list.fromname}>
+		  <{/if}>
+	 <{else}>
+	      <{$lang.tourists}>
+	 <{/if}>
+	</td>
+	  <td><a href="main.php?menu=<{$smarty.get.menu}>&action=mail_det&id=<{$list.id}>"><{$list.sub}></a></td>
+	  <td width="278"><{$list.date}></td>
+    </tr>
+    <{foreachelse}>
+    <tr><td colspan="4" align="center">Нет данных</td></tr>
+	<{/foreach}>
+</table>
+<div align="right"><{$re.page}></div>
+<div align="left" style="width:100%;"><br>
+<{if $smarty.get.type=='delbox'}>
+	<input name="remove" type="submit" value="Очистить" />
+    <input name="recover" type="submit" value="Восстановить" />
+<{else}>
+    <input name="del" type="submit" value="<{$lang.del}>" />
+    <{if $smarty.get.type=='inbox' or $smarty.get.type==''}>
+    <input name="save" type="submit" value="Переместить в сохраненные" />
+    <{/if}>
+<{/if}>
+</div>
+</form>

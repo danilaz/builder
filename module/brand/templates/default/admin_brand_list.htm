@@ -1,0 +1,47 @@
+<script type="text/javascript">
+function ref(id,v)
+{	
+	var url = 'main.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&'+v;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'get', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		var tempStr = originalRequest.responseText;
+		if(tempStr!='')
+		{
+			$('r'+id).innerHTML='';
+		}
+	}
+}
+</script>
+<div class="admin_right_top">
+<span style="float:left"><{$lang.edit_brand}></span>
+
+</div>
+<div style="float:left">
+<table border="0" cellpadding="4" cellspacing="1" bgcolor="#FFFFFF" >
+	<tr bgcolor="#E8E8E8" style="font-weight:bold"> 
+	  <td width="250" height="22">Бренд</td>
+	  <td width="400" bgcolor="#E8E8E8">Название компании</td>
+	  <td width="200" align="center" bgcolor="#E8E8E8">Дата</td>
+	  <td width="200" align="center" bgcolor="#E8E8E8"><{$lang.operation}></td>
+	</tr>
+	<{foreach item=list from=$re.list}>
+	<tr bgcolor="#F7F7F7"> 
+	  <td width="59" height="22"><{$list.name}></td>
+	  <td width="628">[<{if $list.statu>=1}><font color=green>Размещено</font><{else}><font color=red>На проверке</font><{/if}>]&nbsp;<{$list.company}></td>
+	  <td width="196" align="center"><{$list.time|date_format}></td>
+	  <td height="22" align="center">
+	  <a href="?menu=<{$smarty.get.menu}>&edit=<{$list.id}>&m=brand&s=admin_brand&action=m&menu=info">
+	  <img src="/image/default/page_edit.png" title="Редактировать бренд"></a>
+	  <a href="?deid=<{$list.id}>&m=brand&s=admin_brand_list&action=m&menu=info">
+	  <img src="/image/default/delete.png " title="Удалить бренд"></a>	  </td>
+	</tr>
+	<{/foreach}>
+</table>
+</div>
+<div align="right"><{$re.page}></div>

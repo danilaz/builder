@@ -1,0 +1,66 @@
+<div class="admin_right_top"><{$lang.settemp}></div>
+<form method="get" action="" id="tem_search">
+<input type="hidden" name="menu" value="usershop" />
+<input type="hidden" name="action" value="template" />
+<table id="search_tb" cellpadding="2" cellspacing="5">
+<tr>
+    <td width="50"><{$lang.cat}></td>
+    <td>
+    	<select name="cat" onchange="$('tem_search').submit();">
+        	<option value=""><{$lang.all}></option>
+        <{foreach item=item from=$cat}>
+        	<option <{if $smarty.get.cat&&$smarty.get.cat==$item.catid}>selected<{/if}> value="<{$item.catid}>"><{$item.cat}></option>
+        <{/foreach}>
+        </select>
+	</td>
+	<td width="50"><{$lang.groupser}></td>
+	<td>	
+        <select name="group_id" onchange="$('tem_search').submit();">
+        	<option value=""><{$lang.all}></option>
+        <{foreach item=item from=$group}>
+        	<option <{if $smarty.get.group_id&&$smarty.get.group_id==$item.group_id}>selected<{/if}> value="<{$item.group_id}>"><{$item.name}></option>
+        <{/foreach}>
+        </select>
+    </td>
+    <td><{$lang.point}></td>
+    <td><input type="text" style="width:30px; text-align:center;" name="min_point" id="min_point" value="<{$smarty.get.min_point}>" />&nbsp;&mdash;&nbsp;<input type="text" style="width:30px;text-align:center;" name="max_point"  id="max_point" value="<{$smarty.get.max_point}>" />&nbsp;</td>
+<td><input type="submit" value="<{$lang.search}>" />
+</td></tr>
+</table>
+</form>
+
+<table class="admin_table" border="0" align="center" cellspacing="1" bgcolor="#DDDDDD">
+<tr bgcolor="#EAEFF3">
+  <td height="69" align="left" valign="top" bgcolor="#FFFFFF">
+  <{if $smarty.get.nopoint==1}>
+  <div style=" padding:30px; color:#FF0000; font-weight:bold;"><{$lang.buy_point}></div>
+  <{/if}>
+  
+  	<{foreach item=list key=num from=$templist.list}>
+		  <li style="float:left;width:140px; height:180px; text-align:center;">
+          <{if $list.temp_file=='default'}>
+          <a target="_blank" href="shop.php?uid=<{$buid}>&template=<{$list.temp_file}>">
+          	  <img style="border: 1px solid #A9BAD3; padding:4px; height:114px; width:97px;" src="image/default/temp.gif" />
+              </a>
+          <{else}>
+              <a target="_blank" href="shop.php?uid=<{$buid}>&template=<{$list.temp_file}>">
+              <img style="border: 1px solid #A9BAD3; padding:4px; height:114px; width:97px;" src="templates/<{$list.temp_file}>/img/temp.jpg" />
+              </a>
+          <{/if}>   
+          <br /><label>
+		  <{if $de.template==$list.temp_file}>
+		  		<{$lang.using}>&nbsp;<font color="#666666">(<{$lang.cena}>: <{$list.point}>)</font>
+          <{elseif $list.right==0}>
+          	    <{$lang.noright}>
+          <{elseif $list.temp_file=='default'}>
+          		<{$list.tname}><br />[<a target="_blank" href="shop.php?uid=<{$buid}>&template=<{$list.temp_file}>">Просмотр</a>] [<a href="main.php?menu=usershop&action=template&select_tem=<{$list.id}>">Включить</a>]
+          <{else}>
+		  		<{$list.tname}>&nbsp;<font color="#666666">(<{$lang.cena}>: <{$list.point}>)</font><br />[<a target="_blank" href="shop.php?uid=<{$buid}>&template=<{$list.temp_file}>">Просмотр</a>] [<a href="main.php?menu=usershop&action=template&select_tem=<{$list.id}>">Включить</a>]
+		  <{/if}>
+          </label>
+		  </li>
+	 <{/foreach}>
+    </td>
+  </tr>
+</table>
+<div class="page"><{$templist.pages}></div>     

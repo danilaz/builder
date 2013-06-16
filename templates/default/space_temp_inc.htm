@@ -1,0 +1,179 @@
+<{include file="header.htm"}>
+
+
+
+<link href="<{$config.weburl}>/templates/<{$config.temp}>/member.css" rel="stylesheet" type="text/css" />
+
+
+
+<div class="menu_bottom L1">				
+
+
+
+    <div class="headtop_L">
+
+
+
+        <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <{$com.company}></a>
+
+
+
+    </div>		
+
+
+
+</div>
+
+
+
+<div class="wrapper">
+
+
+
+   		<div class="space_left">
+
+
+
+			<div class="space_left_body">
+
+
+
+				<div class="space_header"><h2><{$lang.mem_shop}></h2></div>
+
+
+
+                <div class="space_conn">
+
+
+
+               		 <ul>
+
+
+
+					   <{foreach item=list from=$shopconfig.menu}>
+
+
+
+						<{if $list.menu_show=='1'}>
+
+
+
+							<{if $list.menu_link!=''}>
+
+
+
+								<li><a <{if $list.menu_link==$smarty.get.action}>class="now" <{/if}> href="shop.php?uid=<{$com.userid}>&action=<{$list.menu_link}>&m=<{$list.module}>"><{$list.menu_name}></a></li>
+
+
+
+							<{else}>
+
+
+
+								<li><a <{if $smarty.get.action==''}>class="now" <{/if}> href="<{geturl type='' user=$com.user uid=$com.userid tid='' com=$com.company}>"><{$list.menu_name}></a></li>
+
+
+
+							<{/if}>
+
+
+
+						<{/if}>       
+
+
+
+					  <{/foreach}>
+
+
+
+                    </ul>
+
+
+
+                </div>
+
+
+
+				</div>			
+
+
+
+			<div class="space_left_connect m1">
+
+
+
+				<div class="space_header_connect"><h2><{$lang.shop_status}></h2></div>
+
+
+
+                <div class="space_con_con">
+
+
+
+               		<ul>
+ <li><{if $com.avatar}><img width="100" src="<{$com.avatar}>"/><{/if}> </li> 
+ <!-- <li><img width="100" src="uploadfile/userimg/<{$com.logo}>"/></li> -->
+ <li><span>Логин:</span><{$com.user}></li>
+ <{if $com.name!=''}> <li><span>Имя:</span><{$com.name}></li> <{/if}> 
+  <{if $com.position!=''}> <li><span>Должность:</span><{$com.position}></li> <{/if}> 
+   <{if $com.company!=''}><li><span>Компания:</span><{$com.company}></li><{/if}> 
+ <{if $com.usertel!=''}> <li><span>Телефон:</span><{$com.usertel}></li> <{/if}> 
+ <{if $com.mobile!=''}> <li><span>Мобильный:</span><{$com.mobile}></li> <{/if}> 
+  <{if $com.email!=''}> <li><span>mail:</span><{$com.email}></li> <{/if}> 
+ <{if $com.rank!=''}> <li><span>Статус:</span><{$com.rank}></li> <{/if}>
+  <{if $com.medal!=''}> <p align="center"><{$com.medal}></p> <{/if}> 
+<!-- <li><span>Категория:</span><{$com.catname}></li> -->
+<!-- <{if $com.main_pro!=''}> <li><span>Продукция:</span><{$com.main_pro}></li> <{/if}> -->
+<!-- <{if $com.city!=''}> 
+   <li><span>Адрес:</span>
+     <{if $com.country!=''}> <{$com.country}>, <{/if}> 
+     <{if $com.province!=''}> <{$com.province}>, <{/if}> 
+     <{if $com.city!=''}> <{$com.city}>, <{/if}> 
+     <{if $com.addr!=''}> <{$com.addr}> <{/if}> 
+   </li> 
+ <{/if}> -->
+ <!--<{if $com.zip!=''}> <li><span>Почтовый индекс:</span><{$com.zip}></li> <{/if}> 
+ <{if $com.contact!=''}> <li><span>Контактное лицо:</span><{$com.contact}></li> <{/if}> 
+
+ <{if $com.tel!=''}> <li><span>Стационарный:</span><{$com.tel}></li> <{/if}> 
+ <{if $com.fax!=''}> <li><span>Факс:</span><{$com.fax}></li> <{/if}> 
+ <{if $com.url!=''}> <li><span>Сайт:</span><a href="<{$com.url}>"><{$com.url}></a></li> <{/if}> 
+ <{if $com.qq!=''}> <li><span>QQ:</span><{$com.qq}></li> <{/if}> 
+ <{if $com.msn!=''}> <li><span>MSN:</span><{$com.msn}></li> <{/if}> 
+ <{if $com.skype!=''}> <li><span>Skype:</span><a href="skype:<{$com.skype}>"><{$com.skype}></a></li> <{/if}> -->
+
+
+
+
+
+
+
+
+
+                    </ul>
+
+
+
+
+
+                </div>
+
+
+
+			</div>
+
+
+
+		</div>
+
+
+
+		<div class="space_con"><script src='<{$config.weburl}>/api/ad.php?id=46&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script><{$output}></div>
+
+
+
+   </div> 
+
+
+
+<{include file="footer.htm"}>

@@ -1,0 +1,52 @@
+<script type="text/javascript" src="script/Validator.js"></script>
+	<div class="admin_right_top"><{$lang.bind_a}><{ if $re.bank && $re.active==0 }><font color="red">(<{$lang.bind_b}>)</font><{/if}></div>
+	<table width='100%' border="0" cellpadding="7" cellspacing="1" bgcolor="#DDDDDD" class="admin_table">
+    <form action="" method="post" onSubmit="return Validator.Validate(this,3)">
+        <{if $smarty.get.active==1 }>
+  <tr> 
+	<td align="left" bgcolor="#EAEFF3" colspan="2">
+             <{$lang.bind_c}>
+    </td>
+  </tr>
+  <tr>
+	<td width='15%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.bind_d}></td>
+	<td width='85%' bgcolor="#FFFFFF"><{ $re.master }></td>
+  </tr>
+  <tr>
+	<td height="24" align="left" bgcolor="#EAEFF3"><{$lang.bind_e}></td>
+	<td bgcolor="#FFFFFF"><{ $re.bank }></td>
+  </tr>
+  <tr>
+	<td height="24" align="left" bgcolor="#EAEFF3"><{$lang.bind_f}></td>
+	<td bgcolor="#FFFFFF"><{ $re.accounts }></td>
+  </tr>
+    <{else}>
+        <{if $smarty.get.bind==1 }>
+  <tr> 
+	<td align="left" bgcolor="#EAEFF3" colspan="2">
+            <{$lang.bind_g}>
+    </td>
+  </tr>
+         <{/if}>
+  <tr>
+	<td width='15%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.bind_d}></td>
+	<td width='85%' bgcolor="#FFFFFF"><input type="text" value="" size="40" name="master" maxlength="200" dataType="Require" msg="<{$lang.bind_j}>"/></td>
+  </tr>
+  <tr>
+	<td height="24" align="left" bgcolor="#EAEFF3"><{$lang.bind_e}></td>
+	<td bgcolor="#FFFFFF"><input type="text" value="" name="bank" size="40" maxlength="200" dataType="Require" msg="<{$lang.bind_k}>"/><br><{$lang.bind_h}></td>
+  </tr>
+  <tr>
+	<td height="24" align="left" bgcolor="#EAEFF3"><{$lang.bind_f}></td>
+	<td bgcolor="#FFFFFF"><input type="text" value="" name="accounts" size="40" maxlength="200" dataType="Require" msg="<{$lang.bind_l}>"/></td>
+  </tr>
+  <tr>
+	<td height="24" align="right" bgcolor="#EAEFF3"> </td>
+	<td bgcolor="#FFFFFF">
+	  <input  type='submit' name='Submit' value='<{$lang.bind_i}>' style="width:100px;">
+	  <input name="action" type="hidden" id="action" value="submit" /></td>
+  </tr>
+  <{/if}>
+
+  </form>
+</table>

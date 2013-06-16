@@ -1,0 +1,89 @@
+<script src="script/my_lightbox.js" language="javascript"></script>
+<script>
+	closeimg='<{$config.weburl}>/image/default/icon_close.gif';
+	weburl='<{$config.weburl}>';
+</script>
+<script type="text/javascript" src="script/Validator.js"></script>
+<script language="javascript" src="script/Calendar.js"></script>
+	<div class="admin_right_top"><{$lang.title}></div>
+
+	<table width='100%' border="0" cellpadding="7" cellspacing="1" bgcolor="#DDDDDD" class="admin_table">
+	 <form action="" method="post" onSubmit="return Validator.Validate(this,3)">
+  <tr> 
+	<td bgcolor="#EAEFF3" colspan="2"><{$lang.info_des}></td>
+  </tr>
+  <tr> 
+	<td width="15%" bgcolor="#EAEFF3"><{$lang.person_name}></td>
+	<td width="85%" bgcolor="#FFFFFF"><input name='person_name' type='text' size="40" value="<{$de.person_name}>" maxlength="50" dataType="Require" msg="<{$lang.person_name}><{$lang.msg}>"></td>
+  </tr>
+  	  <tr> 
+		<td bgcolor="#EAEFF3"><{$lang.job}></td>
+		<td bgcolor="#FFFFFF"><input name='job' type='text' size="40" value="<{$de.job}>" maxlength="50" dataType="Require" msg="<{$lang.job}><{$lang.msg}>"></td>
+	  </tr>
+  <tr> 
+	<td  bgcolor="#EAEFF3"><{$lang.com_reg_name}></td>
+	<td bgcolor="#FFFFFF"><input name='com_reg_name' type='text' size="40" value="<{$de.com_reg_name}>" maxlength="100" dataType="Require" msg="<{$lang.com_reg_name}><{$lang.msg}>"></td>
+  </tr>
+  <tr> 
+	<td  bgcolor="#EAEFF3"><{$lang.com_reg_id}></td>
+	<td bgcolor="#FFFFFF"><input name='com_reg_id' type='text' size="40" value="<{$de.com_reg_id}>" maxlength="100" dataType="Require" msg="<{$lang.com_reg_id}><{$lang.msg}>">&nbsp;&nbsp;<input type="radio" value="0" name="com_reg_id_protect" <{if $de.com_reg_id_protect!=1 }>checked<{/if}>>&nbsp;<{$lang.statu_open}>&nbsp;&nbsp;<input type="radio" value="1" name="com_reg_id_protect" <{if $de.com_reg_id_protect==1 }>checked<{/if}>>&nbsp;<{$lang.com_reg_id_protect}></td>
+  </tr>
+  <tr> 
+	<td  bgcolor="#EAEFF3"><{$lang.com_reg_add}></td>
+	<td bgcolor="#FFFFFF"><input name='com_reg_add' type='text' size="40" value="<{$de.com_reg_add}>" maxlength="50" dataType="Require" msg="<{$lang.com_reg_add}><{$lang.msg}>">&nbsp;&nbsp;<input type="radio" value="0" name="com_reg_add_protect" <{if $de.com_reg_add_protect!=1 }>checked<{/if}>>&nbsp;<{$lang.statu_open}>&nbsp;&nbsp;<input type="radio" value="1" name="com_reg_add_protect"<{if $de.com_reg_add_protect==1 }>checked<{/if}>>&nbsp;<{$lang.statu_protect}></td>
+  </tr>
+  <tr> 
+	<td  bgcolor="#EAEFF3"><{$lang.com_deputy}></td>
+	<td bgcolor="#FFFFFF"><input name='com_deputy' type='text' size="40" value="<{$de.com_deputy}>" maxlength="50" dataType="Require" msg="<{$lang.com_deputy}><{$lang.msg}>">&nbsp;&nbsp;<input type="radio" value="0" name="com_deputy_protect" <{if $de.com_deputy_protect!=1 }>checked<{/if}>>&nbsp;<{$lang.statu_open}>&nbsp;&nbsp;<input type="radio" value="1" name="com_deputy_protect"<{if $de.com_deputy_protect==1 }>checked<{/if}>>&nbsp;<{$lang.statu_protect}></td>
+  </tr>
+  <tr> 
+	<td  bgcolor="#EAEFF3"><{$lang.com_reg_capital}></td>
+	<td bgcolor="#FFFFFF"><input name='com_reg_capital' type='text' size="40" value="<{$de.com_reg_capital}>" maxlength="50" dataType="Require" msg="<{$lang.com_reg_capital}><{$lang.msg}>">&nbsp;&nbsp;<input type="radio" value="0" name="com_reg_capital_protect" <{if $de.com_reg_capital_protect!=1 }>checked<{/if}>>&nbsp;<{$lang.statu_open}>&nbsp;&nbsp;<input type="radio" value="1" name="com_reg_capital_protect"<{if $de.com_reg_capital_protect==1 }>checked<{/if}>>&nbsp;<{$lang.statu_protect}></td>
+  </tr>
+  <tr> 
+	<td  bgcolor="#EAEFF3"><{$lang.com_reg_type}></td>
+	<td bgcolor="#FFFFFF"><input name='com_reg_type' type='text' size="40" value="<{$de.com_reg_type}>" maxlength="50" dataType="Require" msg="<{$lang.com_reg_type}><{$lang.msg}>"></td>
+  </tr>
+  <tr> 
+	<td  bgcolor="#EAEFF3"><{$lang.com_reg_time}></td>
+	<td bgcolor="#FFFFFF">
+<script language="javascript">
+    var cdr = new Calendar("cdr");
+    document.write(cdr);
+    cdr.showMoreDay = true;
+</script>
+    <input name='com_reg_time' type='text' size="40" value="<{$de.com_reg_time|date_format}>"  onFocus="cdr.show(this);" dataType="Require" msg="<{$lang.com_reg_time}><{$lang.msg}>"></td>
+  </tr>
+  <tr> 
+	<td  bgcolor="#EAEFF3"><{$lang.com_reg_time_ex}></td>
+	<td bgcolor="#FFFFFF"><input name='com_reg_time_ex' type='text' size="40" value="<{$de.com_reg_time_ex}>"   onFocus="cdr.show(this);" dataType="Require" msg="<{$lang.com_reg_time_ex}><{$lang.msg}>"></td>
+  </tr>
+  <tr> 
+	<td  bgcolor="#EAEFF3"><{$lang.com_reg_area}></td>
+	<td bgcolor="#FFFFFF"><textarea name='com_reg_area' style="width:300px;" rows='6'  id="com_reg_area" dataType="Require" msg="<{$lang.com_reg_area}><{$lang.msg}>"><{$de.com_reg_area}></textarea></td>
+  </tr>
+  <tr> 
+	<td  bgcolor="#EAEFF3"><{$lang.com_reg_unit}></td>
+	<td bgcolor="#FFFFFF"><input name='com_reg_unit' type='text' size="40" value="<{$de.com_reg_unit}>" maxlength="50" dataType="Require" msg="<{$lang.com_reg_unit}><{$lang.msg}>"></td>
+  </tr>
+  <tr> 
+	<td  bgcolor="#EAEFF3"><{$lang.com_check}></td>
+	<td bgcolor="#FFFFFF"><input name='com_check' type='text' size="40" value="<{$de.com_check}>"  dataType="Number" msg="<{$lang.com_check}>Должно быть числовое значение!"></td>
+  </tr>
+    <tr>
+    <td align="left" valign="top" bgcolor="#EAEFF3">Бизнес лицензия</td>
+    <td align="left" valign="top" bgcolor="#FFFFFF">
+		<input name="pic" type="text" id="pic" value="<{$de.pic}>" size="60">
+		[<a href="javascript:uploadfile('Добавить бизнес-лицензию','pic',300,300)">Загрузить</a>] 
+		[<a href="javascript:preview('pic');">Предпросмотр</a>]
+		[<a onclick="javascript:$('pic').value='';" href="#">Удалить</a>]
+	</td>
+    </tr>
+  <tr> 
+	<td align="right" bgcolor="#EAEFF3"> </td>
+	<td bgcolor="#FFFFFF">
+	  <input  type='submit' name='Submit' value='<{$lang.submit}>' style="width:100px;">&nbsp;&nbsp;<input  type='reset' name='reset' value='<{$lang.reset}>' style="width:100px;">
+	  <input name="action" type="hidden" id="action" value="submit" />	  </td>
+  </tr>
+  </form>
+</table>

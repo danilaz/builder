@@ -1,0 +1,60 @@
+<script type="text/javascript">
+function check_point(obj)
+{
+	var allcash='<{$re.cash}>';
+	var rat='<{$rates}>';
+	var m='<{$config.money}>';
+	var all_m=obj.value/rat;
+	
+	var can_buy=<{$buypoints}>*1;
+	obj.value*=1;
+	if(obj.value=='NaN')
+		obj.value='';
+		
+	if(obj.value>can_buy)
+		obj.value=can_buy;
+	$("msg").innerHTML='<{$lang.allt}>'+m+all_m;
+	if(obj.value&&allcash&&obj.value!=0)
+		$('submitform').disabled=false;
+	else
+		$('submitform').disabled=true;
+}
+</script>
+	<div class="admin_right_top"><{$lang.buypoint}></div>
+<form name="buypoint" action="" method="POST" style="margin-top:0px;">
+	<table width='100%' border="0" cellpadding="7" cellspacing="1" bgcolor="#DDDDDD" class="admin_table">
+	<{if $smarty.get.is_suc!=''}>
+<tr> 
+	<td colspan="2" width='100%' height="24" align="left" bgcolor="#EAEFF3"><{if $smarty.get.is_suc=='yes'}><font size="3" color="red"><{$lang.buysuc}></font><{else}><font size="3" color="red"><{$lang.buyfail}></font><{/if}></td>
+</tr>
+<{/if}>
+  <tr> 
+	<td width='17%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.avidcash}></td>
+	<td width='83%' bgcolor="#FFFFFF">
+	<{$re.cash|number_format:2}> <{$config.money}>
+	<a href="main.php?menu=trade&action=admin_accounts_pay"><{$lang.addcash}></a>
+	</td>
+  </tr>
+<tr> 
+		<td width='17%' height="20" align="left" bgcolor="#EAEFF3"><{$lang.pointrank}></td>
+		<td width='83%' height="20" bgcolor="#FFFFFF"><{$lang.nowpoint}><font size="3" color="red"><{$myrank.point}></font><{$lang.msgt}><font size="3" color="red"><{$myrank.rank}></font><{$lang.mrk}></td>
+</tr>
+  	  <tr> 
+		<td width='17%' height="20" align="left" bgcolor="#EAEFF3"><{$lang.pointrmd}></td>
+		<td width='83%' height="20" bgcolor="#FFFFFF"><{$rates}><{$lang.pts}>/<{$config.money}>1</td>
+	  </tr>
+  <tr> 
+	<td width='17%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.canbuypoint}></td>
+	<td width='83%' bgcolor="#FFFFFF"><{$buypoints}><{$lang.pts}></td>
+  </tr>
+  <tr> 
+	<td width='17%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.buypnum}></td>
+	<td width='83%' bgcolor="#FFFFFF"><input type="text" name="points" id="points" onkeyup="check_point(this);"><span id="msg"></span></td>
+  </tr>
+  
+  <tr> 
+	<td width='17%' height="24" align="right" bgcolor="#EAEFF3"> </td>
+	<td width='83%' bgcolor="#FFFFFF"><input id="submitform" disabled="disabled" type='submit' name='Submit' value='<{$lang.submit}>' style="width:100px;" ></td>
+  </tr>
+</table>
+</form>

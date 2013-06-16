@@ -1,0 +1,144 @@
+<form method="post" action="" enctype="multipart/form-data">
+<div class="admin_right_top"><{$lang.aef}></div>
+<table width="100%" border="0" align="center" cellpadding="6" cellspacing="1" bgcolor="#DDDDDD" class="admin_table"> 
+<{if $smarty.get.detail_id}>
+	<tr>
+	  <td width="15%" align="left" bgcolor="#EAEFF3"><{$lang.uname}></td>
+	  <td colspan="3" bgcolor="#FFFFFF">
+	  <{$de.username}><{$de.user}>              </td>
+	</tr>
+	<tr>
+	  <td width="15%" align="left" bgcolor="#EAEFF3"><{$lang.name}></td>
+	  <td bgcolor="#FFFFFF" width="25%"><{$de.name}><{$de.contact}></td>
+	  <td width="16%" align="left" bgcolor="#EAEFF3"><{$lang.comname}></td>
+	  <td bgcolor="#FFFFFF" width="44%"><span style="font-weight:normal"><{$de.company}></span></td>
+	</tr>
+	<tr>
+	  <td align="left" bgcolor="#EAEFF3"><{$lang.pos}></td>
+	  <td bgcolor="#FFFFFF" style="font-weight:normal"><{$de.position}></td>
+	  <td align="left" bgcolor="#EAEFF3" style="font-weight:normal"><{$lang.tel}></td>
+	  <td bgcolor="#FFFFFF" style="font-weight:normal"><{$de.tel}></td>
+	</tr>
+	<tr>
+	  <td align="left" bgcolor="#EAEFF3"><{$lang.mobi}></td>
+	  <td bgcolor="#FFFFFF" style="font-weight:normal"><{$de.mobile}></td>
+	  <td align="left" bgcolor="#EAEFF3" style="font-weight:normal"><{$lang.fax}></td>
+	  <td bgcolor="#FFFFFF" style="font-weight:normal"><{$de.fax}></td>
+	</tr>
+	<tr>
+	  <td align="left" bgcolor="#EAEFF3">E-mail</td>
+	  <td bgcolor="#FFFFFF" style="font-weight:normal"><{$de.email}></td>
+	  <td align="left" bgcolor="#EAEFF3" style="font-weight:normal">MSN</td>
+	  <td bgcolor="#FFFFFF" style="font-weight:normal"><{$de.msn}></td>
+	</tr>
+	<tr>
+	  <td align="left" bgcolor="#EAEFF3">QQ</td>
+	  <td bgcolor="#FFFFFF" style="font-weight:normal"><{$de.qq}></td>
+	  <td align="left" bgcolor="#EAEFF3" style="font-weight:normal">Skype</td>
+	  <td bgcolor="#FFFFFF" style="font-weight:normal"><{$de.skype}></td>
+</tr>
+	 <tr>
+	   <td align="left" bgcolor="#EAEFF3"><{$lang.country}></td>
+	   <td colspan="3" bgcolor="#FFFFFF"><span style="font-weight:normal"><{$de.country}>,<{$de.province}><{$lang.prov}>,<{$de.city}><{$lang.city}></span></td>
+	 </tr>
+	 <tr>
+	   <td align="left" bgcolor="#EAEFF3"><{$lang.addr}></td>
+	   <td colspan="3" bgcolor="#FFFFFF"><span style="font-weight:normal"><{$de.addr}></span></td>
+	 </tr>
+	<tr>
+	<td align="left" bgcolor="#EAEFF3"><{$lang.memo}></td>
+	<td colspan="3" bgcolor="#FFFFFF"><{$de.des}></td>
+  </tr>
+
+<{else}>
+    <{if $smarty.get.infomsg=='isnull'}>
+        <tr>
+          <td colspan="4" align="left" bgcolor="#EAEFF3"><font color="red"><{$lang.msg_1}></font></td>
+        </tr>
+    <{/if}>
+    <{if $smarty.get.isexist=='1'}>
+        <tr>
+          <td colspan="4" align="left" bgcolor="#EAEFF3"><font color="red"><{$lang.msg_2}></font></td>
+        </tr>
+    <{else}>
+            <tr>
+              <td width="15%" align="left" bgcolor="#EAEFF3"><{$lang.uname}></td>
+              <td colspan="3" bgcolor="#FFFFFF">
+              <script>
+			  function get_info()
+			  {
+			  	window.location='main.php?menu=user&action=m&m=friend&s=admin_friends&editid=<{$smarty.get.editid}>&friendid='+$('username').value
+			  }
+			  </script>
+              <{if $smarty.get.editid}>
+              <{$de.username}><{$de.user}>
+              <{else}>
+              <input id="username" type="text" name="username" value="<{$de.username}><{$de.user}>" maxlength="20"/>
+              <input onclick="get_info();" type="button" name="button" id="button" value="<{$lang.iskat6}>" />
+              <{/if}>              </td>
+            </tr>
+			<tr>
+              <td width="15%" align="left" bgcolor="#EAEFF3"><{$lang.name}><font color="red">*</font> </td>
+              <td bgcolor="#FFFFFF" width="25%">
+			  <input name="name" type="text" id="name" value="<{$de.name}><{$de.contact}>" size="40" />              </td>
+              <td width="16%" align="left" bgcolor="#EAEFF3"><{$lang.comname}></td>
+              <td bgcolor="#FFFFFF" width="44%">
+                <input name="company" type="text" id="company"  value="<{$de.company}>" size="40" maxlength="100" />
+             </td>
+			</tr>
+			<tr>
+			  <td align="left" bgcolor="#EAEFF3"><{$lang.pos}></td>
+			  <td bgcolor="#FFFFFF" style="font-weight:normal"><input name="position"  type="text" id="position"  value="<{$de.position}>" size="40" /></td>
+			  <td align="left" bgcolor="#EAEFF3" style="font-weight:normal"><{$lang.tel}></td>
+			  <td bgcolor="#FFFFFF" style="font-weight:normal"><input name="tel" type="text" value="<{$de.tel}>" size="40"  maxlength="15"/></td>
+			</tr>
+			<tr>
+			  <td align="left" bgcolor="#EAEFF3"><{$lang.mobi}><font color="red">*</font></td>
+			  <td bgcolor="#FFFFFF" style="font-weight:normal"><input name="mobile" type="text" value="<{$de.mobile}>" size="40"  maxlength="15"/></td>
+			  <td align="left" bgcolor="#EAEFF3" style="font-weight:normal"><{$lang.fax}></td>
+			  <td bgcolor="#FFFFFF" style="font-weight:normal"><input name="fax" type="text" value="<{$de.fax}>" size="40"  maxlength="20"/></td>
+			</tr>
+			<tr>
+			  <td align="left" bgcolor="#EAEFF3">E-mail<font color="red">*</font></td>
+			  <td bgcolor="#FFFFFF" style="font-weight:normal"><input name="email" type="text" value="<{$de.email}>" size="40"  /></td>
+			  <td align="left" bgcolor="#EAEFF3" style="font-weight:normal">MSN</td>
+			  <td bgcolor="#FFFFFF" style="font-weight:normal"><input name="msn" type="text" value="<{$de.msn}>" size="40"  maxlength="30"/></td>
+			</tr>
+			<tr>
+			  <td align="left" bgcolor="#EAEFF3">QQ</td>
+			  <td bgcolor="#FFFFFF" style="font-weight:normal"><input name="qq" type="text" value="<{$de.qq}>" size="40"  maxlength="30"/></td>
+              <td align="left" bgcolor="#EAEFF3" style="font-weight:normal">Skype</td>
+              <td bgcolor="#FFFFFF" style="font-weight:normal"><input name="skype" type="text" value="<{$de.skype}>" size="40"  maxlength="30"/></td>
+	</tr>
+            
+             <tr>
+               <td align="left" bgcolor="#EAEFF3"><{$lang.addr}></td>
+               <td colspan="3" bgcolor="#FFFFFF"><span style="font-weight:normal">
+                 <input name="addr" type="text" id="addr"  value="<{$de.addr}>" size="72" />
+               </span></td>
+             </tr>
+             <tr>
+               <td align="left" bgcolor="#EAEFF3"><{$lang.country}></td>
+               <td colspan="3" bgcolor="#FFFFFF"><span style="font-weight:normal">
+                 <input maxlength="20" name="country" type="text" id="country"  value="<{$de.country}>" />
+               <{$lang.prov}>
+               <input maxlength="30" name="province" type="text" id="province"  value="<{$de.province}>" />
+<{$lang.city}>
+<input maxlength="30" name="city" type="text" id="city"  value="<{$de.city}>" />
+               </span></td>
+             </tr>
+            <tr>
+            <td align="left" bgcolor="#EAEFF3"><{$lang.memo}></td>
+            <td colspan="3" bgcolor="#FFFFFF"><textarea name="des" id="des" cols="69" rows="8"><{$de.des}></textarea></td>
+          </tr>
+            <tr bgcolor="#EAEFF3">
+              <td align="right" bgcolor="#EAEFF3">&nbsp;</td>
+              <td colspan="3" align="left" bgcolor="#FFFFFF">
+			  <input type="submit" name="isure" value="<{$lang.submit}>" style="width:100px;" />
+			 <input name="fuid" type="hidden" id="fuid" value="<{$de.userid}>" />
+			   <input name="editid" type="hidden" id="editid" value="<{$smarty.get.editid}>" />			   </td>
+            </tr>
+<{/if}>
+<{/if}>
+</table>
+</form>

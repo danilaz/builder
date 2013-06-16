@@ -1,0 +1,78 @@
+<{include file="header.htm"}>
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <{$lang.callpass}></a>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+<script type="text/javascript" src="script/Validator.js"></script>
+<!--主体开始 -->
+	<div id="mainbody1" class="topm">
+	    <!--主体右侧开始 -->
+<!-- 		<div class="rightbar">
+			<div class="right1">
+				<div class="sectitle" >
+					<div class="title_left1 L2"><{$lang.sitelink}></div>
+		        </div>
+				 <div class="seccon">
+					<ul class="about_li">
+					 	<{$web_con|replace:"|":"<br />"}>
+				   </ul>
+			    </div>
+			  	<div class="bottom5"></div>
+				<div class="clear"></div>
+			</div>
+		</div> -->		
+		<!--主体右侧结束 -->
+		<!--主体左侧开始 -->
+		<div class="leftbars">
+			<div class="title4"><div class="title_left2 L2"><{$lang.callpass}></div></div>
+			<div class="content4 overflow">
+			<div style="line-height:25px;height:210px;width:95%;margin-right:5px; padding:10px; text-align:left;">
+			<form method="post" action="" onSubmit="return Validator.Validate(this,3)">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="18%" style="text-align:right"><{$lang.entercomname}>&nbsp;&nbsp;</td>
+                    <td width="82%"><input name="user" type="text" id="user" dataType="Require" msg="<{$lang.pls_user}>" size="40" value="<{$smarty.post.user}>" /></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align:right"><{$lang.email}>&nbsp;&nbsp;</td>
+                    <td><input name="email" size="40" type="text" value="<{$smarty.post.email}>" dataType="Email" msg="<{$lang.pls_email}>" /></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>
+                    	<input type="submit" name="Submit" value="<{$lang.isure}>" />
+                        <input name="action" type="hidden" id="action" value="com" />
+                      </td>
+                  </tr>
+                </table>
+			</form>		
+			<{if $smarty.post.action!=''}>
+			<form action="" method="post">
+			<table width="95%" border="0" cellpadding="0" cellspacing="0"  style="margin-left:5px;">
+			  <tr>
+				<td>
+                    <{if $company.userid!=""}>
+                            <input name="userid" type="radio" value="<{$company.userid}>|<{$company.email}>" />
+                            <a href="shop.php?uid=<{$company.userid}>" target="_blank"><{$company.user}></a>
+                            <br />
+                            <input name="action" type="hidden" id="action" value="submit" />
+                            <input name="<{$lang.isure}>" type="submit" value="<{$lang.isure}>" />
+                    <{else}>
+                            <{$lang.nosearch}><a href="<{$config.regname}>" target="_blank"><{$lang.reguser}></a>
+                            <{$lang.contactme}><a href="aboutus.php?type=3" target="_blank"><{$lang.conme}></a>．
+                    <{/if}>
+					
+				</td>
+			  </tr>
+			</table>
+			</form>
+			<{/if}>
+			</div>
+			<div class="bottom4"></div>
+			<div class="clear"></div>
+			</div>
+		</div>
+</div>
+<{include file="footer.htm"}>

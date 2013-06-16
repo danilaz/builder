@@ -1,0 +1,146 @@
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+       <{$lang.you_are_here}><a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <{$lang.jobme}></a>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+<link href="<{$config.weburl}>/templates/<{$config.temp}>/job.css" rel="stylesheet" type="text/css" />
+<div id="mainbody1" class="m1">
+    <div class="job_left">
+    	<div class="topleft">
+           <div class="i_top"></div>
+           <div class="i_bottom">
+              <b><{$lang.newsjob}></b>
+              <{insert name="label" type="job" temp="job_index_list" limit=5 }>
+           </div>
+        </div>
+        <div class="topright">
+        <script src='<{$config.weburl}>/api/ad.php?id=34&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+        </div>
+        <div id="box" class="bottom">
+            <div id="tits">
+            <div><h3><{$lang.recjob}></h3><a target="_blank"  href="<{$config.weburl}>/?m=job&s=job_list"><{$lang.more}></a></div>
+            </div>
+            <div id="cons">
+            <table cellpadding="0" cellspacing="0" border="0">
+             <tr id="tr">
+                <td align="left"><{$lang.jobname}></td>
+                <td width="32%" align="left"><{$lang.comname}></td>
+                <td width="18%"><{$lang.address}></td>
+                <td width="16%"><{$lang.salary}></td>
+                <td width="14%"><{$lang.time}></td>
+             </tr>
+             <{foreach item=list from=$rechrlist}>	
+             <tr>
+                <td class="borderC"><a href="<{$config.weburl}>/?m=job&s=job_detail&id=<{$list.id}>" target="_blank"><{$list.title}></a></td>
+                <td class="borderC"><a href="<{geturl type='' uid=$list.userid user=$list.user}>" target="_blank"><{$list.company|truncate:24}></a></td>
+                <td class="borderC" align="center"><{$list.province}>-<{$list.city}></td>
+                <td class="borderC" align="center"><{foreach item=val key=num from=$hrmoney}><{if $num==$list.money}><{$val}><{/if}><{/foreach}></td>
+                <td class="borderC" align="center"><{$list.uptime|date_format}></td>
+             </tr>  
+             <{/foreach}>
+            </table>
+            </div>
+         </div>
+        
+        <div id="box" class="bottom">
+            <div id="tits">
+            <div><h3><{$lang.recres}></h3><a target="_blank"  href="<{$config.weburl}>/?m=job&s=resume_list"><{$lang.more}></a></div>
+            </div>
+             <div id="cons">
+            <table cellpadding="0" cellspacing="0" border="0">
+             <tr id="tr">
+                <td align="left"><{$lang.name}></td>
+                <td width="32%" align="left"><{$lang.ep}></td>
+                <td width="18%"><{$lang.we}></td>
+                <td width="16%"><{$lang.qs}></td>
+                <td width="14%"><{$lang.time}></td>
+             </tr>
+             <{foreach item=list from=$resume}>	
+             <tr>
+                <td class="borderC"><a target="_blank" href="<{$config.weburl}>/?m=job&s=resume_detail&id=<{$list.rid}>"><{$list.uname}></a></td>
+                <td class="borderC"><{$list.catname}></td>
+                <td class="borderC" align="center"><{$list.experience_years}><{$lang.year}></td>
+                <td class="borderC" align="center"><{foreach item=val key=num from=$hrmoney}><{if $num==$list.money}><{$val}><{/if}><{/foreach}></td>
+                <td class="borderC" align="center"><{$list.time|date_format}></td>
+             </tr>  
+             <{/foreach}>
+            </table></div>
+        </div>
+    </div>
+	
+	
+
+    <div class="job_right">
+				<div class="nav_w">
+					<div id="navleft_w">
+						<ul>
+							<li class="nav_w"><a href="main.php?action=m&m=job&s=admin_job&menu=usershop"><{$lang.add_vacancy_w}></a><li>
+							<li class="nav_w"><a href="main.php?action=m&m=job&s=admin_resume&menu=user"><{$lang.add_resume_w}></a><li>
+						</ul>
+					</div>	
+				</div>
+		    <div>
+         	<div class="sectitle">
+                 <h2><{$lang.jobvac}></h2>
+             </div>
+             <div class="seccon">
+               <form action="<{$config.weburl}>/" method="get">
+               <input type="hidden" name="m" value="<{$smarty.get.m}>" />
+               <input type="hidden" name="s" value="job_list" />
+              <table cellpadding="0" cellspacing="0" border="0">
+                  <tr><td width="28%" class="td1"><{$lang.industry}></td><td><select name="comcat" id="comcat" style="font-size:11px;"><option value=""><{$lang.all}></option><{foreach item=list from=$cat key=num}><option value="<{$list.catid}>"><{$list.cat}></option><{/foreach}></select></td></tr>
+                  <tr><td class="td1"><{$lang.date}></td><td><select name="jobdate" id="jobdate" style="font-size:11px;"> <{foreach item=list from=$hrdropdate key=num}><option value="<{$num}>" <{if $num==$smarty.get.jobdate}>selected<{/if}>><{$list}></option>
+<{/foreach}></select></td></tr>
+				  <tr><td class="td1"><{$lang.nature}></td><td><{foreach item=list from=$job_type key=num}>
+				  <input name="pro" type="radio" class="radio" value="<{$num}>"/><u><{$list}></u><br /><{/foreach}></td></tr>
+                   <tr><td class="td1"><{$lang.keyword}></td><td><input type="text" name="keyword" class="input"/></td></tr>
+                   <tr height="28" valign="bottom"><td></td><td><input style="font-size:11px;width:80px;" type="submit" value="<{$lang.search}>" /></td></tr>
+               </table>
+               </form>
+            </div>
+			
+			
+            <div class="b"></div>
+         </div>
+
+
+		    <div id="box">
+			<div class="sectitle">
+                 <h2><{$lang.jobres}></h2>
+             </div>
+             <div class="seccon">
+                 <form action="<{$config.weburl}>/" method="get">
+                 <input type="hidden" name="m" value="<{$smarty.get.m}>" />
+                 <input type="hidden" name="s" value="resume_list" />
+               <table cellpadding="0" cellspacing="0" border="0">
+                  <tr><td width="28%" class="td1"><{$lang.education}></td><td><select name="degree" id="degree" style="font-size:11px;">
+                  <option value="-1" ><{$lang.all}></option><{foreach item=list from=$degree key=num}><option value="<{$num}>" ><{$list}></option>
+<{/foreach}></select></td></tr>
+                  <tr><td class="td1"><{$lang.date}></td><td><select name="jobdate" id="jobdate" style="font-size:11px;"> <{foreach item=list from=$hrdropdate key=num}><option value="<{$num}>" <{if $num==$smarty.get.jobdate}>selected<{/if}> ><{$list}></option>
+<{/foreach}></select></td></tr>
+				  <tr><td class="td1"><{$lang.nature}></td><td><{foreach item=list from=$job_type key=num}>
+                  <input type="radio" class="radio" value="<{$num}>" name="pro"/><u><{$list}></u><br /><{/foreach}></td></tr>
+                   <tr><td class="td1"><{$lang.sex}></td><td>
+                   <input type="radio" name="sex" class="radio" value="0" /><u><{$lang.male}></u>
+                   <input type="radio" name="sex" class="radio" value="1" /><u><{$lang.female}></u></td></tr>
+                   <tr height="28" valign="bottom"><td></td><td><input style="font-size:11px;width:80px;" type="submit" value="<{$lang.search}>" /></td></tr>
+               </table>
+               </form>
+            </div>
+			
+            <div class="b"></div>
+         </div>
+         <div id="box" class="job_cat">
+         	<div class="sectitle">
+                 <h2><{$lang.jobcats}></h2>
+                 
+             </div>
+             <div class="seccon">
+             	<{insert name="label" type="jobcat" temp="jobcat" }>
+             </div>
+         </div>
+    </div>	
+	
+    
+</div>

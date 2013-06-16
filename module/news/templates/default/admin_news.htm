@@ -1,0 +1,117 @@
+<script>
+	function chk()
+	{
+		$('ftitle_tip').innerHTML="";
+		$('body_tip').innerHTML="";
+		$('classid_tip').innerHTML="";
+		
+		if($('ftitle').value=="")
+		{
+			$('ftitle_tip').innerHTML="<{$lang.msg1}>!";
+			$('ftitle').focus();
+			return false;	
+		}
+		if($('classid').value=="")
+		{
+			$('classid_tip').innerHTML="<{$lang.msg2}>!";
+			$('classid').focus();
+			return false;	
+		}
+		if($('body').value=="")
+		{
+			$('body_tip').innerHTML="<{$lang.msg3}>!";
+			$('body').focus();
+			return false;	
+		}
+		
+	}
+</script>
+<div class="admin_right_top"><{if $smarty.get.newsid}><{$lang.edit_news}><{else}><{$lang.adds_news}><{/if}></div>
+<style>
+.newstd{ background:#EAEFF3; width:15% }
+.newstd1{ background:#FFF; width:85%}
+#ftitle_tip,#classid_tip,#body_tip{ color:#F00;}
+</style>
+<form method="post" action="" enctype="multipart/form-data" onsubmit="return chk()">
+	<table border="0" cellspacing="1" cellpadding="6" align="center" bgcolor="#DDDDDD" class="admin_table" width="100%">
+    	<tr>
+        	<td class="newstd"><{$lang.title}> <font color="#FF0000">*</font></td>
+            <td class="newstd1">
+            	<input type="text" size="70" name="ftitle" id="ftitle" value="<{$news.ftitle}>" /><span id="ftitle_tip"></span>
+            </td>
+        </tr>
+        <tr>    
+            <td class="newstd"><{$lang.ftitle}></td>
+            <td class="newstd1">
+            	<input type="text" size="70" name="title" id="title" value="<{$news.title}>" />
+            </td>
+        </tr>    
+        <tr>
+            <td class="newstd"><{$lang.class}> <font color="#FF0000">*</font></td>
+            <td class="newstd1">
+            	<select name="classid" id="classid">
+                	<option value=""></option>
+                <{foreach item=list from=$class}>
+                    <option <{if $news.classid==$list.catid}>selected="selected"<{/if}> value="<{$list.catid}>"><{$list.cat}></option>
+                <{/foreach}>
+                </select>
+                <span id="classid_tip"></span>
+            </td>
+        </tr>
+        <tr>    
+            <td class="newstd"><{$lang.keys}></td>
+            <td class="newstd1">
+            	<input type="text" size="70" name="key" id="key" value="<{$news.keyboard}>" />
+            </td>
+        </tr>
+        <tr>    
+            <td class="newstd"><{$lang.pic}></td>
+            <td class="newstd1">
+            	<{if $news.ispic==1}>
+            		<img src="<{$config.weburl}>/uploadfile/news/<{$news.titlepic}>" /><br />
+                    <input type="hidden" name="pic" value="<{$news.titlepic}>" />
+                <{/if}>
+                <input type="file" size="70" name="img_url" id="img_url" />
+            </td>
+        </tr>
+        <tr>    
+            <td class="newstd"><{$lang.smalltext}></td>
+            <td class="newstd1">
+            	<textarea rows="2" cols="100%" name="smalltext" id="smalltext"><{$news.smalltext}></textarea>
+            </td>
+        </tr>
+        <tr>    
+            <td class="newstd"><{$lang.text}> <font color="#FF0000">*</font></td>
+            <td class="newstd1">
+                <{if $news.con}>
+                	<{$news.body}>
+                <{else}>
+                <script type="text/javascript" src="lib/fckeditor/fckeditor.js"></script>
+                <script type="text/javascript">
+                var oFCKeditor = new FCKeditor( 'body' ) ;
+				<{if $config.language=='en'}>
+					oFCKeditor.Config['DefaultLanguage']='en';
+				<{else}>
+					oFCKeditor.Config['DefaultLanguage']='zh-cn';
+				<{/if}>
+				oFCKeditor.Config['ToolbarStartExpanded'] = true ;
+				oFCKeditor.BasePath		= 'lib/fckeditor/' ;
+				oFCKeditor.ToolbarSet	= 'frant' ;
+				oFCKeditor.Width='100%';
+				oFCKeditor.Height=500;
+				oFCKeditor.Create() ;
+                </script>
+                <{/if}>
+                <span id="body_tip"></span>
+            </td>
+        </tr>
+        <tr>
+        	<td class="newstd">&nbsp;</td>
+            <td class="newstd1">
+            	<input type="submit" id="submit" name="submit" value="<{if $smarty.get.newsid}><{$lang.edit}><{else}><{$lang.add}><{/if}>" />
+                <input type="reset" id="reset" name="reset" value="<{$lang.reset}>" />
+                <input type="hidden" id="action" name="action" value="<{if $smarty.get.newsid}>edit<{else}>add<{/if}>" />
+            </td>
+        </tr>
+    </table>
+</form>

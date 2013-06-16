@@ -1,0 +1,6 @@
+<{foreach item=list from=$jobs}>
+     <li style="padding-left:20px;border-bottom:1px dashed #cccccc">
+	     <a  href="shop.php?uid=<{$list.userid}>&action=job_detail&id=<{$list.id}>&m=job"><{$list.title}></a>
+         <a  href="<{$config.weburl}>/shop.php?uid=<{$list.userid}>"><{$list.company|truncate:30}></a>
+    </li>         
+<{/foreach}>

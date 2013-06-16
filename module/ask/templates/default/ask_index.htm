@@ -1,0 +1,134 @@
+<script src="script/my_lightbox.js" language="javascript"></script>
+<link href="<{$config.weburl}>/module/ask/templates/default/ask.css" rel="stylesheet" type="text/css" />
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; Решение вопросов</a>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+<!-- 左侧 -->
+<div id="askright">   
+		<div class="asktitle">
+			<ul class="center2">
+				<span class="normaltitle"><{$lang.qcat}></span>
+				<span class="askmore"><a href="<{$config.weburl}>/?m=ask&s=ask_list"><{$lang.qm}></a></span>
+			</ul>
+		</div>
+		<div class="askcatcon">
+			<div class="askcon1">
+				<span ><a href="<{$config.weburl}>/?m=ask&s=ask_list&cat=1"><{$lang.unresol}><{$newq}></a></span><br/>
+				<span ><a href="<{$config.weburl}>/?ask_list&cat=2"><{$lang.resol}><{$resq}></a> </span><br/>
+				<span><a href="<{$config.weburl}>/?ask_list&cat=reward"><{$lang.rewar}><{$rewq}></a> </span>
+			</div>
+        <div id="askcat">
+            <{foreach item=cList key=num from=$cat}>
+		    <ul>
+                <li>
+                    <p><a class="btitle" href="<{$config.weburl}>/?m=ask&s=ask_list&id=<{$cList.catid}>" title="<{$cList.cat}>"><{$cList.cat}></a></p>
+					<{if $cList.sub}>
+					<{foreach item=sublist from=$cList.sub key=nums}>
+					<{if $nums<5}>
+                    <a href="<{$config.weburl}>/?m=ask&s=ask_list&id=<{$sublist.catid}>" title="<{$sublist.cat}>"><{$sublist.cat}></a> |
+					<{/if}>
+                   <{/foreach}>
+				   <{/if}>
+                </li>			
+			</ul>
+		  <{/foreach}>
+		  </div>
+	</div>
+</div>
+<!-- 中间 -->
+<div class="askmain">
+<div class="centerask">
+		<div class="askcenter">
+		<script src='<{$config.weburl}>/api/ad.php?id=38&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+			<div class="newaskd">
+				<div class="newask">
+				<form action="<{$config.weburl}>" name="asksearch" id='asksearch' method="GET">
+					<table  border="0" cellspacing="0" width="100%">
+						<tr valign="center">
+						 <td width="40%">
+						 <input maxlength="50" name="key" tabindex=1 type="text" id="key" style="width:310px;margin-left:5px;color:#CCCCCC"  value="<{$lang.enresearch}>" onclick="this.value='';this.style.color='#FF0000';"/>
+						 </td>
+						 <td width="6%"><input  type="submit" id="earch_btn" tabindex=2 value="<{$lang.searc}>"></td>
+						 <td width="4%">
+						 <input  type="button" id="ask_btn" tabindex=3 value="<{$lang.iask}>"  <{ if $smarty.cookies.USER}>onclick="location.href='<{$config.weburl}>/?m=ask&s=add_question&catid=<{$quest.catid}>'" <{else}>onclick="location.href='<{$config.weburl}>/login.php'" <{/if}>>
+						 <input name="m" type="hidden" value="ask" />
+						<input name="s" type="hidden" value="ask_list" />
+						 </td>
+					</table>
+				</form>
+				</div>
+			</div>	
+	  </div>
+
+	<div class="askcenter">
+			<div class="asktitle center">
+				<ul>
+					<span class="normaltitle"><{$lang.toberes}></span>
+					<a href="<{$config.weburl}>/?m=ask&s=ask_list&cat=1"><span class="askmore"><{$lang.qm}></span></a>
+				</ul>
+			</div>
+			<div class="newaskd">
+				<div class="newask">
+					<table  border="0" cellspacing="0" width="100%" style="font-size:12px;padding:5px;">
+						 <{foreach item=alist key=num from=$nask}>
+						<tr>
+							<td width="60%"><a href="<{$config.weburl}>/?m=ask&s=question&id=<{$alist.id}>"><{$alist.title|truncate:50:"...":true}></a> [<{$alist.cat}>]</td>
+							<td><{$lang.anss}>: <{$alist.answer_nums}></td>
+							<td><img src="<{$alist.img}>" /></td>
+							<td><{$alist.btime}></td>
+						</tr>
+						<{/foreach}>
+					</table>
+			  </div>
+			</div>
+	
+	</div>
+	<div class="askcenter">
+			<div class="asktitle">
+				<ul class="center">
+					<span class="normaltitle"><{$lang.qrewar}></span>
+					<a href="<{$config.weburl}>/?m=ask&s=ask_list&cat=2"><span class="askmore"><{$lang.qm}></span></a>
+				</ul>
+			</div>
+			<div class="newaskd">
+				<div class="newask">
+					<table  border="0" cellspacing="0" width="100%" style="font-size:12px;padding:5px;">
+						 <{foreach item=rlist key=num from=$reward}>
+						<tr>
+							<td width="60%"><img src="<{$config.weburl}>/image/default/mon.gif"/> <{$rlist.reward}>&nbsp;<a href="<{$config.weburl}>/?m=ask&s=question&id=<{$rlist.id}>"><{$rlist.title|truncate:50:"...":true}></a> [<{$rlist.cat}>]</td>
+							<td><{$lang.anss}>: <{$rlist.answer_nums}></td>
+							<td><img src="<{$rlist.img}>" /></td>
+							<td><{$rlist.btime}></td>
+						</tr>
+						<{/foreach}>
+					</table>
+			  </div>
+			</div>
+	</div>
+
+</div>
+
+<div id="leftask">
+	<div class="leftaskbartop"><span class="bartitle"><{$lang.knowev}></span></div>
+	<div id="leftaskbarbody">		 
+		<ul>
+			<{foreach item=klist from=$knowall}>
+				<li>
+					<span>
+					<a href="http://<{$klist.user}>.<{$config.baseurl}>" target="_blank" title="<{$cList.cat}>">
+					<{assign var="img" value=$klist.userid}>
+					<{html_image file=uploadfile/user_portrait/$img.jpg width=80}>
+					</a>
+					</span>
+					  <span><a href="http://<{$klist.user}>.<{$config.baseurl}>" target="_blank" title="<{$cList.cat}>"><strong><{$klist.user}></strong></a><br><{$lang.point}><{$klist.point}><br/><{$lang.bestan}><{$klist.resn}></span>
+				</li>
+			<{/foreach}>
+			<script src='<{$config.weburl}>/api/ad.php?id=39&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+		</ul>
+        <div class="clear"></div>
+	</div>
+</div>
+</div>

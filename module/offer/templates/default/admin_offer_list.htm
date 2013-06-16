@@ -1,0 +1,50 @@
+<script type="text/javascript">
+function ref(id,v)
+{	
+	var url = 'main.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&'+v;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'get', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		var tempStr = originalRequest.responseText;
+		if(tempStr!='')
+		{
+			$('r'+id).innerHTML='';
+		}
+	}
+}
+</script>
+<div class="admin_right_top">
+<span style="float:left"><{$lang.business_list}></span>
+<button onclick="window.location='main.php?action=m&m=offer&s=admin_offer_list&menu=info&update=all'" style="float:right; margin-right:10px; height:22px; ">
+<{$lang.refresh}>
+</button>
+</div>
+<div style="float:left">
+<table border="0" cellpadding="4" cellspacing="1" bgcolor="#FFFFFF">
+	<tr bgcolor="#E8E8E8" style="font-weight:bold"> 
+	  <td width="59" height="22" align="center"><{$lang.type}></td>
+	  <td width="628" bgcolor="#E8E8E8"><{$lang.business_title}></td>
+	  <td width="196" align="center" bgcolor="#E8E8E8"><{$lang.refresh_time}></td>
+	  <td width="216" align="center" bgcolor="#E8E8E8"><{$lang.operation}></td>
+	</tr>
+	<{foreach item=list from=$re.list}>
+	<tr bgcolor="#F7F7F7"> 
+	  <td width="59" height="22" align="center"><img src="./image/<{$config.temp}>/offer_<{$list.type}>.gif"/></td>
+	  <td width="628">[<{if $list.statu>=1}><font color="green">Опубликовано</font><{else}><font color="red">На проверке</font><{/if}>] <{$list.title}></td>
+	  <td width="196" align="center"><{$list.uptime|date_format}></td>
+	  <td height="22" align="center">
+	  <a href="?menu=<{$smarty.get.menu}>&edit=<{$list.id}>&m=offer&s=admin_offer&action=m&menu=info"><img src="/image/default/page_edit.png" title="<{$lang.modify}>"></a>
+	  <span id="r<{$list.id}>"><a href="javascript:ref(<{$list.id}>,'action=m&m=offer&s=admin_offer_list&menu=info&update=<{$list.id}>')">
+	  <img src="/image/default/arrow_refresh.png" title="<{$lang.refresh}>"></a></span>
+	  <a href="?deid=<{$list.id}>&m=offer&s=admin_offer_list&action=m&menu=info" onclick="return confirm('<{$lang.sure_del}>');">
+	  <img src="/image/default/delete.png" title="<{$lang.del}>"></a>	  </td>
+	</tr>
+	<{/foreach}>
+</table>
+</div>
+<div align="right"><{$re.page}></div>

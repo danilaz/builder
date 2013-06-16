@@ -1,0 +1,30 @@
+<{include file="header.htm"}>
+
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <strong><a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <{$lang.des}></strong>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+<div id="mainbody1" class="topm">
+<table width='100%' class="member_sev" border="0" cellpadding="7" cellspacing="1" bgcolor="#e4e4e4"> 
+  <tr class="title4">
+    <td width="150"><{$lang.adid}></td>
+    <td width="150"><{$lang.name}></td>
+    <td width="150"><{$lang.adhei}></td>
+    <td width="150"><{$lang.adprice}></td>
+    <td width="*"><{$lang.addes}></td>
+  </tr>
+  <{foreach item=list  from=$ad}>
+  <tr bgcolor="#FFFFFF">
+    <td><{$list.ID}></td>
+    <td><{$list.name}></td>
+    <td><{if $list.height&&$list.width}><{$list.height}>*<{$list.width}><{$lang.pix}><{/if}></td>
+    <td><{$list.price}></td>
+    <td><{$list.con}></td>
+  </tr>
+  <{/foreach}>
+</table>
+</div>
+<{include file="footer.htm"}>

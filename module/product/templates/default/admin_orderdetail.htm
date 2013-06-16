@@ -1,0 +1,150 @@
+<style>
+.price{color:#FF5500; font-weight:bold; font-size:18px}
+.orderdetai td{ border-bottom:1px solid #EEEEDD; height:0px; padding:3px;}
+.stbox{border:1px solid #F7E4A5; background-color:#FFFCF3; padding:20px 5px 20px 20px; overflow:hidden; font-weight:bold; margin-bottom:3px;}
+.buttons{background-image:url(image/default/searchbutton.gif); margin:5px; width:76px; height:21px; border:0px; display:block; text-align:center; padding-top:5px; overflow:hidden; float:left;}
+.buyer{border:1px solid #F7E4A5; width:98%; background-color:#FFFCF3; padding:5px; margin-top:10px; float:left;}
+.buyer td{padding:3px;}
+</style>
+<div class="admin_right_top"><{$lang.orderdet}></div>
+
+<div class="stbox" style="height:50px;line-height:1.5em;"><span style="color:#FF6600;"><{$lang.ordprocess}></span><br /><i><{$odetail.process}></i></div>
+
+<div class="stbox" style="height:60px;line-height:1.5em;">
+	<span style="color:#FF6600;"><{$lang.ostatu}></span> <i><{$odetail.statu_text}></i>
+    <{if $odetail.status<4}>
+    	<br />
+        <{$lang.ltime}> <span id="endtime" style="color:#FF6600;"><{$odetail.remainder}></span>
+        <br />
+        <{$odetail.next_action}>
+    <{/if}>
+</div>
+<div class="buyer">
+  <table width="100%" border="0" cellspacing="0" cellpadding="3">
+    <tr> </tr>
+    <tr>
+      <td colspan="4" bgcolor="#EAEFF3"><{if $smarty.get.type=='buy'}> <b><{$lang.sdet}></b> <{else}> <b><{$lang.bdet}></b> <{/if}> </td>
+    </tr>
+    <tr>
+      <td width="100"><strong><{$lang.uname}></strong></td>
+      <td><{$odetail.sellinfo.user}></td>
+      <td width="100"><strong><{$lang.contact}></strong></td>
+      <td><{$odetail.sellinfo.contact}></td>
+    </tr>
+    <tr>
+      <td><strong><{$lang.comname}></strong></td>
+      <td><{$odetail.sellinfo.company}></td>
+      <td><strong><{$lang.tel}></strong></td>
+      <td><{$odetail.sellinfo.tel}></td>
+    </tr>
+    <tr>
+      <td><strong><{$lang.email}></strong></td>
+      <td><{$odetail.sellinfo.email}></td>
+      <td><strong><{$lang.caddr}></strong></td>
+      <td><{$odetail.sellinfo.addr}></td>
+    </tr>
+  </table>
+  <table width="99%" border="0" cellspacing="0" style="border:1px solid #DDDDDD;">
+    <tr bgcolor="#E8F2FF">
+    <td width="15%"><{$lang.ppic}></td>
+    <td width="33%" height="24"><{$lang.opname}></td>
+    <td width="27%"><{$lang.pprice}></td>
+    <td width="25%"><{$lang.onums}></td>
+    
+    </tr>
+    <tr>
+    <td height="86">
+    <a href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$odetail.product.proid}>" target="_blank" >
+    <img src="<{$config.weburl}>/uploadfile/comimg/small/<{$odetail.product.proid}>.jpg" width="100" /></a>
+    </td>
+    <td><a href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$odetail.product.proid}>" target="_blank" ><{$odetail.product.pname}></a></td>
+    <td> <{$odetail.product.pprice}> <{$config.money}></td>
+    <td><{$odetail.product.nums}></td>
+    </tr>
+</table>
+<div align="right" style="padding:4px; line-height:25px;">
+<b><{$lang.logistics}></b>
+<{if $odetail.freight_price==''&&$odetail.freight_type==''}>
+    <b><{$lang.spayfee}></b>
+<{else}>
+    <b>(<{if $odetail.freight_type==0}><{$lang.postfee}><{/if}>
+	<{if $odetail.freight_type==1}><{$lang.express}><{/if}>
+	<{if $odetail.freight_type==2}>EMS<{/if}>):</b>&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="price"><{$odetail.freight_price|number_format:2}> <{$config.money}></span>
+<{/if}>
+<br />
+<b><{$lang.pallprice}>:</b>&nbsp;&nbsp;&nbsp;&nbsp;<span class="price"><{$odetail.price|number_format:2}> <{$config.money}></span>
+</div>
+
+
+<table width="99%" border="0" cellspacing="0" class="orderdetai">
+  	<tr><td width="20%" height="31" ><{$lang.oid}></td>
+  	  <td width="80%" ><{$odetail.id}></td>
+  	</tr>    
+      <tr><td width="20%" ><{$lang.ordertim}></td>
+        <td width="80%" ><{$odetail.ordertime|date_format}></td>
+    </tr>
+      <tr><td height="21"><{$lang.buyername}></td> 
+        <td><{$odetail.buyername}></td>
+      </tr>
+      <tr><td><{$lang.buyeraddr}></td>
+        <td><{$odetail.buyeraddr}></td>
+      </tr>
+      <tr><td height="25"><{$lang.buyertel}></td>
+        <td><{$odetail.buyertel}></td>
+      </tr>
+      <tr><td><{$lang.buyerzip}></td>
+        <td><{$odetail.buyerzip}></td>
+      </tr>
+      <tr>
+        <td height="46" colspan="2"><{$lang.buyerinfo}><br />
+          <{$odetail.des}>
+        </td>
+     </tr>
+</table>
+</div>
+<script type="text/javascript">
+var CID = "endtime";
+if(window.CID != null)
+{
+    var iTime = document.getElementById(CID).innerHTML;
+    var Account;
+    RemainTime();
+}
+function RemainTime()
+{
+    var iDay,iHour,iMinute,iSecond;
+    var sDay="",sHour="",sMinute="",sSecond="",sTime="";
+    if (iTime >= 0)
+    {
+        iDay = parseInt(iTime/24/3600);
+        if (iDay > 0)
+            sDay = iDay + "<{$lang.days}>";
+        iHour = parseInt((iTime/3600)%24);
+        if (iHour > 0)
+            sHour = iHour + "<{$lang.hours}>";
+        iMinute = parseInt((iTime/60)%60);
+        if (iMinute > 0)
+            sMinute = iMinute + "<{$lang.minit}>";
+        iSecond = parseInt(iTime%60);
+        if (iSecond >= 0)
+            sSecond = iSecond + "<{$lang.seconds}>";
+        if ((sDay=="")&&(sHour=="")){
+            sTime="<span style='color:darkorange'>" + sMinute+sSecond + "</font>";
+        }
+        else
+            sTime=sDay+sHour+sMinute+sSecond;
+        if(iTime==0)
+		{
+            clearTimeout(Account);
+            sTime="<span style='color:green'><{$lang.timeisend}></span>";
+        }
+        else
+            Account = setTimeout("RemainTime()",1000);
+        iTime=iTime-1;
+    }
+    else
+            sTime="<span style='color:red'><{$lang.countdownisend}></span>";
+    document.getElementById(CID).innerHTML = sTime;
+}
+</script>

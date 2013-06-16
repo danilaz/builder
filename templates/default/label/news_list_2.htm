@@ -1,0 +1,12 @@
+<{foreach item=list name=name from=$news}>
+<div>  
+    <div style="text-align:center;">
+        <a target="_blank" title="<{$list.title}>" href="<{$list.url}>">
+           <img width="100" height="100" src="<{$list.pic}>" />
+        </a>
+	<div style="text-align:center;">
+        <a target="_blank" <{$list.style}>  title="<{$list.title}>" href="<{$list.url}>"><{$list.ftitle|truncate:120}></a>
+    </div>
+    </div>
+</div>
+<{/foreach}>

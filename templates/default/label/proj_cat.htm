@@ -1,0 +1,8 @@
+<{foreach item=cList key=num name=name from=$cat}>
+  <div class="proj_cat <{if $smarty.foreach.name.last}>noborder<{/if}>">
+     <p><a href="<{$config.weburl}>/?m=proj&s=proj_list&id=<{$cList.catid}>" title="<{$cList.cat}>"><{$cList.cat}></a></p>
+     <{foreach item=sublist from=$cList.scat key=nums}>
+        <a href="<{$config.weburl}>/?m=proj&s=proj_list&id=<{$sublist.catid}>" title="<{$sublist.cat}>"><{$sublist.cat}></a> |
+     <{/foreach}>
+   </div>
+<{/foreach}>

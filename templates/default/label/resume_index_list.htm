@@ -1,0 +1,5 @@
+<{foreach item=list from=$resume}>
+    <li>
+         <a  href="<{$config.weburl}>/?m=job&s=resume_detail&id=<{$list.rid}>"><{$list.name}></a>
+    </li>         
+<{/foreach}>

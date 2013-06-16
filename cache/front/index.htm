@@ -1,0 +1,1571 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>,  - ekolobok.com</title>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="B2Bbuilder Team and B2Bbuilder UI Team" />
+<meta name="copyright" content="B2Bbuilder" />
+<script src="http://localhost/builder/script/prototype.js" type="text/javascript"></script>
+<script src="http://localhost/builder/script/index.js" type="text/javascript"></script>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link href="http://localhost/builder/templates/default/page.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="pro.css" />
+</head>
+<body>
+<div id="top">
+   <div id="top_sider">
+   <span style="float:left; padding-left:10px;">
+   <a class="Thome" href="javascript:setHomepage('http://localhost/builder');" style=" background:url(http://localhost/builder/image/default/home.gif) no-repeat left center; padding-left:20px;" >Главная</a> | 
+   <a href="#" onclick="window.external.addFavorite('http://localhost/builder','')" style="background:url(http://localhost/builder/image/default/add.gif) no-repeat left center; padding-left:20px;">В избранное</a> | 
+   <script src="http://localhost/builder/login_statu.php"></script>
+   </span> 
+   <span style="float: right; padding-right:20px;">
+   <a href="http://localhost/builder/main.php" style="background:url(http://localhost/builder/image/default/home.gif) no-repeat left center; padding-left:20px;"/>Мой офис</a>
+	
+	<!---->
+	   										Текущий регионВсе регионы 						<a href="http://localhost/builder/switch_city.php" style="background:url(http://localhost/builder/image/default/icon.jpg) no-repeat right center; padding-right:15px;color:#1b77ba;">Изменить регион</a>
+									</span> 
+  </div>
+</div>
+<div id="wrapper">
+	<div id="wrap_top">
+        <div id="wrap">
+        <div class="gray">
+            <div id="logo">
+            <a href="http://localhost/builder">
+			<img src="http://localhost/builder/image/default/logo.gif" />
+			</a>
+            </div>
+            <div id="logo_ad">
+				<script src='http://localhost/builder/api/ad.php?id=1&catid=&sname=index.php'></script>
+			</div>
+        </div>        
+            <div class="nav">
+                <div id="navleft">
+                    <ul>
+                        													<li class="current">
+							<a href="http://localhost/builder/">
+								<span>Главная</span></a>
+							</li>
+						     
+                      													<li >
+							<a href="http://localhost/builder/?m=product">
+								<span>Онлайн</span></a>
+							</li>
+						     
+                      													<li >
+							<a href="http://localhost/builder/?m=offer">
+								<span>Предложения</span></a>
+							</li>
+						     
+                      													<li >
+							<a href="http://localhost/builder/?m=demand">
+								<span>Спрос</span></a>
+							</li>
+						     
+                      													<li >
+							<a href="http://localhost/builder/?m=company">
+								<span>Компании</span></a>
+							</li>
+						     
+                      													<li >
+							<a href="http://localhost/builder/?m=news">
+								<span>Новости</span></a>
+							</li>
+						     
+                      													<li >
+							<a href="http://localhost/builder/?m=exhibition">
+								<span>Выставки</span></a>
+							</li>
+						     
+                      													<li >
+							<a href="http://localhost/builder/?m=job">
+								<span>Вакансии</span></a>
+							</li>
+						     
+                      													<li >
+							<a href="http://localhost/builder/?m=brand">
+								<span>Бренды</span></a>
+							</li>
+						     
+                      					  <li id="nav_rigt_text">
+					  <a style="font-weight:normal" href="main.php">Мой офис</a> |
+					  <a style="font-weight:normal" href="aboutus.php">Сервис</a>
+					  </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="navad">
+                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td class="s_l"></td>
+            <td id="navsearch">
+			                        <form method="get" name="sear" id="sear" action="http://localhost/builder/">
+                    <input id="m" name="m" type="hidden" value="product" />
+                    <input id="s" name="s" type="hidden" value="product_list" />
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="130px" style="text-align:left">
+                <select id="search_type" style="width:120px; height:24px; text-align:left;color:#707070;" class="selectnav" name="type" onchange="select_form(this.value,'http://localhost/builder')">
+                    <!--
+
+<option value="product"  >Продукты</option>
+
+-->
+                    <option value="offer"  >Предложения</option>
+                    <option value="demand"  >Спрос</option> 
+                    <option value="company"  >Компании</option>
+                    <option value="news"  >Новости</option>
+					                    <!--
+
+                    <option value="exhibition"  >Выставки</option>
+					-->
+                </select>
+                <script>
+                  if('home'=='home') $('search_type').onchange();
+                </script>
+                </td>
+                    <td width="312px"><input autocomplete="off" onkeyup="get_search_word(this.value);" value="" type="text" class="editbox" id="key" name="key"/></td>
+                    <td width="97px"><input type="submit" class="button" value="" /></td>
+                    
+                    <td>
+                      <span> 
+                         
+                          <a href="http://localhost/builder/search.php?stype=1">Расширенный поиск &raquo;</a>
+                                              </span>
+                    </td>
+                    
+                  </tr>
+                </table>
+				</form>
+            </td>
+            <td class="s_r"></td>
+          </tr>
+        </table>
+        </div>
+	</div>
+<script>
+function get_search_word(k)
+{
+	if(k!='')
+	{
+		var url = 'http://localhost/builder/ajax_back_end.php';
+		var sj = new Date();
+		var pars = 'shuiji=' + sj+'&search_flag=1&key='+k;
+		var myAjax = new Ajax.Request(
+					url,
+					{method: 'post', parameters: pars, onComplete: showResponse}
+					);
+	}
+	function showResponse(originalRequest)
+	{
+		if(originalRequest.responseText!='')
+		{
+			$('key_select').style.display='block';
+			$('key_select').innerHTML=originalRequest.responseText;
+		}
+		else
+			$('key_select').style.display='none';
+	}
+	
+}
+function select_word(v)
+{
+	$('key').value=v;
+	$('key_select').style.display='none';
+}
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter17906014 = new Ya.Metrika({id:17906014, enableAll: true, webvisor:true});
+        } catch(e) { }
+    });
+    
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/17906014" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Google.Analytics counter -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36340715-1']);
+  _gaq.push(['_setDomainName', 'ekolobok.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- Google.Analytics counter -->	<div class="main">
+<div class="categories">
+<ul id="all_cate_list" class="cat_list_show" style="margin-top:-1px;">
+          </ul>
+</div>
+        <div class="main_l">
+            <div class="clear"></div>
+            <div class="ad"><script src='http://localhost/builder/api/ad.php?id=4&catid=&sname=index.php'></script></div>
+          <!-- <div> <img src="http://localhost/builder/image/default/ekolobok-art.png"> </div> -->
+<div class="top_pro">
+  <div class="top_branh_tit">
+    <span class="yt_tit">Продаем товары</span>
+  </div>
+       <table width="100%"  border="0" cellpadding="0" cellspacing="0"></tr></table> 
+  <div class="clear"></div>
+</div>
+<div class="h1_line"></div> 
+<div class="top_pro"> 
+  <div class="top_branh_tit">
+    <span class="yt_tit">Оказываем услуги (выполняем работы)</span>
+  </div>
+       <table width="100%"  border="0" cellpadding="0" cellspacing="0"></table> 
+  <div class="clear"></div>
+</div>
+<div class="top_pro">
+  <div class="top_branh_tit">
+    <span class="yt_tit">Закупаем товары</span>
+  </div>
+       <table width="100%"  border="0" cellpadding="0" cellspacing="0"></tr></table> 
+  <div class="clear"></div>
+</div>
+<div class="h1_line"></div> 
+<div class="top_pro"> 
+  <div class="top_branh_tit">
+    <span class="yt_tit">Требуются услуги (работы)</span>
+  </div>
+       <table width="100%"  border="0" cellpadding="0" cellspacing="0"></table> 
+  <div class="clear"></div>
+</div> 	
+        	
+            <div class="clear"></div>
+ <div class="syzx">
+				<div class="Menubox"><h2>Бизнес информация</h2><h3><a href="http://localhost/builder/?m=news">Подробнее</a></h3></div>
+				<script>
+function setTab1(c)
+{
+	for(i=0;i<=3;i++)
+	{
+		$('tabmenu_0'+i).className='lst';
+		$('tabcontent_0'+i).style.display='none';
+	}
+	$('tabmenu_0'+c).className='now';
+	$('tabcontent_0'+c).style.display='block';
+}
+</script>
+<div class="Contentbox">
+	<div id="inf_l">
+		<div style="padding-left:30px;"></div>                       
+		<div id="itetopm">                        
+		  <div id="inf-tab">
+			<a onmouseover="setTab1(0);" class="now" href="http://localhost/builder/?m=news&s=news_list&id=" id="tabmenu_00"></a>
+			<a onmouseover="setTab1(1);" href="http://localhost/builder/?m=news&s=news_list&id=" id="tabmenu_01" class="lst"></a>
+			<a onmouseover="setTab1(2);" href="http://localhost/builder/?m=news&s=news_list&id=" class="lst" id="tabmenu_02"></a>
+			<a onmouseover="setTab1(3);" href="http://localhost/builder/?m=news&s=news_list&id=" class="lst" id="tabmenu_03"></a>
+			</div>
+	  <div style="overflow:hidden;height:61px;font-weight:normal;">                      
+		<div id="tabcontent_00">
+		  <ul>
+			  	
+		  </ul>
+		</div>                      
+		<div id="tabcontent_01" style="display: none;">
+		  <ul>                          
+			  	              
+		  </ul>
+		</div>                      
+		<div id="tabcontent_02" style="display: none;">
+		  <ul>                          
+			  	                                       
+		  </ul>
+		  </div>
+		<div id="tabcontent_03" style="display: none;">
+		  <ul>                          
+			  	                                       
+		  </ul>
+		  </div>    
+		<div id="tabcontent_04" style="display: none;">
+		  <ul>                          
+			  	                                       
+		  </ul>
+		  </div>
+	  </div>                        
+	</div>
+</div>
+
+<!-- <div id="inf_m">		      
+<ul>	        
+	 <li id="b2">
+	 
+	 </li>
+	
+</ul> 
+</div>-->
+<!--<div id="inf_r">		      
+	<h3><a href="http://localhost/builder/?m=news&s=news_list&id=">[]</a></h3>
+	<ul>
+		          
+	</ul>					        
+	<h3><a href="http://localhost/builder/?m=news&s=news_list&id=">[]</a></h3>
+	<ul>					        
+		  				
+	</ul>					        
+</div> -->
+				<div class="clear"></div>
+            </div>
+            <div class="pro_list">
+                <div class="maintitle">
+    <span class="title_t1">Отрасли</span>
+    <span class="title_more">
+        <a href="/?m=offer&s=offer_list">Подробнее</a>
+    </span>
+</div>		
+<div class="maincontent">
+	<div class="charcat">
+		<script>
+		var cityurl='http://localhost/builder/ajax_back_end.php';
+		</script>
+		<script src="http://localhost/builder/script/get_index_cat.js" type=text/javascript></script>
+<!-- 		<div class="home_cat">
+			<li style="margin-left:3px;">5По алфавиту</li>
+			<li id="A" onmouseover="get_index_cat('A','p');">A</li>
+			<li id="B" onmouseover="get_index_cat('B','p');">B</li>
+			<li id="C" onmouseover="get_index_cat('C','p');">C</li>
+			<li id="D" onmouseover="get_index_cat('D','p');">D</li>
+			<li id="E" onmouseover="get_index_cat('E','p');">E</li>
+			<li id="F" onmouseover="get_index_cat('F','p');">F</li>
+			<li id="G" onmouseover="get_index_cat('G','p');">G</li>
+			<li id="H" onmouseover="get_index_cat('H','p');">H</li>
+			<li id="I" onmouseover="get_index_cat('I','p');">I</li>
+			<li id="J" onmouseover="get_index_cat('J','p');">J</li>
+			<li id="K" onmouseover="get_index_cat('K','p');">K</li>
+			<li id="L" onmouseover="get_index_cat('L','p');">L</li>
+			<li id="M" onmouseover="get_index_cat('M','p');">M</li>
+			<li id="N" onmouseover="get_index_cat('N','p');">N</li>
+			<li id="O" onmouseover="get_index_cat('O','p');">O</li>
+			<li id="P" onmouseover="get_index_cat('P','p');">P</li>
+			<li id="Q" onmouseover="get_index_cat('Q','p');">Q</li>
+			<li id="R" onmouseover="get_index_cat('R','p');">R</li>
+			<li id="S" onmouseover="get_index_cat('S','p');">S</li>
+			<li id="T" onmouseover="get_index_cat('T','p');">T</li>
+			<li id="U" onmouseover="get_index_cat('U','p');">U</li>
+			<li id="V" onmouseover="get_index_cat('V','p');">V</li>
+			<li id="W" onmouseover="get_index_cat('W','p');">W</li>
+			<li id="X" onmouseover="get_index_cat('X','p');">X</li>
+			<li id="Y" onmouseover="get_index_cat('Y','p');">Y</li>
+			<li id="Z" onmouseover="get_index_cat('Z','p');">Z</li>
+		</div> -->
+		<div id="ajax_cat" class="homeajax_cat" onmouseout="this.style.display='none';"></div>
+	</div>
+	<ul class="list5 overflow" style="padding-top:10px;">
+		<li>
+						<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1027" 
+					title="Технологии и продукция НИОКР">Технологии и продукция НИОКР</a><!-- <font size="2"> (17)</font> -->
+					</h3>
+					<p>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1000" 
+					title="Сельское хозяйство ">Сельское хозяйство </a><!-- <font size="2"> (174)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100007" 
+							title="Растения и цветоводство">Растения и цветоводство</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100019" 
+							title="Птицеводство">Птицеводство</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100005" 
+							title="Масличные и Эфиромасличные культуры">Масличные и Эфиромасличные культуры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100002" 
+							title="Каучуконосы">Каучуконосы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100018" 
+							title="Сельскохозяйственная техника">Сельскохозяйственная техника</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100003" 
+							title="Текстильные культуры">Текстильные культуры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100001" 
+							title="Овощи и бахчевые культуры">Овощи и бахчевые культуры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100020" 
+							title="Мукомольная продукция">Мукомольная продукция</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100008" 
+							title="Кормовые культуры">Кормовые культуры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100009" 
+							title="Семеноводство">Семеноводство</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100010" 
+							title="Орехоплодные культуры">Орехоплодные культуры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100011" 
+							title="Грибоводство">Грибоводство</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100012" 
+							title="Животноводство">Животноводство</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100013" 
+							title="Пчеловодство">Пчеловодство</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100014" 
+							title="Рыбоводство и промышленное рыболовство">Рыбоводство и промышленное рыболовство</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100015" 
+							title="Аквакультура">Аквакультура</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100016" 
+							title="Бобовые культуры">Бобовые культуры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100017" 
+							title="Злаковые культуры">Злаковые культуры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100021" 
+							title="Комбикорм">Комбикорм</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100006" 
+							title="Фрукты, ягоды">Фрукты, ягоды</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+															</li><li class="L3" >
+											   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1002" 
+					title="Красота и гигиена ">Красота и гигиена </a><!-- <font size="2"> (124)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100212" 
+							title="Уход за лицом">Уход за лицом</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100211" 
+							title="Уход за руками">Уход за руками</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100214" 
+							title="Наборы">Наборы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100213" 
+							title="Уход за телом">Уход за телом</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100208" 
+							title="Парфюмерия">Парфюмерия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100209" 
+							title="Маникюр и педикюр">Маникюр и педикюр</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100207" 
+							title="Декоративная косметика">Декоративная косметика</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100206" 
+							title="Предметы и средства гигиены">Предметы и средства гигиены</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100205" 
+							title="Уход за волосами">Уход за волосами</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100204" 
+							title="Все для бритья">Все для бритья</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100201" 
+							title="Все для загара">Все для загара</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100202" 
+							title="Все для массажа">Все для массажа</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100203" 
+							title="Интимные товары">Интимные товары</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1003" 
+					title="Продовольствие">Продовольствие</a><!-- <font size="2"> (2135)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100320" 
+							title="Продукция птицеводства.">Продукция птицеводства.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100318" 
+							title="Готовые блюда и полуфабрикаты.">Готовые блюда и полуфабрикаты.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100314" 
+							title="Макаронные изделия">Макаронные изделия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100311" 
+							title="Диетические продукты">Диетические продукты</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100310" 
+							title="Детское питание">Детское питание</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100309" 
+							title="Соусы и приправы">Соусы и приправы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100308" 
+							title="Мясная продукция">Мясная продукция</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100307" 
+							title="Молочная продукция">Молочная продукция</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100306" 
+							title="Мучная продукция">Мучная продукция</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100305" 
+							title="Рыба и морепродукты">Рыба и морепродукты</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100304" 
+							title="Напитки и соки">Напитки и соки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100303" 
+							title="Алкоголь">Алкоголь</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100302" 
+							title="Кондитерские изделия">Кондитерские изделия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100319" 
+							title="Пищевые ароматизаторы, красители и другие добавки">Пищевые ароматизаторы, красители и другие добавки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100317" 
+							title="Соль, сахар">Соль, сахар</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100316" 
+							title="Орехи, семечки,снеки">Орехи, семечки,снеки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100315" 
+							title="Овощи, фрукты, грибы, зелень">Овощи, фрукты, грибы, зелень</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100313" 
+							title="Мед, варенье, джем">Мед, варенье, джем</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100312" 
+							title="Масло, маргарин, жир">Масло, маргарин, жир</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100301" 
+							title="Крупы, зерновые, бобовые.">Крупы, зерновые, бобовые.</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+															</li><li>
+											   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1005" 
+					title="Мебель">Мебель</a><!-- <font size="2"> (1038)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100505" 
+							title="Коммерческая мебель">Коммерческая мебель</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100504" 
+							title="Складная мебель">Складная мебель</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100503" 
+							title="Надувная мебель">Надувная мебель</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100526" 
+							title="Антресоль">Антресоль</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100501" 
+							title="Уличная мебель">Уличная мебель</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100506" 
+							title="Фурнитура">Фурнитура</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100507" 
+							title="Мебельные фасады, плиты, столешницы">Мебельные фасады, плиты, столешницы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100508" 
+							title="Шкафы">Шкафы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100509" 
+							title="Столы и столики">Столы и столики</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100510" 
+							title="Стелажи и полки">Стелажи и полки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100512" 
+							title="Стулья и табуретки">Стулья и табуретки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100513" 
+							title="Тумбы">Тумбы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100514" 
+							title="Комоды">Комоды</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100515" 
+							title="Компьютерные столы, стулья и кресла">Компьютерные столы, стулья и кресла</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100516" 
+							title="Диваны и кушетки">Диваны и кушетки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100517" 
+							title="Кресла и пуфы">Кресла и пуфы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100518" 
+							title="Плетеная мебель">Плетеная мебель</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100519" 
+							title="Ванные комнаты">Ванные комнаты</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100520" 
+							title="Гостинные">Гостинные</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100521" 
+							title="Детская мебель">Детская мебель</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100522" 
+							title="Кухонные гарнитуры">Кухонные гарнитуры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100523" 
+							title="Прихожие">Прихожие</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100525" 
+							title="Мебель для малышей">Мебель для малышей</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100511" 
+							title="Стойки, зеркала, вешалки">Стойки, зеркала, вешалки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100524" 
+							title="Спальни, кровати">Спальни, кровати</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1006" 
+					title="Транспортные средства">Транспортные средства</a><!-- <font size="2"> (342)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100609" 
+							title="Дома на колесах, мобильные комплексы">Дома на колесах, мобильные комплексы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100608" 
+							title="Запасные части и агрегаты для транспорта">Запасные части и агрегаты для транспорта</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100601" 
+							title="Грузовые автомобили">Грузовые автомобили</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100607" 
+							title="Гужевой транспорт">Гужевой транспорт</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100606" 
+							title="Мотоциклы и скутеры">Мотоциклы и скутеры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100605" 
+							title="Специальный транспорт">Специальный транспорт</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100604" 
+							title="Водный транспорт">Водный транспорт</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100603" 
+							title="Железнодорожный транспорт">Железнодорожный транспорт</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100602" 
+							title="Легковые автомобили">Легковые автомобили</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100610" 
+							title="Воздушный транспорт">Воздушный транспорт</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100611" 
+							title="Автобусы, общественный транспорт.">Автобусы, общественный транспорт.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100612" 
+							title="Велосипеды.">Велосипеды.</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+															</li><li class="L3" >
+											   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1007" 
+					title="Электрика и свет">Электрика и свет</a><!-- <font size="2"> (208)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100715" 
+							title="Счетчики">Счетчики</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100714" 
+							title="Светотехнические изделия">Светотехнические изделия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100708" 
+							title="Кабельные изделия">Кабельные изделия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100707" 
+							title="Реле">Реле</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100702" 
+							title="Разъемы и клеммы">Разъемы и клеммы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100701" 
+							title="Контакторы и предохранители">Контакторы и предохранители</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100718" 
+							title="Полупроводниковые силовые приборы, интегральные схемы, преобразовательная техника">Полупроводниковые силовые приборы, интегральные схемы, преобразовательная техника</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100719" 
+							title="Устройства управления, распределения и защиты комплектные">Устройства управления, распределения и защиты комплектные</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100720" 
+							title="Электроизоляционные материалы">Электроизоляционные материалы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100721" 
+							title="Аппараты высокого и низкого напряжения">Аппараты высокого и низкого напряжения</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100713" 
+							title="Розетки, вилки, переключатели">Розетки, вилки, переключатели</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100706" 
+							title="Изоляторы, электрокерамические изделия">Изоляторы, электрокерамические изделия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100705" 
+							title="Трансформаторы, трансформаторные подстанции, реакторы">Трансформаторы, трансформаторные подстанции, реакторы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100704" 
+							title="Генераторы, электростанции и электродвигатели, турбины">Генераторы, электростанции и электродвигатели, турбины</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100703" 
+							title="Батареи, аккумуляторы, источники тока">Батареи, аккумуляторы, источники тока</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100716" 
+							title="Автоматизация, приборы и средства общепромышленного назначения">Автоматизация, приборы и средства общепромышленного назначения</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100717" 
+							title="Магниты, изделия порошковой металлургии">Магниты, изделия порошковой металлургии</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1008" 
+					title="Бытовая электроника и техника">Бытовая электроника и техника</a><!-- <font size="2"> (118)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100810" 
+							title="Радиостанции">Радиостанции</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100809" 
+							title="Все для кухни">Все для кухни</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100808" 
+							title="Все для дома">Все для дома</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100807" 
+							title="Индивидуальный уход">Индивидуальный уход</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100805" 
+							title="Фото и видео">Фото и видео</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100804" 
+							title="Телевизоры и кинотеатры">Телевизоры и кинотеатры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100803" 
+							title="Аудиотехника">Аудиотехника</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100802" 
+							title="Телефоны">Телефоны</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100801" 
+							title="Оптические приборы">Оптические приборы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100811" 
+							title="Микроэлектронника">Микроэлектронника</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100806" 
+							title="Климатическое оборудование">Климатическое оборудование</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+															</li><li>
+											   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1009" 
+					title="Программы и компьютеры">Программы и компьютеры</a><!-- <font size="2"> (11)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100914" 
+							title="Сканеры">Сканеры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100913" 
+							title="Принтеры">Принтеры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100912" 
+							title="Ноутбуки">Ноутбуки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100911" 
+							title="Мониторы">Мониторы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100910" 
+							title="Планшеты">Планшеты</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100909" 
+							title="Сетевое оборудование">Сетевое оборудование</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100908" 
+							title="Мультмедиа">Мультмедиа</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100907" 
+							title="Манипуляторы и клавиатуры">Манипуляторы и клавиатуры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100905" 
+							title="Настольные компьютеры">Настольные компьютеры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100904" 
+							title="Серверы">Серверы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100903" 
+							title="Расходные материалы">Расходные материалы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100902" 
+							title="Комплектующие ">Комплектующие </a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100901" 
+							title="Программное обеспечение">Программное обеспечение</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100915" 
+							title="МФУ">МФУ</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100906" 
+							title="Носители информации">Носители информации</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1010" 
+					title="Строительство и ремонт">Строительство и ремонт</a><!-- <font size="2"> (2211)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101017" 
+							title="Лакокрасочные материалы">Лакокрасочные материалы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101018" 
+							title="Строительный инвентарь и инструменты">Строительный инвентарь и инструменты</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101012" 
+							title="Бетоны и строительные растворы">Бетоны и строительные растворы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101011" 
+							title="Стекло и стеклянные изделия">Стекло и стеклянные изделия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101007" 
+							title="Асфальты и битумы">Асфальты и битумы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101006" 
+							title="Полимерные материалы">Полимерные материалы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101005" 
+							title="Тепло и гидроизоляционные материалы">Тепло и гидроизоляционные материалы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101003" 
+							title="Кровельные материалы">Кровельные материалы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101016" 
+							title="Отделочные материалы для внутренних работ">Отделочные материалы для внутренних работ</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101001" 
+							title="Метизы">Метизы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101019" 
+							title="Сборные дома,здания и сооружения.">Сборные дома,здания и сооружения.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101021" 
+							title="Строительная техника.">Строительная техника.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101028" 
+							title="Отелочные материалы для наружных работ">Отелочные материалы для наружных работ</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101029" 
+							title="Монтажная пена">Монтажная пена</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101008" 
+							title="Кирпич, блоки, тратуарная плитка">Кирпич, блоки, тратуарная плитка</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101013" 
+							title="Цемент, известь, мел, алебастр, смеси">Цемент, известь, мел, алебастр, смеси</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101020" 
+							title="Песок, щебень, гравий, отсев">Песок, щебень, гравий, отсев</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101023" 
+							title="Окна, двери, арки, перегородки.">Окна, двери, арки, перегородки.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101024" 
+							title="Рольставни, роллеты, жалюзи.">Рольставни, роллеты, жалюзи.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101010" 
+							title="Железо-бетонные изделия">Железо-бетонные изделия</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+															</li><li class="L3" >
+											   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1011" 
+					title="Энергетика и топливо">Энергетика и топливо</a><!-- <font size="2"> (43)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101109" 
+							title="Ядерная энергетика">Ядерная энергетика</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101110" 
+							title="Гидроэнергетика">Гидроэнергетика</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101108" 
+							title="Альтернативная энергетика">Альтернативная энергетика</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101107" 
+							title="Электрические сети">Электрические сети</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101106" 
+							title="Теплоэлектроцентрали">Теплоэлектроцентрали</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101105" 
+							title="Котельные ">Котельные </a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101104" 
+							title="Тепловые сети">Тепловые сети</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101103" 
+							title="Газообразное топливо">Газообразное топливо</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101102" 
+							title="Жидкое топливо">Жидкое топливо</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101101" 
+							title="Твердое топливо">Твердое топливо</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101111" 
+							title="Теплоэнергетика">Теплоэнергетика</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1012" 
+					title="Минералы и металлургия">Минералы и металлургия</a><!-- <font size="2"> (26)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101208" 
+							title="Неметалическое минеральное сырье">Неметалическое минеральное сырье</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101207" 
+							title="Редкоземельные металлы">Редкоземельные металлы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101213" 
+							title="Цветной металл и сплавы, прокат, литье ">Цветной металл и сплавы, прокат, литье </a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101214" 
+							title="Черный и нержавеющий металлопрокат">Черный и нержавеющий металлопрокат</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101217" 
+							title="Драгоценные(благородные) металлы и их сплавы.">Драгоценные(благородные) металлы и их сплавы.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101216" 
+							title="Металлосырье, полуфабрикаты">Металлосырье, полуфабрикаты</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+															</li><li>
+											   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1013" 
+					title="Промышленная химия">Промышленная химия</a><!-- <font size="2"> (171)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101312" 
+							title="Резина и пластмассы">Резина и пластмассы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101310" 
+							title="Косметические и парфюмерные ингридиенты и сырье ">Косметические и парфюмерные ингридиенты и сырье </a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101309" 
+							title="Неорганическая химия">Неорганическая химия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101308" 
+							title="Органическая химия">Органическая химия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101306" 
+							title="Нефтехимия">Нефтехимия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101305" 
+							title="Агрохимия">Агрохимия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101304" 
+							title="Полимеры">Полимеры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101303" 
+							title="Эластомеры">Эластомеры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101302" 
+							title="Взрывчатые вещества">Взрывчатые вещества</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101301" 
+							title="Фармацевтическая химия">Фармацевтическая химия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101311" 
+							title="Химия для строительства">Химия для строительства</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101313" 
+							title="Защитные средства.">Защитные средства.</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1014" 
+					title="Медицина">Медицина</a><!-- <font size="2"> (170)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101404" 
+							title="Лекарственные препараты">Лекарственные препараты</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101403" 
+							title="Медицинские расходные материалы">Медицинские расходные материалы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101406" 
+							title="Оптика">Оптика</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101407" 
+							title="Медицинское оборудование">Медицинское оборудование</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101405" 
+							title="Биологически-активные добавки">Биологически-активные добавки</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+															</li><li class="L3" >
+											   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1016" 
+					title="Офисные и школьные принадлежности">Офисные и школьные принадлежности</a><!-- <font size="2"> (71)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101605" 
+							title="Принадлежности для черчения и рисования">Принадлежности для черчения и рисования</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101604" 
+							title="Делопроизводство">Делопроизводство</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101603" 
+							title="Доски и мольберты">Доски и мольберты</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101602" 
+							title="Канцелярские товары">Канцелярские товары</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101601" 
+							title="Товары для образовательных учреждений">Товары для образовательных учреждений</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1017" 
+					title="Детские товары, игрушки, хобби.">Детские товары, игрушки, хобби.</a><!-- <font size="2"> (120)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101717" 
+							title="Средства детской безопасности">Средства детской безопасности</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101716" 
+							title="Игровые площадки и комплексы">Игровые площадки и комплексы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101715" 
+							title="Надувные аттракционы">Надувные аттракционы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101714" 
+							title="Детский автопарк">Детский автопарк</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101712" 
+							title="Радиоуправляемые игрушки">Радиоуправляемые игрушки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101713" 
+							title="Игровые наборы для мальчиков">Игровые наборы для мальчиков</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101711" 
+							title="Конструкторы">Конструкторы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101710" 
+							title="Сборные модели">Сборные модели</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101709" 
+							title="Музыкальные игрушки">Музыкальные игрушки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101708" 
+							title="Наборы для творчества">Наборы для творчества</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101707" 
+							title="Развивающие игрушки">Развивающие игрушки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101706" 
+							title="Мягкие игрушки">Мягкие игрушки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101705" 
+							title="Спортивные игрушки">Спортивные игрушки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101704" 
+							title="Для самых маленьких">Для самых маленьких</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101703" 
+							title="Куклы и аксессуары">Куклы и аксессуары</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101702" 
+							title="Машинки и техника">Машинки и техника</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101701" 
+							title="Игровые наборы для девочек">Игровые наборы для девочек</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+															</li><li>
+											   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1018" 
+					title="Продукция ремесленников и подарки ручной работы">Продукция ремесленников и подарки ручной работы</a><!-- <font size="2"> (58)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101815" 
+							title="Обработка дерева">Обработка дерева</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101813" 
+							title="Ткацкое и прядильное ремесло">Ткацкое и прядильное ремесло</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101812" 
+							title="Гончарное ремесло">Гончарное ремесло</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101811" 
+							title="Кузнечное ремесло">Кузнечное ремесло</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101810" 
+							title="Обработка кожи и меха">Обработка кожи и меха</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101809" 
+							title="Обработка стекла">Обработка стекла</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101808" 
+							title="Косметика ручной работы">Косметика ручной работы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101807" 
+							title="Картины и пано">Картины и пано</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101806" 
+							title="Куклы и игрушки">Куклы и игрушки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101805" 
+							title="Музыкальные инструменты">Музыкальные инструменты</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101804" 
+							title="Настольные игры">Настольные игры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101803" 
+							title="Обереги и талисманы">Обереги и талисманы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101802" 
+							title="Украшения и бижютерия">Украшения и бижютерия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101801" 
+							title="Религиозные товары">Религиозные товары</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101814" 
+							title="Обработка камня">Обработка камня</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101816" 
+							title="Производство декоративных свечей">Производство декоративных свечей</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1019" 
+					title="Все для дома и сада ">Все для дома и сада </a><!-- <font size="2"> (548)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101909" 
+							title="Садовый декор">Садовый декор</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101908" 
+							title="Инвентарь для сада">Инвентарь для сада</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101907" 
+							title="Садовые кострукции">Садовые кострукции</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101906" 
+							title="Интерьер ">Интерьер </a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101904" 
+							title="Бытовая химия">Бытовая химия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101903" 
+							title="Принадлежности для ванной и туалета">Принадлежности для ванной и туалета</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101902" 
+							title="Домашний инвентарь">Домашний инвентарь</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101901" 
+							title="Посуда и принадлежности">Посуда и принадлежности</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101912" 
+							title="Система полива">Система полива</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101911" 
+							title="Средства против вредителей">Средства против вредителей</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101910" 
+							title="Теплицы и парники">Теплицы и парники</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101916" 
+							title="Душевые кабины и сауны.">Душевые кабины и сауны.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101918" 
+							title="Домашний текстиль.">Домашний текстиль.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101919" 
+							title="Праздничные украшения">Праздничные украшения</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101914" 
+							title="Мангалы, гриль, барбекю">Мангалы, гриль, барбекю</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101917" 
+							title="Матрацы,одеяла,подушки.">Матрацы,одеяла,подушки.</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+															</li><li class="L3" >
+											   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1021" 
+					title="Ювелирные изделия и драгоценные камни">Ювелирные изделия и драгоценные камни</a><!-- <font size="2"> (292)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102115" 
+							title="Столовое серебро, посуда">Столовое серебро, посуда</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102107" 
+							title="Цепи">Цепи</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102106" 
+							title="Серьги">Серьги</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102104" 
+							title="Религиозные украшения">Религиозные украшения</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102102" 
+							title="Броши">Броши</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102111" 
+							title="Зажимы и запонки">Зажимы и запонки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102112" 
+							title="Сувениры">Сувениры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102113" 
+							title="Комплекты">Комплекты</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102114" 
+							title="Драгоценные и поделочные камни.">Драгоценные и поделочные камни.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102110" 
+							title="Ожерелье, бусы, колье">Ожерелье, бусы, колье</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102109" 
+							title="Кольца, перстни">Кольца, перстни</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102103" 
+							title="Кулоны,подвески,медальоны">Кулоны,подвески,медальоны</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102101" 
+							title="Браслеты,часы.">Браслеты,часы.</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1022" 
+					title="Экология и окружающая среда">Экология и окружающая среда</a><!-- <font size="2"> (11)</font> -->
+					</h3>
+					<p>
+					 					 
+					</p>
+				</div>
+															</li><li>
+											   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1025" 
+					title="Бизнес услуги">Бизнес услуги</a><!-- <font size="2"> (80)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102501" 
+							title="Маркетинговые и рекламные услуги">Маркетинговые и рекламные услуги</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102502" 
+							title="Юридические услуги">Юридические услуги</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102504" 
+							title="Бухгалтерские услуги">Бухгалтерские услуги</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102505" 
+							title="Менеджмент и административная деятельность в сфере бизнеса">Менеджмент и административная деятельность в сфере бизнеса</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102507" 
+							title="Операции с недвижимостью">Операции с недвижимостью</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102508" 
+							title="Телекоммуникации">Телекоммуникации</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102517" 
+							title="Оценочная деятельность">Оценочная деятельность</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102511" 
+							title="Страхование">Страхование</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102512" 
+							title="Услуги охраны">Услуги охраны</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102516" 
+							title="Обработка сырья и материалов">Обработка сырья и материалов</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102503" 
+							title="Аудит, сопутствующие аудиту услуги">Аудит, сопутствующие аудиту услуги</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102509" 
+							title="Транспортировка, упаковка и хранение товаров">Транспортировка, упаковка и хранение товаров</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102515" 
+							title="Строительство, ремонт, монтаж оборудования">Строительство, ремонт, монтаж оборудования</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102518" 
+							title="Сертификация, подтверждение соответствия">Сертификация, подтверждение соответствия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102506" 
+							title="Кредитно-денежные операции и финансовые услуги">Кредитно-денежные операции и финансовые услуги</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102513" 
+							title="Научно-техническая, сопутствующая деятельность и услуги по промышленному анализу">Научно-техническая, сопутствующая деятельность и услуги по промышленному анализу</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1028" 
+					title="Дерево и продукты деревообработки.">Дерево и продукты деревообработки.</a><!-- <font size="2"> (74)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102801" 
+							title="Картон и бумага промышленные.">Картон и бумага промышленные.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102802" 
+							title="Плиты ДСП, МДФ и фанера.">Плиты ДСП, МДФ и фанера.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102803" 
+							title="Брус и бруски">Брус и бруски</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102804" 
+							title="Доска обрезная">Доска обрезная</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102805" 
+							title="Доска необрезная ">Доска необрезная </a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102806" 
+							title="Рейка и штапик">Рейка и штапик</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102808" 
+							title="Вагонка и евровагонка">Вагонка и евровагонка</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102810" 
+							title="Имитация бруса">Имитация бруса</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102811" 
+							title="Дрова">Дрова</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102813" 
+							title="Горбыль">Горбыль</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102814" 
+							title="Шпалы">Шпалы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102807" 
+							title="Галтель, плинтус, наличник, уголок">Галтель, плинтус, наличник, уголок</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102812" 
+							title="Опилки, стружка, щепа">Опилки, стружка, щепа</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102809" 
+							title="Блок-хаус">Блок-хаус</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+															</li><li class="L3" >
+											   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1001" 
+					title="Одежда, обувь, аксессуары">Одежда, обувь, аксессуары</a><!-- <font size="2"> (1453)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100110" 
+							title="Уход за одеждой и обувью">Уход за одеждой и обувью</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100109" 
+							title="Аксессуары">Аксессуары</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100108" 
+							title="Национальная">Национальная</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100107" 
+							title="Купальная">Купальная</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100106" 
+							title="Спортивная">Спортивная</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100105" 
+							title="Форменная">Форменная</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100104" 
+							title="Одежда специальная и защитная">Одежда специальная и защитная</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100102" 
+							title="Мужская">Мужская</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100101" 
+							title="Женская">Женская</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100103" 
+							title="Детская">Детская</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1004" 
+					title="Текстиль, кожа, волокна.">Текстиль, кожа, волокна.</a><!-- <font size="2"> (79)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100412" 
+							title="Волокна">Волокна</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100408" 
+							title="Кожа натуральная и искуственная.">Кожа натуральная и искуственная.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100406" 
+							title="Меха и пушнина">Меха и пушнина</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100413" 
+							title="Швейная фурнитура.">Швейная фурнитура.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100414" 
+							title="Все для рукоделия">Все для рукоделия</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100411" 
+							title="Ткани, нетканные материалы и полотна">Ткани, нетканные материалы и полотна</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100410" 
+							title="Пряжа, нити текстильные">Пряжа, нити текстильные</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100407" 
+							title="Пух, перо">Пух, перо</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=100417" 
+							title="Канат, веревка, шпагат, сети">Канат, веревка, шпагат, сети</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+															</li><li>
+											   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1015" 
+					title="Упаковка, тара, этикетки">Упаковка, тара, этикетки</a><!-- <font size="2"> (148)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101509" 
+							title="Деревянная тара">Деревянная тара</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101508" 
+							title="Пластиковая тара">Пластиковая тара</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101507" 
+							title="Стеклотара">Стеклотара</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101505" 
+							title="Упаковка из картона ">Упаковка из картона </a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101503" 
+							title="Бумажная упаковка">Бумажная упаковка</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101502" 
+							title="Комбинированная упаковка">Комбинированная упаковка</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101501" 
+							title="Полимерная упаковка">Полимерная упаковка</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101517" 
+							title="Ламинированная упаковка и пленка.">Ламинированная упаковка и пленка.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101513" 
+							title="Медупаковка, блистеры">Медупаковка, блистеры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101511" 
+							title="Катушки, шпули, гильзы">Катушки, шпули, гильзы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101510" 
+							title="Емкости, резервуары, баки из  металла.">Емкости, резервуары, баки из  металла.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101506" 
+							title="Тара, упаковка из фанеры.">Тара, упаковка из фанеры.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101514" 
+							title="Пленки, пакеты полиэтиленовые пищевые.">Пленки, пакеты полиэтиленовые пищевые.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101515" 
+							title="Пленки, пакеты полиэтиленовые бытовые.">Пленки, пакеты полиэтиленовые бытовые.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101519" 
+							title="Емкости, резервуары, баки из стеклопластика.">Емкости, резервуары, баки из стеклопластика.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101516" 
+							title="Фольга.">Фольга.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=101518" 
+							title="Этикетки.">Этикетки.</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1020" 
+					title="Спорт, музыка и отдых">Спорт, музыка и отдых</a><!-- <font size="2"> (81)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102006" 
+							title="Настольный теннис">Настольный теннис</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102005" 
+							title="Бадминтон">Бадминтон</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102004" 
+							title="Настольные виды спорта">Настольные виды спорта</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102003" 
+							title="Командные виды спорта">Командные виды спорта</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102002" 
+							title="Плавание и дайвинг">Плавание и дайвинг</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102001" 
+							title="Зимние виды спорта">Зимние виды спорта</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102014" 
+							title="Азартные игры">Азартные игры</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102013" 
+							title="Музыкальные инструменты">Музыкальные инструменты</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102011" 
+							title="Отдых на природе и туризм">Отдых на природе и туризм</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102010" 
+							title="Конный спорт">Конный спорт</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102008" 
+							title="Боулинг">Боулинг</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102007" 
+							title="Бильярд">Бильярд</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102019" 
+							title="Бодибилдинг">Бодибилдинг</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102018" 
+							title="Бокс">Бокс</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102017" 
+							title="Фитнес">Фитнес</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102016" 
+							title="Большой теннис">Большой теннис</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102015" 
+							title="Для  игровых площадок">Для  игровых площадок</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102012" 
+							title="Рыбалка и охота">Рыбалка и охота</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102009" 
+							title="Стрельба и пейнтбол">Стрельба и пейнтбол</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102021" 
+							title="Музыкальные и игровые автоматы">Музыкальные и игровые автоматы</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102020" 
+							title="Велосипеды, скейты, ролики">Велосипеды, скейты, ролики</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+															</li><li class="L3" >
+											   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1023" 
+					title="Оборудование, механизмы, инструменты ">Оборудование, механизмы, инструменты </a><!-- <font size="2"> (401)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102316" 
+							title="Оборудование и техника для строительства">Оборудование и техника для строительства</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102315" 
+							title="Медицинское оборудование">Медицинское оборудование</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102307" 
+							title="Насосы и помпы.">Насосы и помпы.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102301" 
+							title="Лабораторное оборудование и приборы.">Лабораторное оборудование и приборы.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102302" 
+							title="Оборудование для торговых залов, помещений">Оборудование для торговых залов, помещений</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102303" 
+							title="Противопожарное оборудование.">Противопожарное оборудование.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102304" 
+							title="Кондиционеры и вентиляционное оборудование.">Кондиционеры и вентиляционное оборудование.</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102305" 
+							title="Оборудование для автосервиса и автозаправок">Оборудование для автосервиса и автозаправок</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102306" 
+							title="Оборудование и механизмы для благоустройства территорий">Оборудование и механизмы для благоустройства территорий</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102308" 
+							title="Камнеобрабатывающее оборудование">Камнеобрабатывающее оборудование</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102309" 
+							title="Металлообрабатывающее оборудование">Металлообрабатывающее оборудование</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102310" 
+							title="Деревообрабатывающее оборудование">Деревообрабатывающее оборудование</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102311" 
+							title="Упаковочное и фасовочное оборудование">Упаковочное и фасовочное оборудование</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102313" 
+							title="Оборудование для металлургии">Оборудование для металлургии</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102314" 
+							title="Оборудование для нефтегазовой промышленности">Оборудование для нефтегазовой промышленности</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102317" 
+							title="Полиграфическое оборудование">Полиграфическое оборудование</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102318" 
+							title="Оборудование для обработки пластика и резины">Оборудование для обработки пластика и резины</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102319" 
+							title="Оборудование для легкой промышленности">Оборудование для легкой промышленности</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102320" 
+							title="Оборудование для пищевой промышленности">Оборудование для пищевой промышленности</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102321" 
+							title="Оборудование и механизмы для сельского хозяйства">Оборудование и механизмы для сельского хозяйства</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102322" 
+							title="Контрольно-измерительное оборудование">Контрольно-измерительное оборудование</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1024" 
+					title="Детали, узлы, запчасти.">Детали, узлы, запчасти.</a><!-- <font size="2"> (143)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102401" 
+							title="Уплотнители и прокладки">Уплотнители и прокладки</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102402" 
+							title="Шланги">Шланги</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+															</li><li>
+											   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1029" 
+					title="Тепло-водо-газоснабжение.">Тепло-водо-газоснабжение.</a><!-- <font size="2"> (60)</font> -->
+					</h3>
+					<p>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102904" 
+							title="Канализационное оборудование">Канализационное оборудование</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102901" 
+							title="Трубопроводная арматура">Трубопроводная арматура</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102903" 
+							title="Водоотведение и канализация">Водоотведение и канализация</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102905" 
+							title="Оборудование для водоснабжения">Оборудование для водоснабжения</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102906" 
+							title="Оборудование для газоснабжения">Оборудование для газоснабжения</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102907" 
+							title="Оборудование для очистных сооружений">Оборудование для очистных сооружений</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102908" 
+							title="Отопительное оборудование">Отопительное оборудование</a> <span style="color:#CCCCCC">|</span>
+					 							<a href="http://localhost/builder/?m=offer&s=offer_list&id=102909" 
+							title="Трубы для водо/газо/теплоснабжения">Трубы для водо/газо/теплоснабжения</a> <span style="color:#CCCCCC">|</span>
+					 					 
+					</p>
+				</div>
+						   				<div class="L_left1">
+					<h3>
+					<a href="http://localhost/builder/?m=offer&s=offer_list&id=1026" 
+					title="Домашние питомцы, ветеринария">Домашние питомцы, ветеринария</a><!-- <font size="2"> (11)</font> -->
+					</h3>
+					<p>
+					 					 
+					</p>
+				</div>
+															</li><li class="L3" >
+											   		 </li>   
+	</ul>
+</div>
+
+
+
+            </div>
+            <div class="ad"><script src='http://localhost/builder/api/ad.php?id=5&catid=&sname=index.php'></script></div>
+           
+            </div>
+            </div>
+            <div class="main_r">
+            					<div id="loginb2b">
+				<div class="login_tit">
+                <h2>Вход для участников</h2></div>
+                <div class="login_con">
+                <div id="login1">
+                    <!--
+					<ul>
+                    <form autocomplete="off" method="post" action="login.php" name="login" id="login">
+                    
+		<div style="padding-bottom:3px;">Логин<span style="padding-left:20px;"><input type="text" onBlur="this.value=this.value==''?'Ваш логин':this.value" onFocus="this.value=this.value=='Ваш логин'?'':this.value" value="Ваш логин" class="k" name="user" id="user"></span></div>
+		<div>Пароль<span style="padding-left:10px;"><input type="password" onBlur="this.value=this.value==''?'Пароль':this.value" onFocus="this.value=this.value=='Пароль'?'':this.value" value="Пароль" class="k" id="password" name="password"><input type="image" src="http://localhost/builder/image/default/login.jpg"></div>
+                    <input type="hidden" value="submit" name="action">
+                    </form>
+                    </ul>
+					-->
+                    <ul class="u2">
+                      <a href="register.php">Регистрация</a> | <a href="lostpass.php">Забыли пароль?</a>
+                    </ul>
+                </div>
+                <ul class="phone"><span style="padding-left:25px;">Техническая поддержка:</span><br />
+		<span class="o16" style="padding-left:25px;">8800</span></ul>
+                <ul style="height:60px;"><li><a href="/register.php"><img width="99" height="28" src="http://localhost/builder/image/default/btn1.jpg"></a></li>
+                  <li><a href="main.php?action=m&amp;m=offer&amp;s=admin_offer&amp;menu=info"><img width="99" height="28" src="http://localhost/builder/image/default/btn2.jpg"></a></li></ul></div>
+                 </div>
+								 
+                 <div class="topm" id="company">
+					<div class="sectitle">
+						<h2>Компании</h2>
+						<span style="float: right; margin-top:5px; margin-right:10px;"><a href="http://localhost/builder/?m=company"><img src="image/default/more.gif" width="36" height="13" border="0" /></a></span>
+					</div>
+                 
+                    <div class="seccon">
+                    	<div id="conr1" class="conr1">
+                        	<ul>
+                            	
+                            </ul>
+                        </div>
+                        <div id="conr2" class="conr2">
+                        	<ul>
+                            	
+                            </ul>
+                        </div>
+                    </div>
+                 </div>
+				 <!--
+                 <div class="topm" id="exhibition">
+                 	<div class="sectitle">
+                    	<h2>Новые выставки</h2>
+						<span style="float: right; margin-top:5px; margin-right:10px;"><a href="http://localhost/builder/?m=exhibition"><img src="image/default/more.gif" width="36" height="13" border="0" /></a></span>
+                    </div>
+                    <div class="seccon">
+                    	<ul>
+                           
+  						</ul>
+                    </div>
+                 </div>
+				 -->
+                 <div class="ad"><script src='http://localhost/builder/api/ad.php?id=6&catid=&sname=index.php'></script></div>
+				 <!--
+				<div class="topm" id="voting">
+                 	<div class="sectitle"><h2>Вопросы и ответы</h2><span style="float: right; margin-top:5px; margin-right:10px;">
+	   <a href="http://localhost/builder/?m=ask"><img src="image/default/more.gif" width="36" height="13" border="0" /></a></span></div>
+                    <div class="seccon">
+                        <ul>
+	</ul>
+                    </div>
+                 </div>
+				 -->
+				 <div class="ad"><script src='http://localhost/builder/api/ad.php?id=7&catid=&sname=index.php'></script></div>
+            </div>
+            <div class="clear"></div>
+            <div id="index_link" class="topm">
+				<div class="sectitle">
+					<span class="title_t">Ссылки</span>
+					<span style="float: right; margin-right:10px;">
+						[<a href="change_link.php" target="_blank">Подробнее</a>]
+					</span>
+				</div>
+				<div class="seccon"><p></p></div>
+       		</div>
+<!--底部开始 -->
+	<div class="clear"></div>
+	<div id="footer" class="topm">
+   		<br />
+        
+	</div>
+	<!--底部结束 -->
+</div>
+	<P class="grayy">
+		<script src="http://localhost/builder/script/jf_change.js" type=text/javascript></script>
+        <script type="text/javascript">
+        var defaultEncoding = 2;
+        var translateDelay = 0;
+        var cookieDomain = ""; 
+        var msgToTraditionalChinese = "Кит трад.";
+        var msgToSimplifiedChinese = "Кит упр.";
+        var translateButtonId = "B2Bbuilder";
+        translateInitilization();
+        </Script>
+    </P>
+    </div>
+	<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter17906014 = new Ya.Metrika({id:17906014, enableAll: true, webvisor:true});
+        } catch(e) { }
+    });
+    
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/17906014" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- Google.Analytics counter -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36340715-1']);
+  _gaq.push(['_setDomainName', 'ekolobok.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- Google.Analytics counter -->
+</body>
+
+ <script>
+  var tt = document.getElementsByTagName('textarea'); 
+  for(var i=0;i<tt.length;i++) {
+    if( tt[i].style.height == '100%') tt[i].style.display = 'none';
+  }
+</script> 
+</html><!--------WebKitFormBoundaryB2eRb7gVQksDNbeA
+Content-Disposition: form-data; name="func"
+file.upload-->

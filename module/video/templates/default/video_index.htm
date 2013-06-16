@@ -1,0 +1,62 @@
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+      <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; Видео
+	 </div>
+    <div class="headtop_R"></div>		
+</div>
+
+	<div id="mainbody1" class="m1">
+	
+		<div class="leftbar">
+			<div class="title4"><div class="title_left2 L2">Список видео</div></div>
+			<div class="content4 overflow">
+				<{foreach item=list key=num from=$video.lists}>
+                <table cellpadding="0" cellspacing="0" border="0" id="vtab" >
+                <tr height="110" >
+                    <td>
+                      <div>
+					  <{if $list.img_url}>
+						<a target="_blank" href="<{$config.weburl}>/shop.php?uid=<{$list.userid}>&action=video_detail&id=<{$list.video_id}>&m=video"><img style="margin:2px;border: 1px solid #CCCCCC" src="<{$list.img_url}>" width=118 alt=<{$list.name}> /></a>
+						<{else}>
+                        <a target="_blank" href="<{$config.weburl}>/shop.php?uid=<{$list.userid}>&action=video_detail&id=<{$list.video_id}>&m=video"><img src="/image/default/nopic.gif" width=118 alt=<{$list.name}> /></a>
+						<{/if}>
+                      </div>
+				    </td>
+                </tr>
+               
+                <tr><td>
+                <{if $list.userid}>
+					<a target="_blank" href="<{$config.weburl}>/shop.php?uid=<{$list.userid}>&action=video_detail&id=<{$list.video_id}>&m=video">
+						<{$list.name|truncate:40}>
+					</a>
+                <{else}>
+                <a target="_blank" href="<{$config.weburl}>/?m=video&s=video_detail&id=<{$list.video_id}>">	
+                	<{$list.name|truncate:40}>
+                </a>
+                <{/if}>
+                </td></tr>
+                </table>
+               <{/foreach}>
+				 <div class="page" style="clear:both; padding-top:10px;  padding-bottom:5px;"><{$video.pages}></div>
+			</div>
+		    <div class="bottom4"></div>
+		</div>
+	
+		<div class="rightbar">
+			<div class="right1">
+				<div class="sectitle" >
+					<div class="title_left1 L2">Навигация по видео</div>
+		        </div>
+				 <div class="seccon">
+					<ul>
+					<{foreach item=list from=$cat}>
+						<li><a href="<{$config.weburl}>/?m=video&id=<{$list.id}>"><{$list.catname}></a></li>
+					<{/foreach}>
+					</ul>
+                    <div class="clear"></div>
+			    </div>
+			  	<div class="bottom5"></div>
+				</div>
+		</div>		
+		
+	</div>

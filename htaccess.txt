@@ -1,0 +1,25 @@
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^uhome-(.+)-(.+)-(.+)-(.+) shop\.php\?firstRow=$3&totalRows=$4&uid=$2&action=$1
+RewriteRule ^uhome-(.+)-(.+)-(.+) shop\.php\?uid=$2&action=$1&id=$3
+RewriteRule ^uhome-(.+)-(.+) shop\.php\?uid=$1&action=$2
+RewriteRule ^uhome-(.+) shop\.php\?uid=$1
+
+RewriteRule ^(.+)-(.+)-(.+).html(.+) index\.php\?m=$1&s=$2&id=$3$4
+RewriteRule ^(.+)-(.+)-(.+).html index\.php\?m=$1&s=$2&id=$3
+RewriteRule ^(.+)-(.+).html(.+) index\.php\?m=$1&s=$2$3
+RewriteRule ^(.+)-(.+).html index\.php\?m=$1&s=$2
+RewriteRule ^(.+).html(.+) index\.php\?m=$1&$2
+RewriteRule ^(\w+).html$ index\.php\?m=$1
+
+RewriteRule ^_(.+)-(.+)-(.+)/(.+) index\.php\?m=$1&s=$2&id=$3$4
+RewriteRule ^_(.+)-(.+)-(.+)/ index\.php\?m=$1&s=$2&id=$3
+RewriteRule ^_(.+)-(.+)/(.+) index\.php\?m=$1&s=$2$3
+RewriteRule ^_(.+)-(.+)/ index\.php\?m=$1&s=$2
+RewriteRule ^_(.+)/(.+) index\.php\?m=$1&$2
+RewriteRule ^_(.+)/ index\.php\?m=$1
+
+
+ErrorDocument 404 404\.php
+RewriteRule ^templates/(.+)/*.htm$ 404\.php

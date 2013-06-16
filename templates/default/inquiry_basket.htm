@@ -1,0 +1,142 @@
+<{include file="header.htm"}>
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; Массовая рассылка
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+<style>
+.topm td{padding:5px; line-height:22px;}
+</style>
+<script>
+function remove_inquery()
+{	
+	var cid='';
+	var boxes = document.getElementsByName("cinquery");   
+	for (var i = 0; i < boxes.length; i++)  
+	{  
+		if(boxes[i].checked)  
+		{  
+			cid+=boxes[i].value+',';  
+		} 
+	}
+	
+	var pid='';
+	var boxes = document.getElementsByName("pinquery");   
+	for (var i = 0; i < boxes.length; i++)  
+	{  
+		if(boxes[i].checked)  
+		{  
+			pid+=boxes[i].value+',';  
+		} 
+	}
+	
+	var iid='';
+	var boxes = document.getElementsByName("iinquery");   
+	for (var i = 0; i < boxes.length; i++)  
+	{  
+		if(boxes[i].checked)  
+		{  
+			iid+=boxes[i].value+',';  
+		} 
+	}
+	window.location='<{$config.weburl}>/inquiry_basket.php?pid='+pid+'&cid='+cid+'&iid='+iid;
+}
+
+function do_select()
+{
+	 var box_l = document.getElementsByName("iinquery").length;
+	 for(var j = 0 ; j < box_l ; j++)
+	 {
+		if(document.getElementsByName("iinquery")[j].checked==true)
+		  document.getElementsByName("iinquery")[j].checked = false;
+		else
+		  document.getElementsByName("iinquery")[j].checked = true;
+	 }
+	 
+	 var box_l = document.getElementsByName("pinquery").length;
+	 for(var j = 0 ; j < box_l ; j++)
+	 {
+		if(document.getElementsByName("pinquery")[j].checked==true)
+		  document.getElementsByName("pinquery")[j].checked = false;
+		else
+		  document.getElementsByName("pinquery")[j].checked = true;
+	 }
+	 
+	  var box_l = document.getElementsByName("cinquery").length;
+	 for(var j = 0 ; j < box_l ; j++)
+	 {
+		if(document.getElementsByName("cinquery")[j].checked==true)
+		  document.getElementsByName("cinquery")[j].checked = false;
+		else
+		  document.getElementsByName("cinquery")[j].checked = true;
+	 }
+}
+</script>
+<div id="mainbody1" class="topm">
+  <form id="login" name="login" action="inquire.php" method="post">
+  <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC" class="inq_bas">
+      <tr>
+        <td colspan="4" align="left" bgcolor="#FFFFFF">
+        При просмотре сайта, если у Вас возникнут вопросы по продуктам, Вы можете отправить сообщения поставщику. После этого можете добавить товар в корзину.
+        </td>
+      </tr>
+      <tr>
+        <td width="10%"><strong>Выбор</strong></td>
+        <td width="25%"><strong>Компания</strong></td>
+        <td width="50%"><strong>Название</strong></td>
+        <td width="15%"><strong>Тип </strong></td>
+      </tr>
+      <{foreach item=list from=$prolist}>
+      <tr>
+        <td bgcolor="#FFFFFF">
+        <input type="checkbox" name="pinquery" value="<{$list.id}>" id="checkbox">
+        <input name="userid[]" type="hidden" value="<{$list.userid}>">
+        </td>
+        <td bgcolor="#FFFFFF"><{$list.company}></td>
+        <td bgcolor="#FFFFFF"><a target="_blank" href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$list.id}>"><{$list.subject}></a></td>
+        <td bgcolor="#FFFFFF">Является продукт</td>
+      </tr>
+      <{/foreach}>
+      
+      <{foreach item=list from=$infolist}>
+      <tr>
+        <td bgcolor="#FFFFFF">
+        <input type="checkbox" name="iinquery" value="<{$list.id}>" id="checkbox">
+        <input name="userid[]" type="hidden" value="<{$list.userid}>">
+        </td>
+        <td bgcolor="#FFFFFF"><{$list.company}></td>
+        <td bgcolor="#FFFFFF"><a target="_blank" href="<{$config.weburl}>/?m=offer&s=offer_detail&id=<{$list.id}>"><{$list.subject}></a></td>
+        <td bgcolor="#FFFFFF">Продукт</td>
+      </tr>
+      <{/foreach}>
+      
+      <{foreach item=list from=$comlist}>
+      <tr>
+        <td bgcolor="#FFFFFF">
+        <input type="checkbox" name="cinquery" value="<{$list.userid}>">
+        <input name="userid[]" type="hidden" value="<{$list.userid}>">
+        </td>
+        <td bgcolor="#FFFFFF"><{$list.company}></td>
+        <td bgcolor="#FFFFFF"><a target="_blank" href="shop.php?uid=<{$list.userid}>"><{$list.subject}></a></td>
+        <td bgcolor="#FFFFFF">Компания</td>
+      </tr>
+      <{/foreach}>
+      
+      <{if $comlist.0.company!='' or $prolist.0.company!='' or $infolist.0.company!=''}>
+        <tr>
+        <td bgcolor="#FFFFFF" colspan="4" align="left">&nbsp;&nbsp;
+        <input onClick="do_select();" type="checkbox" name="checkbox" id="checkbox">Выбрать/Снять
+        <input onClick="remove_inquery();" value="Удалить" name="" type="button">
+        <input value="Отправить еще раз" name="inquire" type="submit">
+        </td>
+      </tr>
+      <{else}>
+      	<tr><td colspan="4" bgcolor="#FFFFFF">Массовая рассылка пуста</td></tr>
+      <{/if}>
+      
+    </table>
+  </form>
+</div>
+<{include file="footer.htm"}>

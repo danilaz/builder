@@ -1,0 +1,61 @@
+<{include file="header.htm"}>
+<style type="text/css">
+.swcity {
+ width:160px;float:left;
+ font-weight:bold;
+ padding-left:25px;
+}
+.subcity{
+ width:140px; float:left;
+ padding-left:4px; border:solid 1px; 
+ border-color:#5D81AD;margin-left:8px;
+ display:none;position:absolute;z-index:2;background:#EAEFF3; line-height:22px; font-weight:normal
+}
+.subci{width:200; float:left; padding:10px;}
+.city_msg{font-size:14px; font-weight:bold; text-align:left; padding:10px;border: 1px solid #A9BAD3;}
+.city_body{border: 1px solid #A9BAD3; margin-top:5px; height:400px; padding:10px;}
+</style>
+
+<div id="mainbody1" class="topm">
+<script>
+var prid=0;
+function xian(id)
+{
+	if(prid)
+	{ 
+	  document.getElementById(prid).style.display="none";
+	  document.getElementById(prid+"a").innerHTML="<img src='image/default/adding.gif' border=0>";
+	}
+	if(prid!=id)
+	{
+	 document.getElementById(id).style.display="block";
+	 document.getElementById(id+"a").innerHTML="<img src='image/default/decrease.gif' border=0>";
+	 prid=id;
+	}
+	else
+	  prid="";
+}
+</script>
+<div class="city_msg"><{$lang.citymsg}> <a href="switch_city.php?all=true"><{$lang.gotoall}></a></div>
+
+<div class="city_body">
+    <{foreach item=list from=$city}>
+        <div class="swcity">
+             <div class="subci">
+                     <span id="<{$list.province_id}>a" onclick="xian('<{$list.province_id}>');" >
+                     <img src='image/default/adding.gif' border=0>
+                     </span>
+                     &nbsp;<a href="switch_city.php?pid=<{$list.province}>"><{$list.province}></a>
+                     <div class="subcity" id="<{$list.province_id}>">
+                        <{foreach item=sublist from=$list.city}>
+                        <a href="switch_city.php?cid=<{$sublist.city}>" > &raquo;<{$sublist.city}></a><br />
+                        <{/foreach}>
+                     </div>
+              </div>
+        </div>
+    <{/foreach}>
+    
+</div>
+
+</div>
+<{include file="footer.htm"}>

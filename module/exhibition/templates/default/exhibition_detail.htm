@@ -1,0 +1,171 @@
+<script type="text/javascript">
+function showreview()
+{
+    var fu='<{$smarty.cookies.USER}>';
+	if (fu=='')
+	{
+	  alert('<{$lang.no_logo}>');
+	   window.location.href='<{$config.weburl}>/login.php';
+	  return false;
+	}
+	else
+	{
+	document.getElementById("reviewt").style.display='block';
+	}
+} 
+function getfav()
+{	
+	var url = '<{$config.weburl}>/ajax_back_end.php';
+	var myurl=document.location.href;
+	var u='<{$smarty.cookies.USER}>';
+	if (u=='')
+	{
+	  alert('<{$lang.no_logo}>');
+	   window.location.href='<{$config.weburl}>/login.php';
+	  return false;
+	}
+	var fu='<{$de.id}>';
+ 	var typ='4';
+	var ttil='<{$de.title}>';
+	var mpic='<{$de.imgurl}>';
+	var des='<{$de.con|strip_tags|truncate:100:"...":true|escape:"javascript"}>';
+    var pars = 'user='+u+'&fid='+fu+'&type='+typ+'&title='+ttil+'&url='+myurl+'&des='+des+'&picurl='+mpic;
+	var myAjax = new Ajax.Request(url,{method: 'post', parameters: pars, onComplete: showResponse});
+	function showResponse(originalRequest)
+	{
+	    if(originalRequest.responseText>1)
+	            alert('<{$lang.fav_ok}>');
+		else if (originalRequest.responseText>0)
+	            alert('<{$lang.fav_isbeing}>');
+		else
+	            alert('<{$lang.error}>');
+	}
+}
+function printcontent()
+{
+	var printw = window.open('','','');
+	printw.opener = null;
+	printw.document.write('<div style="width:700px;">'+document.getElementById('newscon').innerHTML+'</div>');
+	printw.window.print();
+}
+function picwidth(pid, img)
+{
+	var img = img ? img : 710;
+	var wid= pid.width;
+	if(wid < img)
+	{
+		return;
+	} 
+	else 
+	{
+		var hei = pid.height;
+		pid.title = 'View big photo';
+		pid.onclick=function (e){window.open(pid.src);}
+		pid.height = parseInt(hei*img/wid);
+		pid.width =img;
+	}
+}
+</script>
+<link href="<{$config.weburl}>/templates/<{$config.temp}>/exhibition.css" rel="stylesheet" type="text/css" />
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+       <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <a href="<{$config.weburl}>/?m=exhibition"><{$lang.exh}></a> &raquo; <{$de.title}>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+<div id="mainbody1" class="m1">
+<!--left-->
+<div class="newsbodyleft">
+<div class="newstitle"><{$de.title}></div>
+
+<div style="border-bottom:1px solid #cfcfcf; width:98%; border-top:1px solid #cfcfcf; margin-bottom:10px; margin-top:10px; text-align:center; margin-left:5px;">
+Дата: <{$de.addTime}> <{insert name="label" type="statics" temp='statics_default' ctype=4 id=$de.id}>
+<a href="#" onClick="getfav();"><{$lang.fav}></a> <a href="#" onClick="printcontent();"><{$lang.print}></a>
+</div>
+<table align="left" width="98%" border="0" cellpadding="3" cellspacing="1" bgcolor="#cfcfcf" class="exhibition">
+  <tr>
+    <td width="19%" align="left" bgcolor="#efefef"><strong><{$lang.exh_country}></strong></td>
+    <td width="81%" align="left" bgcolor="#FFFFFF"><{$de.country}></td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#efefef"><strong><{$lang.exh_cat}></strong></td>
+    <td align="left" bgcolor="#FFFFFF"><{$de.cat}></td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#efefef"><strong><{$lang.exh_time}></strong></td>
+    <td align="left" bgcolor="#FFFFFF"><{$de.stime|date_format}><{$lang.timeto}><{$de.etime|date_format}></td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#efefef"><strong><{$lang.exh_city}></strong></td>
+    <td align="left" bgcolor="#FFFFFF"><{$de.city}></td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#efefef"><strong><{$lang.exh_addr}></strong></td>
+    <td align="left" bgcolor="#FFFFFF"><{$de.addr}></td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#efefef"><strong><{$lang.exh_room}></strong></td>
+    <td align="left" bgcolor="#FFFFFF"><{$de.showroom}></td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#efefef"><strong><{$lang.exh_org}></strong></td>
+    <td align="left" bgcolor="#FFFFFF"><{$de.organizers}></td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#efefef"><strong><{$lang.exh_contractors}></strong></td>
+    <td align="left" bgcolor="#FFFFFF"><{$de.contractors}></td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#efefef"><strong><{$lang.exh_contact}></strong></td>
+    <td align="left" bgcolor="#FFFFFF"><{$de.contact}></td>
+  </tr>
+  <tr>
+    <td align="left" bgcolor="#efefef"><strong><{$lang.exh_tel}></strong></td>
+    <td align="left" bgcolor="#FFFFFF"><{$de.tel}></td>
+  </tr>
+  <tr><td bgcolor="#efefef">Закладки</td><td bgcolor="#FFFFFF">
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=anrysys"></script>
+<!-- AddThis Button END -->
+  </td></tr>
+</table>
+
+<div class="newscon" id="newscon" style="padding-top:320px;">
+<{if $de.pic!=''}>
+	<img style="float:left;margin-right:20px;" src="<{$config.weburl}>/uploadfile/exhibitimg/<{$de.pic}>.jpg"  alt="<{$de.title}>" />
+<{/if}>
+<{$de.con}>
+
+</div>
+<{insert name="label" type="comment" ctype=4 cid=$smarty.get.id temp="comment_default" }>
+</div>
+<script type="text/javascript">
+window.onload = function(){
+	var pics = document.getElementById('newscon').getElementsByTagName("img");
+	for(var i=0;i<pics.length;i++)	{
+		picwidth(pics[i], 710);
+	}
+}
+</script>
+
+<!--right-->
+<div class="rightbar">
+	<div class="right1">
+		<div class="sectitle" ><div class="title_left1 L2"><{$lang.rec_exh}></div></div>
+		<div class="seccon" >
+			<{insert name="label" type='exhibition' temp='rexhibition_list_rec' rec="1" limit=8}>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>	
+<!--main end-->
+</div>

@@ -1,0 +1,209 @@
+<script type="text/javascript">
+function printcontent()
+{
+	var printw = window.open('','','');
+	printw.opener = null;
+	printw.document.write('<div style="width:960px;">'+$('mainbody1').innerHTML+'</div>');
+	printw.window.print();
+}
+</script>
+<style>
+table td {padding:3px 5px 3px 10px;border-bottom:1px dashed #CCCCCC;}
+</style>
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <{$lang.guide}>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+<div id="mainbody1" class="m1">	
+<div class="ordert" style="border:1px solid #CCCCCC; text-align:left; line-height:25px;">
+<{if $smarty.get.erroy==1}>
+	<{$lang.orderisset}>
+<{elseif $smarty.get.erroy==2}>
+	<{$lang.cantorder}>
+<{else}>
+<form action="" method="post">
+<table width="100%" border="0" cellspacing="0">
+  <tr>
+    <td height="15" colspan="2" bgcolor="#CCCCCC" scope="col" style="border:none;padding:5px;">
+    <div class="title_left2 L2">
+      <li style="margin-left:-15px;"><{$lang.sellerdetail}></li>
+    </div>	</td>
+    <td height="23" colspan="2" bgcolor="#CCCCCC" style="border:none;">
+    <div class="title_left2 L2">
+      <li style="margin-left:-20px;"><{$lang.buyerdetail}></li>
+    </div>	</td>
+  </tr>
+  <tr>
+    <td width="20%"><{$lang.comname}></td>
+    <td width="30%" ><{$orderd.company}></td>
+    <td width="20%"  bordercolor="#006699"><{$lang.comname}></td>
+    <td width="30%" ><{$buyinfo.company}></td>
+  </tr>
+  <tr>
+    <td ><{$lang.comaddr}></td>
+    <td ><{$orderd.addr}></td>
+    <td  bordercolor="#006699"><{$lang.comaddr}></td>
+    <td ><{$buyinfo.addr}></td>
+  </tr>
+  <tr>
+    <td><{$lang.comlx}></td>
+    <td ><{$orderd.contact}></td>
+    <td bordercolor="#006699"><{$lang.comlx}></td>
+    <td><{$buyinfo.contact}></td>
+  </tr>
+  <tr>
+    <td><{$lang.contaddr}></td>
+    <td ><{$orderd.addr}></td>
+    <td bordercolor="#006699"><{$lang.contaddr}></td>
+    <td><{$buyinfo.addr}></td>
+  </tr>
+  <tr>
+    <td><{$lang.conttel}></td>
+    <td ><{$orderd.tel}>/<{$orderd.mobile}></td>
+    <td bordercolor="#006699"><{$lang.conttel}></td>
+    <td><{$buyinfo.tel}>/<{$buyinfo.mobile}></td>
+  </tr>
+  <tr>
+    <td><{$lang.contzip}></td>
+    <td ><{$orderd.zip}></td>
+    <td bordercolor="#006699"><{$lang.contzip}></td>
+    <td><{$buyinfo.zip}></td>
+  </tr>
+    <tr>
+
+    <td height="3" colspan="4" bgcolor="#FFE9B5"></td>
+  </tr>
+  <tr>
+    <td scope="col"><{$lang.buyername}></td>
+    <td colspan="3">
+      <input name="buyername" type="text" id="buyername" size="30" maxlength="30" value="<{$buyinfo.contact}>"/>    </td>
+  </tr>
+  <tr>
+    <td scope="col"><{$lang.buyertel}></td>
+    <td colspan="3">
+      <input name="buyertel" type="text" id="buyertel" size="30" maxlength="30" value="<{$buyinfo.tel}>/<{$buyinfo.mobile}>"/>    </td>
+  </tr>
+  <tr>
+    <td scope="col"><{$lang.buyeraddr}></td>
+    <td colspan="3">
+      <input name="buyeraddr" type="text" id="buyeraddr" size="60" maxlength="80" value="<{$buyinfo.addr}>"/>    </td>
+  </tr>
+  <tr>
+    <td scope="col"><{$lang.buyerzip}></td>
+    <td colspan="3"><input name="buyerzip" type="text" id="buyerzip" size="10" maxlength="10" value="<{$orderd.zip}>"/></td>
+  </tr>
+  <tr>
+    <td height="3" colspan="4" bgcolor="#FFE9B5"></td>
+  </tr>
+  <tr>
+    <td><{$lang.pronameid}></td>
+    <td colspan="3">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+			<td width="100">
+			<a href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$orderd.id}>">
+			<{assign var="img" value=$orderd.id}>
+			<{html_image file=uploadfile/comimg/small/$img.jpg width=100}>
+			</a>
+			</td>
+			<td align="left" valign="top">
+			<a href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$orderd.id}>">
+			<b><{$orderd.pname}></b>
+			</a></td>
+		  </tr>
+		</table>
+    </td>
+    </tr>
+  <tr>
+    <td><{$lang.uprice}></td>
+    <td colspan="3"> <{$orderd.price|number_format:2}> <{$config.money}>/<{$orderd.unit}></td>
+  </tr>
+    <tr>
+    <td height="22"><{$lang.nums}> </td>
+    <td colspan="3">
+    <input id="nums" onkeyup="count_price(0)" size="5" name="nums" type="text" value="<{$smarty.get.nums}>" />
+    (<{$lang.can_buy}><{$orderd.amount}> <{$orderd.unit}>)    </td>
+    </tr>
+        <tr>
+    <td height="22"><{$lang.freight}></td>
+    <td colspan="3">
+        <{if $orderd.freight_type==1}>
+            <{$lang.sell_freight}>
+        <{else}>
+        	<div style="background-color:#F3F3F3; border:1px solid #CCCCCC; width:300px;">
+                <input checked="checked" name="freight_type" type="radio" value="0" onclick="count_price(<{$orderd.freight.0|number_format:2}>)" />
+                <{$lang.sent_by_post}> <{$orderd.freight.0|number_format:2}> <{$config.money}><br />
+                
+                <input name="freight_type" type="radio" value="1" onclick="count_price(<{$orderd.freight.1|number_format:2}>)" />
+                <{$lang.exp}> <{$orderd.freight.1|number_format:2}> <{$config.money}><br />
+                
+                <input name="freight_type" type="radio" value="2" onclick="count_price(<{$orderd.freight.2|number_format:2}>)" />
+                <{$lang.ems}> <{$orderd.freight.2|number_format:2}> <{$config.money}><br />
+            </div>
+        <{/if}>    </td>
+    </tr>  
+
+  <tr>
+   <td><{$lang.allprice}></td>
+    <td colspan="3">
+    
+    <span id="allprice" style="color:#FF5500; font-size:16px; font-weight:bold;">
+    <{math equation="x*y" x=$orderd.price y=$smarty.get.nums format="%.2f"}></span>
+    <input name="suid" type="hidden" value="<{$orderd.userid}>" />
+    <input name="proid" type="hidden" value="<{$orderd.id}>" />
+    <input name="pname" type="hidden" value="<{$orderd.pname}>" />
+    <input name="pprice" type="hidden" value="<{$orderd.price}>" />
+    <input name="price" id="price" type="hidden" />
+    <input name="freight_price" id="freight_price" type="hidden" /> <{$config.money}>   </td>
+    </tr>
+  <tr>
+    <td><{$lang.beiz}></td>
+    <td colspan="3"><textarea style="height:60px; width:400px;" name="des" cols="" rows=""></textarea></td>
+  </tr>
+  <tr>
+    <td align="center"></td>
+    <td colspan="3" align="left">
+	<input type="submit" name="obutton" id="obutton" value="<{$lang.orderit}>" />
+	<input type="button" name="button" id="button2" value="<{$lang.backto}>" onclick="javascript:history.go(-1);" />
+	<input type="button" name="button" id="button3" value="<{$lang.print}>" onClick="printcontent();" />
+	</td>
+    </tr>
+</table>
+</form>
+<{/if}>
+</div>
+</div>
+<script>
+function roundAmount(n)
+{  
+  var   s   =   ""   +   Math.round(n*100)/100  
+  var   i   =   s.indexOf('.')  
+  if(i<0)   return   s   +   ".00"  
+  var   t=s.substring(0,   i   +   1)   +    
+		  s.substring(i   +   1,   i   +   3)  
+  if(i   +   2   ==   s.length)   t   +=   "0"  
+  return   t  
+}
+function count_price(pr)
+{
+	$('nums').value*=1;
+	if($('nums').value=='NaN'||$('nums').value==0)
+		$('nums').value=1;
+	if($('nums').value><{$orderd.amount}>*1)
+		$('nums').value=<{$orderd.amount}>*1;
+	price=$('nums').value*<{$orderd.price}>;
+	if(pr)
+		$('freight_price').value=pr;
+	pr=$('freight_price').value*1;//运费
+	$('allprice').innerHTML=roundAmount(price+pr);
+	$('price').value=roundAmount(price+pr);
+}
+<{if $orderd.freight_type==1}>
+	count_price(0.00);
+<{else}>
+	count_price(<{$orderd.freight.0|number_format:2}>);
+<{/if}>
+</script>

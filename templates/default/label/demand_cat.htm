@@ -1,0 +1,35 @@
+<div class="maintitle">
+<span class="title_t1">Каталог продукции</span>
+<span class="title_more">
+<a href="<{$config.weburl}>/?m=demand&s=demand_list">Подробнее..</a></span>
+</div>
+<div class="maincontent">
+	<ul class="list5 overflow">
+		<li>
+		<{foreach item=cList key=num from=$cat}>
+				<div class="L_left1">
+					<h3  style="font-size:14px; margin-bottom:0px;">
+					<a href="<{$config.weburl}>/<{$link}>&id=<{$cList.catid}>" 
+					title="<{$cList.cat}>"><{if $cList.pic}><img src="<{$cList.pic}>"><{/if}><{$cList.cat}></a> <!-- <font size="2">(<{$cList.rec_nums}>)</font> -->
+					</h3>
+					<p>
+					 <{foreach item=sublist from=$cList.scat key=nums}>
+							<a href="<{$config.weburl}>/<{$link}>&id=<{$sublist.catid}>" 
+							title="<{$sublist.cat}>"><{$sublist.cat}></a> <span style="color:#CCCCCC">|</span>
+					 <{/foreach}>
+					 
+					</p>
+					
+				</div>
+				
+				<{if ($num+1)%2==0}>
+					<{if ($num+1)%4==0}>
+						</li><li>
+					<{else}>
+						</li><li class="L3" >
+					<{/if}>
+				<{/if}>
+		   <{/foreach}>
+		 </li>   
+	</ul>
+</div>

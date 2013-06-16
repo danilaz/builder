@@ -1,0 +1,34 @@
+<script type="text/javascript" src="../script/Validator.js"></script>
+<div class="admin_right_top"><{$lang.my_fav}></div>
+<table border="0" cellpadding="6" cellspacing="1" bgcolor="#FFFFFF" width="100%">
+	<tr bgcolor="#E8E8E8"> 
+	  <td width="20%" align="center"><strong><{$lang.favtitle}></strong></td>
+	  <td width="8%" align="center"><strong><{$lang.favtype}></strong></td>
+	  <td align="center"><strong><{$lang.favdes}></strong></td>
+	  <td width="15%" align="center"><strong><{$lang.favtime}></strong></td>
+	  <td width="10%" align="center"><strong><{$lang.favoption}></strong></td>
+	</tr>	
+     <{foreach item=fav from=$myfav.list}>
+	 <tr bgcolor="#F7F7F7"> 
+	   <td align="left" ><a href="<{$fav.url}>" target="_blank"><{$fav.title}></a></td>
+	   <td align="left">
+	   <{if $fav.type==1}><{$lang.favinfo}><{/if}>
+	   <{if $fav.type==2}><{$lang.favoffer}><{/if}>
+	   <{if $fav.type==3}><{$lang.favpro}><{/if}>
+	   <{if $fav.type==4}><{$lang.favexh}><{/if}>
+	   <{if $fav.type==5}><{$lang.favhr}><{/if}>
+	   <{if $fav.type==6}><{$lang.favask}><{/if}></td>
+	   <td align="left"><{$fav.des}></td>
+	   <td align="left"><font size="2"><{$fav.uptime|date_format}></font></td>
+	   <td align="center">
+	   <a href="?delid=<{$fav.id}>&action=myfavorite" onclick="return confirm('<{$lang.favaydel}>');"><{$lang.favdel}></a>	   </td>
+  </tr>
+       <{foreachelse}>
+	   <tr bgcolor="#EAEFF3">
+	  <td colspan="6" align="left" bgcolor="#FFFFFF"><{$lang.favno}></td>
+	  </tr>
+       <{/foreach}>   
+     <tr>
+       <td colspan="6" align="left" bgcolor="#EAEFF3"><{$myfav.page}></td>
+     </tr>
+</table>

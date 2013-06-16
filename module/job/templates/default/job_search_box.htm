@@ -1,0 +1,56 @@
+<div class="bluebox380w left">
+            <ul class="body">
+            	<li>
+			<form action="" method="get">
+			<table width="100%" border="0" cellspacing="0" cellpadding="3">
+			  <tr height="30">
+				<td width="30%" align="right">Отрасль: </td>
+				<td width="70%">
+				<select name="comcat" id="comcat" style="width:150px;">
+				<option value="">Все</option>
+				<{foreach item=list from=$cat}>
+				 <option value="<{$list.catid}>" <{if $list.catid==$smarty.get.comcat}>selected<{/if}>><{$list.cat}></option>
+				 <{/foreach}>
+				</select></td>
+			  </tr>
+			  <tr  height="30">
+				<td align="right">Название: </td>
+				<td>
+				<select name="jobcat" id="jobcat" style="width:150px;">
+				<option value="">Все</option>
+				<{foreach item=list from=$hrcat key=num}>
+				  <option value="<{$list.id}>" <{if $list.id==$smarty.get.jobcat}>selected<{/if}>><{$list.catname}></option>
+				<{/foreach}>
+				</select></td>
+			  </tr>
+			  <tr  height="30">
+				<td align="right">Дата: </td>
+				<td>
+				  <select name="jobdate" id="jobdate"> 
+				  <{foreach item=list from=$hrdropdate key=num}>
+                  	<option value="<{$num}>" <{if $num==$smarty.get.jobdate}>selected<{/if}>><{$list}></option>
+				  <{/foreach}>
+				  </select>
+                  </td> 
+			  </tr>
+			  <tr  height="30">
+				<td align="right">Ключевое слово: </td>
+				<td align="left"><input type="text" name="keyword" style="width:100px;" value="<{$smarty.get.keyword}>" /></td>
+			  </tr>
+              <tr>
+              <td>
+              <td>
+              <input type="radio" name="jobtype" value="0" <{if $smarty.get.jobtype==0}>"checked"<{/if}> />Должность
+              <input type="radio" name="jobtype" value="1" <{if $smarty.get.jobtype==1}>"checked"<{/if}> />Компания
+              </td>
+              </tr>
+			  <tr>
+				<td colspan="2" align="center"><input type="submit" value="Найти" /></td>
+				</tr>
+			</table>
+			<input name="m" type="hidden" value="job" />
+			<input name="s" type="hidden" value="job_list" />
+			</form>
+			<li>
+		</ul>
+</div>

@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html"; charset=utf-8">
+<title><{$title}>-<{$shopconfig.hometitle}>-<{$config.company}></title>
+<meta name="description" content="<{$description|strip_tags}>,<{$shopconfig.homedes}>">
+<meta name="keywords" content="<{$keyword}>,<{$shopconfig.homekeyword}>">
+</head>
+<style type="text/css">
+<!--
+#imageFlow{top:700px; width:620px; left:410px; background-color:#CCCCCC;}
+* { margin:0; padding:0; }
+img { border:0; }
+th { text-align:right; }
+ul, li { list-style:none; }
+<{if $shopconfig.styleimg!=''}>
+body {background-image:none;line-height:22px;}
+<{else}>
+body {background-image:url(<{$img}>bodybg.jpg);}
+<{/if}>
+body,td {font-size:12px; line-height:22px; }
+body, div, input, select, textarea, td { font-family:Arial, Tahoma, Verdana, Helvetica, sans-serif; }
+img, input, select { vertical-align:middle }
+ul, li {list-style:none;list-style-image:none;list-style-position:outside;list-style-type:none; margin:0px;}
+a * { cursor:pointer; }
+a:link, a:visited {color:#000000; text-decoration:none;}
+a:hover {color:#000000; text-decoration:underline;}
+
+#top { margin-left:auto; margin-right:auto; background-image:url(<{$img}>topBg.gif); background-repeat:repeat-x; height:24px; line-height:24px; font-size: 12px; border-bottom:1px solid #C4C4C4; border-top:1px solid #FFFFFF; padding-right:10px; padding-left:10px; clear:both; font-weight:bold; }
+#top a { color:#022e9f }
+#top a:hover { color:#E66D02 }
+
+#header{ background:url(<{$img}>/top.jpg) no-repeat left top;clear:both;height:100px;width:100%;}
+.company_name div{color:#fff; font-size:18px;}
+.company_name span{color:#6C8AB5}
+#name{ width:370px; height:90px; float:left;<{if $shopconfig.headimage!=''}>background:#284B75 url(<{$shopconfig.headimage}>) scroll center top;<{/if}>}
+
+#navmenu{ width:600px; float:left; margin-top:65px;}
+#nav{height:35px;line-height:35px;overflow:hidden;font-size:12px;margin-left:0px; font-family:"arial,helvetica,verdana,sans-serif";}
+#nav a {text-align:center;margin-left:2px; background:url(<{$img}>nav.jpg) no-repeat; display:block; width:98px; height:35px;}
+#nav a:link, #nav a:hover, #nav a:visited {cursor:pointer;display:block !important;display:inline;zoom:1; text-decoration:none;float:left;}
+#nav a:link, #nav a:visited {color:#fff;background-repeat: no-repeat;background-position:right top;}
+#nav a:hover {color:#fff;text-decoration:underline;}
+#nav .now:link, #nav .now:visited, #nav .now:hover {color:#fff;text-decoration:none; background:url(<{$img}>/nav_hov.jpg);}
+
+.pro_list_col img{width:150px; height:150px; border:1px solid #CCCCCC; padding:1px;}
+#main {display:block;zoom:1;overflow:hidden;width:100%;background-position:left top;padding:0px; margin-left:auto; margin-right:auto; background-color:#FFFFFF;}
+#main .tp {}
+
+#menu {float:left;font-size:12px;width:225px; height:442px; background:url(<{$img}>/m_left.jpg) no-repeat;}
+#menu .tp { display:none; line-height:54px; height:54px; }
+#menu .bt {display:none;}
+#menu .item {zoom:1;font-weight:bold;color:#FFFFFF;display:block;overflow:hidden;text-decoration: none; margin-top:10px;}
+#menu .o a, #menu .o span{color:#1a498e;background-color:#f8a829; background-image:url(<{$img}>leftTitleBg.gif);background-repeat:repeat-x;background-position:left top;}
+#menu .item span{ color:#666; background:url(<{$img}>/tit_bg.jpg) center bottom no-repeat;display:block;padding:5px 25px 5px 25px; font-size:14px;}
+#menu div.now a, #menu div.now span {color:#1a498e;background-color:#f8a829;background-image:url(<{$img}>leftTitleBg.gif) ;background-repeat:repeat-x;background-position:left top;}
+
+#mPro {padding:0px;margin-top:10px;}
+#mPro .now {padding:5px 25px 5px 25px;background-color:#ffffff;color:#1a498e;border-bottom:1px solid #295690;}
+#mPro li a:link, #mPro li a:visited { color:#000;padding:5px 25px 5px 25px;margin:0px; height:18px;}
+#mPro li a:hover {padding:5px 25px 5px 25px;color:#FF0000;margin:0px;}
+#mPro div.r {margin:0px;padding:5px;background-color:#7e8c97;}
+#mPro div.r a:link, #mPro div.r a:visited {color:#eef2f7;}
+#mPro div.r li a:link, #mPro div.r li a:visited {background-image:none;}
+#mPro #moreCat {border:1px solid #295690;width:170px;margin-left:215px;>margin-left:0px;margin-top:-15px; margin-top:5px;padding: 0px;}
+
+#mPro div.r { padding-right:10px; padding-top:5px; }
+#mPro div.r a:link, #mPro div.r a:visited { text-decoration:underline; }
+#mPro ul li{ padding-left:25px;}
+#mPro ul li a:link, #mPro ul li a:visited, div.r #moreCat a:link, div.r #moreCat a:visited { text-decoration:none; display:block }
+#mPro .now { font-weight:bold; }
+#mPro #moreCat { position:absolute; padding:10px; text-align: left; }
+#mPro #moreCat ul li { padding-bottom:5px; padding-top:5px; }
+#mPro li a{background:url(<{$img}>icon.gif) no-repeat left center;}
+#content {float:right;width:767px; background:url(<{$img}>/m_right.jpg) repeat-x #fff;}
+#bottom { color:#FFF; padding-top:10px; background:url(<{$img}>bottom.jpg) no-repeat left top;text-align:center;width:100%; height:77px;}
+#bottom a,#bottom a:visited{ color:#fff;}
+
+
+.common_box{ width:95%; margin-left:5px; background-color:#FFFFFF; margin-top:20px;}
+.common_box2{ width:264px; margin-left:5px; background-color:#FFFFFF; margin-top:20px;}
+.common_box3{ width:432px; margin-left:15px; background-color:#FFFFFF; margin-top:20px;}
+.common_box3 a img{ margin-left:300px;}
+.common_box2 a img{ margin-left:120px;}
+.common_box table{border-collapse:collapse;}
+.common_box td{ padding-left:15px; padding-bottom:5px;}
+.guide_ba{ line-height:39px; background:url(<{$img}>/tit3.jpg) no-repeat; width:730px; height:39px;}
+.guide_ba3{ line-height:39px; background:url(<{$img}>/tit.jpg) no-repeat; width:432px; height:39px;}
+.guide_ba2{ line-height:39px; background:url(<{$img}>/tit2.jpg) no-repeat; width:264px; height:39px;}
+
+.guide_ba img{ margin-right:15px;}
+.guide_ba span,.guide_ba2 span,.guide_ba3 span{ padding-left:25px; margin-left:15px;}
+.info_text{text-align:left}
+
+.li_pro_list{ padding-top:0px!important; padding-top:5px; width:100%; height:90px; background-color:#FFFFFF;}
+.li_pro_list li{width:85px; height:90px;float:left;}
+.li_pro_list li img{width:82px; height:75px;padding:3px;}
+.li_pro_list_img{width:85px; float:left}
+.li_pro_list_con{float:right; width:620px;}
+.pro_list_col{float:left; margin-left:7px;}
+.com_intro{ background-color:#FFFFFF;}
+.shop_pro_list{ padding-top:0px!important; padding-top:5px; width:100%; height:auto; background-color:#FFFFFF;}
+.shop_pro_list li{width:95px;float:left;margin-left:10px;}
+.shop_pro_list li img{width:92px; height:80px;padding:3px;}
+.newoffer{padding-top:0px!important; padding-top:5px; width:100%;background-color:#FFFFFF;}
+.newoffer li{ background:url(<{$img}>/icon2.jpg) no-repeat left;width:100%; padding:3px; padding-left:15px;}
+.content{background-image: url(<{$img}>main_info_bg.jpg) ;background-repeat:repeat-x;background-position:left top;}
+.com_contact{background-color:#FFFFFF;}
+.mb_main{ width:1015px; margin-left:auto; margin-right:auto;}
+.m_con{ padding:15px;}
+.probox{display:block; width:150px; margin:3px; text-align:center;}
+.borderC {border-bottom:1px dashed #cccccc}
+.padding_10{padding:10px}
+.padding_20{padding:20px}
+.btn_nomal {
+    background: url("../../image/default/bg_navbtn.gif") no-repeat scroll 0 -70px transparent;
+    color: #905A1E;
+    cursor: pointer;
+    display: block;
+    font-size: 11px;
+    height: 19px;
+    line-height: 19px;
+    margin-top: 3px;
+    text-align: center;
+    width: 69px;
+}
+-->
+</style>
+<body>
+<{if $com.jsbook&&$smarty.get.action!='mail'}>
+<script src="api/mail_box_js.php?uid=<{$com.userid}>&action=<{$smarty.get.action}>" type=text/javascript></script>
+<{/if}>
+<div id="top">
+    <div style="float:left">
+        <a href="<{$config.weburl}>"><{$config.company}></a> | <{$lang.mem_shop}> <{$com.company}>
+    </div>
+	<div style="float:right;margin-right:10px;margin-left:10px;background:#FFFFFF;height:30px;width:100px;text-algin:center;">
+	<li style="margin-left:22px;"><font style="font-size:25px;color:#FF0000"><{$com.time_long}></font> место</li>
+    </div>
+    <div style="float:right">
+        <{if $buid}>
+        <a href="main.php"><{$lang.my_office}></a><{else}><a href="<{$config.weburl}>/<{$config.regname}>"><{$lang.free_reg}></a> | 
+        <a href="<{$config.weburl}>/login.php"><{$lang.login}></a><{/if}> | 
+        <a href="javascript:myAddPanel()"><{$lang.add_fav}></a>
+    </div>
+</div>
+<div class="mb_main">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="12" style="background-image:url(<{$img}>/m_l.jpg);"></td>
+    <td>
+<div id="header">
+<div id="name">
+<table width="370" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="130" height="72" align="center" valign="bottom"><{$com.medal}></td>
+    <td width="240" align="left" valign="bottom" class="company_name">
+    	<div><strong><{$com.company}></strong></div><span><{if $shopconfig.home_advs_show=='1'}><{$shopconfig.home_advs_content}><{/if}></span>
+    </td>
+  </tr>
+</table>
+</div>
+<div id="navmenu">
+<div id="nav">
+    <{foreach item=list from=$shopconfig.menu}>
+        <{if $list.menu_show=='1'}>
+        	<{if $list.menu_link!=''}>
+           	<a <{if $list.menu_link==$smarty.get.action}>class="now" <{/if}> href="shop.php?uid=<{$com.userid}>&action=<{$list.menu_link}>&m=<{$list.module}>"><{$list.menu_name}></a>
+            <{else}>
+           	<a <{if $smarty.get.action==''}>class="now" <{/if}> href="<{geturl type='' user=$com.user uid=$com.userid tid='' com=$com.company}>"><{$list.menu_name}></a>
+            <{/if}>
+        <{/if}>       
+    <{/foreach}>
+</div>
+</div>
+</div>
+<div id="main">
+	<div class="tp"><img src="<{$img}>flash.jpg" /></div>
+    <div id="menu">
+        <div class="item"><span><{$lang.pro_index}></span></div>
+        <div id="mPro" class="exp">
+            <ul>           	
+                   <{foreach item=list from=$custom_cat}>
+<li><a href="shop.php?uid=<{$smarty.get.uid}>&action=offer_list&m=offer&cat=<{$list.id}>" title="<{$list.name}>"><{$list.name}>(<{$list.count}>)</a></li>
+                <{/foreach}>
+          </ul>
+        </div>
+        
+</div>
+    <div id="content">
+		<script src='<{$config.weburl}>/api/ad.php?id=46&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+    	<{$output}>
+    </div>
+</div>
+<div id="bottom">
+
+<a href="<{$config.weburl}>"><{$config.company}></a><br />
+	<{$lang.web_other}> <a href="?m=company"><{$lang.company_cat}></a>, <a href="<{$config.weburl}>/?m=product"><{$lang.pro_dir}></a>, <a href="?m=offer"><{$lang.offer_dir}></a><br />
+	<{$lang.web_des}>      
+
+</div>
+</td>
+    <td width="11" style="background-image:url(<{$img}>/m_r.jpg);"></td>
+  </tr>
+</table>
+
+</div>
+</body>
+</html>

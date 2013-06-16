@@ -1,0 +1,7 @@
+<ul>
+	<{foreach item=list from=$ask}>
+	<li>
+	<{if $list.reward}><img src="image/default/mon.gif" /><{/if}>
+	<a href="?m=ask&s=question&id=<{$list.id}>" target="_blank"><{$list.title}></a></li>
+	<{/foreach}>
+</ul>

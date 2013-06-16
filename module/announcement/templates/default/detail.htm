@@ -1,0 +1,49 @@
+
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; Уведомления сайта
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+<div id="mainbody1" class="m1">
+<div class="leftbar">
+	<div class="title4" >
+		<div class="title_left2 L2">Уведомления сайта</div><div class="more"></div>
+	</div>
+	 <div class="content4" style="padding:10px;">
+   <{if $noticecontent.content==''}>
+		<font size="6" color="red" ><{$lang.annou_msg}></font>
+   <{else}>
+		<div class="newstitle"><{$noticecontent.title}></div> 
+		<div class="newstime"><{$lang.author}>: <{$noticecontent.author}>&nbsp;&nbsp;&nbsp;&nbsp;<{$lang.avilidtime}>: <{$noticecontent.starttime|date_format}><{$lang.timeto}><{$noticecontent.endtime|date_format}></div>
+		
+		<div class="newscon" style="padding:10px;">
+				<{$noticecontent.content}>  
+		</div>
+	<{/if}>
+	</div>
+</div>
+	<!--右边开始-->	
+
+<div class="rightbar">
+		 <div class="right1">
+			<div class="sectitle" >
+					<div class="title_left1 L2"><{$lang.allannou}></div>
+			</div>
+			<div class="seccon" >
+				<ul class="li_list">
+					  <{foreach item=notlist from=$noticlist}>
+						<li>
+							  <a href="<{$config.weburl}>/?m=announcement&s=detail&id=<{$notlist.id}>"  title="<{$notlist.title}>" ><{$notlist.title}></a>
+						</li>
+					<{/foreach}>
+					<div class="clear"></div>
+			   </ul>
+			</div>
+			<div class="bottom5"></div>
+			<div class="clear"></div>
+		</div>
+</div>		
+<!--右边结束-->
+</div>

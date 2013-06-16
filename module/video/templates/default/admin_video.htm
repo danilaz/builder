@@ -1,0 +1,156 @@
+<script src="script/my_lightbox.js" language="javascript"></script>
+<script>
+closeimg='<{$config.weburl}>/image/default/icon_close.gif';
+weburl='<{$config.weburl}>';
+</script>
+<style>
+#pic_view{width:100%}
+#pic_view li{ float:left; width:55px;}
+</style>
+
+<script type="text/javascript" src="lib/upload/swfupload/swfupload.js"></script>
+<script type="text/javascript" src="lib/upload/js/swfupload.swfobject.js"></script>
+<script type="text/javascript" src="lib/upload/js/swfupload.queue.js"></script>
+<script type="text/javascript" src="lib/upload/js/fileprogress.js"></script>
+<script type="text/javascript" src="lib/upload/js/handlers.js"></script>
+<script type="text/javascript">
+var swfu;
+SWFUpload.onload = function () {
+	var settings = {
+		flash_url : "lib/upload/swfupload/swfupload.swf",
+		upload_url: "ajax_back_end.php",
+		file_size_limit : "20 MB",
+		file_types : "*.flv;*.mp3;*.wma;*.ra;*.rm;*.ram;*.mid;*.asx;*.wmv;*.avi;*.mpg;*.mpeg;*.rmvb;*.asf;*.mov;*.flv;*.swf",
+		file_types_description : "All Files",
+		file_upload_limit : 1,
+		file_queue_limit : 1,
+		custom_settings : {
+			progressTarget : "fsUploadProgress",
+			cancelButtonId : "btnCancel"
+		},
+		debug: false,
+
+		// Button Settings
+		button_placeholder_id : "spanButtonPlaceholder",
+		button_width: 61,
+		button_height: 22,
+		button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+		button_cursor: SWFUpload.CURSOR.HAND,
+
+		// The event handler functions are defined in handlers.js
+		swfupload_loaded_handler : swfUploadLoaded,
+		file_queued_handler : fileQueued,
+		file_queue_error_handler : fileQueueError,
+		file_dialog_complete_handler : fileDialogComplete,
+		upload_start_handler : uploadStart,
+		upload_progress_handler : uploadProgress,
+		upload_error_handler : uploadError,
+		upload_success_handler : uploadSuccess,
+		upload_complete_handler : uploadComplete,
+		queue_complete_handler : queueComplete,	// Queue plugin event
+		
+		// SWFObject settings
+		minimum_flash_version : "9.0.28",
+		swfupload_pre_load_handler : swfUploadPreLoad,
+		swfupload_load_failed_handler : swfUploadLoadFailed
+	};
+
+	swfu = new SWFUpload(settings);
+}
+
+
+
+
+function getHTML(v,scatid)
+{	
+	if(!v)
+		v=$('cat_one').value;
+	var ob="city";
+	var url = 'module/video/video_ajax.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&id='+v+'&scatid='+scatid;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'get', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		$('cat_two').innerHTML=originalRequest.responseText;
+	}
+　}
+<{if $de.fcatid}>
+getHTML(<{$de.fcatid}>,<{$de.catid}>);
+<{/if}>
+</script>
+<link href="lib/upload/css/default.css" rel="stylesheet" type="text/css" />
+<form method="post" action="" enctype="multipart/form-data">
+		<div class="admin_right_top"><{$lang.video_releases}></div>
+          <table width="100%" border="0" align="center" cellpadding="6" cellspacing="1" bgcolor="#DDDDDD" class="admin_table">
+			<tr>
+			  <td align="left" bgcolor="#EAEFF3"><{$lang.video_cat}></td>
+			  <td bgcolor="#FFFFFF">
+			  <select name="cat_one" onchange="getHTML(this.value,'');" id="cat_one">
+			  <option value="0"><{$lang.select_cat}></option>
+			  <{foreach item=list from=$cat}>
+			   <option <{if $de.fcatid==$list.id}>selected="selected"<{/if}> value="<{$list.id}>"><{$list.catname}></option>
+			  <{/foreach}>
+			  </select>
+			  	<span id="cat_two">
+			    <select><option value="0"><{$lang.select_cat}></option></select>
+			  </span>
+			  </td>
+		    </tr>
+			<tr>
+              <td width="16%" align="left" bgcolor="#EAEFF3"><{$lang.name}><font color="red">*</font> </td>
+              <td bgcolor="#FFFFFF" width="84%">
+			  <input name="name" type="text" id="name" style="width:420px;" value="<{$de.name}>" /></td>
+            </tr>
+            <tr>
+              <td align="left" bgcolor="#EAEFF3"><{$lang.key_words}></td>
+              <td bgcolor="#FFFFFF">
+			  <input name="keyword" type="text" id="keyword" style="width:420px;" value="<{$de.keyword}>" />			 </td>
+            </tr>
+			<{if $de.video_id==''}>
+            <tr>
+              <td width="16%" align="left" bgcolor="#EAEFF3"><{$lang.upload_video}></td>
+              <td width="84%" bgcolor="#FFFFFF">
+       <{if $openvideoupload==1}>
+       <div id="divSWFUploadUI">
+			<div class="fieldset flash" id="fsUploadProgress">
+				<span class="legend"><{$lang.proces}></span>			</div>
+			<p>
+				<span id="spanButtonPlaceholder"></span>
+                <input id="btnUpload" type="button" value="<{$lang.select_file}>" />
+				<input id="btnCancel" type="button" value="<{$lang.cacelup}>" disabled="disabled" />
+			</p>
+		</div>
+        <p id="setStatus" style="display:none;"><{$lang.haveup}></p>
+        <input type="hidden" id="video_url" name="video_url" />
+        <{else}>
+        	<input type="text" id="video_url" value="<{$de.video_url}>" name="video_url" style="width:420px;" /><br />
+			<{$lang.video_address}>
+        <{/if}>		</td>
+            </tr>
+           <{/if}>
+            <tr>
+              <td width="16%" align="left" bgcolor="#EAEFF3"><{$lang.introduction}><font color="red">*</font> </td>
+              <td width="84%" bgcolor="#FFFFFF"><textarea style="width:500px; height:350px;" name="desc"><{$de.desc}></textarea></td>
+            </tr>
+            <tr bgcolor="#EAEFF3">
+              <td bgcolor="#EAEFF3"><{$lang.video_screenshot}></td>
+              <td align="left" bgcolor="#FFFFFF">
+				 <input name="img_url" type="text" id="img_url" value="<{$de.img_url}>" size="60">
+				 [<a href="javascript:uploadfile('Загрузить логотип','img_url',120,80)">Загрузка</a>] 
+				 [<a href="javascript:preview('img_url');">Предпросмотр</a>]
+				 [<a onclick="javascript:$('img_url').value='';" href="#">Удалить</a>]
+			  </td>
+            </tr>
+            <tr bgcolor="#EAEFF3">
+              <td align="right" bgcolor="#EAEFF3">&nbsp;</td>
+              <td align="left" bgcolor="#FFFFFF">
+			  <input type="submit" value="<{$lang.submit}>" style="width:100px;" />
+			  <input name="submit" type="hidden" id="submit" value="<{if $de.id}>edit<{else}>submit<{/if}>" />
+			  <input name="editID" type="hidden" id="editID" value="<{$de.id}>" />			  </td>
+            </tr>			
+</table>
+</form>

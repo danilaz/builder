@@ -1,0 +1,21 @@
+<div class="common_box">
+<table width="100%">
+  <tr align="left">
+    <td class="guide_ba"><span><{$lang.hr_list}></span></td>
+  </tr>
+  <{foreach item=list from=$re.list}>
+  <tr>
+	<td>
+	<a href="<{$config.weburl}>/shop.php?uid=<{$smarty.get.uid}>&action=job_detail&id=<{$list.id}>&m=job" title="<{$projlist.projecttitle}>" target="_blank">
+	<{$list.title}></a> (<{$list.uptime|date_format}>)
+	<div style="border-bottom:1px dashed #CCCCCC;"></div>
+	</td>
+  </tr>
+  <{foreachelse}>
+   <tr>
+	<td ><{$lang.no_hr}></td>
+  </tr>
+  <{/foreach}>
+</table>
+<div class="page"><{$re.page}></div>
+</div>

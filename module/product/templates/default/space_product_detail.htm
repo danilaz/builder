@@ -1,0 +1,165 @@
+<script src="script/prototype.js" type=text/javascript></script>
+<script type="text/javascript">
+function getfav()
+{	
+	var url = '<{$config.weburl}>/ajax_back_end.php';
+	var myurl=document.location.href;
+	var u='<{$smarty.cookies.USER}>';
+	if (u=='')
+	{
+	  alert('<{$lang.nologo}>');
+	  window.location.href='login.php';
+	  return false;
+	}
+	var fu='<{$info.id}>';
+ 	var typ='3';
+	var ttil='<{$info.pname}>';
+	var mpic='uploadfile/comimg/small/<{$info.id}>.jpg';
+	var des='<{$info.con|strip_tags|truncate:100:"...":true|escape:"javascript"}>';
+    var pars = 'user='+u+'&fid='+fu+'&type='+typ+'&title='+ttil+'&url='+myurl+'&des='+des+'&picurl='+mpic;
+	var myAjax = new Ajax.Request(url,{method: 'post', parameters: pars, onComplete: showResponse});
+	function showResponse(originalRequest)
+	{
+	    if(originalRequest.responseText>1)
+	    	alert('<{$lang.favok}>');
+		else if (originalRequest.responseText>0)
+	        alert('<{$lang.favisbe}>');
+		else
+	        alert('<{$lang.faverror}>');
+	}
+}
+function rewiew()
+{
+    var myurl = 'ajax_back_end.php';
+	var conid='<{$info.id}>';
+	var fu='<{$smarty.cookies.USER}>';
+	if(fu=='')
+	{
+		alert('<{$lang.nologo}>');
+		window.location.href='login.php';
+		return false;
+	}
+	var typ='3';
+	var cons=$('reviewcon').value;
+	if (cons.length<10 || cons.length>100)
+	{
+		alert('<{$lang.vwmsg}>');
+		return false;
+	}
+	var rand=$('myrands').value;
+    if (rand=='')
+	{
+        alert('<{$lang.encode}>');
+		return false;
+	}
+    var pars = 'cid='+conid+'&ctype='+typ+'&con='+cons+'&user='+fu+'&crands='+rand;
+	var myAjax = new Ajax.Request(myurl,{method: 'post', parameters: pars, onComplete: showResponse});
+	function showResponse(originalRequest)
+	{
+	    if(originalRequest.responseText>2)
+	       alert('<{$lang.codeerror}>');
+		else if (originalRequest.responseText>1)
+	       alert('<{$lang.thanksvw}>');
+		else if (originalRequest.responseText>0)
+		   alert('<{$lang.vmisbe}>');
+		else
+	       alert('<{$lang.faverror}>');
+	}
+}
+function seebig(id)
+{
+    $('imgmove').innerHTML='<a href="<{$config.weburl}>/uploadfile/zsimg/'+id+'.jpg" target="_blank">'+
+	'<img id="img'+id+'" border="0" src="<{$config.weburl}>/uploadfile/zsimg/'+id+'.jpg" ></a>';
+	if($('img'+id).height>$('img'+id).width)
+		$('img'+id).height=280;
+	else
+		$('img'+id).width=280;
+}
+</script>
+<div class="common_box">
+<table width="100%" border="0" cellpadding="4" cellspacing="1">
+	 	  <tr>
+	    <td height="22" colspan="3" align="left" valign="top" class="guide_ba" ><{$lang.pro_detail}></td>
+	    </tr>
+	  <tr>
+        <td width="31%" rowspan="7" style="text-align:center">
+    <div id="imgmove" style="border:1px solid #E4F3FA;margin:0px; height:170px;overflow:hidden;">       
+        <a href="<{$config.weburl}>/uploadfile/comimg/big/<{$info.id}>.jpg">
+         <{assign var="imgs" value=$info.id}>
+         <{html_image file=uploadfile/comimg/big/$imgs.jpg width=200 alt=$list.pname}>
+        </a>
+     </div>
+           
+    <div id="infopic" style="overflow:hidden;width:250;text-align:center;margin-top:0px;">         
+    <{foreach item=pic from=$info.pic}>
+        <{if $pic}>
+            <li style="float:left;padding-left:5px;padding-top:5px;">
+            <img onMouseOver="seebig('<{$pic}>')" style="cursor:pointer" src="<{$config.weburl}>/uploadfile/zsimg/size_small/<{$pic}>.jpg" border=0 width="45" height="40">
+            </li>
+        <{/if}>
+    <{/foreach}>
+    </div>
+           </td>
+        <td width="69%"><{$lang.pro_name}><{$info.pname}></td>
+	  </tr>
+	  <tr>
+	    <td class="borderC"><{$lang.pro_brand}><{if $info.pp!=""}><{$info.pp}><{else}>/<{/if}></td>
+  </tr>
+	  <tr>
+	    <td class="borderC"><{$lang.pro_guige}><{if $info.gg!=""}><{$info.gg}><{else}>/<{/if}></td>
+  </tr>
+	  <tr>
+	    <td class="borderC"><{$lang.pro_price}><{ if $info.price}><{$info.price}>/<{$info.unit}><{else}>/<{/if}></td>
+  </tr>
+    <tr>
+  	    <td class="borderC"><{$lang.pro_types}><{foreach item=prot key=num from=$trade_type}>
+					 <{if $num==$info.trade_type}><{$prot}><{/if}></option>
+				<{/foreach}> </td>
+      </tr>
+  	  <tr>
+  	    <td class="borderC"><{insert name="label" type="statics" temp='statics_default' ctype=3 id=$info.id}></td>
+      </tr>
+  	  <tr>
+	    <td class="borderC">
+		<a href="<{$config.weburl}>/shop.php?uid=<{$info.userid}>&action=mail"><img src="<{$config.weburl}>/image/<{$config.temp}>/icon_mail.gif"/> Связаться</a> | 
+		<a href="#" onClick="getfav();">В избранное</a>
+		 </td> 
+      </tr>
+	  <tr>
+	    <td colspan="3" align="left" valign="top" style="height:auto">
+      <div style="margin-top:40px;" class="news_con"><{$info.detail}></div>
+</td>
+  </tr>
+	  <tr>
+	    <td height="200" colspan="3" align="left" valign="middle">
+		<h2><{$lang.other_pro}></h2>
+        <{foreach item=list from=$proList.list}>
+		<li style="float:left; width:270px; overflow:hidden;">
+        <{if $com.open_info_type}>
+		<a href="shop.php?uid=<{$list.userid}>&action=product_detail&id=<{$list.id}>&m=product" title="<{$list.pname}>" target="_blank">
+		<{else}>
+		<a href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$list.id}>" title="<{$list.pname}>" target="_blank">
+		<{/if}>
+		<{$list.pname}></a>
+        </li>
+		<{/foreach}>
+        </td>
+  </tr>
+    </table>
+
+<form name="infod" id="infod" method="POST">
+<table style="margin-top:5px;" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="40">
+		<strong><{$lang.viewcon}></strong><br />
+		<textarea id="reviewcon" name="reviewcon" cols="90" rows="4" style="font-size:12px;"></textarea>
+		<br />
+		<{$lang.encode}>
+		<input name="myrands" type="text" id="myrands" size="10" maxlength="5">
+		<img style="padding-top:3px;" src='includes/rand_func.php'/>
+		<input type="button" name="rewiews" value="<{$lang.subm}>" onclick="rewiew()"/>
+	</td>
+  </tr>
+</table>
+</form>
+</div>

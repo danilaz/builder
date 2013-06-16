@@ -1,0 +1,81 @@
+<{include file="header.htm"}>
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <{$guide}></a>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+<script type="text/javascript">
+function show(id)
+{
+	var buylist_con="buylist_con"+id;
+	var span="s"+id;
+	
+	if(document.getElementById(buylist_con).style.display=="block")
+	{
+		document.getElementById(buylist_con).style.display="none";
+		document.getElementById(span).innerHTML="<img src='<{$config.weburl}>/image/default/adding.gif' border=0>";
+	}
+	else
+	{
+		document.getElementById(buylist_con).style.display="block";
+		document.getElementById(span).innerHTML="<img src='<{$config.weburl}>/image/default/decrease.gif' border=0>";
+	}
+}
+</script>
+<!--主体开始 -->
+<div id="mainbody1" class="m1">
+		<!--主体左侧开始 -->
+		<div class="leftbar1">
+			<div class="left2">
+				<div class="title9">
+					<div class="title_left1 L2"><{$lang.rec_offer}></div><div class="more"></div>
+		        </div>
+				 <div class="content9">
+					<ul class="list2">
+						<script src='<{$config.weburl}>/api/ad.php?id=37&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+                    	<{insert name="label" type="cat" temp="album_cat" ctype='album'}>
+				    </ul>
+			    </div>
+			</div>
+		</div>
+		<!--主体左侧结束 -->
+		<div class="rightbar1">
+			<div class="title10">
+            	<div class="title_left L2"><{$lang.offer_list}></div>
+                <div class="lookmore"></div>
+            </div>
+			<div class="content10">
+			 <ul class="list9">
+			 <script src='<{$config.weburl}>/api/ad.php?id=36&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+			  <{foreach item=list from=$info.list}>
+                  <div style="width:165px; height:180px; border:none; float:left; margin:11px;">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:solid 1px #CCCCCC">
+                      <tr>
+                        <td height="150" valign="middle" align="center">
+                          <a rel="nofollow" href="<{$config.weburl}>/shop.php?uid=<{$list.userid}>&action=album&m=album" target="_blank">
+                          <{assign var="img" value=$list.id}>
+                          <{html_image file=uploadfile/catimg/size_small/$img.jpg width=150 alt="$list.name"}>
+                          </a>
+                  		</td>
+                      </tr>
+                    </table>
+                  <a href="<{$config.weburl}>/shop.php?uid=<{$list.userid}>&action=album&m=album">
+                  <strong><{$list.name}></strong>
+                  </a>
+                  </div>
+				<{foreachelse}>
+				  <div style="padding:20px; font-weight:bold">
+				  <{$lang.norelinfo}>
+				  <a href="<{$config.weburl}>/main.php">
+				   <{$lang.clicktoadd}>
+				  </a>
+				  </div>
+				<{/foreach}>
+				<div class="clear"></div>
+				<div class="page"><{$info.page}></div>
+		      </ul>
+		  </div>
+		</div>	
+	<!--contents end-->
+	</div>

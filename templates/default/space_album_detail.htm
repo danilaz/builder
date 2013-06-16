@@ -1,0 +1,45 @@
+<div class="common_box" style="height:800px;">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr align="left"><td colspan="2" class="guide_ba"><{$lang.album_detail}></td></tr>
+    <tr>
+      <td width="12%" height="40"> 
+          <{assign var="imgs" value=$de.album_detail.id}>
+          <{html_image file=uploadfile/catimg/size_small/$imgs.jpg width=100 alt="$de.album_detail.name"}>
+      </td>
+      <td width="88%" valign="top">
+      <strong><{$de.album_detail.name}></strong><br />
+      <{$de.album_detail.des}>
+      </td>
+    </tr>
+  </table>
+  <br />
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td height="30" style="background-color:#CCCCCC">
+        <link href="<{$config.weburl}>/script/sho_cover.css" rel="stylesheet" type="text/css" />
+		<script src="<{$config.weburl}>/script/cover.js"></script>
+        <script type="text/javascript"> 
+        imf.create("imageFlow", 0.15, 1.5, 10);
+        </script>
+        <div style="float:left; height:700px;width:100%;">
+        <div id="imageFlow">
+            <div class="bank">
+                <{foreach item=list from=$de.pic_list}>
+              <a rel="<{$config.weburl}>/uploadfile/zsimg/<{$list.id}>.jpg" title="<{$list.con}>" href="#"><{$list.zname}></a>
+                <{/foreach}>
+            </div>
+            <div class="text">
+                <div class="title">Loading</div>
+                <div class="legend">Please wait...</div>
+            </div>
+            <div class="scrollbar">
+                <img class="track" src="image/default/08081201sb.gif" alt="">
+                <img class="arrow-left" src="image/default/08081201sl.gif" alt="">
+                <img class="arrow-right" src="image/default/08081201sr.gif" alt="">
+                <img class="bar" src="image/default/08081201sc.gif" alt=""> </div>
+        </div>
+        </div>
+      </td>
+      </tr>
+  </table>
+</div>

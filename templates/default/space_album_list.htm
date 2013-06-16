@@ -1,0 +1,31 @@
+<style>
+.album{float:left;width:150px; height:170px; padding:10px;  margin-left:5px; text-align:center}
+</style>
+<div class="common_box">
+<table width="100%" order="0" cellpadding="0" cellspacing="0">
+  <tr align="left">
+    <td class="guide_ba" colspan="4"><span><{$lang.album}><{ if $album_cat_detail }>-<{ $album_cat_detail.name }><{/if}></span></td>
+  </tr>
+  <tr>
+<td>
+
+<{foreach key=num item=list from=$album.list}>
+	<div class="album_">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td valign="middle" height="150">
+					<a href="shop.php?uid=<{$smarty.get.uid}>&action=albumd&id=<{$list.id}>">
+					<{assign var="image" value=$list.id}>
+					<{html_image file=uploadfile/catimg/size_small/$image.jpg width=150 alt="$list.name"}>
+					</a>
+				</td>
+			  </tr>
+			</table>
+		<a href="shop.php?uid=<{$smarty.get.uid}>&action=albumd&id=<{$list.id}>" title="<{$list.zname}>">
+		<strong><{$list.name}></strong> <{$list.count}><{$lang.album_pics}></a>
+	</div>
+<{/foreach}>
+<div align="right"><{$album.page}></div>
+</td>
+</table>
+</div>

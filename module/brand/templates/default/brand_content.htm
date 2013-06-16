@@ -1,0 +1,62 @@
+<link href="<{$config.weburl}>/module/brand/templates/default/brand.css" rel="stylesheet" type="text/css" />
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+        <a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <a href="<{$config.weburl}>/?m=brand">Бренды</a> &raquo; <{$brand.name}></a>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+<center>
+<div class="brandmain">
+<!--中间左边-->
+ <div class="left">
+     <div class="left_top">&nbsp;&nbsp;Информация</div>
+     <div class="left_content" style="padding-left:20px;" >
+       <table width="100%" border="0" cellpadding="0" cellspacing="0">
+       <tr>
+       <td width="82%" height="30" align="left">
+	   Название: <a target="_blank" href="?m=product&s=product_list&brand=<{$brand.name|urlencode}>"><{$brand.name}></a>
+	   </td>
+       <td class="brand_img" width="18%" rowspan="4" valign="top">
+			<{if $brand.pic!=''}>
+			    <a href="<{$config.weburl}>/?m=brand&s=content&id=<{$brand.id}>">
+				<img src="<{$brand.pic}>"/></a>
+            <{else}>
+			    <a href="<{$config.weburl}>/?m=brand&s=content&id=<{$brand.id}>">
+            	<img src="<{$config.weburl}>/image/default/nopic.gif"  alt="<{$list.title}>" /></a>
+            <{/if}>
+		</td>
+       </tr>
+      <tr><td height="30" align="left">Компания: <{$brand.company}></td></tr>
+      <tr><td height="30" align="left">Телефон: <{$brand.tel}></td></tr>
+	  <tr><td height="30" align="left">Сайт бренда: <a target="_blank" href="<{$brand.url}>"><{$brand.url}></a></td></tr>
+	  <tr><td height="30" align="left">Сайт компании: <a target="_blank" href="<{$brand.inner_url}>"><{$brand.inner_url}></a></td></tr>
+	  <tr><td height="30" align="left">Страна: <{$brand.country}></td></tr>
+	  <tr><td height="30" align="left">Область и город: <{$brand.province}> <{$brand.city}></td></tr>
+      <tr><td height="30" align="left">Обновлено: <{$brand.time|date_format}></td></tr>
+       </table>
+     </div>
+     <div class="left_top">&nbsp;&nbsp;Описание</div>
+     <div class="left_content">
+       <table width="100%" border="0" cellpadding="0" cellspacing="0">
+         <tr><td align="left"><{$brand.con}></td></tr>
+       </table>
+     </div>
+ </div>
+ 
+<!--中间右边--> 
+ <div class="right">
+   <div class="right_top">&nbsp;&nbsp;Обзор по областям</div>
+   <div class="right_tj">
+   <{insert name="label" type="province" temp='province_brand'}>
+   </div>
+   <br />
+   <div class="right_top">&nbsp;&nbsp;Рекомендуемые бренды</div>
+   <div class="right_tj">
+     <{insert name="label" type="brand" temp="brand_list" rec=2 limit=5}>
+	 <div class="clear"></div>
+   </div>
+ </div>
+
+</div>
+</center>

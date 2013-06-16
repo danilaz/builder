@@ -1,0 +1,21 @@
+<div class="admin_right_top"><{$lang.recruit_list}></div>
+<table class="admin_table" width="100%" border="0" cellspacing="1" bgcolor="#FFFFFF">
+	<tr bgcolor="#E8E8E8"  style="font-weight:bold"> 
+	  <td width="302" bgcolor="#E8E8E8"><{$lang.recruit_post}></td>
+	  <td width="217" align="center" bgcolor="#E8E8E8"><{$lang.refresh_time}></td>
+	  <td width="149" align="center" bgcolor="#E8E8E8"><{$lang.valid}></td>
+	  <td width="294" align="center" bgcolor="#E8E8E8"><{$lang.operation}></td>
+	</tr>
+	<{foreach item=list from=$re.list}>
+	<tr bgcolor="#F7F7F7"> 
+	  <td width="302"><{$list.title}></td>
+	  <td width="217" align="center"><{$list.uptime|date_format}></td>
+	  <td width="149" align="center"><{$list.valid}></td>
+	  <td align="center">
+	  <a href="?menu=<{$smarty.get.menu}>&edit=<{$list.id}>&action=m&m=job&s=admin_job&menu=<{$smarty.get.menu}>"><img src="/image/default/page_edit.png" title="<{$lang.modify}>"></a> 
+	  <a href="?update=<{$list.id}>&action=m&m=job&s=admin_job_list&menu=<{$smarty.get.menu}>"><img src="/image/default/arrow_refresh.png" title="<{$lang.refresh}>"></a>
+	  <a href="?deid=<{$list.id}>&action=m&m=job&s=admin_job_list&menu=<{$smarty.get.menu}>" onclick="return confirm('<{$lang.sure_del}>');"><img src="/image/default/delete.png " title="<{$lang.del}>"></a>	  </td>
+	</tr>
+	<{/foreach}>
+</table>
+<div align="right"><{$re.page}></div>

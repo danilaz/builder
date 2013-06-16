@@ -1,0 +1,31 @@
+<{include file="header.htm"}>
+
+<div id="mainbody1" class="topm">
+	<{if $config.baseurl}>
+		<div style=" font-size:14px; font-weight:bold; text-align:left; padding:10px;border: 1px solid #A9BAD3;">
+		<{$lang.selectcity}>
+		</div>
+		<div style="border: 1px solid #A9BAD3; margin-top:5px;padding:10px;">
+			<span style="width:200px;text-align:left; display:block; height:30px;">
+			   <a href="http://www.<{$config.baseurl}>"><strong><{$lang.backto}></strong></a>
+			</span>
+			<{foreach item=list from=$prov}>
+				<div style="text-align:left; border-bottom:1px #CCCCCC dashed; margin-bottom:10px; margin-top:10px;">
+				  <a href="http://<{$list.domain}>.<{$config.baseurl}>">
+					  <font size="+2">
+						<{$list.con}>
+					  </font>
+				  </a>
+				  <{foreach item=slist from=$list.city}>
+					  <a href="http://<{$slist.domain}>.<{$config.baseurl}>"><{$slist.con2}></a>
+				  <{/foreach}>
+				</div> 
+			<{/foreach}>
+		<div class="clear"></div>
+		</div>
+	<{else}>
+		Не установлен основной путь к системе, дополнительное имя домена для субдомена отсутствует!
+	<{/if}>
+</div>
+
+<{include file="footer.htm"}>

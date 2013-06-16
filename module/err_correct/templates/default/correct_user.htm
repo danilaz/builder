@@ -1,0 +1,83 @@
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<{if $shopconfig.home_contact_show=='1'}>
+<style>
+.common_box{
+		font-size:12px;
+		}
+.space_con td {
+    padding: 5px;
+}
+td{
+	font-size:12px
+	}
+.common_box td {
+    padding: 5px;
+    text-align: left;
+}
+</style>
+    <div class="common_box">
+    	<div class="com_contact">
+			<form action="" method="post">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td colspan="2" class="guide_ba"><span><{$shopconfig.home_contact_name}></span></td>
+                  </tr>
+                  <tr>
+                    <td width="15%"><{$lang.area}></td>
+                    <td width="85%"><input type="text" value="<{$com.province }>" name="province" />·<input type="text" value="<{$com.city }>" name="city" /></td>
+                  </tr>
+                  <tr>
+                    <td><{$lang.addr}></td>
+                    <td><input type="text" value="<{$com.addr }>" style="width:300px" name="addr" />
+					 </td>
+                  </tr>
+                  <tr>
+                    <td><{$lang.conetct_name}> </td>
+                    <td><input type="text" value="<{$com.contact }>" name="contact" />(<input type="text" value="<{$com.position }>" name="position" />)</td>
+                  </tr>
+                  <tr>
+                    <td><{$lang.tel}></td>
+                    <td><input type="text" value="<{$com.tel }>" name="tel" /></td>
+                  </tr>
+                  <{if $com.mobile}>
+                  <tr>
+                    <td><{$lang.mobile}></td>
+                    <td><input type="text" value="<{$com.mobile }>" name="mobile" /></td>
+                  </tr>
+                  <{/if}>
+                  <tr>
+                    <td><{$lang.fax}></td>
+                    <td><input type="text" value="<{$com.fax }>" name="fax" /></td>
+                  </tr>
+                  <tr>
+                    <td><{$lang.post}></td>
+                    <td><input type="text" value="<{$com.zip }>" name="zip" /></td>
+                  </tr>
+                  <tr>
+                    <td><{$lang.weburl}></td>
+                    <td>
+                    <input type="text" style="width:300px" value="<{$com.url }>" name="url" />
+                    </td>
+                  </tr>
+				  <tr>
+					<td class="guide_ba" colspan=2 align="center" style="text-align:center">
+					<input value="Отправить" type="submit"/>
+					<input name="action" type="hidden" value="user_correct" />
+					<input name="userid" type="hidden" value="<{$com.userid}>" />
+					<input name="fromuser" type="hidden" value="<{if $buid!=''}><{$buid}><{/if}>" />
+					</td>
+				  </tr>
+                </table>
+            <{else}>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="guide_ba"><span><{$shopconfig.home_contact_name}></span></td>
+                  </tr>
+               <tr>
+                <td><{$lang.noright}></td>
+              </tr>
+            </table>   
+			</form>
+        </div>
+    </div>
+<{/if}>

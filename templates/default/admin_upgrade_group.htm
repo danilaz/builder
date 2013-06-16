@@ -1,0 +1,99 @@
+<div class="admin_right_top"><{$lang.ug}></div>
+<script type="text/javascript">
+function calc()
+{
+	var p=document.getElementById("years").value;
+	var allcash='<{$re.cash}>';
+	var x='';
+	if(isNumber(p))
+	{
+		var radioes = document.getElementsByName('gp'); 
+		for(var i=0;i<radioes.length;i++)
+		{
+				 if(radioes[i].checked)
+				 {
+						x=radioes[i].value;
+				 }
+		}
+		if(x=='')
+		{
+			alert('<{$lang.topgroup}>');
+			return false;
+		}
+		var z=x.split("-");
+		var zj=p*z[0];
+		var all_m=allcash-zj;
+		if (all_m<0)
+		{
+			alert('<{$lang.noencash}>'+zj);
+			return false;
+		}
+		else
+		{
+		  if(confirm("<{$lang.allt}>"+zj+"<{$lang.aresure}>"))
+			return true;
+		  else
+			return false;
+		 }
+	}
+	else
+	{
+		alert('<{$lang.enternum}>');
+		$("years").value=1;
+		document.getElementById("years").focus()
+		return false;
+	}
+}
+function isNumber(str)
+{ 
+	if(""==str)
+	{ 
+		return false; 
+	} 
+	var reg = /\D/; 
+	return str.match(reg)==null; 
+}
+</script>
+<form name="upgrade" action="" method="POST" style="margin-top:0px;">
+	<table width='100%' border="0" cellpadding="7" cellspacing="1" bgcolor="#DDDDDD" class="admin_table">
+	<{if $smarty.get.is_suc!=''}>
+<tr> 
+	<td colspan="2" width='100%' height="24" align="left" bgcolor="#EAEFF3"><{if $smarty.get.is_suc=='yes'}><font size="3" color="red"><{$lang.upsuc}></font><{else}><font size="3" color="red"><{$lang.upfail}></font><{/if}></td>
+</tr>
+<{/if}>
+  <tr> 
+	<td width='22%' height="24" align="left" bgcolor="#EAEFF3"><{$lang.avidcash}></td>
+	<td width='77%' bgcolor="#FFFFFF"><{$re.cash|number_format:2}> <{$config.money}>  <a href="main.php?menu=trade&action=admin_accounts_pay"><{$lang.addcash}></a></td>
+  </tr>
+  	  <tr>
+  	    <td height="20" align="left" bgcolor="#EAEFF3"><{$lang.nowgroup}></td>
+  	    <td height="20" bgcolor="#FFFFFF"><{$gp}></td>
+      </tr>
+  	  <tr>
+  	    <td height="20" align="left" bgcolor="#EAEFF3"><{$lang.buyyear}></td>
+  	    <td height="20" bgcolor="#FFFFFF"><input type="text" name="years" id="years" size="5" maxlength="5" value="1">
+  	      <{$lang.yr}></td>
+      </tr>
+  	  <tr> 
+		<td width='17%' height="20" align="left" bgcolor="#EAEFF3"><{$lang.ugroup}></td>
+		<td width='83%' height="20" bgcolor="#FFFFFF">
+		<{assign var="nowifpay" value=$nogp+1}>
+		<{foreach item=list key=num from=$gr}>
+			<{if $nogp<$list.group_id&&$list.statu==1&&$list.group_id>2}>
+			<input type="radio" name="gp"  value="<{$list.groupfee}>-<{$list.group_id}>" <{if $nowifpay==$list.group_id}>checked<{/if}>>
+			Уровень <b><{$list.name}></b>. <{$lang.yfee}><{$list.groupfee}> <{$config.money}><br/>
+			<{/if}>
+		<{/foreach}><br/>
+		<a href="member_services.php"><{$lang.gpm}></a>
+		</td>
+	  </tr>
+  <tr> 
+	<td width='17%' height="24" align="right" bgcolor="#EAEFF3"> </td>
+	<td width='83%' bgcolor="#FFFFFF">
+	<{if $re.cash>0}>
+	<input  type='submit' id="Submit" name='Submit' value='<{$lang.submit}>' onclick="return calc();" style="width:100px;" >
+	<{/if}>
+	</td>
+  </tr>
+</table>
+</form>

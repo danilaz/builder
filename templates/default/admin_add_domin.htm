@@ -1,0 +1,18 @@
+<div class="admin_right_top">Привязка домена</div>
+<table border="0" cellspacing="0" cellpadding="0" class="admin_table">
+  <tr>
+	<td height="56" align="left">
+	Шаги по привязке доменного имени:<br />
+	1. Пожалуйста, подтвердите, что у Вас есть права администратора для привязки домена верхнего уровня.<br />
+	2. Пожалуйста, впишите на Ваше доменное имя DNS-разрешение в панели управления доменного имени <{$config.weburl}>.<br />
+	3. Ваше доменное имя должно начинаться с http://, если все настроено правильно, как правило, доменное имя вступит в силу в течение двух дней. Если этого не произошло, обращайтесь, пожалуйста к Вашему администратору.</td>
+ </tr>
+   <tr>
+	<td height="65" align="left">
+	<form action="" method="post">
+	<input name="domain" type="text" id="domain" value="<{if $domin!=''}><{$domin}><{else}>http://<{/if}>" size="50" />
+	<input type="submit" value="Привязать" />
+	</form>
+	</td>
+ </tr>
+</table>

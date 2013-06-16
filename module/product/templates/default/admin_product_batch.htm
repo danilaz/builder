@@ -1,0 +1,115 @@
+
+<div class="admin_right_top">
+<span style="float:left"><{$lang.product_batch}></span>
+<span style="float:right"></span>
+</div>
+<table class="admin_table" border="0" cellspacing="1" bgcolor="#FFFFFF" >
+    <form method="post" action="" enctype="multipart/form-data">
+	<tr bgcolor="#E8E8E8" > 
+	  <td><{$lang.product_batch_first}></td>
+	</tr>
+	<tr > 
+	  <td style="padding-left:20px;">
+	  <a href="lib/csv/product_cn.csv" target="_blank"><{$lang.product_batch_tem_cn}></a><br>
+	  <a href="lib/csv/product_en.csv" target="_blank"><{$lang.product_batch_tem_en}></a>
+	  </td>
+	</tr>
+
+	<tr bgcolor="#E8E8E8"> 
+	  <td><{$lang.product_batch_second}></td>
+	</tr>
+	<tr> 
+	  <td style="padding-left:20px;"><{$lang.product_batch_fill}></td>
+	</tr>
+
+	<tr bgcolor="#E8E8E8"> 
+	  <td><{$lang.product_batch_third}></td>
+	</tr>
+	<tr> 
+	  <td style="padding-left:20px;">
+        <{$lang.category}><font color="red"> *</font> <select name="catid" id="catid" onChange="getHTML(this.value,'tcatid')">
+            <option value=""><{$lang.selec_category}></option>
+            <{foreach item=list from=$cat}>
+            <option value="<{$list.catid}>" <{if $list.catid==$de.catid}>selected="selected"<{/if}> ><{$list.cat}></option>
+            <{/foreach}>  
+        </select>
+        <select style="visibility:hidden" name="tcatid" id="tcatid" onChange="getHTML(this.value,'scatid')">
+        </select>
+        <select style="visibility:hidden"  name="scatid" id="scatid"></select>
+	</tr>
+	<tr > 
+	  <td width="30%" style="padding-left:20px;"><{$lang.product_batch_file}> <input type="file" id='csv' name="csv" value="" />
+      <input id="submit" type="hidden" value="submit" name="submit"/>
+	</tr>
+	<tr > 
+	  <td width="100%"><input type="submit" value="<{$lang.submit}>" onClick="return check_value();"/></td>
+	</tr>
+    </form>
+
+  </table>
+<script type="text/javascript">
+<{if $uploaded==1}>
+alert("<{$lang.uploaded}>");
+<{/if}>
+var scatid='';
+var tcatid='';
+function getHTML(v,ob)
+{	
+	var url = '<{$config.weburl}>/ajax_back_end.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&cattype=pro&pcatid='+v;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'post', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+		var i=1;var j=0;
+		eval(tempStr);
+		for(var s in MyMe)
+		{
+			++j;
+		}
+		if(j>0)
+			$(ob).style.visibility="visible";
+		else
+			$(ob).style.visibility="hidden";
+		$(ob).options.length =j+1;
+		$(ob).options[0].value = '';
+		$(ob).options[0].text = '<{$lang.select_sub_categories}>';
+		$(ob).options[0].selected = true;
+		//alert(j);
+		for(var k in MyMe)
+		{
+			var cityId=MyMe[k][0];
+			var ciytName=MyMe[k][1];
+			if(ob=='tcatid'&&i==1)
+			{
+				if(tcatid!='')
+	 				getHTML(tcatid,'scatid');
+				else
+					getHTML(cityId,'scatid');
+			}
+			$(ob).options[i].value = cityId;
+			$(ob).options[i].text = ciytName;
+			if(cityId==scatid||cityId==tcatid)
+				$(ob).options[i].selected = true;
+			i++;
+        }
+    }
+}
+//==========================================
+function check_value()
+{
+	if(!$('catid').value){
+		alert('<{$lang.product_category}>');
+		return false;
+	}
+	if(!$('csv').value){
+		alert('<{$lang.select_csv}>');
+		$('csv').focus();
+		return false;
+	}
+}
+</script>

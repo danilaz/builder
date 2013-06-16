@@ -1,0 +1,134 @@
+<?php
+//===================================
+$sn['main_index']='Admin home';
+$sn['group']= 'Add permission group';
+$sn['group_list']='Edit group permissions';
+$sn['add_admin_manager']='Add administrator';
+$sn['admin_manager']='Edit administrator';
+$sn['modpass']='Change login password';
+$sn['operate_log']='Admin CP operation log';
+$sn['search_word']='Search words';
+$sn['home_config']='Home config';
+//====================================
+$sn['system_config']='System configuration';
+$sn['reg_config']='Register configuration';
+$sn['mail_config']='Email configuration';
+$sn['uc_config']='UC configuration';
+$sn['watermark_config']='Watermark configuration';
+$sn['web_con_set']='Individual page edit';
+$sn['web_con_type']='Individual page management';
+$sn['user_reg_verf']='Register verification question';
+$sn['add_sub_domain']='Add sub-domain';
+$sn['sub_domain_list']='Manage sub-domain';
+$sn['nav_menu']='Customize navigation bar';
+$sn['nav_menu_action']='Delete customized navigation bar';
+$sn['payment']='View payment';
+$sn['paymentmod']='Edit payment';
+$sn['point_config']='Membership credit configuration';
+$sn['express']='Logistics configuration';
+$sn['seo_config']='SEO configuration';
+//====================================
+$sn['clearcahe']='Update cache';
+$sn['iplockset']='IP lock settings';
+$sn['db_export']='System backup';
+$sn['crons']='Task scheduler management';
+$sn['cron_edit']='Task scheduler editing';
+$sn['up_db']='Database update';
+$sn['optimizetable']='Data table optimization/repair';
+$sn['tab_des']='Tab invoke';
+$sn['add_filter_keyword']='增加过滤词';
+$sn['filter_keyword_list']='过滤词管理';
+//====================================
+$sn['advs']='Advertisement';
+$sn['edit_adv']='Creat advertisement';
+$sn['edit_adv_con']='Advertisement editing';
+$sn['advs_con_list']='Manage advertisement';
+$sn['add_link']='Add links';
+$sn['link']='Link exchange list';
+$sn['advs_con_list']='Ads edit';
+//===================================
+$sn['notice']='Announcement list';
+$sn['notice_manager']='Add announcements';
+$sn['newslist']='Manage articles';
+$sn['news']='Release articles';
+$sn['news_module']='Inclue Label';
+$sn['exhibit']='Release exhibitions';
+$sn['exhibitlist']='Manage exhibitions';
+$sn['add_special']='Add topics';
+$sn['special_list']='Topics management';
+$sn['special_con']='Topic settings';
+$sn['modules_con_set']='Topic Content settings';
+//===================================
+$sn['newscat']='Article category management';
+$sn['add_brand']='Brand management';
+$sn['coalition_news_cat']='Merge article category';
+$sn['pro_info_add_cat']='Add system category';
+$sn['pro_info_cat']='Manage system category';
+$sn['comments_list']=' manage grading options';
+$sn['comments']='Edit grading options';
+$sn['hrcat']='Job category';
+$sn['country']='Country management';
+$sn['province']='Province management';
+$sn['city']='City management';
+$sn['web_con_type']='Individual page settings';
+$sn['pro_info_add_field']='Add customized fields';
+$sn['pro_info_edit_field']='Edit customized fields';
+//====================================================================
+$sn['user_template']='会员模板设置';
+$sn['merge_user']='合并会员';
+$sn['member']='Member management';
+$sn['member_charge']='Member charge';
+$sn['membermod']='Edit membership';
+$sn['membergroup']=' Membership group management';
+$sn['reserve_username']='Protect membership names';
+$sn['add_member']='Add a membership';
+$sn['mailmod']='Email templates editing';
+$sn['massmail']='Email mass-sending';
+$sn['mail_send']='Email mass-sending detail';
+$sn['send_mail_back']='Email mass-sending usage';
+$sn['sendmail']='Send membership emails';
+$sn['feedback']= 'Membership feedback';
+$sn['feedbackd']='Check feedback';
+$sn['user_read_rec']='Reading records';
+$sn['user_domin']='Binding domains';
+$sn['pickuplist']='Cash withdrawal application reference';
+$sn['pickupmod']=' Cash withdrawal application management';
+$sn['bank_account']='Bank account verification';
+$sn['bank_account_mod']= 'Bank account editing';
+$sn['membermod']='Membership editing';
+$sn['to_login']='Enter member office';
+$sn['infomod']='Edit offer';
+$sn['video_edit']='Edit video';
+$sn['membermod']='Edit job';
+//======================================================================
+$sn['add_pro']='Quick release products';
+$sn['cpmod']='Product edit';
+$sn['prolist']='Membership product management';
+$sn['hy_feedback']='Membership SMS';
+$sn['infolist']='Membership market info management';
+$sn['infomod']=' Membership market info editing';
+$sn['ajax_update']='Membership content classification modification';
+
+$sn['album']='Membership photos editing';
+$sn['cpmod']='Membership product editing';
+$sn['video_list']='Membership video management';
+$sn['video_edit']='Membership video editing';
+$sn['yi_zp']='Membership recruitment management';
+$sn['jobmod']= 'Membership recruitment editing';
+$sn['album_cat']=' Membership photo management';
+$sn['user_order']='Membership order management';
+$sn['order_detail']='Order detail reference';
+$sn['user_rewiew']='Membership review management';
+$sn['user_project']='Membership project management';
+$sn['user_project_detail']='Membership project detail';
+$sn['business_info_list']='Membership business info list';
+$sn['business_info_detail']='Membership business info detail';
+$sn['tag_manage']='TAG management';
+$sn['show_room']='Exhibition page management';
+$sn['edit_show_room']='Add exhibition page';
+$sn['question_manage']='Questions & Answers management';
+//======================================================================
+$sn['page_view']='Statistics today';
+$sn['all_page_rec']='Statistics history';
+$sn['add_vote_field']='Vote list';
+?>

@@ -1,0 +1,180 @@
+<script type="text/javascript" src="script/Validator.js"></script>
+<div class="admin_right_top">
+<{if $smarty.get.edit}><{$lang.editor_recruit}><{else}><{$lang.published_recruit}><{/if}>
+</div>
+<style>
+.radio{ float:left; margin-right:5px;}
+.radio { margin-top:2px } 
+* html .radio { margin-top:0px } 
+*+html .radio { margin-top:0px}
+u{ text-decoration:none; float:left; margin-right:10px;}
+</style>
+<form method="post" action="" enctype="multipart/form-data" onSubmit="return Validator.Validate(this,3)">
+	<table  border="0" cellspacing="1" cellpadding="5" align="center" bgcolor="#DDDDDD" class="admin_table">
+	 
+	 <tr>
+	  <td width="11%" bgcolor="#EAEFF3"><{$lang.job_title}></td>
+	  <td width="89%" bgcolor="#FFFFFF" colspan="3">
+	  <input name="name" type="text" id="name" style="width:300px;" value="<{$de.title}>" dataType="Require" msg="<{$lang.post_required}>"/></td>
+	</tr>
+    
+    
+	 <tr>
+	   <td bgcolor="#EAEFF3"><{$lang.job_categories}></td>
+	   <td bgcolor="#FFFFFF" colspan="3">
+	   <select onchange="getHTML(this.value,'scatid',0);" name="catid"  id="catid" dataType="Require" style="width:200px;" msg="<{$lang.select_job_categories}>">
+		   <option value=""><{$lang.select_job_categories}></option>
+	       <{foreach item=list from=$hrcat key=num}>
+		   <option value="<{$list.id}>" <{if $de.catid==$list.id&&$de.catid!=""}>selected="selected"<{/if}> ><{$list.catname}></option>
+		   <{/foreach}>
+		  </select> 
+		  <select name="scatid" id="scatid" style="width:200px; visibility:hidden;"></select>
+         </td>
+	 </tr>
+      
+	 <tr>
+	   <td bgcolor="#EAEFF3"><{$lang.recruit_number}></td>
+	   <td bgcolor="#FFFFFF">
+	   <input value="<{$de.num}>" name="num" type="text" id="num" style="width:195px;" datatype="Number" msg="<{$lang.recruit_required}>"/>
+       </td>
+       <td bgcolor="#EAEFF3"><{$lang.properties}></td>
+	   <td bgcolor="#FFFFFF">
+	   <{foreach item=list from=$lang.pro_arr key=num}>
+            <input type="radio" class="radio" name="properties" value="<{$num}>" <{if $num==0 and $de.properties=="" or $de.properties==$num   }> checked="checked" <{/if}> /><u><{$list}></u>
+       <{/foreach}>
+       </td>
+	 </tr>
+  
+    <tr>
+       <td bgcolor="#EAEFF3"><{$lang.salary}></td>
+	   <td bgcolor="#FFFFFF">
+	   <select name="money" id="money" style="width:200px;" msg="<{$lang.salary_range}>">
+	   	  <{foreach item=list from=$hrmoney key=num}>
+		   		<option value="<{$num}>" <{if $de.money==$num}>selected="selected"<{/if}> ><{$list}></option>
+		   <{/foreach}>
+	   </select>
+	   </td>
+       <td bgcolor="#EAEFF3"><{$lang.year}></td>
+	   <td bgcolor="#FFFFFF">
+	   <select name="year" id="year" style="width:200px;">
+           <{foreach item=list from=$lang.year_arr key=num}>
+                <option value="<{$num}>" <{if $de.year==$num}>selected="selected"<{/if}> ><{$list}></option>
+           <{/foreach}>
+	   </select>
+	   </td>
+    </tr>
+    <tr>
+       <td bgcolor="#EAEFF3"><{$lang.sex}></td>
+	   <td bgcolor="#FFFFFF">
+       <{foreach item=list from=$lang.sex_arr key=num}>
+            <input type="radio" class="radio" name="sex" value="<{$num}>" <{if $num==0 and $de.sex=="" or $de.sex==$num }> checked="checked" <{/if}> /><u><{$list}></u>
+       <{/foreach}>
+	   </td>
+       <td bgcolor="#EAEFF3"><{$lang.age}></td>
+	   <td bgcolor="#FFFFFF">
+	    <select name="age" id="age" style="width:200px;">
+	   	  <{foreach item=list from=$lang.age_arr key=num}>
+		   		<option value="<{$num}>" <{if $de.age==$num}>selected="selected"<{/if}> ><{$list}></option>
+		   <{/foreach}>
+	    </select>
+	   </td>
+    </tr>
+     
+    <tr>
+       <td bgcolor="#EAEFF3"><{$lang.language}></td>
+	   <td bgcolor="#FFFFFF">
+	   <select name="language" id="language" style="width:200px;">
+	   	 <{foreach item=list from=$lang.language_arr key=num}>
+		    	<option value="<{$num}>" <{if $de.language==$num}>selected="selected"<{/if}> ><{$list}></option>
+		  <{/foreach}>
+	   </select>
+	   </td>
+       <td bgcolor="#EAEFF3"><{$lang.degree}></td>
+	   <td bgcolor="#FFFFFF">
+	    <select name="degree" id="degree" style="width:200px;">
+	   	  <{foreach item=list from=$lang.degree_arr key=num}>
+		   	<option value="<{$num}>" <{if $de.degree==$num}>selected="selected"<{/if}> ><{$list}></option>
+		  <{/foreach}>
+	   </select>
+	   </td>
+	</tr>
+     
+	<tr>
+	  <td bgcolor="#EAEFF3"><{$lang.detailed_description}></td>
+	  <td bgcolor="#FFFFFF" colspan="3">
+		<{if $de.con}>
+		<{$de.con}>
+		<{else}>
+		<script type="text/javascript" src="lib/fckeditor/fckeditor.js"></script>
+		<script type="text/javascript">
+		var oFCKeditor = new FCKeditor( 'con' ) ;
+		oFCKeditor.Config['ToolbarStartExpanded'] = true ;
+		<{if $config.language=='en'}>
+			oFCKeditor.Config['DefaultLanguage']='en';
+		<{else}>
+			oFCKeditor.Config['DefaultLanguage']='zh-cn';
+		<{/if}>
+		oFCKeditor.BasePath		= 'lib/fckeditor/' ;
+		oFCKeditor.ToolbarSet	= 'B2Bbuilder' ;
+		oFCKeditor.Width='100%';
+		oFCKeditor.Height=500;
+		oFCKeditor.Create() ;
+		</script>
+		<{/if}></td>
+	</tr>
+    <tr>
+	   <td bgcolor="#EAEFF3"><{$lang.valid}></td>
+	   <td bgcolor="#FFFFFF" colspan="3">
+	   <input value="<{$de.valid}>" name="valid" type="text" id="valid" style="width:100px;" datatype="Number" msg="<{$lang.valid_required}>" />
+       </td>
+	   </tr>
+	<tr>
+	<tr bgcolor="#EAEFF3">
+	  <td>&nbsp;</td>
+	  <td bgcolor="#FFFFFF" colspan="3">
+	  <input name="Submit" type="submit" id="Submit" value=" <{$lang.submit}> " style="width:100px;" />
+	  <input name="submit" type="hidden" id="submit" value="<{if $de.id}>edit<{else}>submit<{/if}>" />
+	  <input name="editID" type="hidden" id="editID" value="<{$de.id}>" /></td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript">
+function getHTML(v,ob,scatid)
+{	
+	var url = 'ajax_back_end.php';
+	var sj = new Date();
+	var pars = 'shuiji=' + sj+'&cattype=hr&pcatid='+v;
+	var myAjax = new Ajax.Request(
+				url,
+				{method: 'post', parameters: pars, onComplete: showResponse}
+				);
+	function showResponse(originalRequest)
+	{
+		var tempStr = 'var MyMe = ' + originalRequest.responseText; 
+		var i=0;var j=0;
+		eval(tempStr);
+		for(var s in MyMe)
+		{
+			++j;
+		}
+		if(j>0)
+			$(ob).style.visibility="visible";
+		else
+			$(ob).style.visibility="hidden";
+		$(ob).options.length =j;
+		for(var k in MyMe)
+		{
+			$(ob).options[i].value = MyMe[k][0];
+			$(ob).options[i].text = MyMe[k][1];
+			if(MyMe[k][0]==scatid)
+			{
+				$(ob).options[i].selected = true;
+			}
+			i++;
+		}
+	}
+}
+<{if $de.catid}>
+	getHTML(<{$de.catid}>,'scatid',<{$de.scatid}>);
+<{/if}>
+</script>

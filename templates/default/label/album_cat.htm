@@ -1,0 +1,11 @@
+<{foreach item=cList key=num from=$cat}>
+<li>
+<a href="<{$config.weburl}>/?m=album&id=<{$cList.catid}>" title="<{$cList.cat}>"><b><{$cList.cat}></b></a>
+</li>
+<{if $cList.sub}>
+        <{foreach item=sublist from=$cList.sub key=nums}>
+            <li><a href="<{$config.weburl}>/album-<{$sublist.catid}>/" 
+            title="<{$sublist.cat}>"><{$sublist.cat}></a> </li>
+        <{/foreach}>
+ <{/if}>
+<{/foreach}>

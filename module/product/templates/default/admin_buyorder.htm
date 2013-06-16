@@ -1,0 +1,62 @@
+<style>
+.buttons{background-image:url(image/default/searchbutton.gif); margin:5px; width:76px; height:21px; border:0px; display:block; text-align:center; padding-top:5px; overflow:hidden; float:left;}
+</style>
+<div class="admin_right_top"><{$lang.mybuyorder}></div>
+<table class="admin_table" border="0" cellspacing="1" align="center">
+	<tr>
+	  <td colspan="2" align="left" bgcolor="#FFFFFF" style="border-bottom:2px solid #FF9900;">
+		  <{foreach item=list key=num from=$blist.process}>
+		  <div style="background:#FFF1DE;float:left;margin:2px;padding:3px; border:1px solid #FFDCAB"><a href="<{$config.weburl}>/main.php?menu=<{$smarty.get.menu}>&action=m&m=product&s=admin_buyorder&status=<{$num}>"><{$list}></a></div>
+		  <{/foreach}>
+	  </td>
+   </tr>
+<{foreach item=buylist from=$blist.list}>
+<tr>
+    <td align="center" bgcolor="#EFFAFE" width="100%">
+    <table width="100%"  cellspacing="1" style="border:1px solid #999999;">
+      <tr>
+        <td colspan="7" style=" border-bottom: 1px dotted #999999;text-align:left;">
+        <{$lang.ordid}>:<{$buylist.id}>
+        <{if $buylist.status==1||$buylist.status==2}>
+        	<img src="image/default/neworder.gif">
+        <{/if}>
+        <{$lang.ordertim}><{$buylist.ordertime|date_format}>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#FFFFFF" width="70" height="57">
+            <a href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$buylist.product.proid}>">
+            <{assign var="img" value=$buylist.product.proid}>
+        	<{html_image file=uploadfile/comimg/big/$img.jpg width=70}>
+            </a>
+        </td>
+        <td bgcolor="#FFFFFF" width="150">
+        	<a href="<{$config.weburl}>/?m=product&s=product_detail&id=<{$buylist.product.proid}>">
+            <{$buylist.product.pname}>
+            </a>
+        </td>
+        <td bgcolor="#FFFFFF" width="100"><{$buylist.product.pprice|number_format:2}> <{$config.money}></td>
+        <td bgcolor="#FFFFFF" width="50"><b><{$buylist.product.nums}></b></td>
+        <td bgcolor="#FFFFFF" width="80"> <{$buylist.price|number_format:2}> <{$config.money}><br /><{$lang.includedfreight}></td>
+        <td bgcolor="#FFFFFF" width="200">
+        <span style="color:#FF0000; font-weight:bold;"><{$buylist.statu_text}></span><br /><{$buylist.next_action}>
+        </td>
+        <td bgcolor="#FFFFFF">
+	   <a href="<{$config.weburl}>/main.php?menu=<{$smarty.get.menu}>&action=m&m=product&s=admin_orderdetail&id=<{$buylist.id}>&type=buy"><{$lang.orderoption}></a>
+       <{if $buylist.status==3}>
+       |<a href="<{$config.weburl}>/main.php?menu=<{$smarty.get.menu}>&action=m&m=product&s=admin_orderendapply&id=<{$buylist.id}>"><{$lang.applret}></a>
+       <{/if}>
+       
+		</td>
+      </tr>
+    </table></td>
+  </tr>	
+  <{foreachelse}>
+	  <tr>
+	  <td colspan="3" bgcolor="#FFFFFF"><{$lang.noorder}></td>
+	  </tr>
+  <{/foreach}>  
+     <tr>
+       <td colspan="3" bgcolor="#EFFAFE"><div class="page"><{$blist.page}></div></td>
+     </tr>
+</table>

@@ -1,0 +1,8 @@
+<{foreach item=list name=name from=$news}>
+	<div style="display:inline;padding-right:10px">
+	<a href="<{$list.url}>" title="<{$list.title}>">
+  <img alt="<{$list.title}>" src="<{$list.pic}>" title="<{$list.title}>"></a>
+ <!-- <{$list.ftitle|truncate:$leng}> -->
+ 
+</div>
+<{/foreach}>

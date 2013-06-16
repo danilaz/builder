@@ -1,0 +1,4 @@
+<{foreach item=list from=$news}>
+<li><a <{if $list.color}>style="color:<{$list.color}>"<{/if}> href="<{$list.url}>"><{$list.title|truncate:40}></a>
+</li>
+<{/foreach}>

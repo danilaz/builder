@@ -1,0 +1,45 @@
+<div class="admin_right_top"><{$lang.management_video}></div>
+
+<table class="admin_table" border="0" cellspacing="1" bgcolor="#FFFFFF">
+<tr bgcolor="#E8E8E8" style="font-weight:bold" height="22"> 
+	  <td align="center"><{$lang.video_screenshot}></td>
+    <td align="center"><{$lang.video_name}></td>
+    <td align="center"><{$lang.video_state}></td>
+	  <td width="226" align="center"><{$lang.upload_time}></td>
+	  <td width="212" align="center"><{$lang.operation}></td>
+	</tr>
+	<{foreach item=list from=$video}>
+	<tr bgcolor="#F7F7F7" height="22"> 
+	  <td width="100" align="center" valign="middle">
+	  <!-- <a target="_blank" href="shop.php?uid=<{$buid}>&action=videod&id=<{$list.video_id}>"> -->
+			<a target="_blank" href="/shop.php?uid=<{$list.userid}>&action=video_detail&id=<{$list.video_id}>&m=video">
+      <{if $list.img_url!=''}>
+   			<img src="<{$list.img_url}>" width=80 height=70 />
+       <{else}>
+   			<img width=80 height=70 src="<{$config.weburl}>/image/default/nopic.gif"  alt="<{$list.name}>" />
+       <{/if}>
+       </a>
+       </td>
+	  <td width="422" align="center"><a target="_blank" href="/shop.php?uid=<{$list.userid}>&action=video_detail&id=<{$list.video_id}>&m=video"><{$list.name}></a></td>
+	  <td width="150" align="center">
+        <{ if $list.user_tj }>
+	         <a href="?cancel_tj=<{$list.video_id}>&s=admin_video_list&action=m&m=video">
+			 <img src="/image/default/layout_delete.png" width="16" height="16" title="<{$lang.cancel}>"></a>
+      <{ else }>
+	         <a href="?user_tj=<{$list.video_id}>&s=admin_video_list&action=m&m=video">
+			 <img src="/image/default/layout_add.png" title="<{$lang.hot}>"></a>
+      <{/if}>        </td>
+	  <td><{$list.time|date_format}></td>
+	  <td align="center">
+      <a href="?menu=<{$smarty.get.menu}>&edit=<{$list.video_id}>&s=admin_video&action=m&m=video">
+	  <img src="/image/default/page_edit.png" title="<{$lang.modify}>"></a>
+	  <a href="?deid=<{$list.video_id}>&s=admin_video_list&action=m&m=video" onclick="return confirm('<{$lang.suredel}>?');">
+	  <img src="/image/default/delete.png " title="<{$lang.del}>"></a>	  </td>
+	</tr> 
+	<{/foreach}>
+  </table>
+<div align="right"><{$re.page}></div>
+
+	  
+	
+	  

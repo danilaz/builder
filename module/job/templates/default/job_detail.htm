@@ -1,0 +1,98 @@
+<script src="script/my_lightbox.js" language="javascript"></script>
+<div class="menu_bottom L1">				
+    <div class="headtop_L"><a href='<{$config.weburl}>/'><{$lang.indexpage}></a> &raquo; <a href="<{$config.weburl}>/?m=job"><{$lang.jobme}></a> &raquo; <a href='<{$config.weburl}>/?m=job&s=job_list'><{$lang.joblist}></a> &raquo; <{$job.title}>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+<link href="<{$config.weburl}>/templates/<{$config.temp}>/job.css" rel="stylesheet" type="text/css" />
+
+<div id="mainbody1" class="m1">
+    <div class="job_left">
+      <div>
+       <table cellpadding="0" cellspacing="0" width="100%" border="0" class="job">
+         <tr class="tr1">
+            <td colspan="2"><{$job.company}></td>
+         </tr>
+         <tr class="tr2">
+           <td class="td1" colspan=2><{$job.title}> [<{$lang.dps}>: <{$job.uptime|date_format}>]</td>
+         </tr>
+         <tr class="tr3">
+          <td colspan="2"  class="td1"><div>
+             <table cellpadding="0" cellspacing="0" width="100%" border="0">
+               <tr>
+                 <td width="9%" class="borderR"><{$lang.zwxz}>:</td><td width="14%" class="borderR"><{foreach item=list key=num from=$lang.pro_arr}><{if $num==$job.properties}><{$list}><{/if}><{/foreach}></td>
+				</tr>
+				<tr>
+                 <td width="9%" class="borderR"><{$lang.gzdq}>:</td><td width="18%" class="borderR"><{$job.addr}></td>
+				</tr>
+				<tr>				 
+                 <td width="9%" class="borderR"><{$lang.zprs}>:</td><td width="19%" class="borderR"><{$job.num}><{$lang.people}></td>
+				</tr>
+				<tr>				 
+                 <td width="9%" class="borderR"><{$lang.sbyq}>:</td><td width="13%" class="borderR"><{foreach item=list key=num from=$lang.sex_arr}><{if $num==$job.sex}><{$list}><{/if}><{/foreach}></td>
+               </tr>
+               <tr>
+                 <td class="borderR"><{$lang.yxrq}>:</td><td class="borderR"><{$job.valid}><{$lang.day}></td>
+				</tr>
+				<tr>				 
+                 <td class="borderR"><{$lang.gzjy}>:</td><td class="borderR"><{foreach item=list key=num from=$lang.year_arr}><{if $num==$job.experience_years}><{$list}><{/if}><{/foreach}></td>
+				</tr>
+				<tr>				 
+                 <td class="borderR"><{$lang.xlyq}>:</td><td class="borderR"><{foreach item=list key=num from=$lang.degree_arr}><{if $num==$job.degree}><{$list}><{/if}><{/foreach}></td>
+				</tr>
+				<tr>				 
+                 <td class="borderR"><{$lang.yyyq}>:</td><td class="borderR"><{foreach item=list key=num from=$lang.language_arr}><{if $num==$job.language}><{$list}><{/if}><{/foreach}></td>
+               </tr>
+               <tr>
+                 <td class="borderR"><{$lang.szfw}>:</td><td class="borderR"><{foreach item=list key=num from=$hrmoney}><{if $num==$job.salary}><{$list}><{/if}><{/foreach}></td>
+				</tr>
+				<tr>				 
+                 <td class="borderR"><{$lang.hylb}>:</td><td class="borderR"><{$job.ctype}></td>
+				</tr>
+				<tr>				 
+                 <td class="borderR"><{$lang.zwlb}>:</td><td class="borderR"><{$job.catname}></td>
+				</tr>
+				<tr>				 
+                 <td class="borderR"><{$lang.nlyq}>:</td><td class="borderR"><{foreach item=list key=num from=$lang.age_arr}><{if $num==$job.age}><{$list}><{/if}><{/foreach}></td>
+               </tr>
+             </table></div>
+          </td>
+         </tr>
+         <tr class="tr4" valign="bottom">
+           <td colspan="2"><{$lang.zwms}></td>
+         </tr>
+          <tr class="tr5">
+           <td colspan="2"><{$job.con}></td>
+         </tr>
+		 <{if $smarty.cookies.USER !=''}>
+         <tr class="tr6">
+           <td colspan="2"><a onclick="alertWin('<{$lang.xzjl}>','',350,130,'<{$config.weburl}>/?m=job&s=resume&id=<{$smarty.get.id}>');" ><img src="<{$config.weburl}>/image/default/job_btn.png" /></a></td>
+         </tr>
+		 <{/if}>	
+       </table>
+       </div>
+     </div>
+    
+    <div class="job_right">
+
+         <div id="box" class="job_cat">
+             				<div class="nav_w">
+					<div id="navleft_w">
+						<ul>
+							<li class="nav_w"><a href="main.php?action=m&m=job&s=admin_job&menu=usershop"><{$lang.add_vacancy_w}></a><li>
+							
+						</ul>
+					</div>	
+				</div>
+			 <b><{$lang.jobcats}></b>
+             
+             <{insert name="label" type="jobcat" temp="jobcat" }>
+         </div>
+    </div>
+    
+    <div class="clear"></div>
+    
+ 
+</div>
+

@@ -1,0 +1,9 @@
+<?php
+$mem[6][1][]=array(
+	'Уведомления',
+	array(
+		'notice.php,1,announcement',
+		'notice_manager.php,1,announcement',
+	)
+)
+?>

@@ -1,0 +1,26 @@
+<div class="common_box">
+<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="guide_ba"><span><{$lang.video_detail}></span></td>
+  </tr>
+  <tr>
+    <td height="523" align="center" valign="top" style="text-align:center">
+	<{if $de.name}>
+	<div><{$de.name}></div>
+	<div>
+    <{if $de.video_url|truncate:4:''=='http'}>
+    	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="VideoPlayer" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" height="373" width="438"><param name="movie" value="<{$de.video_url}>" /><param name="quality" value="high" /><param name="allowScriptAccess" value="always" /><param name="allowFullScreen" value="true" /><embed name="VideoPlayer" src="<{$de.video_url}>" allowScriptAccess="always" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="true" height="373" width="438" /></object>
+	<{elseif $de.type=='swf'}>
+	
+	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="VideoPlayer" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0" width="600"><param name="movie" value="<{$config.weburl}>/uploadfile/video/<{$de.video_url}>" /><param name="quality" value="high" /><param name="allowScriptAccess" value="always" /><param name="allowFullScreen" value="true" /><embed name="VideoPlayer" src="<{$config.weburl}>/uploadfile/video/<{$de.video_url}>" allowScriptAccess="always" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="true" width="600" /></object>
+	<{else}>
+    
+    <embed width="400" height="300" type="application/x-shockwave-flash" allowfullscreen="true" wmode="transparent" quality="high" flashvars="file=<{$config.weburl}>/uploadfile/video/<{$de.video_url}>" src="lib/flvplayer.swf" allowscriptaccess="never" allownetworking="internal">
+    <{/if}>
+	</div>
+	<div><{$de.desc}></div>
+	<{/if}>
+	</td>
+  </tr>
+</table>
+</div>

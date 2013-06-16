@@ -1,0 +1,187 @@
+<link href="<{$config.weburl}>/module/ask/templates/default/ask.css" rel="stylesheet" type="text/css" />
+<script src="script/my_lightbox.js" language="javascript"></script>
+<script type="text/javascript">
+function getfav()
+{	
+	var url = 'ajax_back_end.php';
+	var myurl=document.location.href;
+	var u='<{$smarty.cookies.USER}>';
+	if (u=='')
+	{
+	  alert('<{$lang.no_logo}>');
+	  window.location.href='<{$config.weburl}>/login.php';
+	  return false;
+	}
+	var fu='<{$smarty.get.id}>';
+ 	var typ='6';
+	var ttil='<{$quest.title|regex_replace:"/[\r\t\n]/":""}>';
+	var mpic='';
+	var des='<{$quest.title|strip_tags}>';
+    var pars = 'user='+u+'&fid='+fu+'&type='+typ+'&title='+ttil+'&url='+myurl+'&des='+des+'&picurl='+mpic;
+	var myAjax = new Ajax.Request(url,{method: 'post', parameters: pars, onComplete: showResponse});
+	function showResponse(originalRequest)
+	{
+	    if(originalRequest.responseText>1)
+		{
+	       alert('<{$lang.fav_ok}>');
+		}
+		else if (originalRequest.responseText>0)
+		{
+	       alert('<{$lang.fav_isbing}>');
+		}
+		else
+		{
+	       alert('<{$lang.error}>');
+		}
+	}
+}
+function getmsg()
+{
+	var tar=document.getElementById('myanswer');
+	var rad=document.getElementById('myrands');
+	var islogo='<{$smarty.cookies.USER}>';
+	var s=trim(tar.value);
+	var len=10000-s.length;
+	if(len>=0&&islogo!='')
+	{
+		document.getElementById('answermsg').innerHTML='<{$lang.yce}>'+len+'<{$lang.acs}>';
+		if(s.length<1||rad.value.length<4)
+			document.getElementById('myanswer_btn').disabled=true;
+		else
+			document.getElementById('myanswer_btn').disabled=false;
+	}
+	else
+	{
+		if(islogo!='')
+			document.getElementById('answermsg').innerHTML='<{$lang.aisl}>';
+		else
+			document.getElementById('answermsg').innerHTML='<font color="red"><{$lang.nolog}></font>';
+		document.getElementById('myanswer_btn').disabled=true;
+		return false;
+	}
+}
+function trim(str)
+{    
+   return str.replace(/\s/g,'');    
+}    
+</script>
+<link href="<{$config.weburl}>/templates/default/ask.css" rel="stylesheet" type="text/css" />
+<div class="menu_bottom L1">				
+    <div class="headtop_L">
+             <a href='<{$config.weburl}>/'><{$lang.ihome}></a> &raquo; <a href="<{$config.weburl}>/?m=ask"><{$lang.askq}></a> &raquo; <{$guide}>
+    </div>
+    <div class="headtop_R"></div>		
+</div>
+
+
+
+
+
+
+
+<div id="askright" class="askright">
+	<div class="sectitle"><div class="title_left1 L2"><{$lang.sa}></div></div>
+	<div class="seccon">
+	<form action="" name="asksearch" id='asksearch' method="get">
+		<table  border="0" cellspacing="0" width="100%">
+			<tr valign="center">
+			<td>
+            <input maxlength="50" name="key" tabindex=1 type="text" id="key" style="width:180px;margin-left:5px;color:#CCCCCC"  value="<{$lang.plen}>" onclick="this.value='';this.style.color='#FF0000';"/>
+            </td>
+			</tr>
+			<tr>
+			<td align="center">
+			<input name="m" type="hidden" value="ask" />
+			<input name="s" type="hidden" value="ask_list" />
+            <input  type="submit" id="earch_btn" tabindex=2 value="<{$lang.sa}>">
+            <input  type="button" id="ask_btn" tabindex=3 value="<{$lang.iask}>" <{ if $smarty.cookies.USER}> onclick="location.href='<{$config.weburl}>/?m=ask&s=add_question&catid=<{$quest.catid}>'" <{else}>onclick="location.href='<{$config.weburl}>/login.php'" <{/if}>>
+            </td>
+			</tr>
+		</table>
+	</form>
+	</div>
+
+	<div class="sectitle m1"><div class="title_left1 L2"><{$lang.relq}></div></div>
+	<div class="seccon">		 
+		<{foreach item=rlist from=$relquest}>
+        <li>
+          <span><{if $rlist.reward}><img src="<{$config.weburl}>/image/default/mon.gif "><{$rlist.reward}><{else}><img src="<{$config.weburl}>/image/default/nask.gif"><{/if}>&nbsp;&nbsp;<a href="<{$config.weburl}>/?m=ask&s=question&id=<{$rlist.id}>" target="_blank" title="<{$rlist.title}>"><strong><{$rlist.title|truncate:30:"...":true}></strong></a></span>
+        </li>
+		<{/foreach}>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+<div class="askmain">
+			<div class="myasktitle">
+				<ul class="center">
+					<span class="normaltitle"><{if $quest.statu==1}><img src="<{$config.weburl}>/image/default/nask.gif" height="15"/>&nbsp;&nbsp;<{$lang.wq}><{elseif $quest.statu==2}><img src="<{$config.weburl}>/image/default/answer.gif" height="15"/>&nbsp;&nbsp;<{$lang.hres}><{elseif $quest.statu==3}><img src="<{$config.weburl}>/image/default/expired.gif" height="15"/>&nbsp;&nbsp;<{$lang.expir}>
+					<{/if}></span>
+					<span style="float:right;margin-top:5px;margin-right:5px;"><a href="#" onclick="getfav()"><{$lang.favit}></a></span>
+			</ul>
+			</div>
+			<div class="mynewaskd">
+				<div style="margin-top:0px;width:100%;height:100%;">
+					<span style="font-weight:bold; color:#005AA6;margin-left:10px;"><{$quest.title}></span><br>
+					<span style="color:#003366;margin-left:10px;margin-top:5px;"><img src="<{$config.weburl}>/image/default/mon.gif "><{$lang.rewards}><{$quest.reward}>&nbsp;&nbsp;<{$lang.qtime}><{$quest.uptime|date_format}></span><br>
+					<span style="margin-left:10px;margin-top:10px;">
+						<script src='<{$config.weburl}>/api/ad.php?id=42&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script>
+						<{$quest.content}>
+					</span>
+					<{if $quest.des}>
+					<span style="font-weight:bold; color:#005AA6;comargin-left:10px;margin-top:10px;"><{$lang.qappend}></span><br>
+					<span style="margin-left:10px;margin-top:10px;"><{$quest.des}></span>
+					<{/if}>
+					<br>
+					<span style="margin-left:10px;margin-right:10px;margin-top:10px;text-align:right;">
+					<{$lang.asks}><a href="http://<{$uname}>.<{$config.baseurl}>"><{$uname}></a>&nbsp;&nbsp;
+					<{if $uname==$smarty.cookies.USER&&$quest.statu!=2}>
+					<a href="?m=ask&s=question&id=<{$smarty.get.id}>&thanks=haveanswer"><{$lang.ihsel}></a>
+					<{/if}>
+					</span>
+				</div>				
+				<{if $quest.statu==1}>
+					<div class="myanswer">
+					<form action="" name="thismyanswer" id='thismyanswer' method="POST">
+					<span><{$lang.msg1}></span><{if $smarty.get.sameday=='1'}>&nbsp;&nbsp;<span><font color="#FF0000"><{$lang.msg2}></font></span><{/if}><{if $smarty.get.answerok=='1'}>&nbsp;&nbsp;<span><font color="#FF0000"><{$lang.ansok}></font></span><{/if}><br>
+					<input name="id" type="hidden" id="id" value="<{$smarty.get.id}>" />
+					<input name="anuserid" type="hidden" id="anuserid" value="<{$anuid}>" />
+					<textarea style="width:665px; height:150px;color:#000000" name="myanswer" id="myanswer" cols="40" rows="5" tabindex=1 onkeyup="getmsg();" onclick="getmsg();" ></textarea>
+					<span style="float:left;"><{$lang.randcode}><input name="myrands" type="text" id="myrands" size="5" maxlength="5" onkeyup="getmsg();">
+					<img onclick="get_randfunc(this);" style="padding-top:3px; cursor:pointer;" src='<{$config.weburl}>/includes/rand_func.php'/></span><{if $smarty.get.errorcode=='1'}><span><font color="#FF0000"><{$lang.codeerr}></font></span><{/if}><span id="answermsg" style="float:right;color:#000000;margin-right:5px;"></span><input  type="submit" name="myanswer_btn" id="myanswer_btn" tabindex=2 value="<{if $smarty.cookies.USER&&$smarty.cookies.USER!=$uname}><{$lang.submyan}><{elseif $smarty.cookies.USER==$uname}><{$lang.iappen}><{else}><{$lang.nologo}><{/if}>" onclick="getmsg();" disabled>
+					</form>
+					</div>
+				<{/if}>
+				<div class="clear"></div>
+		   </div> 
+		   <!-- 其他回复 -->
+		  <{if $allnums>0}>
+           <div class="myasktitle" style="margin-top:10px;">
+				<ul class="center">
+					<span class="normaltitle"><{$lang.alla}></span>&nbsp;&nbsp;[<{$lang.dot}>: <{$allnums}>]
+				</ul>
+			</div>
+			<div class="mynewaskd">
+		        <div class="allanswer">
+				<{foreach item=anlist from=$answer.list}>	
+				<li style="width:660px;height:auto;">
+				 <{if $anlist.best_answer=='1'}>	 
+				 <span style="float:left;height:100%;line-height:30px;background:#f7fcff;border:1px #FF0000 solid;width:665px;margin:0 auto;padding:2px;word-break:break-all;">
+				 <span style="color:#ff0000;width:660px;"><img src="<{$config.weburl}>/image/default/besta.jpg"><{$lang.besta}></span><br>
+				 <{else}><span style="float:left;height:100%;line-height:30px;border-bottom:1px #9fc1e7 dashed;margin-top:10px;width:660px;word-break:break-all;"><{/if}><{$anlist.answer_con}></span>
+				 <span style="float:right;margin-top:20px;margin-bottom:10px;"><{if $uname==$smarty.cookies.USER&&$anlist.best_answer!=1&&$quest.statu!=2}><a href="question.php?id=<{$smarty.get.id}>&bestanswerid=<{$anlist.id}>"><img src="<{$config.weburl}>/image/default/number1.jpg"></a>&nbsp;&nbsp;&nbsp;<{/if}><{$lang.answerp}><a href="http://<{$anlist.user}>.<{$config.baseurl}>"><{$anlist.user}></a>&nbsp;&nbsp;<{$lang.atime}><{$anlist.uptime|date_format}></span></span>
+				 </li>
+				<{/foreach}>
+				<li class="page"><{$answer.pages}></li>
+				</div>
+				<div class="clear"></div>
+			</div>	
+            <{/if}>
+ 
+</div>

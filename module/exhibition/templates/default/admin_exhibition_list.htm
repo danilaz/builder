@@ -1,0 +1,21 @@
+<div class="admin_right_top">Менеджер выставок</div>
+<table class="admin_table" border="0" cellspacing="1" bgcolor="#FFFFFF">
+	<tr bgcolor="#E8E8E8" style="font-weight:bold"> 
+	  <td width="680" bgcolor="#E8E8E8">Название</td>
+	  <td width="202" align="center" bgcolor="#E8E8E8">Дата</td>
+	  <td width="204" align="center" bgcolor="#E8E8E8"><{$lang.operation}></td>
+	</tr>
+	<{foreach item=list from=$re.list}>
+	<tr bgcolor="#F7F7F7"> 
+	  <td width="680"><{if $list.statu==0}><font color="#FF0000">[На проверке]</font> <{else}><{if $list.is_rec==1}><font color="green">[Рекомендовано] </font><{/if}><{/if}><{$list.title}></td>
+	  <td width="202" align="center"><{$list.addTime|date_format}></td>
+	  <td align="center">
+	  <a href="?menu=<{$smarty.get.menu}>&edit=<{$list.id}>&action=m&m=<{$smarty.get.m}>&s=admin_exhibition">
+	  <img src="/image/default/page_edit.png" title="Изменить"></a>
+	  <a href="?deid=<{$list.id}>&action=m&m=<{$smarty.get.m}>&s=admin_exhibition_list&menu=<{$smarty.get.menu}>" onclick="return confirm('Вы действительно хотите удалить выставку?');">
+	  <img src="/image/default/delete.png " title="Удалить"></a>
+	  </td>
+	</tr>
+	<{/foreach}>
+</table>
+<div align="right"><{$re.page}></div>

@@ -1,0 +1,162 @@
+﻿<{include file="header.htm"}>
+	<div class="main">
+<div class="categories">
+<ul id="all_cate_list" class="cat_list_show" style="margin-top:-1px;">
+      <{foreach from=$cat item=list}>
+      <li>
+     	 <div><a <{if $list.sub!=null}>class="sup"<{/if}> href="<{$config.weburl}>/?m=offer&s=offer_list&id&id=<{$list.catid}>"><{$list.cat}></a></div>
+         <{if $list.sub!=null}>
+         <p>
+          <{foreach from=$list.sub item=item}>     
+            <a href="<{$config.weburl}>/?m=offer&s=offer_list&id=<{$item.catid}>"><{$item.cat}></a>
+          <{/foreach}>
+        </p>
+        <{/if}>
+        </li>
+      <{/foreach}>
+    </ul>
+</div>
+        <div class="main_l">
+            <div class="clear"></div>
+            <div class="ad"><script src='<{$config.weburl}>/api/ad.php?id=4&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script></div>
+          <!-- <div> <img src="<{$config.weburl}>/image/default/ekolobok-art.png"> </div> -->
+<div class="top_pro">
+  <div class="top_branh_tit">
+    <span class="yt_tit">Продаем товары</span>
+  </div>
+       <{insert name="getOffers" leng="30" type="1" limit="4" img="true"}> 
+  <div class="clear"></div>
+</div>
+<div class="h1_line"></div> 
+<div class="top_pro"> 
+  <div class="top_branh_tit">
+    <span class="yt_tit">Оказываем услуги (выполняем работы)</span>
+  </div>
+       <{insert name="getOffers" leng="300" type="2" limit="4" img="true"}> 
+  <div class="clear"></div>
+</div>
+<div class="top_pro">
+  <div class="top_branh_tit">
+    <span class="yt_tit">Закупаем товары</span>
+  </div>
+       <{insert name="getDemands" leng="30" type="1" limit="4" img="true"}> 
+  <div class="clear"></div>
+</div>
+<div class="h1_line"></div> 
+<div class="top_pro"> 
+  <div class="top_branh_tit">
+    <span class="yt_tit">Требуются услуги (работы)</span>
+  </div>
+       <{insert name="getDemands" leng="300" type="2" limit="4" img="true"}> 
+  <div class="clear"></div>
+</div> 	
+        	
+            <div class="clear"></div>
+ <div class="syzx">
+				<div class="Menubox"><h2>Бизнес информация</h2><h3><a href="<{$config.weburl}>/?m=news">Подробнее</a></h3></div>
+				<{insert name="label" type="newstag" temp="news_indextag"}>
+				<div class="clear"></div>
+            </div>
+            <div class="pro_list">
+                <{insert name="label" rec=1 type="cat" temp="pro_cat"}>
+            </div>
+            <div class="ad"><script src='<{$config.weburl}>/api/ad.php?id=5&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script></div>
+           
+            </div>
+            </div>
+            <div class="main_r">
+            	<{if $smarty.cookies.USER==''}>
+				<div id="loginb2b">
+				<div class="login_tit">
+                <h2>Вход для участников</h2></div>
+                <div class="login_con">
+                <div id="login1">
+                    <!--
+					<ul>
+                    <form autocomplete="off" method="post" action="login.php" name="login" id="login">
+                    
+		<div style="padding-bottom:3px;">Логин<span style="padding-left:20px;"><input type="text" onBlur="this.value=this.value==''?'Ваш логин':this.value" onFocus="this.value=this.value=='Ваш логин'?'':this.value" value="Ваш логин" class="k" name="user" id="user"></span></div>
+		<div>Пароль<span style="padding-left:10px;"><input type="password" onBlur="this.value=this.value==''?'Пароль':this.value" onFocus="this.value=this.value=='Пароль'?'':this.value" value="Пароль" class="k" id="password" name="password"><input type="image" src="<{$config.weburl}>/image/default/login.jpg"></div>
+                    <input type="hidden" value="submit" name="action">
+                    </form>
+                    </ul>
+					-->
+                    <ul class="u2">
+                      <a href="register.php">Регистрация</a> | <a href="lostpass.php">Забыли пароль?</a>
+                    </ul>
+                </div>
+                <ul class="phone"><span style="padding-left:25px;">Техническая поддержка:</span><br />
+		<span class="o16" style="padding-left:25px;"><{$config.owntel}>8800</span></ul>
+                <ul style="height:60px;"><li><a href="/register.php"><img width="99" height="28" src="<{$config.weburl}>/image/default/btn1.jpg"></a></li>
+                  <li><a href="main.php?action=m&amp;m=offer&amp;s=admin_offer&amp;menu=info"><img width="99" height="28" src="<{$config.weburl}>/image/default/btn2.jpg"></a></li></ul></div>
+                 </div>
+				<{else}>
+				<div id="loginb2bno">
+				<div class="login_tit">
+                <h2>Техническая поддержка</h2></div>
+                <div class="nologin_con">
+                <ul class="phone"><span style="padding-left:25px;">Техническая поддержка: привет</span><br />
+                <span class="o16" style="padding-left:25px;"><{$config.owntel}></span></ul>
+                <ul style="height:28px;">
+				<!-- <li><a href="/register.php"><img width="99" height="28" src="<{$config.weburl}>/image/default/btn1.jpg"></a></li> -->
+                  <li><a href="main.php?action=m&amp;m=offer&amp;s=admin_offer&amp;menu=info"><img width="99" height="28" src="<{$config.weburl}>/image/default/btn2.jpg"></a></li></ul></div>
+                 </div>					
+				<{/if}>				 
+                 <div class="topm" id="company">
+					<div class="sectitle">
+						<h2>Компании</h2>
+						<span style="float: right; margin-top:5px; margin-right:10px;"><a href="<{$config.weburl}>/?m=company"><img src="image/default/more.gif" width="36" height="13" border="0" /></a></span>
+					</div>
+                 
+                    <div class="seccon">
+                    	<div id="conr1" class="conr1">
+                        	<ul>
+                            	<{insert name="getUser" leng="200" field="company" filter="new" limit=13}>
+                            </ul>
+                        </div>
+                        <div id="conr2" class="conr2">
+                        	<ul>
+                            	<{insert name="getUser" leng="200" field="company" filter="rec" limit=13}>
+                            </ul>
+                        </div>
+                    </div>
+                 </div>
+				 <!--
+                 <div class="topm" id="exhibition">
+                 	<div class="sectitle">
+                    	<h2>Новые выставки</h2>
+						<span style="float: right; margin-top:5px; margin-right:10px;"><a href="<{$config.weburl}>/?m=exhibition"><img src="image/default/more.gif" width="36" height="13" border="0" /></a></span>
+                    </div>
+                    <div class="seccon">
+                    	<ul>
+                           <{insert name="label" type='exhibition' temp='exhibition_index_lasted' limit=2}>
+  						</ul>
+                    </div>
+                 </div>
+				 -->
+                 <div class="ad"><script src='<{$config.weburl}>/api/ad.php?id=6&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script></div>
+				 <!--
+				<div class="topm" id="voting">
+                 	<div class="sectitle"><h2>Вопросы и ответы</h2><span style="float: right; margin-top:5px; margin-right:10px;">
+	   <a href="<{$config.weburl}>/?m=ask"><img src="image/default/more.gif" width="36" height="13" border="0" /></a></span></div>
+                    <div class="seccon">
+                        <{insert name="label" type="ask" temp="ask_text_list" limit=10}>
+                    </div>
+                 </div>
+				 -->
+				 <div class="ad"><script src='<{$config.weburl}>/api/ad.php?id=7&catid=<{$smarty.get.id}>&sname=<{$sname}>'></script></div>
+            </div>
+            <div class="clear"></div>
+            <div id="index_link" class="topm">
+				<div class="sectitle">
+					<span class="title_t">Ссылки</span>
+					<span style="float: right; margin-right:10px;">
+						[<a href="change_link.php" target="_blank">Подробнее</a>]
+					</span>
+				</div>
+				<div class="seccon"><p><{insert name="getFriendLink"}></p></div>
+       		</div>
+<{include file="footer.htm"}>
+<!--------WebKitFormBoundaryB2eRb7gVQksDNbeA
+Content-Disposition: form-data; name="func"
+file.upload-->

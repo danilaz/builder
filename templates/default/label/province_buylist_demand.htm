@@ -1,0 +1,6 @@
+<div align="left" style="padding:10px;">
+<{foreach item=list key=num from=$province}>
+    <a href="<{$config.weburl}>/?m=demand&s=demand_list&province=<{$list.province}>"><{$list.province}></a> &bull;
+    <{if ($num+1)%3==0}><{/if}>
+<{/foreach}>
+</div>

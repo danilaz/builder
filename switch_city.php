@@ -1,0 +1,51 @@
+<?php
+/**
+ * Email:zyfang1115@163.com
+ * Auter:Brad
+ * 2008,7,17
+ */
+//$HTTP_REFERER?$to=$HTTP_REFERER:$to="index.php";
+$to="index.php";
+if(!empty($_GET["all"]))
+{
+	setcookie("CID",NULL,time()+60*60*24*30,"/");
+	setcookie("PID",NULL,time()+60*60*24*30,"/");
+	header("Location:$to");
+}
+if(isset($_GET["cid"]))
+{
+	setcookie("CID",$_GET["cid"],time()+60*60*24*30,"/");
+	setcookie("PID",NULL,time()+60*60*24*30,"/");
+	unset($dpid);
+	header("Location:$to");
+}
+if(isset($_GET["pid"]))
+{
+	if($_GET["pid"]=="all")
+	{
+		setcookie("PID",NULL,time()+60*60*24*30,"/");
+		setcookie("CID",NULL,time()+60*60*24*30,"/");
+		unset($dcid);
+		unset($dpid);
+	}
+	else
+	{
+		setcookie("PID",$_GET["pid"],time()+60*60*24*30,"/");
+		setcookie("CID",NULL,time()+60*60*24*30,"/");
+		unset($dcid);
+	}
+	header("Location:$to");
+}
+
+//============================
+include_once("includes/global.php"); 
+include_once("includes/smarty_config.php");
+useCahe();
+$flag=$config["temp"];
+if(!$tpl->is_cached("switch_city.htm",$flag))
+{	
+	$tpl->assign("city",getCity());
+	include_once("footer.php");
+}
+$tpl->display("switch_city.htm",$flag);
+?>
